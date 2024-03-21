@@ -1,8 +1,18 @@
-<a name="top"></a>
 
-## [Volver](../Python.md#programacion-funcional)
+## [Volver](../README.md#programacion-funcional)
 
 # Programacion Funcional
+### Contenidos:
+- [Listas por comprensión](#listas-por-comprensión)
+- [Funciones Lambda](#funciones-lambda)
+- [Funciones de Orden Superior](#funciones-de-orden-superior)
+  - [Closures](#closures)
+  - [Map()](#map)
+  - [Filter()](#filter)
+  - [Reduce()](#reduce)
+  - [Partial()](#partial)
+
+
 
 ## Listas por comprensión
 las listas por comprensión se basan en el uso de variables calculadas a partir de una iteracion. Algunos ejemplos de listas creadas a partir de un bucle for pueden ser:
@@ -272,4 +282,4 @@ print( potencias[4](x) )		# 3⁴ = 81
 
 ## [Inicio](#programacion-funcional)
 
-## [Volver](../Python.md#programacion-funcional)
+## [Volver](../README.md#programacion-funcional)

@@ -1,10 +1,19 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#clases)
-
-
+## [Volver](../README.md#clases)
 
 # Clases
+
+### Contenidos:
+- [Programacion Orientada a Objetos](#programacion-orientada-a-objetos)  
+  - [Atributos públicos y privados](#atributos-públicos-y-privados)
+  - [getters y setters](#getters-y-setters)
+  - [Metodos privados](#metodos-privados)
+- [Propiedades de las Clases](#propiedades-de-las-clases)
+  - [Herencia](#herencia) 
+  - [Herencia múltiple](#herencia-múltiple)
+  - [Polimorfismo](#polimorfismo)
+  - [Composición](#composición)
+  - [Agregado ("agregacion")](#agregado-agregacion)
+
 
 ## Programacion Orientada a Objetos  
 
@@ -63,16 +72,40 @@ Para hacer que los atributos de la clase sean *"privados"* se les antepone en su
 class <nombre_clase>:
 	def __init__(self, <param1> , <param2>, ...):	
         #inicialización (obligatoria)
-		self.<atributo1>    = <param1>	#atributo público		
-		self.__<atributo2>  = <param2>	#atributo "privado"
+		self.<atributo1>    = <param1>	# atributo público		
+		self.__<atributo2>  = <param2>	# atributo privado
 ```
-En realidad Python no impide el acceso a los atributos privados por fuera de los métodos. El uso de los guiones en los atributos es más bien un indicativo de que estos deben ser usados solamente por la clase y que no deben ser accedidos por fuera. 
-REVISAR
+
+Si se intenta acceder a un atributo privado desde afuera de los métodos de la clase no se disparará un error; en cambio se creará un atributo alterno con el mismo nombre. Por este motivo hay que evitar a toda costa el intentar acceder a los atributos privados desde afuera. 
+
+### 'getters' y 'setters'
+
+En Python se prefiere **evitar** los métodos 'get' y  'set' para lectura y escritura de atributos, por ello lo habitual es declarar públicos los atributos de interés para el acceso externo y dejar privados los atributos con data interna de los métodos. 
+
+Este hábito contrasta con otros lenguajes donde sí se habitúa crear metodos específicos para leer y escribir la data interna (ejemplo JavaScript).
 
 
-### getters y setters
+### Metodos privados
 
-En Python se prefiere **evitar** los métodos 'get' y  'set' para lectura y escritura, por ello lo habitual es dejar los atributos públicos. 
+Es posible crear metodos privados definiéndolos con dos giones adelante, igual que se hace con los atributos:
+
+```python
+class <nombre_clase>:
+	def __init__(self, <param1> , <param2>, ...):	
+        #inicialización (obligatoria)
+        # codigo inicializacion
+
+    def publico(self):
+        self.__privado(self)
+        # codigo publico
+
+    def __privado(self):
+        # codigo privado
+```
+
+Si se intenta acceder a un metodo privado desde afuera de la clase se producirá un error. 
+
+Los métodos privados son útiles para hacer rutinas auxiliares de los métodos públicos de la clase.
 
 
 ## Propiedades de las Clases
@@ -355,4 +388,4 @@ https://barcelonageeks.com/python-oops-agregacion-y-composicion/
 
 ## [Inicio](#clases) 
 
-## [Volver](../Python.md#clases)
+## [Volver](../README.md#clases)

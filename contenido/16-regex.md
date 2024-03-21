@@ -1,11 +1,21 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#expresiones-regulares-regex)
+## [Volver](../README.md#expresiones-regulares-regex)
 
 
 # Expresiones Regulares (REGEX)
 
-Los patrones regulares facilitan mucho la búsqueda de secuencias. Para trabajar con ellos Python tiene su propio modulo dedicado llamado **re**.
+### Contenidos:
+- [Modulo re](#modulo-re)
+- [Funciones](#funciones)
+    - [match()](#match)
+    - [search()](#search)
+    - [findall()](#findall)
+    - [split()](#split)
+    - [sub()](#sub)
+- [Patrones regulares](#patrones-regulares)
+- [Enlaces útiles](#enlaces-útiles)
+
+
+
 
 ## Modulo re
 
@@ -83,7 +93,7 @@ else:
     print("patron no detectado")    
 ```
 
-### search  
+### search()  
 Busca la **primera** coincidencia de una secuencia en **cualquier lugar** del string indicado:
 ```python
 <retorno> = re.search(<patron>, <texto>, <opcion>)
@@ -115,7 +125,7 @@ print(retorno2.group() )  # 'leccion'
 Nuevamente hay que prestar atención al tipo de retorno de la función *search()* para evitar errores en la ejecución en caso de no detectarse el patrón buscado.
 
 
-### findall 
+### findall() 
 
 Busca **todas** las coincidencias  de una secuencia en un string
 ```python
@@ -139,7 +149,7 @@ retorno3 = re.findall(patron, texto3, re.I) # devuelve '[]'
 ```
 
 
-### split
+### split()
 
 Parte un string en trozos limitados por un caracter o secuencia patrón indicado:
 ```python
@@ -159,7 +169,7 @@ retorno2 = re.split(patron, texto2, re.I)    # Devuelve "['esta no es la ', ' 1 
 ```
 Nótese cómo la palabra "leccion" fue eliminada y como en la lista de retorno puede haber textos vacíos.
 
-### sub 
+### sub()
 
 Reemplaza una secuencia por otra dentro de un string todas las veces que aparezca.
 ```python
@@ -179,9 +189,9 @@ retorno2 = re.sub("1", "UNO", texto2) # Devuelve "esta no es la leccion UNO sino
 retorno3 = re.sub(patron , sustituto , texto3) # Devuelve "leccion 2.UNO"  (No cambia nada)
 ```
 
-## Patrones regulares (REGEX)
+## Patrones regulares 
 
-Los patrones regulares son expresiones que sirven para describir combinaciones genéricas de caracteres que cumplan ciertas condiciones. Los patrones regulares tienen una notación estandarizada por lo que pueden aplicarse en distintos lenguajes de programación con iguales resultados.
+Los patrones regulares son expresiones que sirven para describir combinaciones genéricas de caracteres que cumplan ciertas condiciones. Las expresiones tienen una notación estandarizada por lo que pueden aplicarse en distintos lenguajes de programación con iguales resultados.
 
 En el caso de Python los patrones regulares se definen antecedidos por la letra *'r'*:
 
@@ -287,5 +297,5 @@ print(re.findall(patron_email, email5))    # ['no_responder.mi_spam@spammers.net
 
 ## [Inicio](#expresiones-regulares-regex)
 
-## [Volver](../Python.md#expresiones-regulares-regex)
+## [Volver](../README.md#expresiones-regulares-regex)
 

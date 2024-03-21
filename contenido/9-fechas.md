@@ -1,9 +1,22 @@
-<a name="top"></a>
 
-## [Volver](../Python.md#fechas-y-horario)
+
+## [Volver](../README.md#fechas-y-horario)
 
 
 # Fechas y Horario
+
+### Contenidos:
+- [Datetime](#datetime)
+  - [Lectura de fechas](#lectura-de-fechas)
+  - [Métodos de lectura](#métodos-de-lectura)
+  - [Asignacion de fechas](#asignacion-de-fechas)
+  - [Intervalos de tiempo](#intervalos-de-tiempo)
+- [date()](#date)
+- [time()](#time)
+- [timedelta()](#timedelta)
+
+
+## Datetime
 
 El módulo **datetime** está dedicado al trabajo con fechas y horarios. Para usarlo se necesita importarlo.
 
@@ -11,8 +24,6 @@ El módulo **datetime** está dedicado al trabajo con fechas y horarios. Para us
 import datetime
 ```
 Al igual que en otros módulos se puede importar unicamente los elementos necesarios del mismo.
-
-## Datetime
 
 ### Lectura de fechas
 
@@ -163,4 +174,4 @@ instante = timedelta(
 
 ## [Inicio](#fechas-y-horario) 
 
-## [Volver](../Python.md#fechas-y-horario)
+## [Volver](../README.md#fechas-y-horario)

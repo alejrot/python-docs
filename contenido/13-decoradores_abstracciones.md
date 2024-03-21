@@ -1,9 +1,15 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#clases-ii-decoradores-y-abstracciones)
+## [Volver](../README.md#clases-ii-decoradores-y-abstracciones)
 
 
 # Clases II - Decoradores y Abstracciones
+
+### Contenidos:
+- [Decoradores](#decoradores)
+- [Decorador 'Property'](#decorador-property)
+- [Abstracción](#abstracción)
+- [Clases Abstractas](#clases-abstractas)
+- [Métodos Especiales ('dunder')](#metodos-especiales-dunder)
+
 
 
 ## Decoradores
@@ -228,4 +234,4 @@ print(tu_y_yo)
 ----
 
 ## [Inicio](#clases-ii---decoradores-y-abstracciones)
-## [Volver](../Python.md#clases-ii-decoradores-y-abstracciones)
+## [Volver](../README.md#clases-ii-decoradores-y-abstracciones)

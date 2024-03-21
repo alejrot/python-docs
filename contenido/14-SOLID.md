@@ -1,7 +1,20 @@
 ## [Volver](../README.md#clases-iii-principios-solid)
 
 
+
 # Clases III - Principios SOLID
+
+### Contenidos:
+- [Principios SOLID](#principios-solid)
+- [SRP - Principio de Responsabilidad Unica](#srp---principio-de-responsabilidad-unica)
+- [OCP - Principio de Abierto/Cerrado](#ocp---principio-de-abiertocerrado)
+- [LSP - Principio de Sustitución de Liskov](#lsp---principio-de-sustitución-de-liskov)
+- [ISP - Principio de Segregacion de Interfaz](#isp---principio-de-segregacion-de-interfaz)
+- [DIP - Principio de Inversion de Dependencias](#dip---principio-de-inversion-de-dependencias) 
+
+
+## Principios SOLID
+
 Los principios SOLID son una guía de principios cuya aplicación busca lograr las siguientes ventajas:
 
 - 1 - Mantenibilidad
@@ -193,7 +206,7 @@ humano.dormir()
 En resumen, creando varios métodos abstractos en clases separadas se previenen problemas de herencia.
 
 
-## DIP - Principio de Inversion de dependencias 
+## DIP - Principio de Inversion de Dependencias 
 - Los modulos de alto nivel **no** deben depender de los modulos de bajo nivel. Ambos deben depender de abstracciones;
 - Los detalles deben depender de las abstracciones y no al revés. 
 

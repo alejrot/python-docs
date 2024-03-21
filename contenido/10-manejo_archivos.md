@@ -1,6 +1,27 @@
-## [Volver](../Python.md#manejo-de-archivos)
+## [Volver](../README.md#manejo-de-archivos)
 
 # Manejo de Archivos
+
+### Contenidos:
+- [Apertura](#apertura)
+- [Modos de Apertura](#modos-de-apertura)
+- [Métodos de archivos](#métodos-de-archivos)
+    - [close()](#close)
+    - [read()](#read)
+    - [seek()](#seek)
+    - [readline()](#readline)
+    - [readlines()](#readlines)
+    - [readable()](#readable)
+    - [write()](#write)
+    - [writable()](#writable)
+- [Archivos JSON](#archivos-json)
+    - [Apertura y cierre](#apertura-y-cierre)
+    - [Guardado de diccionario](#guardado-de-diccionario)
+    - [Lectura de diccionario](#lectura-de-diccionario)
+
+
+## Apertura
+
 Asumimos que los archivos están ubicados en el directorio del ejecutable o script.
 Para trabajar con  un archivo podemos hacer:
 
@@ -306,4 +327,4 @@ diccionario_2 = json.loads(texto)
 
 ## [Inicio](#manejo-de-archivos) 
 
-## [Volver](../Python.md#manejo-de-archivos)
+## [Volver](../README.md#manejo-de-archivos)

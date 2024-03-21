@@ -1,12 +1,25 @@
+## [Volver](../README#traducciones---python-i18n)
 
+# Traducciones - python-i18n
 
-# Traducciones - i18n
+### Contenido
 
-i18n es una abreviación de 'InternationalizatioN' (18 letras entre la I y la N). 
+- [python-i18n](#python-i18n)
+- [Instalación](#instalación)
+- [Importación](#importación)
+- [Traduccion desde script](#traduccion-desde-script)
+- [Set y Fallback](#set-y-fallback)
+- [Traduccion desde archivos YML](#traduccion-desde-archivos-yml)
+- [Placeholders](#placeholders)
+- [Pluralizacion](#pluralizacion)
+- [Traduccion desde archivos JSON](#traduccion-desde-archivos-json)
+- ['skip locale from root'](#skip-locale-from-root)
+- [Ejemplo aplicado - Lectura JSON](#ejemplo-aplicado---lectura-json)
+
 
 ## python-i18n
 
-Este paquete es una de las implementaciones de Python para las traducciones.
+i18n es una abreviación de 'InternationalizatioN' (18 letras entre la I y la N). **python-i18n** es es una de las implementaciones de Python para las traducciones i18n.
 
 Documentación: 
 
@@ -257,7 +270,13 @@ print( i18n.t('foo.key-3'))
 
 
 
+----
+----
+----
 
+## [Inicio](#traducciones---python-i18n) 
+
+## [Volver](../README#traducciones---python-i18n)
 
 
 

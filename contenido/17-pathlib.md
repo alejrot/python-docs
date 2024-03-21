@@ -1,6 +1,18 @@
-## [Volver](../Python#modulo-pathlib)
+## [Volver](../README#modulo-pathlib)
 
 # Pathlib
+
+### Contenidos:
+- [Introducción](#introducción)
+- [Análisis de rutas](#analisis-de-rutas)
+- [Interaccion con el sistema de archivos](#interaccion-con-el-sistema-de-archivos)
+    - [Buscar y comprobar archivos y directorios](#buscar-y-comprobar-archivos-y-directorios)
+    - [Archivos](#archivos)
+    - [Directorios](#directorios)
+- [Anexo: permisos de usuario en linux](#anexo-permisos-de-usuario-en-linux)
+
+
+
 
 ## Introducción
 
@@ -131,6 +143,8 @@ ruta_compuesta = str(objeto_compuesto)  # '/home/user'
 
 ## Interaccion con el sistema de archivos
 
+### Buscar y comprobar archivos y directorios
+
 
 #### Busqueda de archivos y carpetas - *iterdir()*
 
@@ -252,6 +266,26 @@ usuario_propietario         = objeto_ruta.owner()
 grupo_usuario_propietario   = objeto_ruta.group()
 ```
 
+#### Verificar existencia - *exists()*
+```python
+existe = Path(ruta).exists()
+```
+
+
+#### Cambio permisos - *chmod()*
+```python
+numero_permisos: int    # numero en octal o hexadecimal
+Path(ruta).chmod(numero_permisos)       # ver anexo sobre permisos
+```
+
+Ejemplo uso:
+```python
+# Usuario actual: leer y escribir
+# otros: solo leer
+Path(ruta).chmod(0o644)
+```
+
+
 ### Archivos
 
 #### Objeto para ruta archivo
@@ -324,7 +358,6 @@ if existencia:
     objeto_directorio.rmdir() # elimina directorio (debe estar vacio)
 ```
 
-
 #### Carpeta Usuario - *home()*
 
 ```python
@@ -336,25 +369,6 @@ carpeta_usuaurio = pathlib.Path().home()   # carpeta personal del usuario actual
 carpeta_programa = pathlib.Path().cwd()   # carpeta actual del programa
 ```
 
-
-#### Verificar existencia - *exists()*
-```python
-existe = Path(ruta).exists()
-```
-
-
-#### Cambio permisos - *chmod()*
-```python
-numero_permisos: int    # numero en octal o hexadecimal
-Path(ruta).chmod(numero_permisos)       # ver anexo sobre permisos
-```
-
-Ejemplo uso:
-```python
-# Usuario actual: leer y escribir
-# otros: solo leer
-Path(ruta).chmod(0o644)
-```
 
 ## Pendiente: explorar los symlinks
 
@@ -415,8 +429,10 @@ Numero permisos:
 
 [FreeCodeCamp - crear y remover enlaces simbólicos](https://www.freecodecamp.org/espanol/news/tutorial-de-enlace-simbolico-en-linux-como-crear-y-remover-un-enlace-simbolico/)
 
-
+----
+----
+----
 
 ## [Inicio](#pathlib) 
 
-## [Volver](../Python#modulo-pathlib)
+## [Volver](../README#modulo-pathlib)

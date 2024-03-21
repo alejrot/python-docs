@@ -1,8 +1,17 @@
 <a name="top"></a>
 
-## [Volver](../Python.md#errores-y-excepciones)
+## [Volver](../README.md#errores-y-excepciones)
 
 # Errores y Excepciones
+
+### Contenidos:
+- [Error de Sintaxis](#error-de-sintaxis)
+- [Excepción](#excepción)
+- [Sintaxis](#sintaxis)
+  - [Clausulas try y except](#clausulas-try-y-except)
+  - [Clausula else](#clausula-else)
+  - [Clausula finally](#clausula-finaly)
+
 
 ## Error de Sintaxis
 Los errores de sintaxis (*SyntaxError*) son violaciones de las reglas de escritura del lenguaje. El intérprete las detecta a medida que ejecuta las rutinas.
@@ -95,4 +104,4 @@ finally:
 
 ## [Inicio](#errores-y-excepciones)
 
-## [Volver](../Python.md#errores-y-excepciones)
+## [Volver](../README.md#errores-y-excepciones)
