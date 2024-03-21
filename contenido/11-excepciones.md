@@ -1,5 +1,3 @@
-<a name="top"></a>
-
 ## [Volver](../README.md#errores-y-excepciones)
 
 # Errores y Excepciones

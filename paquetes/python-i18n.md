@@ -1,4 +1,4 @@
-## [Volver](../README#traducciones---python-i18n)
+## [Volver](../README.md#traducciones---python-i18n)
 
 # Traducciones - python-i18n
 
@@ -276,7 +276,7 @@ print( i18n.t('foo.key-3'))
 
 ## [Inicio](#traducciones---python-i18n) 
 
-## [Volver](../README#traducciones---python-i18n)
+## [Volver](../README.md#traducciones---python-i18n)
 
 
 

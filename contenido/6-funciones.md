@@ -1,5 +1,3 @@
-<a name="top"></a>
-
 ## [Volver](../README.md#funciones)
 
 # Funciones

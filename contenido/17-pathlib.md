@@ -1,4 +1,4 @@
-## [Volver](../README#modulo-pathlib)
+## [Volver](../README.md#modulo-pathlib)
 
 # Pathlib
 
@@ -435,4 +435,4 @@ Numero permisos:
 
 ## [Inicio](#pathlib) 
 
-## [Volver](../README#modulo-pathlib)
+## [Volver](../README.md#modulo-pathlib)
