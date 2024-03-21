@@ -1,8 +1,20 @@
-<a name="top"></a>
 
-## [Volver](../Python.md#condicionales-y-bucles)
+## [Volver](../README.md#condicionales-y-bucles)
 
-# Control Flujo
+# Control de Flujo
+
+### Contenidos:
+-  [Saltos condicionales y bucles](#saltos-condicionales-y-bucles)
+-  [Saltos Condicionales](#saltos-condicionales)
+  - [Clausula IF](#clausula-if)
+  - [Cláusula ELSE](#cláusula-else)
+  - [Cláusula ELIF](#cláusula-elif)
+- [Bucles Condicionales](#bucles-condicionales)
+  - [Ciclos WHILE](#ciclos-while)
+  - [Ciclos FOR](#ciclos-for)
+
+
+## Saltos condicionales y bucles
 
 El control de flujo se realizamediante saltos condicionales (cláusulas if, else, etc) y mediante bucles condicionales (while, for).
 
@@ -132,4 +144,4 @@ for clave, valor in diccionario.items():
 
 ## [Inicio](#control-flujo)
 
-## [Volver](../Python.md#condicionales-y-bucles)
+## [Volver](../README.md#condicionales-y-bucles)

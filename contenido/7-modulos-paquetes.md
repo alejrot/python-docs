@@ -1,8 +1,13 @@
-<a name="top"></a>
 
-## [Volver](../Python.md#modulos-y-paquetes)
+## [Volver](../README.md#modulos-y-paquetes)
 
 # Módulos y Paquetes
+
+### Contenidos:
+- [Modulos](#módulos)
+- [Paquetes externos: PIP](#paquetes-externos-pip)
+- [Crear modulos](#crear-módulos)
+- [Crear paquetes](#crear-paquetes)
 
 ## Módulos
 
@@ -318,4 +323,4 @@ https://docs.hektorprofe.net/python/modulos-y-paquetes/paquetes/
 
 ## [Inicio](#módulos-y-paquetes)
 
-## [Volver](../Python.md#modulos-y-paquetes)
+## [Volver](../README.md#modulos-y-paquetes)

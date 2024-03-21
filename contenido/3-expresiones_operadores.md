@@ -1,9 +1,16 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#expresiones-y-operadores)
+## [Volver](../README.md#expresiones-y-operadores)
 
 
 # Expresiones y Operadores
+
+### Contenido
+
+- [Expresiones](#expresiones)
+- [Operadores](#operadores)
+  - [Operadores Aritméticos](#operadores-aritméticos)
+  - [Operadores Lógicos](#operadores-lógicos)
+  - [Operadores Relacionales](#operadores-relacionales)
+  - [Operadores de Asignación](#operadores-de-asignación)
 
 ## Expresiones
 Las expresiones son un conjunto de operandos (variables y valores) y operadores que al evaluarse dan valor. Las expresiones se evalúan de izquierda a derecha y respetando la jerarquía de las operaciones. 
@@ -100,4 +107,4 @@ edad = edad +3
 
 ## [Inicio](#expresiones-y-operadores)
 
-## [Volver](../Python.md#expresiones-y-operadores)
+## [Volver](../README.md#expresiones-y-operadores)

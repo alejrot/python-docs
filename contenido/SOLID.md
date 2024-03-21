@@ -1,6 +1,4 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#clases-iii-principios-solid)
+## [Volver](../README.md#clases-iii-principios-solid)
 
 
 # Clases III - Principios SOLID
@@ -280,4 +278,4 @@ corrector = CorrectorOrtografico(ServicioWeb())
 ----
 
 ## [Inicio](#clases-iii---principios-solid)
-## [Volver](../Python.md#clases-iii-principios-solid)
+## [Volver](../README.md#clases-iii-principios-solid)

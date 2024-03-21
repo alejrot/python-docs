@@ -1,9 +1,27 @@
 <a name="top"></a>
 
-## [Volver](../Python.md#tipos-de-datos)
+## [Volver](../README.md#tipos-de-datos)
 
 
 # Tipos de Datos 
+
+### Contenido:
+- [Tipos predefinidos](#tipos-predefinidos)
+- [Listas](#listas)
+  - [Métodos de las listas](#métodos-de-las-listas)
+  - [Funciones para las listas](#funciones-para-las-listas)
+- [Tuplas (Tuples)](#tuplas-tuples)
+- [Conjuntos (Sets)](#conjuntos-sets)
+  - [Métodos de los Sets](#métodos-de-los-sets)
+  - [Operadores de los Sets](#operadores-de-los-sets)
+- [Diccionarios](#diccionarios)
+- [Tipado de datos](#tipado-de-datos)
+  - [Listas, tuplas y conjuntos](#listas-tuplas-y-conjuntos)
+  - [Diccionarios](#diccionarios-1)
+  - [Datos compuestos](#datos-compuestos)
+
+
+## Tipos predefinidos
 
 Python tiene sus propios tipos de datos predefinidos para facilitar el manejo y la organizacion de la data guardada en las variables, agrupándolas en estructuras más grandes y con diferentes propiedades. 
 
@@ -357,4 +375,4 @@ El tipado para datos puede ser un desafío debido a la variedad de datos y varia
 ----
 
 ## [Inicio](#tipos-de-datos)
-## [Volver](../Python.md#tipos-de-datos)
+## [Volver](../README.md#tipos-de-datos)

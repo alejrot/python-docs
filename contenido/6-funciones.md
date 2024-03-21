@@ -1,8 +1,25 @@
 <a name="top"></a>
 
-## [Volver](../Python.md#funciones)
+## [Volver](../README.md#funciones)
 
 # Funciones
+
+### Contenido:
+- [Funciones](#funciones)
+- [Llamada](#llamada)
+- [Definicion](#definicion)
+- [Valor de retorno](#valor-de-retorno)
+- [Argumentos](#argumentos)
+    - [xargs](#xargs)
+    - [kargs](#kargs)
+- [Alcance de una variable (Scope)](#alcance-de-una-variable-scope)
+- [Tipado en las funciones](#tipado-en-las-funciones)
+- [Funciones Recursivas](#funciones-recursivas)
+- [Función Main()](#función-main)
+- [Argumentos de Main()](#argumentos-de-main)
+
+
+## Funciones
 Una función es un bloque de código reutilizable que ejecuta una sola tarea específica. 
 
 
@@ -262,4 +279,4 @@ Se verifica que el primer argumento es la ruta relativa de archivo.
 
 ## [Inicio](#funciones)
 
-## [Volver](../Python.md#funciones)
+## [Volver](../README.md#funciones)

@@ -1,9 +1,18 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#variables-y-asignaciones)
-
+## [Volver](../README.md#variables-y-asignaciones)
 
 # Variables y Asignaciones
+
+### Contenidos:
+- [Tipos Variables](#tipos-de-variables)
+- [Asignaciones](#asignaciones)
+  - [Indexación de strings](#indexación-de-strings)
+  - [Rebanado (Slicing)](#rebanado-slicing)
+  - [Conversion de variables](#conversion-de-variables)
+  - [Tipado de variables](#tipado-de-variables)
+  - [Métodos (para *strings*)](#métodos)
+- [Entrada de datos de usuario](#entrada-de-datos-de-usuario)
+- [Salida de datos a pantalla](#salida-de-datos-a-pantalla)
+  - [F-Strings](#f-strings)
 
 ## Tipos de Variables
 Las variables se crean al asignarles valor. Hay cuatro grandes tipos de variables:
@@ -346,4 +355,4 @@ Para más opciones de formato ver el [**manual de entrada y salida de Python**](
 
 ## [Inicio](#variables-y-asignaciones)
 
-## [Volver](../Python.md#variables-y-asignaciones)
+## [Volver](../README.md#variables-y-asignaciones)

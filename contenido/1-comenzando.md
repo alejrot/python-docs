@@ -1,8 +1,15 @@
-<a name="top"></a>
-
-## [Volver](../Python.md#comenzando-con-python)
+## [Volver](../README.md#comenzando-con-python)
 
 # Comenzando con Python
+
+## Contenidos:
+- [Archivos y Ejecución](#archivos-y-ejecución)
+- [Escribir en pantalla](#escribir-en-pantalla)
+- [Comentarios](#comentarios)
+- [Documentación en MarkDown](#documentación---markdown)
+- [Scripts ejecutables](#scripts-ejecutables)
+- [Compilación](#compilación)
+- [Uso en Consola](#uso-en-consola)
 
 
 ## Archivos y Ejecución
@@ -64,7 +71,7 @@ varias lineas
 
 ## Documentación - MarkDown
 
-MarkDown facilita crear codigos de texto remarcados según el lenguaje usado. Es un formato muy utilizado para documentar  código de software en archivos con extensión '.md'.
+MarkDown facilita crear codigos de texto remarcados según el lenguaje usado. Es un formato muy utilizado para documentar  código de software en archivos con extensión **'.md'**.
 
 Usando triple comilla inclinada rodeando el bloque de código y la palabra 'python' como se muestra: 
 
@@ -145,4 +152,4 @@ Para salir del intérprete hay que escribir **exit()** ó **Ctrl + 'Z'** (en Lin
 
 ## [Inicio](#comenzando-con-python)
 
-## [Volver](../Python.md#comenzando-con-python)
+## [Volver](../README.md#comenzando-con-python)
