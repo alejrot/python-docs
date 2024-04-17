@@ -378,29 +378,46 @@ los symilnks son los enlaces simbólicos de Linux. Son similares a los accesos d
 
 ## Anexo: permisos de usuario en linux
 
-Los permisos de usuario se asignan mediante por un numero octal/hexadecimal de tres digitos. En orden de usuarios:
-- usuario actual
-- grupo del usuario actual
-- todos
+Los permisos de usuario se asignan mediante por un numero binario / octal / hexadecimal de tres digitos. 
 
-El usuario administrador (*root*) siempre tiene todos los derechos posibles
+### Permisos para acciones
 
-Cada dígito es una composición de banderines que otorgan permisos para:
-- leer  (r)  -> 0o4
-- escribir (w) ->0o2
-- ejecutar (x) -> 0o1
+Cada dígito es una composición de banderines que otorgan permisos para leer, escribir y ejecutar. Los valores numéricos equivalentes para cada permiso aslado son:
+
+|Permiso |binario|octal| hexadecimal|
+|--- |:---:|:----:|:---:|
+| Leer  (r)  |0b100 | 0o4 | 0h4 | 
+| Escribir (w) |0b10 | 0o2 | 0h2 | 
+| Ejecutar (x) |0b1 | 0o1 | 0h1 | 
+
+Los numeros de los permisos se construyen combinando los numeros previos.
 
 Ejemplos:
-- sólo lectura -> 0o4
-- lectura y escritura -> 0o6
-- lectura, escritura y ejecucion -> 0o7
-- sólo ejecucion -> 0o1
+
+|Permiso combinado |binario|octal| hexadecimal|
+|--- |:---:|:----:|:---:|
+| sólo lectura (r)  |0b100 | 0o4 | 0h4 | 
+| lectura y escritura (r+w) |0b110 | 0o6 | 0h6 | 
+| lectura, escritura y ejecucion  (r+w+x) |0b111 | 0o7 | 0h7 | 
+| sólo ejecucion  (x) |0b001 | 0o1 | 0h1 | 
+
+
+### Permisos para usuarios
+
+Los digitos con los permisos se asignan con el siguiente orden de usuarios:
+- usuario actual;
+- grupo del usuario actual;
+- todos los usuarios.
 
 Notacion resumida:
 
 |Usuario|Grupo| Todos|
 |---|---|---|
 | rwx | rwx | rwx |
+
+
+**Importante:** el usuario administrador (*'root'*) del sistema siempre tiene todos los derechos posibles, por ello no se lo especifica.
+
 
 **Ejemplo:**
 - usuario propietario con todos los permisos; 
@@ -409,15 +426,13 @@ Notacion resumida:
 
 Numero permisos:
 
-**0o764** (octal)  **|** **0x764** (hexadecimal)
+**0o 111 110 100** (binario)  **|** **0o764** (octal)  **|** **0x764** (hexadecimal)
 
-**Ejemplo 2:**
+**Ejemplo 2:** 
 
-Todos los permisos para todos los ususarios (mala práctica). 
+Todos los permisos para todos los ususarios (mala práctica). Numero permisos:
 
-Numero permisos:
-
-**0o777** (octal)  **|** **0x777** (hexadecimal)
+**0o 111 111 111** (binario)  **|** **0o777** (octal)  **|** **0x777** (hexadecimal)
 
 
 
