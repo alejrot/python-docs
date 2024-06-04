@@ -93,7 +93,7 @@ def numeros_primos_compilado(numero_maximo):
     return primos     
 ```
 
-Se creó una rutina que [ejecuta recursivamente estas funciones](ejemplos/primos_numba.py). Al requerir la búsqueda de numeros primos por debajo de 10 mil: 
+Se creó una rutina que [ejecuta recursivamente estas funciones](numba/primos_numba.py). Al requerir la búsqueda de numeros primos por debajo de 10 mil: 
 
 ```bash
 py primos_numba.py 10000

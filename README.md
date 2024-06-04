@@ -5,7 +5,7 @@ Mi propio tutorial en español acerca del lenguaje Python, sus módulos y alguno
 
 ## Python
 
-Aquí se describen los aspectos básicos del lenguaje, sus módulos estándar, etc.
+Aquí se describen los aspectos básicos del lenguaje, algunos módulos estándar, etc.
 
 
 1. ### [Comenzando con Python](contenido/1-comenzando.md#comenzando-con-python)
@@ -24,12 +24,29 @@ Aquí se describen los aspectos básicos del lenguaje, sus módulos estándar, e
 14. ### [Clases III: Principios SOLID](contenido/14-SOLID.md)
 15. ### [Programacion Funcional](contenido/15-programacion_funcional.md#programacion-funcional)
 16. ### [Expresiones Regulares (REGEX)](contenido/16-regex.md#expresiones-regulares-regex)
-17. ### [Modulo Pathlib](contenido/17-pathlib.md#pathlib)
+
+
 - ### [Archivos Temporales](contenido/archivos_temporales.md#archivos-temporales)
 - ### [Enlaces](contenido/enlaces.md)
+
+
+## Módulos de Python
+
+Exploración de algunos módulos estándar del lenguaje Python.
+
+- ### [Modulo PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
+- ### [Modulo SYS - Interacción con el sistema operativo](modulos/sys.md#sys)
+
 
 ## Paquetes de Python
 
 Breves tutoriales de paquetes varios implementados en Python: bibliotecas, frameworks, etc. Estos normalmente se asignan al sistema en forma de "paquetes".
-- ### [Traducciones - python-i18n](paquetes/python-i18n.md)
+
+- ### [Python i18n - Traducciones I18N](paquetes/python-i18n.md)
+- ### [Numba - Compilacion con Machine Learning](paquetes/numba.md)
+- ### [FFMPEG - Wrapper para Python](paquetes/ffmpeg.md)
+- ### [PsUtil - Información del Sistema](paquetes/psutil.md)
+
+
+
 
