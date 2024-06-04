@@ -1,4 +1,4 @@
-# FFMPEG  en Python
+# ffmpeg-python
 
 
 
@@ -20,7 +20,7 @@ pip install ffmpeg-python
 
 ## Importar
 
-```py
+```python
 import ffmpeg
 ```
 
@@ -179,88 +179,88 @@ audio_salida = "audio.mp3"
 
 - Número fijo de frames, desde el comienzo del video:
 
-	```py 
-	import ffmpeg
+```py 
+import ffmpeg
 
-	ruta_entrada = "demo.mp4"
-	frames_salida = "frame_%d.png" # formato para nombrar los frames de salida
+ruta_entrada = "demo.mp4"
+frames_salida = "frame_%d.png" # formato para nombrar los frames de salida
 
-	nro_frames = 500 # primeros 500 frames de video
+nro_frames = 500 # primeros 500 frames de video
 
-	(
-		ffmpeg.input(ruta_entrada)
-		.output(frames_salida , vframes=nro_frames)      
-		.run()
-	)
-	```
+(
+	ffmpeg.input(ruta_entrada)
+	.output(frames_salida , vframes=nro_frames)      
+	.run()
+)
+```
 
 - Tasa de frames por segundo a elección, desde el comienzo:
 
-	```py 
-	import ffmpeg
+```py 
+import ffmpeg
 
-	ruta_entrada  = "demo.mp4"
-	frames_salida = "frame_%d.png" # formato para nombrar los frames de salida
+ruta_entrada  = "demo.mp4"
+frames_salida = "frame_%d.png" # formato para nombrar los frames de salida
 
-	fps = 0.1  # 1 frame cada 10 segundos
+fps = 0.1  # 1 frame cada 10 segundos
 
-	(
-		ffmpeg.input(ruta_entrada)
-		.output(frames_salida , vf=f'fps={fps}')
-		.run()
-	)
-	```
+(
+	ffmpeg.input(ruta_entrada)
+	.output(frames_salida , vf=f'fps={fps}')
+	.run()
+)
+```
 
 ### Thumbnails
 
 
 - Una captura, tiempo elegido por usuario:
 
-	```py 
-	import ffmpeg
+```py 
+import ffmpeg
 
-	ruta_entrada  = "demo.mp4"
-	thumbnail_salida = "thumbnail.png" 
-	## instante fijo  
-	(
-		ffmpeg.input(ruta_entrada, ss="00:00:15")
-		.output(thumbnail_salida, vframes=1)
-		.run()
-	)
-	```
+ruta_entrada  = "demo.mp4"
+thumbnail_salida = "thumbnail.png" 
+## instante fijo  
+(
+	ffmpeg.input(ruta_entrada, ss="00:00:15")
+	.output(thumbnail_salida, vframes=1)
+	.run()
+)
+```
 
 - Una captura, elegida automáticamente entre los 100 primeros frames (valor predefinido):
 
-	```py 
-	import ffmpeg
+```py 
+import ffmpeg
 
-	ruta_entrada  = "demo.mp4"
-	thumbnail_salida = "thumbnail.png" 
-	# ventana seleccion 100 muestras (default)   
-	(
-		ffmpeg.input(ruta_entrada)
-		.filter('thumbnail')
-		.output(thumbnail_salida, vframes=1)
-		.run()
-	)
-	```
+ruta_entrada  = "demo.mp4"
+thumbnail_salida = "thumbnail.png" 
+# ventana seleccion 100 muestras (default)   
+(
+	ffmpeg.input(ruta_entrada)
+	.filter('thumbnail')
+	.output(thumbnail_salida, vframes=1)
+	.run()
+)
+```
 
 - Una captura, elegida automáticamente entre los N primeros frames:
 
-	```py 
-	import ffmpeg
+```py 
+import ffmpeg
 
-	ruta_entrada  = "demo.mp4"
-	thumbnail_salida = "thumbnail.png" 
-	nro_frames = 500
-	# ventana seleccion 500 muestras  
-	(
-		ffmpeg.input(ruta_entrada)
-		.filter('thumbnail', n=nro_frames)
-		.output(thumbnail_salida, vframes=1)
-		.run()
-	)
-	```
+ruta_entrada  = "demo.mp4"
+thumbnail_salida = "thumbnail.png" 
+nro_frames = 500
+# ventana seleccion 500 muestras  
+(
+	ffmpeg.input(ruta_entrada)
+	.filter('thumbnail', n=nro_frames)
+	.output(thumbnail_salida, vframes=1)
+	.run()
+)
+```
 
 
 ## REFERENCIAS
