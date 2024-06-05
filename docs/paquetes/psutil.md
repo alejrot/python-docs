@@ -1,6 +1,6 @@
 
 
-# Psutil
+# Psutil - Monitoreo del sistema
 
 Psutil ayuda a monitorear los parámetros de funcionamiento del sistema operativo y de sus procesos, tales como el uso de memoria, frecuencia de trabajo, uso de redes, sensores internos, etc. 
 

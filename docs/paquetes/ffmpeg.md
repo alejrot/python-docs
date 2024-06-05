@@ -1,6 +1,6 @@
 # ffmpeg-python
 
-
+ffmpeg-python es un ***wrapper*** (un conector) para interactuar con el utilitario FFMPEG, el cual permite manipular video, audio e imágenes.
 
 [GitHub del proyecto](https://github.com/kkroening/ffmpeg-python)
 
@@ -13,7 +13,7 @@ Se necesita instalar el utilitario en el sistema operativo:
 
 [Descargar FFmpeg](https://www.ffmpeg.org/download.html)
 
-Wrapper para Python
+El wrapper (conector) para Python se instala mediante PIP
 ```bash
 pip install ffmpeg-python
 ```
@@ -263,7 +263,7 @@ nro_frames = 500
 ```
 
 
-## REFERENCIAS
+## Referencias
 
 [DelfStack - FFmpeg en script Python](https://www.delftstack.com/es/howto/python/ffmpeg-python/)
 

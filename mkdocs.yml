@@ -3,6 +3,9 @@ site_name: PythonDocs
 
 theme:
   name: material
+  # name: mkdocs
+  # name: readthedocs
+
   # logo: assets/image.png
   # favicon: assets/image.png
   highlightjs: true
@@ -43,12 +46,13 @@ theme:
   features:
     - header.autohide
     - navigation.footer
+    # - navigation.instant
     - content.code.copy
     - content.code.select
     - content.code.annotate
-    # - search
-    # - search.suggest
-    # - search.highlight
+    - search
+    - search.suggest
+    - search.highlight
     # - search.share
     # - search:
     #   lang: es
@@ -110,31 +114,35 @@ extra_css:
 nav:
   - Indice: index.md
   - Basicos:
-    - contenido/1-comenzando.md
-    - contenido/2-variables_asignaciones.md
-    - contenido/3-expresiones_operadores.md
-    - contenido/4-tipos_datos.md
-    - contenido/5-control_flujo.md
-    - contenido/6-funciones.md
-    - contenido/7-modulos-paquetes.md
-    - contenido/8-entorno_virtual.md
-    - contenido/9-fechas.md
-    - contenido/10-manejo_archivos.md
-    - contenido/11-excepciones.md
-    - contenido/12-clases.md
-    - contenido/13-decoradores_abstracciones.md
-    - contenido/14-SOLID.md
-    - contenido/15-programacion_funcional.md
-    - contenido/16-regex.md
-    - contenido/sistema_operativo.md
-    - contenido/archivos_temporales.md
-    - contenido/enlaces.md
+    - Comenzando con Python: contenido/1-comenzando.md
+    - Variables y Asignaciones: contenido/2-variables_asignaciones.md
+    - Expresiones y Operadores: contenido/3-expresiones_operadores.md
+    - Tipos de Datos: contenido/4-tipos_datos.md
+    - Control de Flujo: contenido/5-control_flujo.md
+    - Funciones: contenido/6-funciones.md
+    - Módulos y Paquetes: contenido/7-modulos-paquetes.md
+    - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
+    - Fechas y Horario: contenido/9-fechas.md
+    - Manejo de Archivos: contenido/10-manejo_archivos.md
+    - Errores y Excepciones: contenido/11-excepciones.md
+    - Clases: contenido/12-clases.md
+    - Clases II - Decoradores y Abstracciones: contenido/13-decoradores_abstracciones.md
+    - Clases III - Principios SOLID: contenido/14-SOLID.md
+    - Programacion Funcional: contenido/15-programacion_funcional.md
+    - Expresiones Regulares (RegEx): contenido/16-regex.md
+    - Sistema Operativo - Modulo OS: contenido/sistema_operativo.md
+    - Archivos Temporales- Módulo Tempfile: contenido/archivos_temporales.md
+    - Enlaces: contenido/enlaces.md
   - Modulos: 
-    - modulos/pathlib.md
-    - modulos/sys.md
+    - Pathlib - manejo de rutas : modulos/pathlib.md
+    - Sys - Parámetros y funciones del sistema: modulos/sys.md
   - Paquetes:
-    - paquetes/python-i18n.md
-    - paquetes/psutil.md
-    - paquetes/numba.md
-    - paquetes/ffmpeg.md
+    - Traducciones - python-i18n : paquetes/python-i18n.md
+    - Psutil - Monitoreo del sistema: paquetes/psutil.md
+    - Numba - Optimizacion con Machine Learning: paquetes/numba.md
+    - FFMPEG-Python: paquetes/ffmpeg.md
   # - Test: test.md
+
+
+
+

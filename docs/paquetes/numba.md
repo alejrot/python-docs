@@ -1,8 +1,8 @@
 
-# Numba
+# Numba - Optimizacion con Machine Learning
 
 
-Numba permite compilar funciones de Python en tiempo de ejecución. Esto suele ayudar a mejorar los tiempos de ejecucion de la función.
+Numba permite compilar funciones de Python en tiempo de ejecución con ayuda de algoritmos de Machine Learning. Esto suele ayudar a mejorar los tiempos de ejecucion de la función.
 
 
 ## Instalacion
