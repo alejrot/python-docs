@@ -1,10 +1,19 @@
-# Sys: Parámetros y funciones del sistema
+# Sys - Parámetros y funciones del sistema
 
 
 
 En este resumen se explican algunas de las funcionalidades del módulo **sys**.
 
-## intérprete, sistema operativo 
+## Importación
+
+El módulo debe ser importado para su uso:
+
+```py
+import sys
+```
+
+
+## Intérprete, sistema operativo 
 
 ### platform
 Indica el sistema operativo detectado:
@@ -62,7 +71,6 @@ sys.prefix    # directorio para archivos Python independientes de la plataforma
 ```
 
 
-
 ### threads
 
 
@@ -72,12 +80,7 @@ sys.thread_info
 ```
 
 
-
-
-
-
-
-## argumentos de entrada
+## Argumentos de entrada
 
 
 ### argv
@@ -97,7 +100,7 @@ argumentos[2]       # 2º argumento
 ```
 Todos los argumentos recibidos se leen como ***variables string***.
 
-### flags (REVISAR --> insensibles)
+### flags 
 
 Los flags se asignan luego del nombre del programa en la ventana de comandos:
 
@@ -116,6 +119,8 @@ sys.flags.inspect   # sólo flag de inspeccion
 sys.flags.optimize  # sólo flag de optimizacion
 # (etc)
 ```
+
+**REVISAR --> flags insensibles**
 
 ## Uso de memoria
 

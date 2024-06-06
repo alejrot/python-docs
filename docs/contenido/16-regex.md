@@ -1,21 +1,6 @@
-## [Volver](../README.md#expresiones-regulares-regex)
 
 
-# Expresiones Regulares (REGEX)
-
-### Contenidos:
-- [Modulo re](#modulo-re)
-- [Funciones](#funciones)
-    - [match()](#match)
-    - [search()](#search)
-    - [findall()](#findall)
-    - [split()](#split)
-    - [sub()](#sub)
-- [Patrones regulares](#patrones-regulares)
-- [Enlaces útiles](#enlaces-útiles)
-
-
-
+# Expresiones Regulares (RegEx) - Modulo RE
 
 ## Modulo re
 
@@ -290,12 +275,4 @@ print(re.findall(patron_email, email5))    # ['no_responder.mi_spam@spammers.net
 
 
 [**RegEx 101: Guía de supervivencia para entender y usar expresiones regulares**](https://eudriscabrera.com/blog/2022/regex-101.html)
-
-----
-----
-----
-
-## [Inicio](#expresiones-regulares-regex)
-
-## [Volver](../README.md#expresiones-regulares-regex)
 

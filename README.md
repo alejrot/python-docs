@@ -26,11 +26,17 @@ source venv/Scripts/activate        # caso Windows
 source venv/bin/activate            # caso GNU/Linux    
 ```
 
+### Instalación
+
+```bash
+pip install mkdocs-material
+```
+
+
 ### Ejecucion (*live server*)
 
 
 ```bash
-pip install mkdocs-material
 mkdocs serve
 ```
 
@@ -40,3 +46,9 @@ Ruta del sitio web local: localhost (IP 127.0.0.1), puerto 8000
 http://localhost:8000 
 ```
 
+### Construccion del site estático
+
+```bash
+mkdocs build
+```
+Archivos creados en el directorio ***site***. 

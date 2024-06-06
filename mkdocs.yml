@@ -129,13 +129,13 @@ nav:
     - Clases II - Decoradores y Abstracciones: contenido/13-decoradores_abstracciones.md
     - Clases III - Principios SOLID: contenido/14-SOLID.md
     - Programacion Funcional: contenido/15-programacion_funcional.md
-    - Expresiones Regulares (RegEx): contenido/16-regex.md
-    - Sistema Operativo - Modulo OS: contenido/sistema_operativo.md
-    - Archivos Temporales- Módulo Tempfile: contenido/archivos_temporales.md
+    - Expresiones Regulares (RegEx) - Modulo RE: contenido/16-regex.md
     - Enlaces: contenido/enlaces.md
   - Modulos: 
-    - Pathlib - manejo de rutas : modulos/pathlib.md
+    - Pathlib - Manejo de rutas : modulos/pathlib.md
     - Sys - Parámetros y funciones del sistema: modulos/sys.md
+    - Os - Comandos del Sistema Operativo: modulos/os.md
+    - Tempfile - Archivos Temporales: modulos/tempfile.md
   - Paquetes:
     - Traducciones - python-i18n : paquetes/python-i18n.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md

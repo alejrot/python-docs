@@ -1,18 +1,6 @@
-## [Volver](../README.md#modulo-pathlib)
+
 
 # Pathlib
-
-### Contenidos:
-- [Introducción](#introducción)
-- [Análisis de rutas](#analisis-de-rutas)
-- [Interaccion con el sistema de archivos](#interaccion-con-el-sistema-de-archivos)
-    - [Buscar y comprobar archivos y directorios](#buscar-y-comprobar-archivos-y-directorios)
-    - [Archivos](#archivos)
-    - [Directorios](#directorios)
-- [Anexo: permisos de usuario en linux](#anexo-permisos-de-usuario-en-linux)
-
-
-
 
 ## Introducción
 
@@ -444,10 +432,3 @@ Todos los permisos para todos los ususarios (mala práctica). Numero permisos:
 
 [FreeCodeCamp - crear y remover enlaces simbólicos](https://www.freecodecamp.org/espanol/news/tutorial-de-enlace-simbolico-en-linux-como-crear-y-remover-un-enlace-simbolico/)
 
-----
-----
-----
-
-## [Inicio](#pathlib) 
-
-## [Volver](../README.md#modulo-pathlib)

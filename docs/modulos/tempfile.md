@@ -1,10 +1,7 @@
-<a name="top"></a>
 
-## [Volver](../Python.md#archivos-temporales)
+# Tempfile - Archivos Temporales
 
-# Archivos Temporales
-
-Python tiene un módulo específico para manejar archivos y directorios temporales, los cuales se alojan en la memoria RAM en vez de usar el almacenamiento permanente. Este módulo se llama **temptfile**, el cual debe ser importado para su uso: 
+Python tiene un módulo específico para manejar archivos y directorios temporales. Este módulo se llama **temptfile**, el cual debe ser importado para su uso: 
 
 ```python
 import tempfile
@@ -106,26 +103,18 @@ ls
 ```
 Windows 10 movió la ruta de los archivos temporales a la carpeta '**\AppData\Local**' dentro de la carpeta del usuario actual: 
 ```bash
-C:\Users\<usuario>\AppData\Local\Temp
+C:\Users\nombre_usuario\AppData\Local\Temp
 ```
 
 
 ## Enlaces útiles:
 
 
-https://docs.python.org/es/3/library/tempfile.html#tempfile.NamedTemporaryFile
+[Documentación oficial - Modulo Tempfile](https://docs.python.org/es/3/library/tempfile.html)
+
+[DelfStack - Cómo crear archivos temporales en Python](https://www.delftstack.com/es/howto/python/create-temporary-file-in-python/)
 
 
-https://www.delftstack.com/es/howto/python/create-temporary-file-in-python/
+[Aprender Linux - directorio TMP de Linux todo lo que necesita saber](https://aprenderlinux.org/directorio-tmp-de-linux-todo-lo-que-necesita-saber/?expand_article=1)
 
 
-https://aprenderlinux.org/directorio-tmp-de-linux-todo-lo-que-necesita-saber/?expand_article=1
-
-
-----
-----
-----
-
-## [Inicio](#archivos-temporales) 
-
-## [Volver](../Python.md#archivos-temporales)
