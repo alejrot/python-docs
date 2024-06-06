@@ -65,13 +65,21 @@ print(sys.argv)
     massa, nec semper lorem quam in massa.
 
 
-??? note "Latin colapsable"
+???+ note "Latin colapsable"
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
     nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
 
-!!! info inline "Lorem ipsum"
+!!! warning inline "Cuadro a izquierda"
+
+    Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit. Nulla et euismod nulla.
+    Curabitur feugiat, tortor non consequat
+    finibus, justo purus auctor massa, nec
+    semper lorem quam in massa.
+
+!!! danger inline end "Cuadro a derecha"
 
     Lorem ipsum dolor sit amet, consectetur
     adipiscing elit. Nulla et euismod nulla.
@@ -82,9 +90,16 @@ print(sys.argv)
 
 
 
+!!! note
+!!! abstract
+!!! info
+!!! tip
 !!! success
 !!! question
 !!! warning
-!!! danger
 !!! failure
+!!! danger
+!!! bug
+!!! example
+!!! quote
 

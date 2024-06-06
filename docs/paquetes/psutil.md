@@ -4,42 +4,45 @@
 
 Psutil ayuda a monitorear los parámetros de funcionamiento del sistema operativo y de sus procesos, tales como el uso de memoria, frecuencia de trabajo, uso de redes, sensores internos, etc. 
 
+## Primeros pasos
 
-## Instalacion
+El paquete se instala desde el gestor PIP.
 
-Se instala desde el gestor PIP
-
-```bash
+```bash title="Instalación"
 pip install psutil
 ```
 
-## Importación
+El nombre de módulo coincide con el del paquete , por ello se lo importa directamente:
 
-```py
+```python title="importacion"
 include psutil
 ```
 
 
-## Sistema
+## Parámetros de Sistema
+
+Para consultar parámetros del sistema *psutil* incluye un juego de *funciones*
 
 
 ### CPU
 
 #### frecuencias
 
-```py
+```py title="frecuencia procesadores"
 frecuencia_procesadores = psutil.cpu_freq() 
 ```
 Valores disponibles:
-| campo | valor |
-|:------------: | :---------------- |
-|***current***| frecuencia de trabajo actual (en MHz)|
-|***min***| frecuencia de trabajo mínima (en MHz)|
-|***max***| frecuencia de trabajo máxima (en MHz)|
+???+ info "Valores disponibles"
+
+    | campo | valor |
+    |:------------: | :---------------- |
+    |***current***| frecuencia de trabajo actual (en MHz)|
+    |***min***| frecuencia de trabajo mínima (en MHz)|
+    |***max***| frecuencia de trabajo máxima (en MHz)|
 
 Caso Linux, FreeBSD: pueden monitorearse todos los procesadores:
 
-```py
+```py title="frecuencias- todos los procesadores"
 lista_frecuencias = psutil.cpu_freq(percpu=True) 
 ```
 
@@ -47,45 +50,56 @@ lista_frecuencias = psutil.cpu_freq(percpu=True)
 
 Cuenta cuantos núcleos (*cores*) dispone el CPU:
 
-```py
+```py title="nº nucleos"
 nucleos_logicos = psutil.cpu_count()
 nucleos_fisicos = psutil.cpu_count(logical=False)
 ```
 
-La relación entre parámetros es:
-```
-nucleos_logicos = nucleos_fisicos * threads_simultaneos
-```
 
-Ejemplo: un CPU con 2 núcleos físicos e *'HiperThreading'* de 2 hilos simultáneos por *core* da 4 núcleos lógicos.
+!!! hint "Hint: núcleos físicos y lógicos"
+
+
+    La relación entre núcleos físicos y núcleos lógicos es:
+    ```
+    nucleos_logicos = nucleos_fisicos * threads_simultaneos 
+    ```
+
+    Ejemplo: un CPU con 2 núcleos físicos e *'HiperThreading'* de 2 hilos simultáneos por *core* da 4 núcleos lógicos.
 
 
 #### cpu_percent()
 
 Permite calcular el porcentaje de uso promedio de todos los núcleos del CPU :
 
-```py
+```py title="porcentaje CPU"
 # porcentaje de exigencia del CPU
-porcentaje_total = psutil.cpu_percent(interval=None, percpu=False)  
+porcentaje_total = psutil.cpu_percent(
+    interval=None,                      # tiempo de referencia
+    percpu=False                        #  resultado en lista de porcentajes , uno por *core* 
+)  
+
 ```
-Parámetros
+
+<!-- Parámetros:
+
  - *interval:* tiempo de referencia
- - *percpu:* resultado en lista de porcentajes , uno por *core* 
+ - *percpu:* resultado en lista de porcentajes , uno por *core*  -->
+
 
 Si no se indica un valor numérico para *interval* se toma de referencia la anterior llamada del método o en su defecto la importación del módulo. Es conveniente que entre ambas llamadas hayan pasado al menos 0.1 segundos para mejor precisión.
 
-Ejemplo uso: demanda de CPU de una rutina completa
+!!! example "Ejemplo: demanda de CPU de una rutina completa"
 
-```py
-#punto de referencia
-psutil.cpu_percent()  # retorna '0.0'-> IGNORAR
-# espera
-import time
-time.sleep(1)
-# medicion
-porcentaje = psutil.cpu_percent()               # promedio
-porcentajes = psutil.cpu_percent(percpu=True)   # por unidad
-```
+    ```py title="Porcentaje de CPU"
+    #punto de referencia
+    psutil.cpu_percent()  # retorna '0.0'-> IGNORAR
+    # espera
+    import time
+    time.sleep(1)
+    # medicion
+    porcentaje = psutil.cpu_percent()               # promedio
+    porcentajes = psutil.cpu_percent(percpu=True)   # por unidad
+    ```
 
 
 
@@ -93,16 +107,21 @@ porcentajes = psutil.cpu_percent(percpu=True)   # por unidad
 
 Calcula los tiempos acumulados de procesamiento de cada núcleo lógico.
 
-```py
+```py title="Tiempo procesamiento"
 data_tiempos = psutil.cpu_times()     # informacion de tiempo de procesamiento en segundos
 ```
-Campos más habituales:
-| campo | valor |
-|:------------: | :---------------- |
-| **user**   | tiempo usado en modo usuario (segundos)|
-| **system** | tiempo usado en modo kernel (segundos) |
+<!-- Campos más habituales: -->
 
-[Más informacion sobre *cpu_times()*](https://psutil.readthedocs.io/en/latest/#psutil.cpu_times)
+
+??? info "Campos más habituales"
+
+    | campo | valor |
+    |:------------: | :---------------- |
+    | **user**   | tiempo usado en modo usuario (segundos)|
+    | **system** | tiempo usado en modo kernel (segundos) |
+
+
+Más informacion sobre *cpu_times()*: [sitio oficial](https://psutil.readthedocs.io/en/latest/#psutil.cpu_times)
 
 
 
@@ -127,37 +146,40 @@ psutil.wait_procs(
     )
 ``` 
 
-### memoria RAM 
+### Memoria RAM 
 
 
 ```py
 data_ram = psutil.virtual_memory()
 ```
 
-Campos principales:
+??? info  "Campos principales:"
 
-| campo | valor |
-|:------------: | :---------------- |
-|***total***| memoria RAM total (en bytes)|
-|***available***| memoria RAM actualmente disponible (en bytes)|
-|***percent***| porcentaje de memoria usado|
+    | campo | valor |
+    |:------------: | :---------------- |
+    |***total***| memoria RAM total (en bytes)|
+    |***available***| memoria RAM actualmente disponible (en bytes)|
+    |***percent***| porcentaje de memoria usado|
 
-### memoria SWAP
+### Memoria SWAP
 
 ```py
 data_swap = psutil.swap_memory()
 ```
 
-Campos principales:
+??? info  "Campos principales:"
 
-| campo | valor |
-|:------------: | :---------------- |
-|***total***| memoria swap total (en bytes)|
-|***used***| memoria swap actualmente usado|
-|***free***| memoria swap libre|
-|***percent***| porcentaje de memoria swap usado|
-|***sin***| data escrita en disco (acumulativa)|
-|***sout***| data leida en disco (acumulativa)|
+    | campo | valor |
+    |:------------: | :---------------- |
+    |***total***| memoria swap total (en bytes)|
+    |***used***| memoria swap actualmente usado|
+    |***free***| memoria swap libre|
+    |***percent***| porcentaje de memoria swap usado|
+    |***sin***| data escrita en disco (acumulativa)|
+    |***sout***| data leida en disco (acumulativa)|
+
+
+
 
 ### Discos
 
@@ -169,14 +191,14 @@ particiones_físicas = psutil.disk_partitions() # lista de particiones
 for particion in particiones:
     print(particion)
 ```
-Contenido de listas:
+???+ info  "Contenido de listas:"
 
-| campo | valor |
-|:------------: | :---------------- |
-| ***device*** | ruta del dispositivo: 'C:\\', '/dev/hda1', etc  |
-| ***mountpoint*** | ruta montada_ '/', '/home', 'D:\\', etc |
-| ***fstype*** | formato: NTFS, FAT, ext4, etc |
-| ***opt*** | informacion extra (dependiente del SO) |
+    | campo | valor |
+    |:------------: | :---------------- |
+    | ***device*** | ruta del dispositivo: 'C:\\', '/dev/hda1', etc  |
+    | ***mountpoint*** | ruta montada_ '/', '/home', 'D:\\', etc |
+    | ***fstype*** | formato: NTFS, FAT, ext4, etc |
+    | ***opt*** | informacion extra (dependiente del SO) |
 
 
 
@@ -185,44 +207,46 @@ Contenido de listas:
 ```py
 uso_disco = psutil.disk_usage(ruta)
 ```
-Contenido:
+???+ info  "Contenido:"
 
-| campo | valor |
-|:------------: | :---------------- |
-| ***used***  |  espacio usado (en bytes)   |
-|  ***free*** |  espacio libre (en bytes)  |
+    | campo | valor |
+    |:------------: | :---------------- |
+    | ***used***  |  espacio usado (en bytes)   |
+    |  ***free*** |  espacio libre (en bytes)  |
 
 
+!!! example "Ejemplo: estadísticas del disco o particion"
 
-Ejemplo de uso: estadísticas del disco o particion que contiene una ruta predefinida
-
-```py
-# espacio usado en disco
-ruta = "/"
-uso_disco = psutil.disk_usage(ruta)
-espacio_usado = uso_disco.used    # espacio usado (en bytes)
-espacio_libre = uso_disco.free    # espacio libre (en bytes)
-print(f"Ruta: {ruta}")
-print(f"Espacio usado: {espacio_usado / (1000**3):.4} GiB") 
-print(f"Espacio libre: {espacio_libre / (1000**3):.4} GiB") 
-```
+    ```py title="espacio en disco eb GiB"
+    ruta = "/"
+    uso_disco = psutil.disk_usage(ruta)
+    espacio_usado = uso_disco.used    # espacio usado (en bytes)
+    espacio_libre = uso_disco.free    # espacio libre (en bytes)
+    print(f"Ruta: {ruta}")
+    print(f"Espacio usado: {espacio_usado / (1000**3):.4} GiB") 
+    print(f"Espacio libre: {espacio_libre / (1000**3):.4} GiB") 
+    ```
 
 #### estadisticas de lectura/escritura
 
 Las estadísticas de lectura y escritura se calculan con la *función disk_io_counters()*:
+
 ```py
 data_io = psutil.disk_io_counters()
 ```
-Campos más importantes:
-| campo | valor |
-|:------------: | :---------------- |
-| ***read_count***  |  Nº operaciones lectura   |
-|  ***write_count*** |  Nº operaciones escritura  |
-| ***read_bytes***  |  data total leida (en bytes)   |
-|  ***write_bytes*** |  data total escrita (en bytes)  |
+
+??? info  "Campos más importantes"
+
+    | campo | valor |
+    |:------------: | :---------------- |
+    | ***read_count***  |  Nº operaciones lectura   |
+    |  ***write_count*** |  Nº operaciones escritura  |
+    | ***read_bytes***  |  data total leida (en bytes)   |
+    |  ***write_bytes*** |  data total escrita (en bytes)  |
 
 
 La información puede fragmentarse por partición con ayuda del argumento ***perdisk***:
+
 ```py
 lista_data_io = psutil.disk_io_counters(perdisk=True)
 ```
@@ -238,31 +262,38 @@ io_global = psutil.net_io_counters()
 ```
 
 Datos disponibles:
-```py
-# bytes de datos
-io_global.bytes_sent       # enviados
-io_global.bytes_recv       # recibidos
-# paquetes
-io_global.packets_sent     # enviados
-io_global.packets_recv     # recibidos
-# errores
-io_global.errin            # enviados
-io_global.errout           # recibidos
-# descartados
-io_global.dropin           # enviados
-io_global.dropout          # recibidos
-```
 
-Ejemplo de uso: medicion del uso de datos por red
-```py
-# Uso de red
-io_global = psutil.net_io_counters()
-enviados = io_global.bytes_sent
-recibidos = io_global.bytes_recv
-print("Uso de red")
-print(f"Enviados: {enviados/(1024**2):.4} MB") 
-print(f"Recibidos: {recibidos/(1024**2):.4} MB")
-```
+
+??? info "Campos disponibles"
+    | campo  | valor |
+    | :----  | :--- |
+    | bytes_sent      | bytes enviados|
+    | bytes_recv      | bytes recibidos|
+    | packets_sent    | paquetes enviados|
+    | packets_recv    | paquetes recibidos|
+    | errin           | errores enviados|
+    | errout          | errores recibidos|
+    | dropin          | paquetes descartados enviados|
+    | dropout         | paquetes descartados recibidos|
+
+
+
+
+
+
+
+
+
+!!! example "Ejemplo de uso: medicion del uso de datos por red"
+    ```py title="Data de red en MB"
+    # Uso de red
+    io_global = psutil.net_io_counters()
+    enviados = io_global.bytes_sent
+    recibidos = io_global.bytes_recv
+    print("Uso de red")
+    print(f"Datos enviados: {enviados/(1024**2):.4} MB") 
+    print(f"Datos recibidos: {recibidos/(1024**2):.4} MB")
+    ```
 
 
 #### configuracion local
@@ -291,23 +322,23 @@ lista_conexiones = psutil.net_if_stats()
 
 ### Sensores y ventiladores
 
-#### temperaturas
+<!-- #### temperaturas -->
 
-```py
+```py title="Temperaturas"
 # temperaturas del sistema en grados Celsius salvo indicacion contraria
 data_temperatura = psutil.sensors_temperatures(fahrenheit=False)  
 ```
 
-#### ventiladores
+<!-- #### ventiladores -->
 
-```py
+```py title="Ventiladores"
 # velocidad de ventiladores en RPM
 data_ventiladores = psutil.sensors_fans()    # '{}' si no hay información
 ```
 
 
-#### bateria
-```py
+<!-- #### bateria -->
+```py title="Batería"
 data_bateria = psutil.sensors_battery() # 'None' si no se detecta
 ```
 
@@ -330,21 +361,25 @@ info_memoria = proceso.memory_info()
 ```
 
 Campos más comunes:
-
-|campo| información|
-|:---:|:---|
-| **rss**    | uso de RAM en bytes    |
-| **vms**    | uso de SWAP en bytes   |
+???+ info "Campos más habituales"
+    |campo| información|
+    |:---:|:---|
+    | **rss**    | uso de RAM en bytes    |
+    | **vms**    | uso de SWAP en bytes   |
 
 
 Ejemplo de uso: uso de memoria por el proceso actual
+
 ```py
 proceso  = psutil.Process() 
 info_memoria = proceso.memory_info()
 info_memoria.rss    # uso de RAM en bytes
 info_memoria.vms    # uso de SWAP en bytes
 ```
-Estos campos son comunes para todos los sistemas operativos implementados. Los otros campos de información tienen nombres y disponibilidad que dependen del sistema operativo anfitrión. [Ver más información](https://psutil.readthedocs.io/en/latest/#psutil.Process.memory_info)   
+
+Estos campos son comunes para todos los sistemas operativos implementados. Los otros campos de información tienen nombres y disponibilidad que dependen del sistema operativo anfitrión. 
+
+Ver más información sobre *memory_info()*: [sitio oficial](https://psutil.readthedocs.io/en/latest/#psutil.Process.memory_info)   
 
 
 ### Estadisticas del procesamiento
@@ -383,16 +418,16 @@ Parámetros
 
 Si no se indica un valor numérico para *interval* se toma de referencia la anterior llamada del método o en su defecto la importación del módulo. Es conveniente que entre ambas llamadas hayan pasado al menos 0.1 segundos para mejor precisión.
 
-Ejemplo uso: demanda de CPU de una rutina completa
+!!! example "Ejemplo uso: demanda de CPU de una rutina completa"
 
-```py
-#punto de referencia
-proceso.cpu_percent()  # retorna '0.0'-> IGNORAR
-#procesamiento
-Rutina()
-# medicion
-porcentaje = proceso.cpu_percent()   
-```
+    ```py title="Porcentaje CPU del proceso"
+    #punto de referencia
+    proceso.cpu_percent()  # retorna '0.0'-> IGNORAR
+    #procesamiento
+    Rutina()
+    # medicion
+    porcentaje = proceso.cpu_percent()   
+    ```
 
 #### cpu_times()
 
@@ -401,12 +436,13 @@ Calcula los tiempos acumulados de procesamiento que demandó el proceso desde su
 data_tiempos = proceso.cpu_times()     # informacion de tiempo de procesamiento en segundos
 ```
 Campos más habituales:
-| campo | valor |
-|:------------: | :---------------- |
-| **user**   | tiempo usado en modo usuario (segundos)|
-| **system** | tiempo usado en modo kernel (segundos) |
+???+ info "Campos más habituales"
+    | campo | valor |
+    |:------------: | :---------------- |
+    | **user**   | tiempo usado en modo usuario (segundos)|
+    | **system** | tiempo usado en modo kernel (segundos) |
 
-[Más informacion sobre *cpu_times()*](https://psutil.readthedocs.io/en/latest/#psutil.cpu_times)
+Más informacion sobre *cpu_times()*: [sitio oficial](https://psutil.readthedocs.io/en/latest/#psutil.cpu_times)
 
 ### Arbol de procesos
 
@@ -442,12 +478,12 @@ Da informacion de los archivos afectados por el proceso:
 # archivos abiertos
 lista_archivos = proceso.open_files()    
 ```
-Campos habituales:
 
-| campo | valor |
-|:------------: | :---------------- |
-| **path** |   ruta de archivo   |
-| **fd**   | nº descriptor  (-1 en Windows)|
+???+ info "Campos habituales"
+    | campo | valor |
+    |:------------: | :---------------- |
+    | **path** |   ruta de archivo   |
+    | **fd**   | nº descriptor  (-1 en Windows)|
 
 [Más sobre *open_files()*]()
 
@@ -476,27 +512,44 @@ lista_sockets = proceso.connections()           # V < 0.6.0
 ```
 El resultado es una **lista** de estadisticas de cada socket. Cada una incluye:
 
-|campo| información|
-|:---:|:---|
-|  **fd**      | descriptor del socket |
-| **ladr**      | rutas IP del sistema |
-| **radr**      | ruta IP del destinatario |
-| **family**    | versión de rutas IP ("familia"): IPv4, IPv6, etc |
-|   **type**    | tipo de dirección: TCP / UDP / etc |
-| **status**    | estado de la conexión |   
+???+ info "Campos disponibles"
+    |campo| información|
+    |:---:|:---|
+    |  **fd**      | descriptor del socket |
+    | **ladr**      | rutas IP del sistema |
+    | **radr**      | ruta IP del destinatario |
+    | **family**    | versión de rutas IP ("familia"): IPv4, IPv6, etc |
+    |   **type**    | tipo de dirección: TCP / UDP / etc |
+    | **status**    | estado de la conexión |   
 
-[Más información](https://psutil.readthedocs.io/en/latest/#psutil.Process.net_connections)
+Más información sobre *net_connections()*: [sitio oficial](https://psutil.readthedocs.io/en/latest/#psutil.Process.net_connections)
 
 
 ### Manejo de señales
-```py
-proceso.send_signal( nro_signal)
-proceso.suspend()
-proceso.resume()
-proceso.wait(timeout=None)
-proceso.terminate()
-proceso.kill()
-```
+
+
+!!! info "Métodos disponibles"
+
+    |  método | señal equivalente  | uso |
+    |  :---: | :---:  |  :--- |
+    | send_signal( nro_signal) | {SIG}  |  le envía una señal  al proceso     |
+    | suspend() | SIGSTOP  | suspende el proceso (lo deja en espera)  |
+    | resume() | SIGCONT  |  reanuda el proceso     |
+    | wait(timeout=None) | ---  |  espera al cierre, tiempo de expiración en segundos     |      
+    | terminate() | SIGTERM  | termina  el proceso    |
+    | kill() | SIGKILL  |  mata el proceso     |
+
+
+
+
+!!! example "Ejemplo: ordenar el cierre de un proceso y esperar a su cumplimiento"
+
+    ```py title="Cerrar por PID"
+    proceso = psutil.Process(nro_pid)
+    proceso.terminate()
+    proceso.wait()          # espera indefinidamente de ser necesario
+    ```
+
 
 
 

@@ -25,8 +25,6 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 15. [Programacion Funcional](contenido/15-programacion_funcional.md#programacion-funcional)
 16. [Expresiones Regulares (REGEX)](contenido/16-regex.md#expresiones-regulares-regex)
 
-
-- [Archivos Temporales](contenido/archivos_temporales.md#archivos-temporales)
 - [Enlaces](contenido/enlaces.md)
 
 

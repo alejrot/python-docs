@@ -12,8 +12,8 @@ theme:
   hljs_languages:
     - yaml
     - rust
-    # - python
-    # - bash
+    - python
+    - bash
   language: en
   # Modos para la pagina
   palette:
