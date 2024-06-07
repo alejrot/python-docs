@@ -1,22 +1,6 @@
-## [Volver](../README.md#tipos-de-datos)
-
 
 # Tipos de Datos 
 
-### Contenido:
-- [Tipos predefinidos](#tipos-predefinidos)
-- [Listas](#listas)
-  - [Métodos de las listas](#métodos-de-las-listas)
-  - [Funciones para las listas](#funciones-para-las-listas)
-- [Tuplas (Tuples)](#tuplas-tuples)
-- [Conjuntos (Sets)](#conjuntos-sets)
-  - [Métodos de los Sets](#métodos-de-los-sets)
-  - [Operadores de los Sets](#operadores-de-los-sets)
-- [Diccionarios](#diccionarios)
-- [Tipado de datos](#tipado-de-datos)
-  - [Listas, tuplas y conjuntos](#listas-tuplas-y-conjuntos)
-  - [Diccionarios](#diccionarios-1)
-  - [Datos compuestos](#datos-compuestos)
 
 
 ## Tipos predefinidos
@@ -25,21 +9,19 @@ Python tiene sus propios tipos de datos predefinidos para facilitar el manejo y 
 
 El tipo de datos de una variable o estructura puede consultarse con la función **type()**:
 
-```python
+```python title="tipo de datos"
 type( <elemento>)   # retorna el tipo de datos
 ```
 A continuacion se explican los tipos de datos estándar de Python.
 
-## Listas
+## Listas (`list`)
 
-Estructura de datos para almacenar múltiples valores en secuencia. Se delimita con los corchetes ( **[]** ). Los datos pueden ser de distintos tipos que pueden ser modificados. Cada dato puede ser consultado mediante un índice. 
+Estructura de datos para almacenar múltiples valores en secuencia. Se delimita con los corchetes ( `[]` ). Los datos pueden ser de distintos tipos y pueden ser modificados tanto en valor como en tipo. 
 
-Formato:
-
-```python
-<lista> = [<elemento1>, <elemento2>,  ...]
+```python title="Formato de listas"
+lista = [elemento_1, elemento_2,  ...]
 ```
-Se habitúa dejar un espacio entre cada coma y su elemento siguiente.
+Los elementos se separan con comas. Se habitúa dejar un espacio entre cada coma y su elemento siguiente.
 
 Ejemplo:
 
@@ -47,15 +29,14 @@ Ejemplo:
 Listado = [1, “hola”, 78.3]
 ```
 Para acceder a un elemento de la lista en base a su indice éste se indica entre corchetes:
-
 ```python
-<elemento> = <lista>[<indice>]
+elemento = lista[indice]
 ```
 Si el índice supera la longitud de la lista da error. Se pueden usar indices negativos hasta 
 
-La longitud de la lista se puede contar con la funcion **len()** (viene del inglés *length*):
+La longitud de la lista se puede contar con la función `len()` (viene del inglés *length*):
 ```python
-longitud = len(<lista>)
+longitud = len(lista)
 ```
 
 Las listas pueden crearse vacías para ser completadas más tarde:
@@ -63,30 +44,31 @@ Las listas pueden crearse vacías para ser completadas más tarde:
 lista = []
 ```
 
-Las listas pueden ser definidas también usando la función **list()**. Esta funcion tambien permite convertir otros tipos de datos a lista.
+Las listas pueden ser definidas también usando la función `list()`. Esta funcion tambien permite convertir otros tipos de datos a lista.
 
-Ejemplo aplicacion: Matrices. Para hacer una matriz de valores se la puede construir en base a una lista que contenga a múltiples listas internas  separadas con comas. Ejemplo matriz 2x3:
-```python
-<matriz>=[ [<v11>, <v12>, <v13>] ,  [<v21>, <v22>, <v23>] ]
-```
+!!! example "Ejemplo aplicacion: Matrices" 
+    Para hacer una matriz de valores se la puede construir en base a una lista que contenga a múltiples listas internas  separadas con comas. 
+    ```python title="Ejemplo: matriz 2 x 3"
+    matriz=[ [v11, v12, v13] ,  [v21, v22, v23] ]   # lista de listas de valores
+    ```
 
 ### Métodos de las listas
 
-Para añadir un nuevo elemento al final de la lista podemos usar el método **append()**:
+Para añadir un nuevo elemento al final de la lista podemos usar el método `append()`:
 ```python
-<lista>.append(<elemento>)
+lista.append(elemento)
 ```
-Si buscamos añadir un elemento en una posición particular podemos hacerlo indicando un valor indice dentro del método **insert()**:
+Si buscamos añadir un elemento en una posición particular podemos hacerlo indicando un valor indice dentro del método `insert()`:
 
 ```python
 <lista>.insert(<indice> , <elemento>)
 ```
 
-Para eliminar un elemento puede usarse el método **remove()**.Éste elimina la primera aparición del método indicado. Si el elemento indicado no existe el método devuelve error.
+Para eliminar un elemento puede usarse el método `remove()`.Éste elimina la primera aparición del método indicado. Si el elemento indicado no existe el método devuelve error.
 ```python
 <lista>.remove(<elemento>)
 ```
-Para verificar la existencia de un elemento en la lista se puede usar el operador **in** el cual devuelve un valor booleano.
+Para verificar la existencia de un elemento en la lista se puede usar el operador `in` el cual devuelve un valor booleano.
 ```python
 <elemento> in <lista>
 ```
@@ -96,11 +78,16 @@ Buscar la posición de un elemento:
 ```
 (Si el elemento no existe da error).
 
-Ejemplo de uso: 
-```python
-if elemento in lista:
-    posicion = lista.index(elemento) 
-```
+!!! example "Ejemplo de uso: eliminar elemento" 
+    ```python title="1º aparicion"
+    if elemento in lista:
+        indice = lista.index(elemento) 
+        lista.remove(elemento)
+    ```
+    ```python title="por indice"
+    if indice < len(lista):
+        elemento = lista.pop(indice) 
+    ```
 
 Reescribir una posicion particular de la lista:
 ```python
@@ -118,11 +105,12 @@ Concatenar una segunda lista al final de la primera:
 <lista1>.extend(<lista2>)
 ```
 
-Eliminar último elemento:
+Eliminar elemento por índice y retornarlo:
 
 ```python
-<lista>.pop()
+elemento = lista.pop( indice )    # por defecto es el último elemento
 ```
+
 
 Invertir el orden de los elementos:
 ```python
@@ -135,34 +123,32 @@ Ordenar los elementos:
 <lista>.sort( reverse = True)  # Orden descendente
 <lista>.sort( key = <funcion>)  # Criterios personalizables mediante una funcion lambda
 ```
-Ejemplo: ordenar una lista de strings
- ```python
-lista = ["aaa", "bb", "cccc"]
-# ordenamiento alfabético 
-lista.sort()
-print(lista)
-# ordenamiento alfabético inverso
-lista.sort(reverse = True)
-print(lista)
-lista = ["aaa", "bb", "c"]
-# ordenamiento por longitud: len( elemento )
-lista.sort(key=len)
-print(lista)
- ```
 
 Eliminar todo el contenido de la lista:
+
 ```python
-<lista>.clear()
+lista.clear()
 ```
 
-### Funciones para las listas
+!!! example "Ejemplo: ordenar una lista de strings"
+    ```python
+    lista = ["aaa", "bb", "cccc"]
+    # ordenamiento alfabético 
+    lista.sort()
+    print(lista)
+    # ordenamiento alfabético inverso
+    lista.sort(reverse = True)
+    print(lista)
+    lista = ["aaa", "bb", "c"]
+    # ordenamiento por longitud: len( elemento )
+    lista.sort(key=len)
+    print(lista)
+    ```
 
-La función **sorted()** ordena los elementos de una lista, por defecto de manera ascendente.
-
-La funcion **enumerate()** permite enumerar los elementos de una lista ,pero los convierte también a tupla (ver más adelante).
 
 
-## Tuplas (Tuples)
+
+## Tuplas (`tuple`)
 
 Similar a las listas pero inmutables. Las tuplas se indican con paréntesis ( () ) :
 
@@ -170,7 +156,7 @@ Similar a las listas pero inmutables. Las tuplas se indican con paréntesis ( ()
 <tupla>=(<elem1>, <elem2>, ….)
 ```
 
-Las tuplas también pueden definirse mediante la funcion **tuple()**.
+Las tuplas también pueden definirse mediante la función `tuple()`.
 
 ejemplo: convertir lista a tupla
 ```python
@@ -180,14 +166,14 @@ tupla = tuple( lista )
 
 Los métodos más habituales para trabajar con tuplas son **.count()** e **.index()**, este último combinado con el operador **in**.
 
-## Conjuntos (Sets)
-Son una colección de elementos no repetidos  y no ordenados. Para definirlos se usa la función **set()** la cual descarta los elementos repetidos :
+## Conjuntos (`set`)
+Son una colección de elementos no repetidos  y no ordenados. Para definirlos se usa la función `set()` la cual descarta los elementos repetidos :
 
 ```python
 <conjunto> = set( <lista_elementos>  )
 ```
 
-Los conjuntos también pueden ser inicializados con llaves ( **{ }** ):
+Los conjuntos también pueden ser inicializados con llaves ( `{}` ):
 
 ```python
 <conjunto> = {<elemento1>, <elemento2>, ...}
@@ -251,7 +237,7 @@ diferencia_simetrica = set_1 ^ set_2 # {'C', 'B', 'X'}
 ```
 
 
-## Diccionarios
+## Diccionarios (`dict`)
 
 Son colecciones de pares clave-valor. Los diccionarios se definen con llaves ( **{}** ) , el formato es el que sigue:
 ```python
@@ -338,7 +324,7 @@ tupla_enteros:      tuple[ int ] # tupla de numeros enteros
 conjunto_textos:    set[   str ] # set de cadenas de caracteres
 ```
 
-### Diccionarios
+### Diccionarios 
 
 Las combinaciones de tipos de variables internas en este caso se hacen de a pares.
 Ejemplo:
@@ -368,9 +354,10 @@ diccionario_listas_enteros = {
 El tipado para datos puede ser un desafío debido a la variedad de datos y variables internos, especialmente cuando los datos son compuestos.
 
 
-----
-----
-----
 
-## [Inicio](#tipos-de-datos)
-## [Volver](../README.md#tipos-de-datos)
+
+# Funciones para datos
+
+La función **sorted()** ordena los elementos de una lista, por defecto de manera ascendente.
+
+La funcion **enumerate()** permite enumerar los elementos de una lista ,pero los convierte también a tupla (ver más adelante).
