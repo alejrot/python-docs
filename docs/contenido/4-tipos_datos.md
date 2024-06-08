@@ -212,6 +212,11 @@ Los elementos de los sets no pueden ser consultados por índice.
     conjunto = {"hola"}         # '{'hola'}'
     conjunto = set("hola")      #'{'l', 'o', 'h', 'a'}' 
     ```
+    Para mantener los strings integros estos pueden agruparse dentro de una lista mediante corchetes:
+    ```python
+    conjunto = set( ["hola"] )    # '{'hola'}'
+    ```
+
 
 ### Métodos de los Sets
 
