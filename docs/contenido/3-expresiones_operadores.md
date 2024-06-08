@@ -39,6 +39,8 @@ n = 7 % 3   #  '1'
 ```
 
 !!! tip "Tip: operadores aritméticos sobre strings"
+    Algunos operadores de Python permiten trabajar con `strings`: textos, frases, etc:
+    
     - El operador + también puede usarse para **concatenar** cadenas de texto (`strings`). 
     - Con el operador * se puede concatenar la misma frase un número fijo de veces
 
@@ -89,23 +91,52 @@ Los operadores disponibles son los siguientes:
 
 | Operador | Símbolo   |  Salida en 'True'  |
 |:---|:---:| -----|
-| Y (AND)           |  and | Ambas entradas 'True'   |
-| O (OR)            |    or | Al menos una entrada 'True'   |
+| Y (AND)           |  and | Ambas entradas son 'True'   |
+| O (OR)            |    or | Al menos una entrada es 'True'   |
 |  NO (NOT)         |    not |  Entrada 'False'  |
 | O exclusiva (XOR) |    ^ | Entradas distintas  |
 
-Los resultados de cada operador lógico se describen en las ***tablas de verdad***:
-
-| X | Y | AND |  OR | XOR |
-| :---: | :---: | :---: |  :---: | :---: |
-|  |  |  |   | ✅ |
-|  ✅|    |  |  ✅ |  |
-|  | ✅   |  | ✅  |  |
-| ✅ | ✅ | ✅ |  ✅ | ✅ |
 
 
+??? note "Anexo: tablas de verdad"
+    Los resultados de cada operador lógico se describen habitualmente con las ***tablas de verdad***,  donde el emoji ✅ es `True` y la celda vacía es `False`.:
 
-Donde el emoji ✅ es `True` y la celda vacía es `False`.
+    | entrada | salida NOT |  
+    | :---: | :---: |
+    |  | ✅ | 
+    | ✅ |    |
+ 
+
+
+    | entrada X | entrada Y | salida AND |  
+    | :---: | :---: | :---: | 
+    |  |  |  |   | 
+    |  ✅|    |  | 
+    |  | ✅   |  | 
+    | ✅ | ✅ | ✅ | 
+
+
+    | entrada X | entrada Y |  salida OR | 
+    | :---: | :---:   | :---: |
+    |  |  |    | 
+    |  ✅|    |   ✅ | 
+    |  | ✅   |   ✅  | 
+    | ✅ | ✅ |   ✅ | 
+
+
+    | entrada X | entrada Y |   salida XOR |
+    | :---: | :---: | :---: |
+    |  |  |    ✅ |
+    |  ✅|    |     |
+    |  | ✅   |     |
+    | ✅ | ✅ |  ✅ |
+
+
+    Las tablas de verdad  son estándar: **no** dependen del lenguaje de implementación
+
+
+
+
 
 ### Jerarquía de operaciones lógicas  
 Esta es la jerarquía de mayor a menor:

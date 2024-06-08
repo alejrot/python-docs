@@ -101,7 +101,7 @@ También se podrá ejecutar la rutina con doble click sobre el archivo; sin emba
 
     Asignar permisos de ejecucion desde la terminal:
     ```bash title="Habilitar autoejecución"
-    chmod +x <archivo.py>
+    chmod +x nombre_archivo.py
     ```
 
 ## Compilación

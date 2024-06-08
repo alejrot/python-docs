@@ -16,12 +16,13 @@ A continuacion se explican los tipos de datos estándar de Python.
 
 ## Listas (`list`)
 
-Estructura de datos para almacenar múltiples valores en secuencia. Se delimita con los corchetes ( `[]` ). Los datos pueden ser de distintos tipos y pueden ser modificados tanto en valor como en tipo. 
+Estructura de datos para almacenar múltiples valores en secuencia. Se delimita con los corchetes ( `[]` ). Los elementos se separan con comas. Se habitúa dejar un espacio entre cada coma y su elemento siguiente.
 
 ```python title="Formato de listas"
 lista = [elemento_1, elemento_2,  ...]
 ```
-Los elementos se separan con comas. Se habitúa dejar un espacio entre cada coma y su elemento siguiente.
+
+Los datos pueden ser de distintos tipos y pueden ser modificados tanto en valor como en tipo. 
 
 Ejemplo:
 
@@ -32,19 +33,26 @@ Para acceder a un elemento de la lista en base a su indice éste se indica entre
 ```python
 elemento = lista[indice]
 ```
-Si el índice supera la longitud de la lista da error. Se pueden usar indices negativos hasta 
-
-La longitud de la lista se puede contar con la función `len()` (viene del inglés *length*):
-```python
+El primer índice tiene valor cero. Si el índice iguala o supera la longitud de la lista da error. Dicha longitud de la lista se puede obtener con la función `len()` (viene del inglés *length*):
+```python title=""
 longitud = len(lista)
 ```
+
+
+
+!!! tip "Indices negativos"
+    Se pueden usar indices negativos hasta la longitud máxima: índice `-1` es el último valor, índice `-2` es el penúltimo elemento, etc.
+
+    Ejemplo: si una lista tiene 10 elementos entonces el rango de índices permitidos va de -10 a 9.
+
+
 
 Las listas pueden crearse vacías para ser completadas más tarde:
 ```python
 lista = []
 ```
 
-Las listas pueden ser definidas también usando la función `list()`. Esta funcion tambien permite convertir otros tipos de datos a lista.
+Las listas pueden ser definidas también usando la función `list()`. Esta funcion también permite convertir otros tipos de datos a lista.
 
 !!! example "Ejemplo aplicacion: Matrices" 
     Para hacer una matriz de valores se la puede construir en base a una lista que contenga a múltiples listas internas  separadas con comas. 
@@ -61,24 +69,37 @@ lista.append(elemento)
 Si buscamos añadir un elemento en una posición particular podemos hacerlo indicando un valor indice dentro del método `insert()`:
 
 ```python
-<lista>.insert(<indice> , <elemento>)
+lista.insert(indice , elemento)
 ```
 
 Para eliminar un elemento puede usarse el método `remove()`.Éste elimina la primera aparición del método indicado. Si el elemento indicado no existe el método devuelve error.
 ```python
-<lista>.remove(<elemento>)
+lista.remove(elemento)
 ```
-Para verificar la existencia de un elemento en la lista se puede usar el operador `in` el cual devuelve un valor booleano.
+
+Para eliminar un elemento por índice y poder retornarlo se usa el método `pop()`.Si el elemento indicado no existe el método devuelve error.
+
 ```python
-<elemento> in <lista>
+elemento = lista.pop( )           # elimina  el último elemento
+elemento = lista.pop( indice )    # elimina el elemento por indice
 ```
-Buscar la posición de un elemento:
+
+La búsqueda de la posición de un elemento se hacer con el método `index()`,el cual presupone que el elemento existe :
 ```python
-<lista>.index(<elemento>)
+indice = lista.index(elemento)
 ```
-(Si el elemento no existe da error).
+
+!!! tip "Tip: operador `in`"
+    Para verificar la existencia de un elemento en la lista se puede usar el operador `in` el cual devuelve un valor booleano.
+
+    ```python
+    existe_elemento = elemento in lista     # valor lógico: 'True' o 'False'
+    ```
+    Combinando este operador con el uso de condicionales se puede prevenir errores de ejecución por intentar afectar elementos inexistentes.
+
 
 !!! example "Ejemplo de uso: eliminar elemento" 
+
     ```python title="1º aparicion"
     if elemento in lista:
         indice = lista.index(elemento) 
@@ -89,39 +110,37 @@ Buscar la posición de un elemento:
         elemento = lista.pop(indice) 
     ```
 
+
+
+
+
 Reescribir una posicion particular de la lista:
 ```python
-<lista>[<indice>]  = <nuevo_valor>
+lista[indice]  = nuevo_valor
 ```
 
-Contar repeticiones de un elemento:
+Contar repeticiones de un elemento: método `count()`
 ```python
-<lista>.count(<elem>):
+lista.count(elemento):
 ```
 
-Concatenar una segunda lista al final de la primera:
-
-```python
-<lista1>.extend(<lista2>)
-```
-
-Eliminar elemento por índice y retornarlo:
+Concatenar una segunda lista al final de la primera: método `extend()`
 
 ```python
-elemento = lista.pop( indice )    # por defecto es el último elemento
+lista_1.extend(lista_2)
 ```
 
 
-Invertir el orden de los elementos:
+Invertir el orden de los elementos (cambios persistentes): método `reverse()`
 ```python
-<lista>.reverse()
+lista.reverse()
 ```
 
-Ordenar los elementos:
- ```python
-<lista>.sort()  # Orden ascendente
-<lista>.sort( reverse = True)  # Orden descendente
-<lista>.sort( key = <funcion>)  # Criterios personalizables mediante una funcion lambda
+Ordenar los elementos (cambios persistentes): método `sort()`
+```python
+lista.sort()  # Orden ascendente por defecto
+lista.sort( reverse = True)  # Orden descendente
+lista.sort( key = nombre_funcion)  # Criterios personalizables mediante una funcion lambda
 ```
 
 Eliminar todo el contenido de la lista:
@@ -130,88 +149,94 @@ Eliminar todo el contenido de la lista:
 lista.clear()
 ```
 
-!!! example "Ejemplo: ordenar una lista de strings"
-    ```python
-    lista = ["aaa", "bb", "cccc"]
-    # ordenamiento alfabético 
+
+!!! example "Ejemplos: ordenar una lista de strings con `sort()`"
+
+    ```python title="ordenamiento alfabético"
+    lista = ["aaa",  "cccc", "bb"]
     lista.sort()
-    print(lista)
-    # ordenamiento alfabético inverso
-    lista.sort(reverse = True)
-    print(lista)
-    lista = ["aaa", "bb", "c"]
-    # ordenamiento por longitud: len( elemento )
-    lista.sort(key=len)
-    print(lista)
+    print(lista)        # '['aaa', 'bb', 'cccc']'
     ```
 
+    ```python title="ordenamiento alfabético inverso"
+    lista = ["aaa",  "cccc", "bb"]
+    lista.sort(reverse = True)
+    print(lista)        # '['cccc', 'bb', 'aaa']'
+    ```
 
+    ```python title="ordenamiento por longitud"
+    lista = ["aaa", "bb", "c"]
+    lista.sort(key=len)     # hace 'len( elemento)' 
+    print(lista)        # '['c', 'bb', 'aaa']'
+    ```
 
 
 ## Tuplas (`tuple`)
 
-Similar a las listas pero inmutables. Las tuplas se indican con paréntesis ( () ) :
+Similar a las listas pero inmutables. Las tuplas se indican con paréntesis ( `()` ) :
 
-```python
-<tupla>=(<elem1>, <elem2>, ….)
+```python title="Definicion de tuplas"
+tupla = (elemento_1, elemento_2, ...)
 ```
 
 Las tuplas también pueden definirse mediante la función `tuple()`.
 
-ejemplo: convertir lista a tupla
-```python
-lista = [3, "a", False]
-tupla = tuple( lista )
-```
+!!! example  "conversión de lista a tupla"
+    ```python
+    lista = [3, "a", False]     # 'list'
+    tupla = tuple( lista )      # 'tuple'
+    ```
 
-Los métodos más habituales para trabajar con tuplas son **.count()** e **.index()**, este último combinado con el operador **in**.
+Los métodos más habituales para trabajar con tuplas son `count()` e `index()`, este último combinado con el operador `in`.
 
 ## Conjuntos (`set`)
 Son una colección de elementos no repetidos  y no ordenados. Para definirlos se usa la función `set()` la cual descarta los elementos repetidos :
 
 ```python
-<conjunto> = set( <lista_elementos>  )
+conjunto = set( lista_elementos  )
 ```
 
 Los conjuntos también pueden ser inicializados con llaves ( `{}` ):
 
 ```python
-<conjunto> = {<elemento1>, <elemento2>, ...}
+conjunto = {elemento_1, elemento_2, ...}
 ```
 
 Los elementos de los sets no pueden ser consultados por índice. 
 
-**Importante:** *set()* trata las variables *string* como si fueran vectores de letras y por ello las descompone, devolviendo **el conjunto de letras**. 
+!!! warning "Sets de strings"
+    `set()` trata las variables *string* como si fueran vectores de letras y por ello las descompone, devolviendo **el conjunto de letras**. 
 
-Ejemplo:
-```python
-conjunto = {"hola"}         # '{'hola'}'
-conjunto = set("hola")      #'{'l', 'o', 'h', 'a'}' 
-```
+    Ejemplo:
+    ```python
+    conjunto = {"hola"}         # '{'hola'}'
+    conjunto = set("hola")      #'{'l', 'o', 'h', 'a'}' 
+    ```
+
 ### Métodos de los Sets
 
-Para añadir y quitar elementos se puede usar los métodos *.add()* y *.remove()*.
+Para añadir y quitar elementos se puede usar los métodos `add()` y `remove()`:
 ```python
-<set1>.add(<elemento>)
-<set1>.remove(<elemento>)
+set_1.add(elemento)
+set_1.remove(elemento)
 ```
 
 
-Los conjuntos no pueden ser consultados por índice. Para vaciar por completo el conjunto se usa el método  *.clear()*.
+Los conjuntos no pueden ser consultados por índice. Para vaciar por completo el conjunto se usa el método  `clear()`:
 
 ```python
-<set1>.clear()
+set_1.clear()
 ```
-Para crear un conjunto que reúna elementos de otros dos se puede usar el método *.union()*
+Para crear un conjunto que reúna elementos de otros dos se puede usar el método `union()`
 
 ```python
-<nuevo_set> = <set1>.union( <set2> )
+nuevo_set = set_1.union( set_2 )
 ```
 
-Con el método *.difference()* se puede listar todos aquellos elementos del primer conjunto que no estén compartidos con el segundo:
+Con el método `difference()` se puede listar todos aquellos elementos del primer conjunto que no estén compartidos con el segundo:
 
 ```python
-<set_no_compartidos> = <set1>.difference(<set2>)
+set_no_compartidos = set_1.difference(set_2)
 ```
 ### Operadores de los Sets
 
@@ -219,145 +244,185 @@ Los conjuntos se pueden relacionar también con operadores:
 
 |Operacion | Retorno Elementos| Simbolo|
 |:-----|:-----|:----:|
-| **Unión** | todos   |       **\|** |
-| **Intersección** |  comunes |  **\&** |
-| **Diferencia** | no repetidos (del set izquierdo) | **\-** |
-| **Diferencia Simétrica** |  no repetidos (ambos sets) | **\^** |
+| **Unión** | todos   |       `|` |
+| **Intersección** |  comunes |  `&` |
+| **Diferencia** | no repetidos (del set izquierdo) | `-` |
+| **Diferencia Simétrica** |  no repetidos (ambos sets) | `^` |
 
+!!! example "Ejemplo aplicado: operaciones sobre sets"
+    ```python title="Ejemplo aplicado: operaciones sobre sets"
+    # conjuntos de ejemplo
+    set_1 = {"A", "B", "C" , 1}
+    set_2 = {"A", 1, "X"}
 
-Ejemplo aplicado:
-```python
-set_1={"A","B", "C" , 1}
-set_2 ={"A", 1, "X"}
-
-union                = set_1 | set_2 # {1, 'C', 'B', 'X', 'A'}
-interseccion         = set_1 & set_2 # {1, 'A'}
-diferencia           = set_1 - set_2 # {'C', 'B'}
-diferencia_simetrica = set_1 ^ set_2 # {'C', 'B', 'X'}
-```
+    # operaciones
+    union                = set_1 | set_2    # {1, 'C', 'B', 'X', 'A'}
+    interseccion         = set_1 & set_2    # {1, 'A'}
+    diferencia           = set_1 - set_2    # {'C', 'B'}
+    diferencia_simetrica = set_1 ^ set_2    # {'C', 'B', 'X'}
+    ```
 
 
 ## Diccionarios (`dict`)
 
-Son colecciones de pares clave-valor. Los diccionarios se definen con llaves ( **{}** ) , el formato es el que sigue:
-```python
-{<clave1>: <valor1>, <clave2>: <valor2>, ... }
+Son colecciones de pares clave-valor. Los diccionarios se definen con llaves ( `{}`) , el formato es el que sigue:
+```python title="Formato diccionario"
+diccionario = {clave_1: valor_1, clave_2: valor_2, ... }
 ```
-Ejemplo:
+
+Las claves deben ser **únicas e inmutables**, y sirven para acceder a su valor asociado. Deben ser de tipo `string`. Los valores pueden ser de cualquier tipo. Los pares *clave-valor* sí pueden ser modificados, añadidos y eliminados (son mutables).
+
+!!! example "Ejemplo: definicion de diccionario"
+    ```python title="valor único"
+    diccionario = {"A": 45, "B": 30}
+    ```
+
+!!! info "Múltiples valores"
+    Una misma clave puede tener múltiples valores agrupados en un tipo de datos acorde: una lista, una tupla, un set, un diccionario interno, etc.
+
+    ```python title="valores múliples"
+    diccionario = {"A": {45, 30}}   # hace A = {45,30} (set)
+    diccionario = {"A": {45, 30} , "A": 5} # hace A=5 
+    ```
+
+
+### Métodos y operadores
+
+Para acceder a un valor del diccionario se lo busca por su clave, la cual debe ser preexistente:
 ```python
-diccionario = {"A": 45, "B": 30}
+valor = diccionario[clave]      # si la clave no existe da error
 ```
-Las claves deben ser únicas e inmutables, y sirven para acceder a su valor asociado. Los valores pueden ser de cualquier tipo. Los pares clave-valor sí pueden ser modificados, añadidos y eliminados (son mutables).
-Para acceder a un valor del diccionario se lo busca por su clave:
+Otra forma es usar el método `get()`, el cual es más seguro : 
 ```python
-<diccionario>[<clave>]
+diccionario.get(clave)  # si no se encuentra la clave se devuelve 'None'
 ```
-Otra forma es usar el método *.get()* : 
-```python
-<diccionario>.get(<clave>) #(si no se encuentra la clave se devuelve None)
-```
+
 Para añadir o modificar un par clave - valor se hace una asignación:
 ```python
-<diccionario>[ <nueva_clave> ] = <nuevo_valor>
+diccionario[ nueva_clave ] = nuevo_valor
 ```
-Para eliminar una clave se usa el operador *del* (delete):
+Para eliminar una clave se usa el operador `del` (delete):
 ```python
-del <diccionario>[<clave>]
-```
-Con el operador **in** podemos chequear la existencia de una clave particular directamente:
-```python
-<clave> in <diccionario>
-```
-en tanto que para chequear la existencia de un valor hace falta la ayuda del método **values()**:
-```python
-<valor> in <diccionario>.values()
+del diccionario[clave]
 ```
 
-La lectura de todas las claves de un diccionario se puede usar el método **keys()**:
+La lectura de todas las claves de un diccionario se puede usar el método `keys()`:
 ```python
-<diccionario>.keys()
+claves = diccionario.keys()
 ```
-Para crear un nuevo diccionario con claves pero todas con valor None existe el método **fromkeys()**:
+En tanto que las lectura de los valores se realiza con el método `values()`:
 ```python
-<diccionario> = dict.fromkeys([<clave1>, <clave2>,...] ) 
+valores = diccionario.values()
 ```
-**Importante:** una misma clave puede tener múltiples valores agrupados en un tipo de datos acorde: una lista, una tupla, un set, un diccionario interno, etc.
-Sin embargo, hay que tener cuidado de no repetir la clave porque sino se pierden los valores más antiguos.
-
-Ejemplo:
+Con el operador `in` podemos chequear la existencia de una clave particular ó de un valor:
 ```python
-diccionario = {"A": {45, 30}}   # hace A = {45,30} (set)
-diccionario = {"A": {45, 30} , "A": 5} # hace A=5
+existe_clave = clave in diccionario             # verificacion de clave directa
+existe_valor = valor in diccionario.values()    # lectura de valores previa
 ```
 
-Para poder convertir a diccionario un string (por ejemplo, una lectura desde un archivo de texto) se usa la función **eval()**:
-
+Para crear un nuevo diccionario con claves pero todas con valor None existe el método `fromkeys()`:
 ```python
-<diccionario> = eval(<texto>)
+diccionario = dict.fromkeys([clave_1, clave_2, ...] ) 
 ```
 
-Los diccionarios se pueden convertir en texto y viceversa con ayuda del módulo json. [Ver módulo JSON](manejo_archivos.md#conversion-de-tipo-datos)
+
+### Función eval()
+
+Para poder convertir a diccionario una variable `str` (por ejemplo, una lectura desde un archivo de texto) se usa la función `eval()`:
+
+```python title="Función eval()"
+diccionario = eval(texto)
+```
+
+
+!!! warning "Claves repetidas" 
+    Hay que tener cuidado de no repetir las claves porque sino **se pierden** los valores más antiguos.
+
+
+
+
+!!! tip "Archivos JSON"
+    Los archivos JSON están dedicados al guardado de pares clave-valor. Los diccionarios pueden guardarse y leerse en estos archivos con ayuda del módulo `json`. [Ir al tutorial sobre JSON](10-manejo_archivos.md#archivos-json)
 
 
 
 ## Tipado de datos
 
-Los datos aquí analizados pueden ser tipados para ayudar a prevenir y corregir errores por incompatibilidad de tipos. La notación general es similar a la del tipado de variables pero añade el uso de **corchetes** para delimitar los tipos de variables internas.
+Los datos aquí analizados pueden ser tipados para ayudar a prevenir y corregir errores por incompatibilidad de tipos. 
+
+### Datos simples
+
+La notación básica es igual a la del tipado de variables :
 
 Notación general:
- 
-```python
+
+```python title="Tipado simple"
+<dato>: <tipo_dato>
+```
+
+Los datos y variables internas también se pueden tipar. Para ello se añade el uso de **corchetes** para delimitar los tipos de variables internas.
+
+```python title="Tipado de variables"
 <dato>: <tipo_dato>[ <tipo_variable1>, <tipo_variable2>, ...]
 ```
-**Recordar:** al igual que en el caso de las variables, el tipado manual es débil y no impide la ejecución del programa en caso de encontrarse inconsistencias.
 
-A continuacion se muestra el tipado aplicado a los casos más simples.
 
-### Listas, tuplas y conjuntos
+!!! example "Ejemplos"
 
-Estos son los tipos de datos más simples de tipar, con un solo tipo de variable entre corchetes.
+    ```python title="Tipado elemental"
+    lista_textos:       list
+    tupla_enteros:      tuple
+    conjunto_textos:    set
+    diccionario:        dict     
+    ```
 
-Ejemplos:
-```python
-lista_textos:       list[  str ] # lista de cadenas de caracteres
-tupla_enteros:      tuple[ int ] # tupla de numeros enteros
-conjunto_textos:    set[   str ] # set de cadenas de caracteres
-```
 
-### Diccionarios 
+    ```python title="Tipado de variables: listas, tuplas y conjuntos" 
+    lista_textos:       list[  str ] # lista de cadenas de caracteres
+    tupla_enteros:      tuple[ int ] # tupla de numeros enteros
+    conjunto_textos:    set[   str ] # set de cadenas de caracteres
+    ```
 
-Las combinaciones de tipos de variables internas en este caso se hacen de a pares.
-Ejemplo:
-```python
-diccionario: dict[str, int]     # clave texto, valor entero
-diccionario = {
-    "primero": 4,     # correcto
-    "segundo": 7.5,   # error: tipo valor flotante
-        27   : 10 ,    # error: tipo clave entera
-    }
-```
+
+    ```python title="Tipado de variables: diccionario" 
+    diccionario: dict[str, int]     # clave texto, valor entero
+    diccionario = {
+        "primero": 4,     # correcto
+        "segundo": 7.5,   # error: tipo valor flotante
+            27   : 10 ,    # error: tipo clave entera
+        }
+    ```
 
 ### Datos compuestos
 
-El tipado se puede usar para datos compuestos, agrupando los tipos mediante corchetes. 
+El tipado también se puede usar para datos compuestos (), agrupando los tipos mediante corchetes. 
 
-Ejemplo de uso: un diccionario con claves de texto y listas de enteros como valor
-```python
-diccionario_listas_enteros: dict[  str, list[int]  ]
+!!! example "Ejemplo de uso: tipado de diccionario"
+    
+    En este ejemplo se da tipado a un diccionario con claves de texto y listas de enteros como valor
 
-diccionario_listas_enteros = { 
-    "hola": [1, 2, 7],          # correcto
-    "chau": [4,"b", 1],         # error:  string en la lista de valor 
-    "adios": (4, 6) ,           # error: tupla como valor       
-    }
-```
-El tipado para datos puede ser un desafío debido a la variedad de datos y variables internos, especialmente cuando los datos son compuestos.
+    ```python
+    # tipado
+    diccionario_listas_enteros: dict[  str, list[int]  ]
+
+    # uso
+    diccionario_listas_enteros = { 
+        "hola": [1, 2, 7],          # correcto
+        "chau": [4,"b", 1],         # error:  string en la lista de valor 
+        "adios": (4, 6) ,           # error: tupla como valor       
+        }
+    ```
+
+El tipado detallado para datos puede ser un desafío debido a la variedad de datos y variables internos, especialmente cuando los datos son compuestos.
 
 
+!!! warning "Recordar: tipado débil"
+    Al igual que en el caso de las variables, el tipado manual es débil y **no impide la ejecución** del programa en caso de encontrarse inconsistencias.
 
 
-# Funciones para datos
+## Funciones para datos
 
-La función **sorted()** ordena los elementos de una lista, por defecto de manera ascendente.
+La función `sorted()` ordena los elementos de una lista, por defecto de manera ascendente.
 
-La funcion **enumerate()** permite enumerar los elementos de una lista ,pero los convierte también a tupla (ver más adelante).
+La funcion `enumerate()` permite enumerar los elementos de una lista ,pero los convierte también a tupla (ver más adelante).
+
