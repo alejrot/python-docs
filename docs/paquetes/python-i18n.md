@@ -11,13 +11,13 @@ i18n es una abreviación de 'InternationalizatioN' (18 letras entre la I y la N)
 
 i18n se instala fácilmente desde PIP:
 
-```python
+```bash title="instalación"
 pip install python-i18n
 ```
 
 Si se prefiere guardar las traducciones en formato YAML el paquete requerido es el siguiente:
 
-```python
+```bash title="instalacion (con soporte YAML)"
 pip install python-i18n[YAML]
 ```
 
@@ -25,44 +25,44 @@ pip install python-i18n[YAML]
 ## Importación
 
 El paquete debe importarse para su uso:
-```python
+```python title="importación"
 import i18n
 ```
 
 
 ## Traduccion desde script
 
-Las traducciones se pueden cargar con la función *add_tranlation()* en forma de pares *campo - valor*, ambos en formato string:
+Las traducciones se pueden cargar con la función `add_tranlation()` en forma de pares *campo - valor*, ambos en formato *string*:
 
-```python
+```python title="Crear traducción"
 i18n.add_translation('hello','hola')
 ```
-en tanto que las traducciones se realizan con la función *t()*:
+en tanto que las traducciones se realizan con la función `t()`:
 
-```python
+```python hl_lines="2" title="Leer traducción"
 campo = 'hello'
 traducido = i18n.t(campo)
 print(traducido)
 ```
 Para cada par campo-valor se puede asignar una abreviación de lenguaje, de modo de permitir soporte simultáneo a múltiples idiomas:
-```python
+```python title="Traducciones en varios idiomas"
 i18n.add_translation('hello','good morning', locale='en')   # 'en' : inglés (english) 
 i18n.add_translation('hello','buenos días', locale='es')    # 'es' : español
 ```
 
-Las etiquetas 'es' y 'en' son etiquetas de idioma definidas por el desarrollador. Éstas no vienen predefinidas por el paquete, aunque convensionalmente se usan las abreviaciones en inglés de los lenguajes. 
+Las etiquetas 'es' y 'en' son etiquetas de idioma definidas por el desarrollador. Éstas no vienen predefinidas por el paquete, aunque convencionalmente se usan las abreviaciones en inglés de los lenguajes. 
 
 
 ##  Set y Fallback
 
 El lenguaje prioritario se establece on la función *set()*:
-```python 
+```python title="Lenguaje preferido: set"
 # Lenguaje preferido
 i18n.set('locale', 'es')   # español
 ```
 en tanto que la opción alternativa se establece con la función *fallback()*:
 
-```python 
+```python title="Lenguaje de respaldo: fallback"
 # alternativa : 'fallback'
 i18n.set('fallback', 'en')  # inglés
 ```
@@ -72,20 +72,22 @@ Esto permite completar los campos para los cuales no existan traducciones en el 
 
 ## Traduccion desde archivos YML
 
-Las traducciones se guardan en archivos YML en una misma carpeta. El directorio se carga con el método *append()* de la función *load_path()*: 
+Las traducciones se guardan en archivos YML en una misma carpeta. El directorio se carga con el método `append()` de la función `load_path()`: 
 
-```python
+```python title="Carpeta de traducciones"
 # directorio con traducciones
 i18n.load_path.append('.')        # directorio actual
-i18n.load_path.append('local/')   # subdirectorio 'local'
+i18n.load_path.append('local/')   # subdirectorio llamado 'local'
 ```
 
-Los archivos tienen en su nombre un nombre de espacio (*namespace*), la abreviación del idioma (*locale*) y el formato del archivo (*format*):
+Los archivos YML tienen en su nombre un nombre de espacio (*namespace*), la abreviación del idioma (*locale*) y el formato del archivo (*format*):
 
-    {namespace}.{locale}.{format}
+``` title="formato de nombres de archivo"
+{namespace}.{locale}.{format}
+```
 
 Ejemplo: archivo para el inglés con los campos 'hi' y 'gb'
-```yml
+```yml title="traduccion al inglés"
 # archivo 'foo.en.yml' (inglés)
 # carpeta 'local'
 en: 
@@ -93,7 +95,7 @@ en:
   gb: Goodbye!
 ```
 Ejemplo: archivo para el español con el campo único 'hi'
-```yml
+```yml title="traduccion al español"
 # archivo 'foo.es.yml' (español)
 # carpeta 'local'
 es: 
@@ -102,51 +104,61 @@ es:
 ```
 Las traducciones de estos archivos se cargan con el nombre del descriptor de archivo y el nombre del campo elegido. 
 
-Ejemplo: 
+   
+!!! example "Ejemplo: traducción faltante"
+    Si se necesita la traduccion al inglés:
 
-Si se necesita la traduccion al inglés:
-```python 
-# traducción al ingles
-i18n.set('locale', 'en')    
-traducido = i18n.t('foo.hi')
-print(traducido)   
-traducido = i18n.t('foo.gb')
-print(traducido) 
-```
-Si en cambio se necesita la traduccion al español (incompleta):
-```python 
-# traducción al español
-i18n.set('locale', 'es')    
-traducido = i18n.t('foo.hi')
-print(traducido)    
-#campo faltante
-traducido = i18n.t('foo.gb')
-print(traducido)    # resultado en ingles
-```
-en este caso la traducción incluirá los campos faltantes en inglés, por ser éste el idioma alternativo elegido.
+    ```python title="traduccion al inglés"
+    # traducción al ingles
+    i18n.set('locale', 'en')    
+    traducido = i18n.t('foo.hi')
+    print(traducido)   
+    traducido = i18n.t('foo.gb')
+    print(traducido) 
+    ```
 
-Y si en cambio se necesita la traducción a un lenguaje no implementado, como por ejemplo el polaco:
-```python 
-# traducción al polaco (faltante)
-i18n.set('locale', 'pl')    
-traducido = i18n.t('foo.hi')
-print(traducido)   # resultado en ingles
-```
-en este caso simplemente se traduce al inglés.
+    Si en cambio se necesita la traduccion al español (incompleta):
 
-**Importante:** si los archivos de traducción se guardan en *subdirectorios* entonces los nombres de éstos también cuentan como *nombre de espacio*
+    ```python title="traduccion al español (incompleta)"
+    # traducción al español
+    i18n.set('locale', 'es')    
+    traducido = i18n.t('foo.hi')
+    print(traducido)    
+    #campo faltante
+    traducido = i18n.t('foo.gb')
+    print(traducido)    # resultado en ingles
+    ```
+
+    en este caso la traducción incluirá los campos faltantes en inglés, por ser éste el idioma alternativo elegido.
+
+    Y si en cambio se necesita la traducción a un lenguaje no implementado, como por ejemplo el polaco:
+    
+    ```python title="traduccion al polaco (faltante)"
+    # traducción al polaco (faltante)
+    i18n.set('locale', 'pl')    
+    traducido = i18n.t('foo.hi')
+    print(traducido)   # resultado en ingles
+    ```
+
+    en este caso simplemente se muestra todo en inglés.
+
+
+
+!!! info "subdirectorios y *namespaces*"
+
+    Si los archivos de traducción se guardan en *subdirectorios* entonces los nombres de éstos también cuentan como *nombre de espacio*
 
 
 ## Placeholders
 
 Se pueden implementar parámetros (campos variables) dentro de las traducciones, éstos son llamados ***placeholders*** o *marcadores*:
-```python 
+```python title="placeholders: formato"
 # campo 'name' variable 
 i18n.add_translation('hi', 'Hola %{name} !')
 ```
 
 Los parámetros variables se asignan como argumento para la función *t()* en el momento de traducir:
-```python 
+```python title="placeholders: asignación"
 traducido = i18n.t('hi', name='Bob')    # 'Hola Bob!'
 ```
 
@@ -154,18 +166,18 @@ traducido = i18n.t('hi', name='Bob')    # 'Hola Bob!'
 
 El ***placeholder***, si éste tiene valor numérico, puede usarse para elegir entre varias traducciones posibles.
 
-El valor numérico se pasa con la propiedad *'count'*. Las opciones de traducción se enmarcan entre llaves y hay cuatro opciones:
+El valor numérico se pasa con la propiedad `count`. Las opciones de traducción se enmarcan entre llaves y hay cuatro opciones:
 
 |  Opcion |   Valor   |
 |:------:|:-----:|
-|'zero' |     0     |
-|'one'  | 1         |
-|'few'  | 2 a 5     |
-|'many' | 6 o mayor |
+| `zero` |     0     |
+| `one`  | 1         |
+| `few`  | 2 a 5     |
+| `many` | 6 o mayor |
 
 Ejemplo: conteo de emails
 
-```python 
+```python title="pluralización: formato"
 i18n.add_translation('numero', {
     'zero': 'No tienes ningún correo.',
     'one': 'Tienes un nuevo correo.',
@@ -175,7 +187,7 @@ i18n.add_translation('numero', {
 ```
 La lectura de la traducción se hace asignándole el valor a la propiedad *count*:
 
-```python 
+```python title="pluralización: uso"
 print( i18n.t('numero', count=0) )  # caso 'zero'(0)
 print( i18n.t('numero', count=1) )  # caso 'one' (1)
 print( i18n.t('numero', count=5) )  # caso 'few' (2 a 5)
@@ -187,24 +199,23 @@ print( i18n.t('numero', count=6) )  # caso 'many' (6 o mayor)
 ## Traduccion desde archivos JSON
 
 Los archivos JSON deben ser habilitados para ser leidos por el paquete:
-```python
+```python title="habilitación archivos JSON"
 # habilitar JSON
 i18n.set('file_format', 'json')
 ```
 
-
-## 'skip locale from root'
+<!-- ## 'skip locale from root' -->
 
 Los archivos de traducciones no siempre traen internamente indicado el campo *locale* (idioma).
 Para estos casos se habilita la opción *'skip_locale_root_data'*:
 
-```python
+```python title='skip locale from root'
 i18n.set('skip_locale_root_data', True)
 ```
 ## Ejemplo aplicado - Lectura JSON
 
 Archivo JSON de traducciones al inglés, carpeta 'local':
-```JSON
+```JSON title="archivo de traducción al inglés"
 // archivo inglés: 'foo.en.json'
 // carpeta 'local'
 {
@@ -214,7 +225,7 @@ Archivo JSON de traducciones al inglés, carpeta 'local':
 }
 ```
 Archivo JSON de traducciones al español, carpeta 'local':
-```JSON
+```JSON title="archivo de traducción al español"
 // archivo español: 'foo.es.json'
 // carpeta 'local'
 {
@@ -225,7 +236,7 @@ Archivo JSON de traducciones al español, carpeta 'local':
 ```
 Código de aplicación:
 
-```python
+```python title="rutina de traducción"
 i18n.set('file_format', 'json')
 
 i18n.load_path.append('local/')

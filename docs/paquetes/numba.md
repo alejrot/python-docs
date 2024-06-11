@@ -5,18 +5,22 @@
 Numba permite compilar funciones de Python en tiempo de ejecución con ayuda de algoritmos de Machine Learning. Esto suele ayudar a mejorar los tiempos de ejecucion de la función.
 
 
-## Instalacion
+## Instalacion e importación
 
 El paquete numba se instala con PIP
 
-```bash
+```bash title="Instalación"
 pip install numba
+```
+La importación se requiere para su uso:
+```py title="Importación"
+import numba
 ```
 
 
 ## Compilacion
 
-La compilacion se ordena de forma genérica con el decorador **\@jit**:
+La compilacion se ordena de forma genérica con el decorador `@jit`:
 
 
 ```py
@@ -45,7 +49,7 @@ def funcion( arg):
 **Ejemplo aplicado:** búsqueda de numeros primos. Se crean dos funciones iguales , pero una lleva el decorador jit y la otra no.
 
 Función interpretada pura:
-```py
+```py title="Función interpretada pura" 
 def numeros_primos(numero_maximo):
     """Devuelve una lista con los numeros primos encontrados con valor menor al indicado."""""
     #esta funcion verifica qué numeros son primos descartando los numeros divisibles por enteros previos
@@ -69,7 +73,8 @@ def numeros_primos(numero_maximo):
 ```
 
 Funcion con compilacion:
-```py
+
+```py title="Función con compilacion - @jit"
 @jit    # decorador de Numba
 def numeros_primos_compilado(numero_maximo):
     """Devuelve una lista con los numeros primos encontrados con valor menor al indicado."""""
@@ -95,7 +100,7 @@ def numeros_primos_compilado(numero_maximo):
 
 Se creó una rutina que [ejecuta recursivamente estas funciones](numba/primos_numba.py). Al requerir la búsqueda de numeros primos por debajo de 10 mil: 
 
-```bash
+```bash title="Uso rutina - 10k números"
 py primos_numba.py 10000
 ```
 se obtuvieron tiempos de ejecución como estos:
@@ -110,7 +115,7 @@ La compilación introdujo una penalización notable en el tiempo de la primera e
 
 Al repetir la búsqueda con tope en 40 mil:
 
-```bash
+```bash title="Uso rutina - 40k números"
 py primos_numba.py 40000
 ```
 Los nuevos tiempos fueron los siguientes:

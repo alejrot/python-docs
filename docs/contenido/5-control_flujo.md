@@ -1,5 +1,4 @@
 
-## [Volver](../README.md#condicionales-y-bucles)
 
 # Control de Flujo
 
@@ -175,4 +174,4 @@ for clave, valor in diccionario.items():
 ```
 
 !!!info "`break` y `continue`"
-	Para interrumpir el bucle antes de tiempo se puede usar la orden ***break*** asociada a un condicional. Como contrapartida de `break` existe la orden `continue` (similar al `goto` de C) sin embargo su uso es considerado actualmente como una mala práctica.
+	Para interrumpir el bucle antes de tiempo se puede usar la orden `break` asociada a un condicional. Como contrapartida de `break` existe la orden `continue` (similar al `goto` de C) sin embargo su uso es considerado actualmente como una mala práctica.
