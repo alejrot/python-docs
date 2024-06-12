@@ -32,8 +32,10 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 
 Exploración de algunos módulos estándar del lenguaje Python.
 
-- [Modulo PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
-- [Modulo SYS - Interacción con el sistema operativo](modulos/sys.md#sys)
+- [Módulo PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
+- [Módulo SYS - Parámetros y funciones del sistema](modulos/sys.md#sys)
+- [Módulo OS - Comandos del sistema operativo](modulos/os.md)
+- [Módulo Tempfile - Archivos y directorios temporales](modulos/tempfile.md)
 
 
 ## Paquetes de Python
