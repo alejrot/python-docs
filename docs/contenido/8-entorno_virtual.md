@@ -96,8 +96,8 @@ deactivate
 rm -r ruta_directorio  # eliminacion recursiva
 ```
 
-!!! warning "Cuidado" 
-      Prestar atención a que el código esté afuera del directorio antes de eliminarlo. 
+!!! warning "Eliminar entorno" 
+      Prestar atención a que el código esté afuera del directorio del entorno virtual antes de eliminarlo. 
 
 
 
@@ -115,8 +115,8 @@ Existen alternativas para crear entornos virtuales. Algunas de ellas son:
 ## Referencias
 
 
-https://docs.python.org/3/library/venv.html
+[Documentación oficial - VENV](https://docs.python.org/3/library/venv.html)
 
-https://python.land/virtual-environments/virtualenv
+[PythonLand - How to Create, Activate, Deactivate, And Delete](https://python.land/virtual-environments/virtualenv)
 
 
