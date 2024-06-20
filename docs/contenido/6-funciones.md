@@ -303,4 +303,4 @@ argumento_2 = argv[2]   # 2º argumento de entrada
     Se verifica entonces que el primer argumento es la **ruta relativa** del archivo de programa.
 
 
-[Más información sobre los argumentos de entrada](../modulos/sys.md#argumentos-de-entrada)
+Más información sobre los argumentos de `main()`: [módulo `sys`](../modulos/sys.md#argumentos-de-entrada)
