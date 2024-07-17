@@ -151,6 +151,8 @@ print(closure_sumar(7))		# da 10 + 7 = 17
 
 Una utilidad posible de las closures en englobar varias funciones internas alternativas y poder elegir una u otra dependiendo de un argumento.
 
+Otra utilidad posible es la creación de decoradores, los cuales agregan características a las funciones. [Más sobre los decoradores de Python.](decoradores.md)
+
 ### Map
 
 La función `map()` es una funcion de orden superior que facilita el procesamiento de datos iterables  (particularmente: listas) por una función especificada, "mapeando" cada elemento de los datos de entrada con los argumentos de la funcion y evitando así el uso de bucles y la asignacion elemento a elemento.

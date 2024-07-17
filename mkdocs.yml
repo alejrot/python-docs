@@ -124,11 +124,14 @@ nav:
     - Fechas y Horario: contenido/9-fechas.md
     - Manejo de Archivos: contenido/10-manejo_archivos.md
     - Errores y Excepciones: contenido/11-excepciones.md
-    - Clases: contenido/12-clases.md
-    - Clases II - Decoradores y Abstracciones: contenido/13-decoradores_abstracciones.md
-    - Clases III - Principios SOLID: contenido/14-SOLID.md
     - Programacion Funcional: contenido/15-programacion_funcional.md
+    - Decoradores: contenido/decoradores.md
+
+    - Clases I - Definicion y Propiedades: contenido/12-clases.md
+    - Clases II - Decoradores, Abstracciones y Métodos Especiales: contenido/13-decoradores_abstracciones.md
+    - Clases III - Principios SOLID: contenido/14-SOLID.md
     - Expresiones Regulares (RegEx) - Modulo RE: contenido/16-regex.md
+    
     - Enlaces: contenido/enlaces.md
   - Modulos: 
     - Pathlib - Manejo de rutas : modulos/pathlib.md

@@ -1,14 +1,6 @@
-## [Volver](../README.md#clases-ii-decoradores-y-abstracciones)
 
 
-# Clases II - Decoradores y Abstracciones
-
-### Contenidos:
-- [Decoradores](#decoradores)
-- [Decorador 'Property'](#decorador-property)
-- [Abstracción](#abstracción)
-- [Clases Abstractas](#clases-abstractas)
-- [Métodos Especiales ('dunder')](#metodos-especiales-dunder)
+# Clases II - Decoradores, Abstracciones y Métodos Especiales
 
 
 
@@ -16,51 +8,17 @@
 
 Los decoradores añaden código a una funcion especificada de forma externa. El código añadido pueden ir antes, después o alrededor de la función.
 
+[Más sobre los decoradores](decoradores.md)
 
-Definición:
-```python
-# Definicion del decorador
-def decorador(funcion):
-    def funcion_interna():
-        #codigo previo
-        print("Decorador asociado")
-        # funcion genérica pasada como argumento
-        funcion()
-        #codigo posterior
-        print("-----------------")
-    return funcion_interna
-```
-
-La asociación del decorador con las funciones se realiza llamando al decorador con el símbolo **\@** y definiendo luego la función deseada:
-
-```python
-# se asocia el decorador a una función
-@decorador
-def presentacion():
-    print("Yo soy Sam")
-
-# se asocia el decorador a otra función distinta
-@decorador
-def despedida():
-    print("Adios")
-```
-
-De este modo cada vez que las funciones asociadas al decorador sean llamadas se ejecutará el código anexo al mismo:
-
-```python
-# las funciones invocan al decorador cuando son llamadas
-presentacion()    
-despedida()
-```
 
 
 ## Decorador 'Property'
 
-El decorador *property* es un tipo reservado de decoradores que permite crear métodos de acceso, escritura y eliminación que comparten nombre y que no requerirán el uso de paréntesis.
+El decorador `property` es un tipo reservado de decoradores que permite crear métodos de acceso, escritura y eliminación que comparten nombre y que no requerirán el uso de paréntesis.
 
 Ejemplo de definición:
 
-```python
+```python hl_lines="6 10 14" title="Uso decorador Property"
 class Persona:
     def __init__(self, nombre):
         self.__myname = nombre      # atributo privado
@@ -80,17 +38,14 @@ class Persona:
 ```
 De esta forma los métodos creados se ven y se usan como si fuesen atributos públicos:
 
-```python
+```python title="uso métodos 'property'" hl_lines="5-7"
 # creacion de instancia
 yo = Persona("Yoh")
 
 # Los métodos son accedidos como si fueran atributos
-print(yo.nombre )       # acceso
+name = yo.nombre        # lectura
 yo.nombre = "Meh"       # escritura
-print(yo.nombre )       # acceso
-
-# eliminación del atributo
-del yo.nombre
+del yo.nombre           # eliminación
 ```
 
 
@@ -106,45 +61,45 @@ En la práctica la abstracción se realiza encapsulando los atributos y funciona
 
 Las clases abstractas **sirven como plantilla** para crear otras clases. De éstas **no** pueden crearse instancias de una clase abstracta; para crear las instancias se necesita crear subclases de la clase abstracta.
 
-Para crear clases abstractas deben importarse la clase ***ABC*** y el decorador ***abstractclassmethod*** desde el módulo **abc**:
+Para crear clases abstractas deben importarse la clase `ABC` y el decorador `abstractclassmethod` desde el módulo `abc`:
 ```python
 from abc import ABC, abstractclassmethod
 ```
 
-La clase *ABC* es una clase abstracta que sirve de referencia para crear las demás como subclases. Por otra parte el decorador *abstractclassmethod* permite crear métodos abstractos,los cuales  deben usarse o redefinirse sí o sí.
+La **clase `ABC`** es una clase abstracta que sirve de referencia para crear las demás como subclases. Por otra parte el **decorador `abstractclassmethod`** permite crear métodos abstractos, los cuales  deben usarse o redefinirse sí o sí respetando además los argumentos de entrada indicados.
 
-```python
+```python title="Clase abstracta" hl_lines="2 5 12"
 # Superclase abstracta
 class Persona(ABC):
-    # los metodos abstractos DEBEN ser redefinidos por las subclases SI O SI
-    @abstractclassmethod
+ 
     # inicializador abstracto: se invoca o se reemplaza
+    @abstractclassmethod
     def __init__(self, nombre, edad, actividad):
         self.nombre = nombre
         self.edad   = edad  
         self.actividad = actividad
 
+    #metodo abstracto vacío: debe redefinirse por las subclases SI O SI
     @abstractclassmethod
-    #metodo abstracto vacío: debe redefinirse
     def hacer_actividad(self):
         pass                    # no hace nada             
 
-    # metodos opcionales
+    # metodo opcional con comportamiento ya definido
     def presentarse(self):
         print(f"Me llamo {self.nombre} y tengo {self.edad} años")
 ```
 Lo interesante de crear un método abstracto es que éste obliga a las subclases a asignarle un comportamiento (polimorfismo) so pena de arrojar error.
 
 
-```python
+```python title="Subclases de clase abstracta"
 # Subclases de la clase abstracta
 class Estudiante(Persona):
     def __init__(self, nombre, edad, actividad):
         # uso inicializador abstracto
         super().__init__(nombre,edad, actividad)
 
+    #polimorfismo sobre metodo abstracto (obligatorio)
     def hacer_actividad(self):
-        #polimorfismo sobre metodo abstracto (obligatorio)
         print(f"Estoy estudiando: {self.actividad}")
 
 
@@ -153,17 +108,13 @@ class Trabajador(Persona):
         # uso inicializador abstracto
         super().__init__(nombre,edad, actividad)    
 
+    #polimorfismo sobre metodo abstracto (obligatorio)
     def hacer_actividad(self):
-        #polimorfismo sobre metodo abstracto (obligatorio)
         print(f"Estoy trabajando en: {self.actividad}")
 ```
-La clase abstracta no admite instancias directas:
-```python
-# instancia de clase abstracta
-yo = Persona("Meh","35")    # da ERROR
-```
+
 Las clases derivadas de la clase abstracta se usan normalmente:
-```python
+```python title="Uso de subclases"
 #instancias de las clases 'hijas'
 yo = Estudiante("Meh","35", "developing")  
 yo.presentarse() 
@@ -174,6 +125,12 @@ tu.presentarse()
 tu.hacer_actividad()    # uso metodo modificado
 ```
 
+!!! failure "Error: instancias directas"
+    La clase abstracta **no admite instancias directas**:
+    ```python
+    # instancia de clase abstracta
+    yo = Persona("Meh","35")    # da ERROR
+    ```
 
 ## Metodos Especiales ('dunder')
 
@@ -181,7 +138,7 @@ Los métodos especiales son métodos predefinidos del lenguaje Python para defin
 
 En este ejemplo se muestran algunos de los métodos especiales más usados: 
 
-```python 
+```python hl_lines="3 8  12  17" title="Métodos especiales"
 class Persona:
     # Inicializador de instancias
     def __init__(self, nombre,edad):     
@@ -228,10 +185,3 @@ tu_y_yo = tu + yo
 print(tu_y_yo)
 ```
 
-
-----
-----
-----
-
-## [Inicio](#clases-ii---decoradores-y-abstracciones)
-## [Volver](../README.md#clases-ii-decoradores-y-abstracciones)
