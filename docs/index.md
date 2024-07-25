@@ -27,7 +27,6 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 12. [Clases I - Definicion y Propiedades](contenido/12-clases.md#clases)
 13. [Clases II: Decoradores, Abstracciones y Métodos Especiales](contenido/13-decoradores_abstracciones.md)
 14. [Clases III: Principios SOLID](contenido/14-SOLID.md)
-16. [Expresiones Regulares (REGEX)](contenido/16-regex.md#expresiones-regulares-regex)
 
 
 
@@ -43,6 +42,8 @@ Exploración de algunos módulos estándar del lenguaje Python.
 - [Módulo SYS - Parámetros y funciones del sistema](modulos/sys.md#sys)
 - [Módulo OS - Comandos del sistema operativo](modulos/os.md)
 - [Módulo Tempfile - Archivos y directorios temporales](modulos/tempfile.md)
+- [Expresiones Regulares (REGEX)](modulos/regex.md#expresiones-regulares-regex)
+- [Módulo Asyncio - Ejecución Asincrónica](modulos/asyncio.md)
 
 
 ## Paquetes de Python

@@ -130,14 +130,17 @@ nav:
     - Clases I - Definicion y Propiedades: contenido/12-clases.md
     - Clases II - Decoradores, Abstracciones y Métodos Especiales: contenido/13-decoradores_abstracciones.md
     - Clases III - Principios SOLID: contenido/14-SOLID.md
-    - Expresiones Regulares (RegEx) - Modulo RE: contenido/16-regex.md
     
     - Enlaces: contenido/enlaces.md
+  
   - Modulos: 
     - Pathlib - Manejo de rutas : modulos/pathlib.md
     - Sys - Parámetros y funciones del sistema: modulos/sys.md
     - Os - Comandos del Sistema Operativo: modulos/os.md
     - Tempfile - Archivos Temporales: modulos/tempfile.md
+    - Re - Expresiones Regulares (RegEx): modulos/regex.md
+    - Asyncio - Ejecución Asincrónica: modulos/asyncio.md
+  
   - Paquetes:
     - Traducciones - python-i18n : paquetes/python-i18n.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
