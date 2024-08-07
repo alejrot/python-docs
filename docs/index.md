@@ -20,15 +20,17 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 10. [Manejo de Archivos](contenido/10-manejo_archivos.md#manejo-de-archivos)
 11. [Errores y Excepciones](contenido/11-excepciones.md#errores-y-excepciones)
 
-15. [Programacion Funcional](contenido/15-programacion_funcional.md#programacion-funcional)
+12. [Programacion Funcional](contenido/15-programacion_funcional.md#programacion-funcional)
 
-15. [Decoradores](contenido/decoradores.md)
+13. [Decoradores](contenido/decoradores.md)
 
-12. [Clases I - Definicion y Propiedades](contenido/12-clases.md#clases)
-13. [Clases II: Decoradores, Abstracciones y Métodos Especiales](contenido/13-decoradores_abstracciones.md)
-14. [Clases III: Principios SOLID](contenido/14-SOLID.md)
+14. [Clases I - Definicion y Propiedades](contenido/12-clases.md#clases)
+15. [Clases II: Decoradores, Abstracciones y Métodos Especiales](contenido/13-decoradores_abstracciones.md)
+16. [Clases III: Principios SOLID](contenido/14-SOLID.md)
 
-
+17. [Procesos](contenido/procesos.md)
+18. [Hilos](contenido/hilos.md)
+19. [Intercambio](contenido/intercambio.md)
 
 
 - [Enlaces](contenido/enlaces.md)

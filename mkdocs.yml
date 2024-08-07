@@ -6,6 +6,12 @@ theme:
   # name: mkdocs
   # name: readthedocs
 
+  icon: 
+    # logo: fontawesome/solid/user-nurse
+    annotation: material/arrow-right-circle
+    logo: simple/python  # :simple-python:
+
+
   # logo: assets/image.png
   # favicon: assets/image.png
   highlightjs: true
@@ -41,8 +47,9 @@ theme:
       primary: indigo
       # primary: custom
       accent: lime
-  icon:
-    annotation: material/arrow-right-circle
+  # icon:
+    # annotation: material/arrow-right-circle
+
   features:
     - header.autohide
     - navigation.footer
@@ -131,6 +138,10 @@ nav:
     - Clases II - Decoradores, Abstracciones y Métodos Especiales: contenido/13-decoradores_abstracciones.md
     - Clases III - Principios SOLID: contenido/14-SOLID.md
     
+    - Paralelismo - Procesos: contenido/procesos.md
+    - Paralelismo - Hilos: contenido/hilos.md
+    - Paralelismo - Intercambio: contenido/intercambio.md
+
     - Enlaces: contenido/enlaces.md
   
   - Modulos: 
