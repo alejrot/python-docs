@@ -40,13 +40,13 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 
 Exploración de algunos módulos estándar del lenguaje Python.
 
-- [Módulo PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
-- [Módulo SYS - Parámetros y funciones del sistema](modulos/sys.md#sys)
-- [Módulo OS - Comandos del sistema operativo](modulos/os.md)
-- [Módulo Tempfile - Archivos y directorios temporales](modulos/tempfile.md)
-- [Expresiones Regulares (REGEX)](modulos/regex.md#expresiones-regulares-regex)
-- [Módulo Asyncio - Ejecución Asincrónica](modulos/asyncio.md)
-
+- [PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
+- [SYS - Parámetros y funciones del sistema](modulos/sys.md#sys)
+- [OS - Comandos del sistema operativo](modulos/os.md)
+- [Tempfile - Archivos y directorios temporales](modulos/tempfile.md)
+- [RE - Expresiones Regulares (REGEX)](modulos/regex.md#expresiones-regulares-regex)
+- [Asyncio - Ejecución Asincrónica](modulos/asyncio.md)
+- [Logging - Reportes de errores](modulos/logging.md)
 
 ## Paquetes de Python
 

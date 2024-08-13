@@ -151,7 +151,9 @@ nav:
     - Tempfile - Archivos Temporales: modulos/tempfile.md
     - Re - Expresiones Regulares (RegEx): modulos/regex.md
     - Asyncio - Ejecución Asincrónica: modulos/asyncio.md
-  
+    - Logging - Reportes de errores: modulos/logging.md
+
+
   - Paquetes:
     - Traducciones - python-i18n : paquetes/python-i18n.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md

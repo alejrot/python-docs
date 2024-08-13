@@ -12,7 +12,7 @@ Para *llamar* a una función (es decir, para usarla) se la invoca por su nombre:
 ```py title="Llamada a función"
 variable_salida = funcion( valor_entrada)
 ```
-La función puede disponer o no de un valor de salida , como puede requerir o no valores de entrada. Un ejemplo de función sin valor de retorno es la función *print()* , en tanto que una funcion que a menudo se usa sin argumentos de entradas es *input()*.
+La función puede disponer o no de un valor de salida , como puede requerir o no valores de entrada. Un ejemplo de función sin valor de retorno es la función `print()` , en tanto que una funcion que a menudo se usa sin argumentos de entradas es `input()`.
 
 
 ## Definicion
@@ -65,9 +65,9 @@ nombre_funcion(valor_1, valor_2, ...)      # llamada a la función
 
 ### xargs
 
-La función puede aceptar un número indefinido de parámetros (*x-args*), creando una **lista interna* con el asterisco (`*`) :
+La función puede aceptar un número indefinido de parámetros (*x-args*) con ayuda del asterisco (`*`) :
 
-```python   title="argumentos indefinidos (x-args)"
+```python   title="argumentos indefinidos (x-args)" hl_lines="1"
 def nombre_funcion( *variables ):
 	for valor in variables:
         # Código función
@@ -75,17 +75,93 @@ def nombre_funcion( *variables ):
         # final de código
 ```
 
+Esto crea una *tupla* interna que engloba a todos los argumentos sin nombre que se pasen por la entrada.
+
+Tómese por ejemplo una función que muestra en pantalla los datos de entrada:
+
+```python   title="x-args - variables entrada" hl_lines="7"
+def funcion(*variables):
+    print(variables)
+    for v in variables:
+        print(f"{v}")
+
+
+funcion(1, 3, 8, 4)  
+```
+El resultado será
+``` title="x-args - resultado"
+(1, 3, 8, 4, 'hola')  
+1
+3
+8
+4
+hola 
+```
+En este caso se agrupan todos los valores de entrada juntos dentro de una tupla. Por otra parte, si a la entrada se mandan datos (listas, diccionarios, etc):
+
+```python   title="x-args - datos entrada" hl_lines="5"
+def funcion(*variables):
+    print(variables)
+
+
+funcion( [1, 3, 8, 4] , {"hola":10, "chau":-7} )     
+# da '([1, 3, 8, 4], {'hola': 10, 'chau': -7})'   
+```
+El resultado será esta vez:
+``` title="x-args - resultado"
+([1, 3, 8, 4], {'hola': 10, 'chau': -7})
+[1, 3, 8, 4]
+{'hola': 10, 'chau': -7}
+```
+Se observa que se crea una tupla interna donde el primer valor es la lista de entrada y el segundo es el diccionario.
+
+
 ### kargs
 Para cargar **parámetros de diccionario** como argumento (*keyword args*,o  ***kwargs***) se usa el doble asterisco:
 
-```python title="keyword args (k-args)"
+```python title="keyword args (k-args)" hl_lines="1"
 def nombre_funcion( **diccionario_entrada ):
     # Código función
     # ....
     # final de código
 ```
 
-Los argumentos de este tipo de funciones deben explicitarse al llamar a la función, porque no hay un orden predefinido de argumentos como en otras funciones.
+Por ejemplo, si a una función se le pasa como argumentos:
+
+
+```python title="k-args" hl_lines="7"
+def funcion( **diccionario_entrada):
+    print(diccionario_entrada)
+    print(diccionario_entrada.keys())       
+    print(diccionario_entrada.values())
+
+
+funcion(hola=10, chau=-7, saludo="Buenos dias")
+#  da:
+# '{'hola': 10, 'chau': -7, 'saludo': 'Buenos dias'}'
+# 'dict_keys(['hola', 'chau', 'saludo'])'
+# 'dict_values([10, -7, 'Buenos dias'])'
+```
+
+la función construye entonces un dicconario interno al que le incorporan los *strings* como claves y los valores asignados como valores de claves.
+
+
+
+
+
+!!! note "Argumentos con nombre"
+    
+    Los argumentos de este tipo de funciones deben explicitarse al llamar a la función, porque no hay un orden predefinido de argumentos como en otras funciones. Es decir, los argumentos sí o sí deben pasarse como pares clave-valor tal como se mostró
+
+!!! warning "Nombres de argumentos"
+
+    Los argumentos de entrada tienen las mismas restricciones de sintaxis que los nombres de variables. De hecho, los k-args están pensados para ser usados internamente como variables.
+
+    ```python title="Errores de entrada"
+    funcion("Buenos dias"=10 )  # ERROR: no se admiten strings como nombre de argumento
+    funcion(yo soy Sam = 5)     # ERROR: los nombres de argumentos no aceptan espacios en blanco
+    ```
+
 
 ### valores predefinidos
 
