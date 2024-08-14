@@ -52,14 +52,32 @@ El modo de apertura del archivo puede ser:
 
 Si se añade el signo más (`+`) al modo de apertura se incluye la lectura ó modificacion, según corresponda. Por ejemplo `"w+"` permite escribir y también leer, en tanto que `r+` permite leer y modificar.
 
-
-
-Además, añadiendo la letra `b` se indica la modalidad *binaria* de lectura o escritura, es decir los datos se leen y escriben en binario (como están). Por ejemplo, para leer archivos binarios y poder modificarlos la etiqueta correspondiente es `"rb+"`. Los archivos binarios reprensentan cualquier tipo de contenido que no sea texto y pueden representar imagenes, audio, video, etc.
-
-
 !!! info "File pointer"
 
 	Los descriptores de archivo incluyen un puntero o apuntador de archivo (*file pointer*) interno el cual apunta a alguno de los bytes o caracteres internos del archivo, funcionando como un índice. La posición de dicho apuntador dependerá del modo de apertura elegido, de las operaciones posteriores de lectura o de escritura, etc.
+
+
+La tabla completa con los permisos y la posición del apuntador es la siguiente:
+
+ | Permisos  y propiedades  | r  | r+ |  w | w+ |  a |  a+ |
+| ------------------    |----|----|----|----|----|-----|
+| leer                  | :material-check-bold:  | :material-check-bold:  |    |  :material-check-bold: |    |  :material-check-bold:  |
+| escribir              |    | :material-check-bold:  |  :material-check-bold: |  :material-check-bold: |  :material-check-bold: |  :material-check-bold:  |
+| escribir tras buscar  |    |:material-check-bold:  |  :material-check-bold: |  :material-check-bold: |    |     |
+| crear                 |    |    |  :material-check-bold: |  :material-check-bold: | :material-check-bold: |  :material-check-bold: |
+| borrar                |    |    |  :material-check-bold: |  :material-check-bold: |    |     |
+| position at comienzo  | :material-check-bold: | :material-check-bold:  | :material-check-bold: |  :material-check-bold:|    |     |
+| posición al final     |    |    |    |    |  :material-check-bold: | :material-check-bold:  |
+
+
+
+
+!!! info "Apertura binaria"
+
+    Añadiendo la letra `b` a las opciones de apertura se indica la modalidad *binaria* de lectura o escritura, es decir los datos se leen y escriben en binario. Por ejemplo, para leer archivos binarios y poder modificarlos la etiqueta correspondiente es `"rb+"`. 
+    Los archivos binarios reprensentan cualquier tipo de contenido que no sea texto y pueden representar imagenes, audio, video, etc.
+
+
 
 
 
@@ -163,7 +181,7 @@ También se puede buscar el fin de archivo con ayuda de esta función:
 
 Este método lee un renglón a la vez y le añade al final un signo de fin de carrera (`\n` en ASCII). Uso:
 
-```py
+```py title="Leer" hl_lines="3 4"
 ruta = "texto.txt”
 with open(ruta, "r") as archivo:
   print( archivo.readline() )   # lee primer renglón  
@@ -176,23 +194,23 @@ Si se alcanza el final del archivo la función `readline()` devuelve un *string*
 
 
 !!! example "Contador de renglones"
-sea leer el contenido desde el caracter Nº20 en adelante (repasar ejemplo previo) se puede hacer:
-	Se pueden contar los renglones de archivo con ayuda de un bucle `while`, el cual se abre cuando se detecta el string vacío:
 
-	```py title="Ejemplo: contador renglones" hl_lines="8"
-	ruta = "texto.txt"
-	with open(ruta, "r") as archivo:  # modo lectura
-		contenido = True
-		n = 0
-		while contenido:
-			renglon = archivo.readline()
-			print(f"{renglon}")
-			if not renglon:
-				contenido = False
-			else:
-				n += 1
-		print(f"Nº renglones: {n}")
-	```
+	  Se pueden contar los renglones de archivo con ayuda de un bucle `while`, el cual se abre cuando se detecta el string vacío:
+
+    ```py title="Ejemplo: contador renglones" hl_lines="8"
+    ruta = "texto.txt"
+    with open(ruta, "r") as archivo:  # modo lectura
+      contenido = True
+      n = 0
+      while contenido:
+        renglon = archivo.readline()
+        print(f"{renglon}")
+        if not renglon:
+          contenido = False
+        else:
+          n += 1
+      print(f"Nº renglones: {n}")
+    ```
 
 
 
@@ -215,7 +233,7 @@ Este método tambien añade un fin de carrera (`\n`) a cada renglón.
 Verifica la posibilidad de leer o no un archivo. Es afectado por el modo de apertura elegido. Ejemplos:
 
 
-```python
+```py title="Verificar legibilidad" hl_lines="3 6"
 ruta = "texto.txt”
 open(ruta, "w") as archivo:
   legible = archivo.readable()    # devuelve 'False'
@@ -255,10 +273,6 @@ archivo.close()
 ```
 
 
-
-
-
-
 !!! tip "Caracteres escritos" 
 	
 	`write()` tiene un valor de retorno numérico que representa el número de caracteres añadidos al archivo.
@@ -268,17 +282,13 @@ archivo.close()
 
 Verifica que el archivo esté en condiciones de ser escrito. Es afectado por los modos de apertura. 
 
-Ejemplo de uso: apertura en modo sólo lectura
 
-```python
+```py title="Verificar permisos de escritura" hl_lines="2 5"
 archivo = open(ruta, "r")  # modo lectura con modificacion
-print(archivo.writable() )    # da False
-```
-Ejemplo de uso: apertura en modo lectura con modificación
+print(archivo.writable() )    # da 'False'
 
-```python
 archivo = open(ruta, "r+")  # modo lectura con modificacion
-print(archivo.writable() )    # da True
+print(archivo.writable() )    # da 'True'
 ```
 
 ### `encoding`
@@ -384,3 +394,9 @@ diccionario_2 = json.loads(texto)
 [Repasar tipos datos: diccionarios](tipos_datos.md#diccionarios)
 
 
+
+
+
+## Rewferencias
+
+[StackOverflow - Difference between modes... ](https://stackoverflow.com/questions/1466000/difference-between-modes-a-a-w-w-and-r-in-built-in-open-function)
