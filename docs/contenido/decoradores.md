@@ -158,10 +158,10 @@ class nombre_decorador:
 El método `__init__` crea una "copia" de la clase (una *instancia*) para cada función que se le asigne el decorador, en tanto que el método `__call__` llama internamente a dicha función y ejecuta  el código agregado.
 
 
-!!! example "Ejemplo: decorador debugger"
+!!! example "Ejemplo: decorador - formato clase"
 
 
-    ```py title ""
+    ```py title="decorador debugger - formato clase"
     class debugger:
 
         # Una instancia (una "copia" de la clase) para cada funcion asignada
@@ -183,7 +183,7 @@ El uso y funcionamiento de estos decoradores es idéntico al de los decoradores 
 
 Un ejemplo aplicado de decorador es un medidor de tiempo de ejecución como se muestra:
 
-!!! tip "TIP - medidor de tiempo de ejecución"
+!!! tip "TIP Nº1 - medidor de tiempo de ejecución"
 
     ```py title="Decorador 'intervalo' - Definicion"
     from time import time, sleep
@@ -198,8 +198,6 @@ Un ejemplo aplicado de decorador es un medidor de tiempo de ejecución como se m
 
         return tiempo_ejecucion
     ```
-
-
     ```py title="Decorador 'intervalo' - Asignacion y uso"
     # Asignacion
     @intervalo
@@ -211,8 +209,32 @@ Un ejemplo aplicado de decorador es un medidor de tiempo de ejecución como se m
     esperar(5)      # 'Tiempo ejecución: 0.500126 segundos'
     ```
 
+!!! tip "TIP Nº2 - Decorador para argumentos y retorno de funciones"
 
-!!! tip "TIP - Decoradores de logging"
+    ```py title="Decorador de argumentos y retorno - Definición"
+    def debugger(debug:bool=False):
+        def _debugger(funcion_entrada):
+            def funcion_envolvente(*args, **kargs):
+                if debug:
+                    print(f"Funcion '{funcion_entrada.__name__}'")
+                    print(f"Argumentos entrada: '{args} , {kargs}'")
+                retorno = funcion_entrada(*args, **kargs)
+                if debug:
+                    print(f"Retorno: '{retorno}'")
+                return    
+            return funcion_envolvente
+        return _debugger
+    ```
+
+    ```py title="Decorador de argumentos y retorno - Asignacion y uso"
+    @debugger(True)
+    def funcion_test(*args,**kargs):
+        pass
+    ```
+
+
+
+!!! tip "TIP Nº3 - Decoradores de logging"
     Con ayuda de decoradores se pueden implementar reportes (*logs*) para las funciones y métodos de clase con facilidad, lo cual ayuda a detectar y corregir problemas. [**Ver capitulo de logging**](../modulos/logging.md#uso-aplicado-decoradores-de-logging)
 
 

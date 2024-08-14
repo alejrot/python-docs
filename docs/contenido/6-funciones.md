@@ -307,6 +307,7 @@ Las funciones recursivas sirven como alternativa al uso de bucles y a veces perm
 
 
 ## Función `Main()`
+
 Python no requiere indicar explicitamente una función principal (*main*) sino que presupone que la función principal es la rutina del archivo invocado por el usuario o el sistema operativo. En cambio, las rutinas presentes en otros archivos serán consideradas por el intérprete de Python como funciones ó rutinas secundarias.
 
 Para ejecutar una rutina únicamente en el programa principal
@@ -319,6 +320,7 @@ if __name__ == "__main__" :
 Esta forma es útil para crear demos y tests dentro de los archivos donde se crean funcionalidades, clases, etc. de modo que sólo se ejecuten los demos cuando se los llama directamente.
 
 ## Argumentos de `Main()`
+
 Para leer los *argumentos* (valores) que se pasan al invocar el programa desde la terminal se puede usar el módulo `sys` y leer la variable `argv`, la cual es una lista con todos los argumentos en formato texto
 
 ```python title="argument values (argv)"
