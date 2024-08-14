@@ -8,23 +8,23 @@ Mis apuntes en español acerca del lenguaje Python y algunos de sus módulos y p
 Aquí se describen los aspectos básicos del lenguaje, algunos módulos estándar, etc.
 
 
-1. [Comenzando con Python](contenido/1-comenzando.md#comenzando-con-python)
-2. [Variables y Asignaciones](contenido/2-variables_asignaciones.md#variables-y-asignaciones)
-3. [Expresiones y Operadores](contenido/3-expresiones_operadores.md#expresiones-y-operadores)
-4. [Tipos de Datos](contenido/4-tipos_datos.md#tipos-de-datos)
-5. [Control de Flujo](contenido/5-control_flujo.md#control-flujo)
+1. [Comenzando con Python](contenido/1-comenzando.md)
+2. [Variables y Asignaciones](contenido/2-variables_asignaciones.md)
+3. [Expresiones y Operadores](contenido/3-expresiones_operadores.md)
+4. [Tipos de Datos](contenido/4-tipos_datos.md)
+5. [Control de Flujo](contenido/5-control_flujo.md)
 6. [Funciones](contenido/6-funciones.md#funciones)
-7. [Modulos y Paquetes](contenido/7-modulos-paquetes.md#módulos-y-paquetes)
-8. [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md#entorno-virtual-módulo-venv)
+7. [Modulos y Paquetes](contenido/7-modulos-paquetes.md)
+8. [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md)
 9. [Fechas y Horario](contenido/9-fechas.md#fechas-y-horario)
-10. [Manejo de Archivos](contenido/10-manejo_archivos.md#manejo-de-archivos)
-11. [Errores y Excepciones](contenido/11-excepciones.md#errores-y-excepciones)
+10. [Manejo de Archivos](contenido/10-manejo_archivos.md)
+11. [Errores y Excepciones](contenido/11-excepciones.md)
 
-12. [Programacion Funcional](contenido/15-programacion_funcional.md#programacion-funcional)
+12. [Programacion Funcional](contenido/15-programacion_funcional.md)
 
 13. [Decoradores](contenido/decoradores.md)
 
-14. [Clases I - Definicion y Propiedades](contenido/12-clases.md#clases)
+14. [Clases I - Definicion y Propiedades](contenido/12-clases.md)
 15. [Clases II: Decoradores, Abstracciones y Métodos Especiales](contenido/13-decoradores_abstracciones.md)
 16. [Clases III: Principios SOLID](contenido/14-SOLID.md)
 
@@ -41,7 +41,7 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 Exploración de algunos módulos estándar del lenguaje Python.
 
 - [PathLib - Rutas de archivo](modulos/pathlib.md#pathlib)
-- [SYS - Parámetros y funciones del sistema](modulos/sys.md#sys)
+- [SYS - Parámetros y funciones del sistema](modulos/sys.md)
 - [OS - Comandos del sistema operativo](modulos/os.md)
 - [Tempfile - Archivos y directorios temporales](modulos/tempfile.md)
 - [RE - Expresiones Regulares (REGEX)](modulos/regex.md#expresiones-regulares-regex)

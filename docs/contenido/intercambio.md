@@ -11,14 +11,14 @@ Las colas son objetos de intercambio del tipo FIFO (*First In, First Out*). Esta
 longitud_cola = cola.qsize()
 ```
 
-[ejemplo:](cola.py) 
+<!-- [ejemplo:](cola.py)  -->
 
 
 
 ## Tuberias (*Pipes*)
 
 
-[ejemplo tuberias:](tuberia.py) 
+<!-- [ejemplo tuberias:](tuberia.py)  -->
 
 
 

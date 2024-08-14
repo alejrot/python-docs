@@ -1,16 +1,7 @@
-## [Volver](../README.md#clases-iii-principios-solid)
-
 
 
 # Clases III - Principios SOLID
 
-### Contenidos:
-- [Principios SOLID](#principios-solid)
-- [SRP - Principio de Responsabilidad Unica](#srp---principio-de-responsabilidad-unica)
-- [OCP - Principio de Abierto/Cerrado](#ocp---principio-de-abiertocerrado)
-- [LSP - Principio de Sustitución de Liskov](#lsp---principio-de-sustitución-de-liskov)
-- [ISP - Principio de Segregacion de Interfaz](#isp---principio-de-segregacion-de-interfaz)
-- [DIP - Principio de Inversion de Dependencias](#dip---principio-de-inversion-de-dependencias) 
 
 
 ## Principios SOLID
@@ -286,9 +277,3 @@ corrector = CorrectorOrtografico(ServicioWeb())
 **[Soy Dalto - Curso de POO desde Cero (Completo)](https://youtu.be/HtKqSJX7VoM?t=10539)**
 
 
-----
-----
-----
-
-## [Inicio](#clases-iii---principios-solid)
-## [Volver](../README.md#clases-iii-principios-solid)

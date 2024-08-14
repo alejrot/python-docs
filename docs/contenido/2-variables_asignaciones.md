@@ -3,27 +3,38 @@
 
 
 ## Tipos de Variables
+
 Las variables se crean al asignarles valor. Hay cuatro grandes tipos de variables:
 
 
 | Función | Uso |
 |:------:|:-------|
-| **int**  | Números enteros. |
-| **float** | Números flotantes. La parte decimal se indica con un punto. |
-| **string**| 'Cadena de caracteres': secuencias de caracteres alfanuméricos, lo más cercano al formato texto simple.  |
-| **bool** | Valores lógicos booleanos. Dos opciones: ‘***True***’ y ‘***False***’.	|
+| `int`  | Números enteros. |
+| `float` | Números flotantes. La parte decimal se indica con un punto. |
+| `string`| 'Cadena de caracteres': secuencias de caracteres alfanuméricos, lo más cercano al formato texto simple.  |
+| `bool` | Valores lógicos booleanos. Dos opciones: `True` y `False`.	|
 
 No hay valor límite para las  variables numéricas. Python distingue entre mayúsculas y minúsculas a la hora de definir variables. 
 
-Python tiene ***tipado débil y dinámico***:  las variables pueden cambiar de tipo durante la ejecución, por ejemplo de `int` a `string`, de `string` a `float`, etc. a medida que se guardan nuevos valores. El tipo de datos de una variable puede averiguarse con la función `type()`.
 
-```python title="Función type()"
-type(16)      # 'int'
-type(1.27)    # 'float'
-type("hola")    # 'str'
-```
 
 Es convención en Python que todas  las letras en los nombres de variables sean enteramente en minúsculas y si están formados por varias palabras éstas se unan mediante *guiones bajos* (`_`). Pueden añadirse números en los nombres pero no al comienzo.
+
+!!! info "Tipado dinámico"
+
+    Python tiene ***tipado débil y dinámico***:  las variables pueden cambiar de tipo durante la ejecución, por ejemplo de `int` a `string`, de `string` a `float`, etc. a medida que se guardan nuevos valores.
+    
+!!! note "función `type()`" 
+
+    El tipo de datos de una variable puede averiguarse con la función `type()`.
+
+    ```python title="Función type()"
+    type(16)      # 'int'
+    type(1.27)    # 'float'
+    type("hola")    # 'str'
+    ```
+
+
 
 !!! tip "Tip: números complejos"
     Python incluye la posibilidad de trabajar con números complejos indicados como: 
@@ -37,6 +48,7 @@ Es convención en Python que todas  las letras en los nombres de variables sean 
 
 
 ## Asignaciones
+
 Las asignaciones se realizan con el operador '='
 
 ```python title="Asignacion"
@@ -98,7 +110,7 @@ Si el indice cae afuera del string (indice > n-1 )el programa da error de memori
 
 !!! tip "Tip: indices y listas"
     Este manejo de índices también se usa en los 'vectores' de Python, que son llamados *'listas'* (o *'list'*).
-    [Ver listas de Python](4-tipos_datos.md#lista).
+    [Ver listas de Python](4-tipos_datos.md#listas-list).
 
 ### Rebanado (Slicing)
 
@@ -124,10 +136,10 @@ A veces es necesario convertir los valores de una variable a un tipo de variable
 
 | Función | Uso |
 |:------:|:-------|
-|  **str( )**   | Convierte a texto  |
-|  **int( )**    | Convierte a entero         |
-|  **float( )**  | Convierte a flotante       |
-|  **bool( )**   | Convierte a valor lógico (booleano)        |
+|  `str( )`   | Convierte a texto  |
+|  `int( )`    | Convierte a entero         |
+|  `float( )`  | Convierte a flotante       |
+|  `bool( )`   | Convierte a valor lógico (booleano)        |
 
 Las ***funciones*** son rutinas reutilizables con nombre, las cuales se usan así:
 ```py title="Uso funciones"
@@ -144,6 +156,7 @@ flotante = float(texto)       # '3.1416'
 
 
 Las conversiones de un tipo a otro no siempre dan resultados evidentes. Como ejemplo, se muestra el resultado de convertir a valores lógicos vía la funcion `bool()`:
+
 ```python title="Conversión a booleanos"
 # entrada: enteros
 print( bool( 2) )  # True
@@ -186,7 +199,9 @@ logica   :  bool
 ```
 
 
-El tipado manual en Python es ***suave***: **no impedirá** la ejecución del programa ni tampoco la abortará al llegar a las asignaciones de valor no compatibles por tipos. En cambio éstas asignaciones serán remarcadas por el entorno de desarrollo, permitiendo que el desarrollador corrija el código de ser necesario durante su escritura y ayudando a prevenir ***bugs*** (errores durante la ejecución del programa) los cuales pueden ser difíciles de identificar sin el uso del tipado.
+!!! tip "Reducción de bugs por tipado"
+
+    El tipado manual en Python es ***suave***: **no impedirá** la ejecución del programa ni tampoco la abortará al llegar a las asignaciones de valor no compatibles por tipos. En cambio éstas asignaciones serán remarcadas por el entorno de desarrollo, permitiendo que el desarrollador corrija el código de ser necesario durante su escritura y ayudando a prevenir ***bugs*** (errores durante la ejecución del programa) los cuales pueden ser difíciles de identificar sin el uso del tipado.
 
 !!! example "Ejemplo aplicado: indexado de un *string*"
     ```python hl_lines="1 7"
@@ -203,6 +218,7 @@ El tipado manual en Python es ***suave***: **no impedirá** la ejecución del pr
 
 
 ### Métodos 
+
 Los ***métodos*** son operaciones comunes que afectan a las variables. Son similares a las *funciones*  pero están dedicados a los elementos. Los métodos se utilizan así:
 ```python title="Uso de métodos"
 <variable>.<metodo>(<argumento1>, <argumento2>, ...)
@@ -214,23 +230,23 @@ En particular, las variables de tipo **string** tienen muchos métodos dedicados
 
 | Método (string)| Uso |
 |:------|:-------|
-|find( seq )	| Indica la primera ubicacion de la secuencia indicada|
-|replace( seq1, seq2 )  |   Reemplaza una secuencia por otra    |
-|title()  | Formatea como título       |
-|index() | 	Indica posición de  comienzo de la secuencia buscada |
-|isalnum() |	Verifica si solo hay valores numericos (devuelve 'True' o 'False')|
-|isalpha() |	Verifica si solo hay letras (devuelve 'True' o 'False')|
-|isdecimal() |	Verifica si solo hay decimales (devuelve 'True' o 'False')|
-|isdig()  | Verifica si solo hay dígitos (devuelve 'True' o 'False')|
-|islower()  | Verifica si solo hay minúsculas (devuelve 'True' o 'False')|
-|isupper()  | Verifica si solo hay mayúsculas (devuelve 'True' o 'False') |
-|capitalize() | Devuelve el texto con primera letra  mayúscula y lo demás en minusculas |
-| lower() |	Devuelve el texto en minúsculas|
-| upper() |	Devuelve el texto en mayúsculas|
-| strip() |	Elimina del texto espacios en blanco a derecha y a izquierda|
-| lstrip() | Elimina del texto espacios en blanco a izquierda|
-| rstrip() | Elimina del texto espacios en blanco a derecha|
-| split( seq ) |	Divide el texto al detectar un carácter o secuencia indicada. Devuelve una "lista" (arreglo) de strings. El caracter o secuencia 'seq' se elimina del resultado|
+|`find( seq )`	| Indica la primera ubicacion de la secuencia indicada|
+|`replace( seq1, seq2 )`  |   Reemplaza una secuencia por otra.    |
+|`title()`  | Formatea como título.       |
+|`index()` | 	Indica posición de  comienzo de la secuencia buscada. |
+|`isalnum()` |	Verifica si solo hay valores numericos (devuelve `True` o `False`).|
+|`isalpha()` |	Verifica si solo hay letras (devuelve `True` o `False`).|
+|`isdecimal()` |	Verifica si solo hay decimales (devuelve `True` o `False`).|
+|`isdig()`  | Verifica si solo hay dígitos (devuelve `True` o `False`).|
+|`islower()`  | Verifica si solo hay minúsculas (devuelve `True` o `False`).|
+|`isupper()`  | Verifica si solo hay mayúsculas (devuelve `True` o `False`).|
+|`capitalize()` | Devuelve el texto con primera letra  mayúscula y lo demás en minusculas. |
+| `lower()` |	Devuelve el texto en minúsculas.|
+| `upper()` |	Devuelve el texto en mayúsculas.|
+| `strip()` |	Elimina del texto espacios en blanco a derecha y a izquierda.|
+| `lstrip()` | Elimina del texto espacios en blanco a izquierda.|
+| `rstrip()` | Elimina del texto espacios en blanco a derecha.|
+| `split( seq )` |	Divide el texto al detectar un carácter o secuencia indicada. Devuelve una "lista" (arreglo) de strings. El caracter o secuencia `seq` se elimina del resultado.|
 
 La mayoría de estos métodos mencionados no requiere argumentos obligatorios, aunque muchos de ellos implementan argumentos opcionales. 
 
@@ -275,7 +291,7 @@ numero = int(num)                     # 'int'
 El retorno de `input()` es un `string`. Para convertir strings en entero puede usarse la función `int()` , es tanto que para convertir strings en flotante se puede usar la función `float()`. 
 
 !!! warning "Importante: booleanos" 
-    La función **bool()** devuelve el valor lógico *False* si su entrada es cero ó un string vacío, en caso contrario da *True*.
+    La función `bool()` devuelve el valor lógico `False` si su entrada es cero ó un string vacío, en caso contrario da `True`.
 
 ## Salida de datos a pantalla
 

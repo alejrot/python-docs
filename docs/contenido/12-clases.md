@@ -1,18 +1,6 @@
-## [Volver](../README.md#clases)
 
 # Clases
 
-### Contenidos:
-- [Programacion Orientada a Objetos](#programacion-orientada-a-objetos)  
-  - [Atributos públicos y privados](#atributos-públicos-y-privados)
-  - [getters y setters](#getters-y-setters)
-  - [Metodos privados](#metodos-privados)
-- [Propiedades de las Clases](#propiedades-de-las-clases)
-  - [Herencia](#herencia) 
-  - [Herencia múltiple](#herencia-múltiple)
-  - [Polimorfismo](#polimorfismo)
-  - [Composición](#composición)
-  - [Agregado ("agregacion")](#agregado-agregacion)
 
 
 ## Programacion Orientada a Objetos  
@@ -382,10 +370,3 @@ https://docs.hektorprofe.net/python/herencia-en-la-poo/herencia-multiple/
 
 https://barcelonageeks.com/python-oops-agregacion-y-composicion/
 
-----
-----
-----
-
-## [Inicio](#clases) 
-
-## [Volver](../README.md#clases)

@@ -1,19 +1,6 @@
 
 
-## [Volver](../README.md#fechas-y-horario)
-
-
 # Fechas y Horario
-
-### Contenidos:
-- [Datetime](#datetime)
-  - [Lectura de fechas](#lectura-de-fechas)
-  - [Métodos de lectura](#métodos-de-lectura)
-  - [Asignacion de fechas](#asignacion-de-fechas)
-  - [Intervalos de tiempo](#intervalos-de-tiempo)
-- [date()](#date)
-- [time()](#time)
-- [timedelta()](#timedelta)
 
 
 ## Datetime
@@ -34,7 +21,7 @@ El objeto ***datetime*** maneja fechas y horarios en un único objeto.
 from datetime import datetime
 ```
 
-Este objeto dispone del método ***now()*** para consultar fecha y hora del sistema:
+Este objeto dispone del método `now()` para consultar fecha y hora del sistema:
 
 ```python
 ahora = datetime.now()  #lectura fecha y hora actual (hora local)
@@ -56,9 +43,9 @@ print(ahora.microsecond)
 
 ### Métodos de lectura
 
-El objeto *datetime* posee varios métodos de lectura para extraer fecha, hora ó ambas juntas. Estos métodos son ***timestamp()***, ***date()*** y ***time()***:
+El objeto *datetime* posee varios métodos de lectura para extraer fecha, hora ó ambas juntas. Estos métodos son `timestamp()`, `date()` y `time()`:
 
-```python
+```py title="Metodos de lectura"
 # Métodos de lectura disponibles
 print(ahora.timestamp() )   # Fecha y hora en formato POSIX
 print(ahora.date())         # Fecha
@@ -68,7 +55,7 @@ El tiempo POSIX, tambien llamado tiempo UNIX, es el tiempo en segundos transcurr
 
 ### Asignacion de fechas
 
-Si se necesita crear un objeto con fecha y hora particular  hay que cargarlos en la ***función datetime()*** para crear un objeto nuevo. Los argumentos de esta función  son los parámetros temporales en orden: año, mes , día, hora , minuto , segundo, microsegundo: 
+Si se necesita crear un objeto con fecha y hora particular  hay que cargarlos en la función `datetime()` para crear un objeto nuevo. Los argumentos de esta función  son los parámetros temporales en orden: año, mes , día, hora , minuto , segundo, microsegundo: 
 
 ```python
 # conversion de fechas
@@ -91,9 +78,9 @@ print(diferencia_temporal)
 ```
 
 
-## date()
+### `date()`
 
-La función **date()** permite manejar fechas prefijadas:
+La función `date()` permite manejar fechas prefijadas:
 
 ```python
 from datetime import date
@@ -106,7 +93,7 @@ print(fecha_actual.month )
 print(fecha_actual.day )
 ```
 
-Con esta función se puede leer también  la hora del sistema directamente con ayuda del método ***today()***:
+Con esta función se puede leer también  la hora del sistema directamente con ayuda del método `today()`:
 
 ```python
 from datetime import date
@@ -116,9 +103,9 @@ fecha_actual = date.today()      # fecha de hoy
 print(fecha_actual )
 ```
 
-## time()
+### `time()`
 
-La función **time()** sirve para trabajar con horarios prefijados: 
+La función `time()` sirve para trabajar con horarios prefijados: 
 
 ```python
 from datetime import time
@@ -131,7 +118,7 @@ print(hora_actual.minute)
 print(hora_actual.second)
 # print(hora_actual.microsecond)      # no se usa
 ```
-Esta función no es capaz de leer la hora del sistema directamente, sino que lo hace a través del objeto *datetime()* y su método ***now()***:
+Esta función no es capaz de leer la hora del sistema directamente, sino que lo hace a través del objeto *datetime()* y su método `now()`:
 
 ```python
 from datetime import datetime
@@ -141,9 +128,9 @@ ahora = datetime.now()  #lectura fecha y hora actual (hora local)
 print(ahora.time())         # Hora
 ```
 
-## timedelta()
+### `timedelta()`
 
-La función **timedelta()** crea objetos que permiten calcular tiempos entre fechas especificadas como argumento.
+La función `timedelta()` crea objetos que permiten calcular tiempos entre fechas especificadas como argumento.
 
 ```python
 from datetime import timedelta
@@ -153,25 +140,20 @@ fin    = timedelta(0, 2, 1, 7)
 # diferencia temporal
 print(fin - inicio)     
 ```
-**Importante:** Esta función **no tiene ordenados** los argumentos. Para imponerlos se pueden asignar cada parámetro con su plabra reservada , las cuales recorren el rango de los microsegundos hasta las semanas:
-```python
-instante = timedelta(
-    weeks        = 1,
-    days         = 3, 
-    hours        = 2, 
-    minutes      = 14, 
-    seconds      = 7, 
-    milliseconds = 900,
-    microseconds = 815
-    )
-```
+
+!!! note "Argumentos no ordenados"
+
+    `timedelta()` **no tiene ordenados** los argumentos. Para imponerlos se pueden asignar cada parámetro con su plabra reservada , las cuales recorren el rango de los microsegundos hasta las semanas:
+    ```py
+    instante = timedelta(
+        weeks        = 1,
+        days         = 3, 
+        hours        = 2, 
+        minutes      = 14, 
+        seconds      = 7, 
+        milliseconds = 900,
+        microseconds = 815
+        )
+    ```
 
 
-
-----
-----
-----
-
-## [Inicio](#fechas-y-horario) 
-
-## [Volver](../README.md#fechas-y-horario)
