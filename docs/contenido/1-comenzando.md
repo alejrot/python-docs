@@ -4,9 +4,9 @@
 
 ## Archivos y Ejecución
 
-Los programas escritos en lenguaje Python se guardan en archivos de texto con extensión '*.py*'.
+Los programas escritos en lenguaje Python se guardan en archivos de texto con extensión `.py`.
 
-Para ejecutar las rutinas mediante intérprete desde la consola  se usa el comando 'python':
+Para ejecutar las rutinas mediante intérprete desde la consola  se usa el comando `python`:
 
 ```bash title="ejecutar rutina Python "
 python  nombre_archivo.py
@@ -14,11 +14,13 @@ python3 nombre_archivo.py
 ```
 La versión más usada actualmente de Python es la versión 3; sin embargo todavía existe código *legacy* (no mantenible) en la versión 2. Según el sistema operativo y la versión de Python instalada puede requerirse un comando o el otro.
 
-Desde la versión 3.10 se añadió el comando 'py' como abreviación del comando del intérprete:
+!!! tip "Abreviación comando"
 
-```bash title="ejecutar rutina Python - abreviado"
-py nombre_archivo.py
-```
+    Desde la versión 3.10 se añadió el comando `py` como abreviación del comando del intérprete:
+
+    ```bash title="ejecutar rutina Python - abreviado"
+    py nombre_archivo.py
+    ```
 
 ## Escribir en pantalla
 
@@ -104,16 +106,6 @@ También se podrá ejecutar la rutina con doble click sobre el archivo; sin emba
     chmod +x nombre_archivo.py
     ```
 
-## Compilación
-
-Hay varias herramientas para compilar el código, es decir para crear archivos ejecutables. Algunas de ellas son:
-
-- py2exe;
-- pyinstaller;
-- Codon;
-- etc.
-
-Cada una de ellas tiene sus propiedades, distintos tipos de licencia, distintos sistemas operativos de destino, etc.
 
 
 ## Uso en Consola
@@ -152,3 +144,19 @@ Para salir del intérprete hay que escribir `exit()` ó `Ctrl + Z` (en Linux)
 >>> exit()
 ```
 
+## Compilación
+
+Con el fin de crear archivos ejecutables hay varias herramientas para compilar el código, es decir para crear archivos ejecutables. Algunas de ellas son:
+
+- py2exe;
+- pyinstaller;
+- Codon;
+- etc.
+
+Cada una de ellas tiene sus propiedades, distintos tipos de licencia, distintos sistemas operativos de destino, etc.
+
+
+
+!!! note "Uso interpretado"
+
+    Si bien es posible crear los ejecutables en base a código Python lo más habitual es el uso por interpretado.

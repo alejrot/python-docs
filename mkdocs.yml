@@ -155,11 +155,11 @@ nav:
 
 
   - Paquetes:
+    - Archivos YAML - PyYAML: paquetes/pyyaml.md
     - Traducciones - python-i18n : paquetes/python-i18n.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
-  # - Test: test.md
 
 
 

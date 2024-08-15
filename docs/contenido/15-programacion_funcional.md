@@ -40,7 +40,10 @@ Esta forma de definirlas es útil para **definir manejadores** (***handlers***),
 	handler_evento = lambda v1 , v2:  expresion
 	```
 
-	Las funciones lambda son análogas  y se usan de modo sumilar a a las **funciones flecha** de JavaScript.
+
+!!! info "Funciones flecha"
+
+	Las funciones lambda son análogas a las **funciones flecha** de JavaScript y se usan de modo sumilar.
 
 
 

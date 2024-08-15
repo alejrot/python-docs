@@ -56,7 +56,7 @@ Breves tutoriales de paquetes varios implementados en Python: bibliotecas, frame
 - [Numba - Compilacion con Machine Learning](paquetes/numba.md)
 - [FFMPEG - Wrapper para Python](paquetes/ffmpeg.md)
 - [PsUtil - Información del Sistema](paquetes/psutil.md)
-
+- [PyYAML - Soporte para archivos YAML](paquetes/pyyaml.md)
 
 
 
