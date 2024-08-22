@@ -5,7 +5,7 @@ Mis apuntes en español acerca del lenguaje Python y algunos de sus módulos y p
 [Enlace a documentos internos](docs/index.md)
 
 
-## [Versión online : GitHub Pages](https://marcelomarot.github.io/PythonDocs/)
+## [Versión online : GitHub Pages](https://marcelomarot.github.io/python-docs)
 
 Este documento usa [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) para crear el sitio estático. 
 
@@ -13,8 +13,8 @@ Este documento usa [Material for MkDocs](https://squidfunk.github.io/mkdocs-mate
 
 ### Descarga del repositorio:
 ```bash
-git clone https://github.com/MarceloMarot/PythonDocs
-cd PythonDocs
+git clone https://github.com/MarceloMarot/python-docs
+cd python-docs
 ```
 
 
