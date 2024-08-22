@@ -1,19 +1,26 @@
 site_name: PythonDocs
 
+site_url: https://marcelomarot.github.io/python-docs
+
+
+# Repositorio
+repo_url: https://github.com/MarceloMarot/python-docs
+repo_name: python-docs
+# edit_uri: edit/master/docs/
+
+copyright: Copyright &copy; 2024 Marcelo Marot Rosas
+
 
 theme:
   name: material
-  # name: mkdocs
-  # name: readthedocs
-
   icon: 
     # logo: fontawesome/solid/user-nurse
     annotation: material/arrow-right-circle
     logo: simple/python  # :simple-python:
 
+    # Icono de repositorio
+    repo: fontawesome/brands/github
 
-  # logo: assets/image.png
-  # favicon: assets/image.png
   highlightjs: true
   hljs_languages:
     - yaml
@@ -23,12 +30,6 @@ theme:
   language: es
   # Modos para la pagina
   palette:
-  
-    # Modo automatico 
-    # - media: "(prefers-color-scheme)"
-    #   toggle:
-    #     icon: material/brightness-auto
-    #     name: Switch to light mode
     # Modo claro
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -47,8 +48,6 @@ theme:
       primary: indigo
       # primary: custom
       accent: lime
-  # icon:
-    # annotation: material/arrow-right-circle
 
   features:
     - header.autohide
@@ -63,8 +62,22 @@ theme:
     # - search.share
     # - search:
     #   lang: es
+    - toc.follow
+    - navigation.top  # boton emergente para volver al inicio  - aparece al intentar subir con el scroll
 
-repo_url: https://github.com/MarceloMarot/PythonDocs
+    - navigation.instant
+    - navigation.instant.progress   # progreso de carga (conexiones lentas)
+    - navigation.tracking
+    # pestañas de contenido
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.sections
+    # - navigation.expand
+
+    # header y anuncios
+    - header.autohide
+    - announce.dismiss
+
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -93,29 +106,31 @@ markdown_extensions:
       custom_checkbox: true
 
 
-
-
-
-
-
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  # Tablas ordenables - TableSort
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js        # archivo local
+
 
 extra_css:
   - stylesheets\extra.css
 
-# extra:
-#   version:
-#     provider: mike
-# extra:
-#   consent:
-#     actions:
-#       - accept
-#       - manage
 
-# plugins:
-#   - meta
+extra:
+  homepage: https://marcelomarot.github.io/python-docs/
+
+
+plugins: 
+  - privacy
+  - search
+  - git-revision-date-localized:
+      enabled: true
+      enable_creation_date: true
+      type: date        # fecha
+      fallback_to_build_date: true
+
 
 nav:
   - Indice: index.md

@@ -52,11 +52,11 @@ Exploración de algunos módulos estándar del lenguaje Python.
 
 Breves tutoriales de paquetes varios implementados en Python: bibliotecas, frameworks, etc. Estos normalmente se asignan al sistema en forma de "paquetes".
 
+- [PyYAML - Soporte para archivos YAML](paquetes/pyyaml.md)
 - [Python i18n - Traducciones I18N](paquetes/python-i18n.md)
 - [Numba - Compilacion con Machine Learning](paquetes/numba.md)
 - [FFMPEG - Wrapper para Python](paquetes/ffmpeg.md)
 - [PsUtil - Información del Sistema](paquetes/psutil.md)
-- [PyYAML - Soporte para archivos YAML](paquetes/pyyaml.md)
 
 
 
