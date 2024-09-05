@@ -141,7 +141,8 @@ nav:
     - Tipos de Datos: contenido/4-tipos_datos.md
     - Control de Flujo: contenido/5-control_flujo.md
     - Funciones: contenido/6-funciones.md
-    - Módulos y Paquetes: contenido/7-modulos-paquetes.md
+    - Módulos: contenido/modulos.md
+    - Paquetes: contenido/paquetes.md
     - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
     - Fechas y Horario: contenido/9-fechas.md
     - Manejo de Archivos: contenido/10-manejo_archivos.md

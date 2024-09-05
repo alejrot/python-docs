@@ -14,7 +14,8 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 4. [Tipos de Datos](contenido/4-tipos_datos.md)
 5. [Control de Flujo](contenido/5-control_flujo.md)
 6. [Funciones](contenido/6-funciones.md#funciones)
-7. [Modulos y Paquetes](contenido/7-modulos-paquetes.md)
+7. [Modulos](contenido/modulos.md)
+7. [Paquetes](contenido/paquetes.md)
 8. [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md)
 9. [Fechas y Horario](contenido/9-fechas.md#fechas-y-horario)
 10. [Manejo de Archivos](contenido/10-manejo_archivos.md)
@@ -47,6 +48,9 @@ Exploración de algunos módulos estándar del lenguaje Python.
 - [RE - Expresiones Regulares (REGEX)](modulos/regex.md#expresiones-regulares-regex)
 - [Asyncio - Ejecución Asincrónica](modulos/asyncio.md)
 - [Logging - Reportes de errores](modulos/logging.md)
+- [Unittest - Tests Unitarios](modulos/unittest.md)
+
+
 
 ## Paquetes de Python
 
