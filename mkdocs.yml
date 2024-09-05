@@ -6,7 +6,7 @@ site_url: https://marcelomarot.github.io/python-docs
 # Repositorio
 repo_url: https://github.com/MarceloMarot/python-docs
 repo_name: python-docs
-# edit_uri: edit/master/docs/
+edit_uri: edit/master/docs/
 
 copyright: Copyright &copy; 2024 Marcelo Marot Rosas
 
@@ -21,12 +21,12 @@ theme:
     # Icono de repositorio
     repo: fontawesome/brands/github
 
-  highlightjs: true
-  hljs_languages:
-    - yaml
-    - rust
-    - python
-    - bash
+  # highlightjs: true
+  # hljs_languages:
+  #   - yaml
+  #   - rust
+  #   - python
+  #   - bash
   language: es
   # Modos para la pagina
   palette:
@@ -118,8 +118,8 @@ extra_css:
   - stylesheets\extra.css
 
 
-extra:
-  homepage: https://marcelomarot.github.io/python-docs/
+# extra:
+#   homepage: https://marcelomarot.github.io/python-docs/
 
 
 plugins: 
@@ -167,6 +167,7 @@ nav:
     - Re - Expresiones Regulares (RegEx): modulos/regex.md
     - Asyncio - Ejecución Asincrónica: modulos/asyncio.md
     - Logging - Reportes de errores: modulos/logging.md
+    - Unittest - Tests Unitarios: modulos/unittest.md
 
 
   - Paquetes:
