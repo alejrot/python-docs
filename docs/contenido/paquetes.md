@@ -3,36 +3,55 @@
 
 # Paquetes
 
-## Paquetes externos: PIP
+Los paquetes son similares a los módulos pero no son componentes oficiales de Python. Además de la importación, los módulos requieren instalación previa para su uso. 
 
-PIP es el "Indice de Paquetes de Python". Es un repositorio oficial para instalar dependencias (*"paquetes"*).
+
+
+## Instalación
+
+
+### PIP y Pypi
+
+PIP es el instalador de Paquetes de Python. Se instala automáticamente con el intérprete de Python.
+
+Primeros comandos de PIP:
+
+```bash title="PIP - Instalar y actualizar"
+pip install pip             # instalar PIP (normalmente innecesario)
+pip --version               # version PIP actual  
+pip install --upgrade pip   # actualizar PIP
+```
+
+PyPi es el repositorio oficial para obtener y publicar los paquetes. [Sitio oficial de PyPi](https://pypi.org/project/pip/)
+
+
+### Instalación de paquetes
 
 Comandos útiles para manejar paquetes:
-```bash  
+
+```bash  title="PIP - Comandos básicos"
 pip install paquete     # instalar paquete (más reciente)
 pip show paquete        # mostrar data del paquete
 pip uninstall paquete   # desinstalar paquete
-pip list                # enumerar paquetes instalados
+pip list                # enumerar paquetes instalados 
 ```
 Opciones para manejar versiones de paquetes:
-```bash  
-pip install paquete==     # enumerar versiones online del paquete
-pip install paquete==version    #instalar version especificada
-pip install paquete>=version    #instalar version especificada o más reciente
+```bash  title="PIP - Comandos básicos"
+pip install paquete==?          # consultar versiones online del paquete 
+pip install paquete==version    # instalar version especificada
+pip install paquete>=version    # instalar version especificada o más reciente
 ```
 Listado de dependencias e instalacion desde las mismas:
+
 ```bash  
 # guardado en texto de paquetes actuales y su versión actual
 pip freeze > requirements.txt
 # instalacion desde archivo
-pip  install -r requirements.txt
+pip install -r requirements.txt
 ```
-Actualizacion de PIP:
-```bash
-pip install pip    
-pip install --upgrade pip   # actualizar PIP
-pip --version               # version PIP actual  
-```
+
+
+### Actualización de paquetes
 
 Para actualizar los paquetes se puede usar el paquete auxiliar pip-review:
 
@@ -45,6 +64,10 @@ Ubicacion de paquetes locales:
 ```bash
 python -m site --user-site
 ```
+
+## Importación
+
+
 El manejo de los paquetes ya instalados es idéntico al de los módulos. 
 
 Para usar el paquete se importa haciendo:
@@ -59,14 +82,14 @@ Si sólo se necesita usar algunas funciones (o submódulos) del paquete se usa:
 from paquete import <mi_archivo_funciones>
 ```
 
-### Alias
-
 A los paquetes también se les puede poner alias en el programa:
 
 ```python
 import paquete as alias
 ```
 Ejemplo resumen: importando Rich (paquete de cosméticos para la consola).
+
+
 ```python
 # alias para el paquete
 import rich as r
