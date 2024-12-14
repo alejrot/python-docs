@@ -1,7 +1,7 @@
 site_name: PythonDocs
 
 site_url: https://alejrot.github.io/python-docs
-
+site_description: Documentación y apuntes sobre Python
 
 # Repositorio
 repo_url: https://github.com/alejrot/python-docs
@@ -17,16 +17,9 @@ theme:
     # logo: fontawesome/solid/user-nurse
     annotation: material/arrow-right-circle
     logo: simple/python  # :simple-python:
-
     # Icono de repositorio
     repo: fontawesome/brands/github
 
-  # highlightjs: true
-  # hljs_languages:
-  #   - yaml
-  #   - rust
-  #   - python
-  #   - bash
   language: es
   # Modos para la pagina
   palette:
@@ -125,35 +118,6 @@ extra_css:
 plugins: 
   - privacy
   - search
-  - blog:
-      # blog_dir: .
-      enabled: true
-      blog_dir: blog    # cambia la carpeta del blog
-      post_dir: "{blog}/posts"   # cambia la carpeta de los posts
-      # barra de contenido 
-      blog_toc: true
-      post_date_format: short
-      post_url_date_format: yyyy/MM/dd
-      # borradores 
-      draft: true                   # habilita ver borradores  
-      draft_on_serve: true           # borradores disponibles en preview
-      draft_if_future_date: true      # si la fecha es futura se considera borrador
-      # archive_pagination_per_page: 2
-      categories: true    # Incluye ordenamiento por categorias
-      categories_name:    Categorias
-      post_url_format: "{date}/{slug}"
-      post_url_max_categories: 2
-      archive: true    # listado de entradas habilitado - más recientes primero
-      archive_name: Archivo 
-      archive_date_format:  MMMM yyyy
-      archive_url_date_format: yyyy/MM
-      archive_url_format: "archivo/{date}"
-      # calculo automatico de tiempos de lectura
-      post_readtime: false
-      post_readtime_words_per_minute: 300    # tasa de lectura estimada
-      # separador de resumen - cuerpo de cada post
-      post_excerpt: optional
-      post_excerpt_separator: <!-- mas -->
 
   - group:
       enabled: !ENV CI
@@ -164,6 +128,36 @@ plugins:
           enable_creation_date: true
           type: date        # fecha
           fallback_to_build_date: true
+      # blog (todo)
+      - blog:
+          # blog_dir: .
+          enabled: true
+          blog_dir: blog    # cambia la carpeta del blog
+          post_dir: "{blog}/posts"   # cambia la carpeta de los posts
+          # barra de contenido 
+          blog_toc: true
+          post_date_format: short
+          post_url_date_format: yyyy/MM/dd
+          # borradores 
+          draft: true                   # habilita ver borradores  
+          draft_on_serve: true           # borradores disponibles en preview
+          draft_if_future_date: true      # si la fecha es futura se considera borrador
+          # archive_pagination_per_page: 2
+          categories: true    # Incluye ordenamiento por categorias
+          categories_name:    Categorias
+          post_url_format: "{date}/{slug}"
+          post_url_max_categories: 2
+          archive: true    # listado de entradas habilitado - más recientes primero
+          archive_name: Archivo 
+          archive_date_format:  MMMM yyyy
+          archive_url_date_format: yyyy/MM
+          archive_url_format: "archivo/{date}"
+          # calculo automatico de tiempos de lectura
+          post_readtime: false
+          post_readtime_words_per_minute: 300    # tasa de lectura estimada
+          # separador de resumen - cuerpo de cada post
+          post_excerpt: optional
+          post_excerpt_separator: <!-- mas -->
       # soporte para RSS (depende del blog)
       - rss:
           match_path: "blog/posts/.*"
@@ -222,6 +216,6 @@ nav:
     - FFMPEG-Python: paquetes/ffmpeg.md
 
 
-  - Blog: 
+  - Novedades: 
     - blog/index.md
 
