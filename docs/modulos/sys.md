@@ -83,6 +83,8 @@ sys.thread_info
 
 ## Argumentos de entrada
 
+### Entrada de argumentos
+
 Los argumentos de entrada son los valores que se asignan a continuación del nombre del programa al llamarlo:
 ```bash title="Ventana de comandos"
 py nombre_programa  argumento_1  argumento_2  ...
@@ -107,14 +109,38 @@ argumentos[2]       # 2º argumento
 ```
 Todos los argumentos recibidos se leen como *variables string*.
 
+## Banderines
+
+Los banderines (*flags*) registran las opciones que se pasan por la ventana de comandos
+y que afectan a la ejecución del intérprete de Python.
+
+### Uso
+
+Este es el formato de uso de los 
+
+```bash title="Opciones de Python"
+py -opcion_corta  rutina.py  argumento_rutina
+py --opcion_larga  rutina.py  argumento_rutina
+```
+
+Por ejemplo, para agregar la opción *verbose* (texto de reporte espandido) se agregan las opciones `-v` o `--verbose`:
+
+```bash title="Opciones de Python"
+py -v  rutina.py  argumento_rutina
+py --verbose  rutina.py  argumento_rutina
+```
+
+
 ### `flags`
 
 
 Los flags recibidos se leen con el objeto de solo lectura `flags`:
+
 ```py title="Lectura de banderines (todos)"
 sys.flags           # diccionario con todos los flags detectables
 ```
 Dicho objeto tiene un flag específico para cada opción de entrada posible:
+
 ```py title="Lectura de banderines específicos"
 # banderines especificos 
 sys.flags.debug     # sólo flag de debugueo
@@ -123,7 +149,27 @@ sys.flags.optimize  # sólo flag de optimizacion
 # (etc)
 ```
 
-**REVISAR --> flags insensibles**
+Las opciones implementadas son las siguientes:
+
+|Atributos|Opción (por consola)|
+|:---|:---|
+| `debug` | `-d`|
+| `inspect`| `-i` |
+| `interactive` | `-i`|
+| `isolated` | `-I` |
+| `optimize` | `-O` o `-OO` |
+| `dont_write_bytecode` | `-B` |
+| `no_user_site`| `-s`|
+| `no_site`| `-S`|
+| `ignore_environment`| `-E` |
+| `verbose`| `-v` |
+| `bytes_warning`| `-b`|
+| `quiet`| `-q`|
+| `hash_randomization`| `-R`|
+| `dev_mode` | `-X dev `(Modo de desarrollo de Python)|
+| `utf8_mode` | `-X utf8` |
+
+
 
 ## Uso de memoria
 
@@ -168,9 +214,11 @@ La función `is_finalizing()` verifica si el programa ya se está cerrando.
 cerrando = sys.is_finalizing()  
 ```
 
-## Hooks, trace , profile
 
-**PENDIENTE**
+## Hooks, trace, profile
+
+(Estudio y explicación pendiente)
+
 
 
 ##  Referencias
