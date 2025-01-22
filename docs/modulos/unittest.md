@@ -1,8 +1,20 @@
+---
+tags:
+  - unittest
+  - Tests
+---
+
 
 # UnitTest - Tests unitarios
 
 
+<!-- <iframe width="266" height="150" src="https://www.youtube.com/embed/3WFQ2grp0h0?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3" title="Ruta de estudio programación | 13 - TESTING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+
+
+
 ## Importación
+
+Este módulo se importa para ser utilizado:
 
 
 ```py
@@ -264,6 +276,14 @@ Da como resultado el mensaje:
 
 
 
+## Videos recomendados
+
+<div class="grid" markdown>
+
+<iframe width="360" height="202" src="https://www.youtube.com/embed/3WFQ2grp0h0?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3" title="Ruta de estudio programación | 13 - TESTING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
 
 
 ## Referencias
@@ -271,4 +291,3 @@ Da como resultado el mensaje:
 
 [Documentacion oficial - Unittest](https://docs.python.org/3/library/unittest.html)
 
-[MoureDev TV - Ruta de estudio programación | 13 - TESTING](https://youtu.be/3WFQ2grp0h0?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3)

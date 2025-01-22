@@ -7,8 +7,16 @@ Mis apuntes en español acerca del lenguaje Python y algunos de sus módulos y p
 
 Aquí se describen los aspectos básicos del lenguaje, algunos módulos estándar, etc.
 
+### Comenzando con Python
 
-1. [Comenzando con Python](contenido/1-comenzando.md)
+- [Primeros pasos](basicos/comenzando.md)
+- [Uso desde consola](basicos/consola.md)
+- [Documentación](basicos/documentacion.md)
+- [Compilación](basicos/compilacion.md)
+
+
+
+<!-- 1. [Comenzando con Python](contenido/1-comenzando.md) -->
 2. [Variables y Asignaciones](contenido/2-variables_asignaciones.md)
 3. [Expresiones y Operadores](contenido/3-expresiones_operadores.md)
 4. [Tipos de Datos](contenido/4-tipos_datos.md)
@@ -32,7 +40,7 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 - [Decorador 'Property'](clases/property.md)
 - [Clases Abstractas](clases/abstracciones.md)
 - [Métodos Especiales (*dunder*)'](clases/metodos_especiales.md)
-- [Principios SOLID](SOLID.md)
+- [Principios SOLID](clases/SOLID.md)
 
 ### Paralelismo
 

@@ -1,5 +1,31 @@
+---
+tags:
+  - Bash
+  - Comentarios
+  - Instalacion
+  - Interprete
+---
 
 # Comenzando con Python
+
+
+## Instalación
+
+Python utiliza un intérprete específico para hacer funcionar los programas. 
+La forma más habitual de uso es instalarlo localmente.
+
+En sistemas Windows la forma más sencilla de instalación es mediante su instalador.
+[Descarga desde el sitio oficial de Python](https://www.python.org/downloads/)
+
+En sistemas GNU/Linux el intérprete de Python suele venir preinstalado.
+En caso de requerirse la instalación o la actualización esto puede hacerse desde el gestor de paquetes de la distribución o por consola.
+
+Ejemplo: 
+
+```bash title="Instalación - Fedora "
+sudo dnf install python   # instalación
+sudo dnf update  python   # actualización
+```
 
 
 ## Archivos y Ejecución
@@ -41,7 +67,8 @@ print("¡Hola Mundo!")
 
 
 ## Comentarios 
-Los comentarios de una línea son precedidos por el símbolo numeral (**#**).
+
+Los comentarios de una línea son precedidos por el símbolo numeral (**`#`**).
 ```python title="Comentarios simples"
 # Comentario, una linea
 ```
@@ -62,32 +89,12 @@ varias lineas
 '''
 ```
 
-## Documentación - MarkDown
-
-MarkDown facilita crear codigos de texto remarcados según el lenguaje usado. Es un formato muy utilizado para documentar  código de software en archivos con extensión `.md`.
-
-Usando triple comilla inclinada rodeando el bloque de código y la palabra `python` (o `py`) como se muestra: 
-
-```markdown title="Código en MarkDown - formato"
-  ```python
-  # Código Python
-  # ...
-  ```
-```
-entonces el intérprete de MarkDown da estilo al bloque:
-
-```python title="Código en MarkDown - resultado"
-# Código Python
-# ...
-```
-Este documento presente usa extensivamente esta propiedad.
-
 
 ## Scripts ejecutables
 
 Para convertir los archivos de Python en scripts ejecutables se puede incluir dentro del mismo archivo de programa un 'shebang' de modo análogo al usado en los scripts de Bash:
 ```python title="Rutinas ejecutables"
-#!/usr/bin/env python   # ruta al interprete Python
+#!/usr/bin/env python   # ruta al interprete Python (Linux)
 print("¡Hola Mundo!")
 ```
 Este realiza el llamado al intérprete de Python desde el mismo archivo. El *shebang* debe apuntar a un intérprete de Python instalado en el sistema para que el script funcione.
@@ -106,57 +113,3 @@ También se podrá ejecutar la rutina con doble click sobre el archivo; sin emba
     chmod +x nombre_archivo.py
     ```
 
-
-
-## Uso en Consola
-
-Las instrucciones de Python se puede ejecutar escribiendo en la terminal en tiempo real. Para ello se invoca al intérprete de Pyhton desde la terminal usada:
-
-```bash title="Uso en consola"
-python
-py
-```
-
-Entonces se imprime la información de la actual versión de Python y del sistema operativo actual. Cada nueva linea de la terminal comienza con ``>>>` indicando que el intérprete de Python está abierto y las instrucciones se cierran pulsando la tecla `ENTER`.
-
-```python title="Uso en consola - Instruccion a instruccion"
->>> instrucccion_1
->>> instruccion_2
->>> ....
-```
-
-
-!!! example "Ejemplo: definir una variable en vivo y sumarle 1"
-    ```python 
-    >>> x=3   # asignacion
-    >>> x+1   # incremento
-    ```
-    Resultado en pantalla:
-    ```bash 
-    >>> x=3
-    >>> x+1
-    4
-    ```
-
-Para salir del intérprete hay que escribir `exit()` ó `Ctrl + Z` (en Linux)
-
-```bash title="Uso en consola - Salida"
->>> exit()
-```
-
-## Compilación
-
-Con el fin de crear archivos ejecutables hay varias herramientas para compilar el código, es decir para crear archivos ejecutables. Algunas de ellas son:
-
-- py2exe;
-- pyinstaller;
-- Codon;
-- etc.
-
-Cada una de ellas tiene sus propiedades, distintos tipos de licencia, distintos sistemas operativos de destino, etc.
-
-
-
-!!! note "Uso interpretado"
-
-    Si bien es posible crear los ejecutables en base a código Python lo más habitual es el uso por interpretado.

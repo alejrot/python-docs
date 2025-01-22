@@ -14,6 +14,14 @@ integrados:
 - Los **atributos** son valores guardados de los parámetros, es decir son variables internas de la clase.
 - La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la clase. 
 
+Un aspecto interesante de Python es que todos sus elementos 
+(variables, tipos de datos, funciones, etc) 
+son implementados a partir de las clases.
+Es por este motivo que 
+a las funciones asociadas 
+a cada tipo de variable
+se las llama métodos.
+
 
 ## Definición
 
@@ -59,7 +67,7 @@ pero incorporando como primer argumento el objeto `self`.
 
 
 
-## Instancias
+## Instancias (objetos)
 
 Para crear *instancias* (variables con el formato y métodos de la clase) se llama a la clase y se asignan valores a todos los parámetros en orden excepto a `self` (éste se omite):
 
@@ -67,6 +75,7 @@ Para crear *instancias* (variables con el formato y métodos de la clase) se lla
 nueva_instancia = nombre_clase(valor_1, valor_2, ...)
 ```
 
+En Python a las instancias de clase también se las llama **objetos**.
 
 
 ## Atributos públicos y privados

@@ -179,19 +179,29 @@ plugins:
 
 nav:
   - Indice: index.md
-  - Basicos:
-    - Comenzando con Python: contenido/1-comenzando.md
+  - Contenido:
+    - Primeros pasos:
+      - basicos/comenzando.md
+      - basicos/consola.md
+      - basicos/documentacion.md
+      - basicos/compilacion.md
+    # - Comenzando con Python: contenido/1-comenzando.md
     - Variables y Asignaciones: contenido/2-variables_asignaciones.md
     - Expresiones y Operadores: contenido/3-expresiones_operadores.md
     - Tipos de Datos: contenido/4-tipos_datos.md
     - Control de Flujo: contenido/5-control_flujo.md
+    
     - Funciones: contenido/6-funciones.md
+
     - Módulos: contenido/modulos.md
     - Paquetes: contenido/paquetes.md
     - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
+
     - Fechas y Horario: contenido/9-fechas.md
+
     - Manejo de Archivos: contenido/10-manejo_archivos.md
     - Errores y Excepciones: contenido/11-excepciones.md
+
     - Programacion Funcional: contenido/15-programacion_funcional.md
     - Decoradores: contenido/decoradores.md
 
