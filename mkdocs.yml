@@ -66,7 +66,7 @@ theme:
     # - navigation.tabs.sticky
     # - navigation.sections   # Muestra títulos para los contenidos en la barra izquierda
     # - navigation.expand     # Expansión - Expande la lista de contenidos por defecto
-    - navigation.prune      # Poda - Quita la lista de contenidos no visibles
+    # - navigation.prune      # Poda - Quita la lista de contenidos no visibles
     - navigation.indexes    # Permite agregar varios archivos a una sección
 
     # header y anuncios
@@ -186,26 +186,32 @@ nav:
       - basicos/documentacion.md
       - basicos/compilacion.md
 
-    - Variables y Asignaciones: contenido/2-variables_asignaciones.md
-    - Expresiones y Operadores: contenido/3-expresiones_operadores.md
-    - Tipos de Datos: contenido/4-tipos_datos.md
-    - Control de Flujo: contenido/5-control_flujo.md
-    
+      - contenido/2-variables_asignaciones.md
+      - contenido/3-expresiones_operadores.md
+      - contenido/4-tipos_datos.md
+      - contenido/5-control_flujo.md
+      - contenido/11-excepciones.md
+
+
     - Funciones: 
       - funciones/funciones.md
       - funciones/main.md
       - funciones/programacion_funcional.md
       - funciones/decoradores.md
 
+    - Módulos y paquetes:
+      - Módulos: contenido/modulos.md
+      - Paquetes: contenido/paquetes.md
+      - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
 
-    - Módulos: contenido/modulos.md
-    - Paquetes: contenido/paquetes.md
-    - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
+    - Manejo del tiempo:
+      # - time
+      - Fechas y Horario: contenido/9-fechas.md
+      # - calendar
 
-    - Fechas y Horario: contenido/9-fechas.md
+    - Manejo de Archivos: 
+      - contenido/10-manejo_archivos.md
 
-    - Manejo de Archivos: contenido/10-manejo_archivos.md
-    - Errores y Excepciones: contenido/11-excepciones.md
 
     - Clases y POO:
       - clases/clases.md
