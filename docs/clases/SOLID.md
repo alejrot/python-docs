@@ -1,3 +1,10 @@
+---
+tags:
+  - Clases
+  - ABC
+  - POO
+---
+
 
 
 # Principios SOLID

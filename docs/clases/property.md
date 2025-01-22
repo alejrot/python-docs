@@ -1,17 +1,9 @@
-
-
-
-
-
-## Decoradores
-
-Los decoradores añaden código a una funcion especificada de forma externa. El código añadido pueden ir antes, después o alrededor de la función.
-
-Python implementa decoradores predefinidos para afectar a las clases creadas por el desarrollador.
-
-<!-- 
-[Más sobre los decoradores (genérico)](decoradores.md) 
--->
+---
+tags:
+  - Clases
+  - Decoradores
+  - Property 
+---
 
 
 
@@ -23,13 +15,39 @@ El desarrollador trabajará con estos métodos modificados
 por el decorador *property*
 como si fueran atributos.
 
+<!-- 
+[Más sobre los decoradores (genérico)](decoradores.md) 
+-->
+
+Un aspecto interesante de los métodos afectados por *property* es la posibilidad de combinar el procesamiento de los datos internos de la clase con la manipulación de algún atributo específico. 
+Lo habitual es afectar atributos privados.
+
 
 ## Definición
 
 
-Ejemplo de definición:
+Se crean hasta tres métodos con igual nombre
+pero que cambian de argumentos y decoradores:
 
-```python hl_lines="6 10 14" title="Uso decorador Property"
+- El método de lectura 
+(*getter*) 
+se implementa agregándole justo encima de la definición del método el decorador `property` 
+y debe tener la cláusula `return`
+para devolver el valor del atributo interno deseado;
+
+- El método de escritura 
+(*setter*)
+incluye como decorador el nombre del método seguido de `.setter` 
+y el método debe tener un argumento para ingresar el nuevo valor;
+
+- El método de eliminación
+(*deleter*) 
+tiene como decorador el nombre del método seguido de `.deleter`. 
+Este método elimina el atributo privado que se le indique con la cláusula `del`.
+
+Sintaxis:
+
+```python  title="Métodos 'Property' - Definición"
 class Persona:
     def __init__(self, nombre):
         self.__myname = nombre      # atributo privado
@@ -52,7 +70,7 @@ class Persona:
 
 Los métodos creados se ven y se usan como si fueran atributos públicos:
 
-```python title="uso métodos 'property'" hl_lines="5-7"
+```python title="Métodos 'Property' - Uso" hl_lines="5-7"
 # creacion de instancia
 yo = Persona("Yoh")
 

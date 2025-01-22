@@ -64,12 +64,16 @@ theme:
     # pestañas de contenido
     - navigation.tabs
     # - navigation.tabs.sticky
-    - navigation.sections
-    # - navigation.expand
+    # - navigation.sections   # Muestra títulos para los contenidos en la barra izquierda
+    # - navigation.expand     # Expansión - Expande la lista de contenidos por defecto
+    - navigation.prune      # Poda - Quita la lista de contenidos no visibles
+    - navigation.indexes    # Permite agregar varios archivos a una sección
 
     # header y anuncios
     - header.autohide
     - announce.dismiss
+
+
 
 
 markdown_extensions:
@@ -108,7 +112,7 @@ extra_javascript:
 
 
 extra_css:
-  - stylesheets\extra.css
+  - stylesheets/extra.css
 
 
 # extra:
@@ -169,6 +173,10 @@ plugins:
           cards_layout: default/accent
 
 
+  - tags:
+      tags_file: tags.md
+
+
 nav:
   - Indice: index.md
   - Basicos:
@@ -187,15 +195,18 @@ nav:
     - Programacion Funcional: contenido/15-programacion_funcional.md
     - Decoradores: contenido/decoradores.md
 
-    - Clases:
+    - Clases y POO:
       - clases/clases.md
-      - clases/decoradores_abstracciones.md
+      - clases/poo.md
+      - clases/property.md
+      - clases/abstracciones.md
+      - clases/metodos_especiales.md
       - clases/SOLID.md
 
     - Paralelismo:
-      - Procesos: paralelismo/procesos.md
-      - Hilos: paralelismo/hilos.md
-      - Intercambio: paralelismo/intercambio.md
+      - paralelismo/procesos.md
+      - paralelismo/hilos.md
+      - paralelismo/intercambio.md
 
     - Enlaces: contenido/enlaces.md
   
@@ -217,6 +228,9 @@ nav:
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
 
+
+  - Etiquetas:
+    - tags.md
 
   - Novedades: 
     - blog/index.md

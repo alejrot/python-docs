@@ -28,7 +28,10 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 ### Clases
 
 - [Definicion y Propiedades](clases/clases.md)
-- [Decoradores, Abstracciones y Métodos Especiales](clases/decoradores_abstracciones.md)
+- [Programacion Orientada a Objetos (*POO*)](clases/poo.md)
+- [Decorador 'Property'](clases/property.md)
+- [Clases Abstractas](clases/abstracciones.md)
+- [Métodos Especiales (*dunder*)'](clases/metodos_especiales.md)
 - [Principios SOLID](SOLID.md)
 
 ### Paralelismo

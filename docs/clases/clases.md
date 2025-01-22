@@ -1,71 +1,97 @@
+---
+tags:
+  - Clases
+---
 
-# Clases y POO
+
+# Clases 
 
 
 
-## Programacion Orientada a Objetos  (*POO*)
-
-La POO trabaja con clases. Las **clases** son objetos que poseen atributos y funcionalidad:
+Las **clases** son objetos que poseen atributos y funcionalidad
+integrados:
 
 - Los **atributos** son valores guardados de los parámetros, es decir son variables internas de la clase.
-- La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la  clase. 
+- La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la clase. 
+
+
+## Definición
 
 Las clases se definen así:
 
-```python
-class <nombre_clase>:
+```python title="Clases - Definición "
+class nombre_clase:
+    # inicialización
 	def __init__(self, param1, param2, ...):
-		#inicializacion (obligatoria)
 		self.atributo1 = param1		
 		self.atributo2 = param2
 ```
 
-La palabra *self* indica la instancia actual. Para utilizar los atributos de cada instancia de clase se añaden los métodos, que se definen así:
+La palabra `self` es un elemento auxiliar
+que hace referencia a cada nuevo objeto 
+creado por las clases, 
+los cuales son llamados *instancias*.
 
-```python
-class <nombre_clase>:
+
+## Métodos
+
+Para utilizar los atributos 
+de cada instancia de clase 
+se añaden los métodos, 
+que se definen así:
+
+```python title="Clases - Definición (con métodos)"
+class nombre_clase:
+    # inicialización
 	def __init__(self, param1 , param2, ...):	
-        #inicialización (obligatoria)
 		self.atributo1 = param1		
 		self.atributo2 = param2
 
 	def metodo1(self):
 		#código 1
+
 	def metodo2(self):
 		#código 2
 ```
 
-Para crear *instancias* (variables con el formato y métodos de la clase) se llama a la clase y se asignan valores a todos los parámetros en orden excepto a *self *(éste se omite):
+Los métodos se definen de manera muy similar a las funciones,
+pero incorporando como primer argumento el objeto `self`.
 
-```python
-nombre_instancia = nombre_clase(valor_1, valor_2, ...)
+
+
+## Instancias
+
+Para crear *instancias* (variables con el formato y métodos de la clase) se llama a la clase y se asignan valores a todos los parámetros en orden excepto a `self` (éste se omite):
+
+```python title="Clases - Instancia"
+nueva_instancia = nombre_clase(valor_1, valor_2, ...)
 ```
-### Atributos públicos y privados
+
+
+
+## Atributos públicos y privados
 
 Los *atributos* de la clase son *públicos* por defecto, es decir pueden ser accedidos directamente por su nombre:
 
 ```python
-<nombre_instancia>.<atributo> = <valor>
-<variable> = <nombre_instancia>.<atributo>
+nombre_instancia.atributo = valor
+variable = nombre_instancia.atributo
 ```
 
-Los atributos pueden ser eliminados llamando al deleter 'del':
 
-```python
-del <nombre_instancia>.<atributo> 
-```
+Para hacer que los atributos de la clase sean *"privados"* se les antepone en su definición dos *guiones bajos* (**`__`**):
 
-Para hacer que los atributos de la clase sean *"privados"* se les antepone en su definición dos *guiones bajos* ( **__** ):
-
-```python
-class <nombre_clase>:
-	def __init__(self, <param1> , <param2>, ...):	
+```python title="Clases - atributos privados"
+class nombre_clase:
+	def __init__(self, param1 , param2, ...):	
         #inicialización (obligatoria)
-		self.<atributo1>    = <param1>	# atributo público		
-		self.__<atributo2>  = <param2>	# atributo privado
+		self.atributo1    = param1	# atributo público		
+		self.__atributo2  = param2	# atributo privado
 ```
 
-Si se intenta acceder a un atributo privado desde afuera de los métodos de la clase no se disparará un error; en cambio se creará un atributo alterno con el mismo nombre. Por este motivo hay que evitar a toda costa el intentar acceder a los atributos privados desde afuera. 
+Si se intenta acceder a un atributo privado desde afuera de los métodos de la clase no se disparará un error; 
+en cambio se creará un atributo alterno con el mismo nombre. 
+Por este motivo hay que evitar a toda costa el intentar acceder a los atributos privados desde afuera. 
 
 !!! info "*getters* y *setters*"
 
@@ -78,14 +104,29 @@ Si se intenta acceder a un atributo privado desde afuera de los métodos de la c
     (ejemplo: JavaScript).
 
 
+## Eliminar atributos
+
+Los atributos pueden ser eliminados llamando al deleter 
+`del`:
+
+```python
+del nombre_instancia.atributo
+```
+
+Sólo se eliminará el atributo en la instancia elegida.
+Todas las demás preservarán su atributo intacto.
+
+
+
+
 ### Metodos privados
 
 Es posible crear metodos privados definiéndolos con dos giones adelante, igual que se hace con los atributos:
 
-```python
-class <nombre_clase>:
-	def __init__(self, <param1> , <param2>, ...):	
-        #inicialización (obligatoria)
+```python title="Clases - Métodos privados"
+class nombre_clase:
+    # inicialización
+	def __init__(self, param1 , param2, ...):	
         # codigo inicializacion
 
     def publico(self):
@@ -101,273 +142,8 @@ Si se intenta acceder a un metodo privado desde afuera de la clase se producirá
 Los métodos privados son útiles para hacer rutinas auxiliares de los métodos públicos de la clase.
 
 
-## Propiedades de las Clases
 
-### Herencia
-
-Una clase puede servir de referencia para otras clases. Si la clase de referencia (**superclase**) tiene definidos una serie de atributos y de métodos entonces la clase "hija" (**subclase**) también tendrá definidos  esos mismos métodos y atributos.
-
-Ejemplo: 
-```python
-# Clase padre
-class Superclase:
-    def __init__(self, valor):
-        self.valor_original = valor      # atributo
-
-    def metodo_original(self):		# metodo		
-        print("Soy el método de la clase padre") 	
-
-# Clase hija
-class Subclase( Superclase ):
-    def __init__(self, x, y):
-        self.valor_agregado = y     # atributo añadido
-        super().__init__(x)         # método para heredar atributos
-
-    def metodo_agregado(self):      # metodo de la subclase
-        print("Soy el método exclusivo de la clase hija") 
-```
-Los objetos creados con la clase hija ***Subclase*** tienen acceso a los métodos de la clase padre ***Superclase***:
-
-```python
-instancia = Subclase( 4 , -2 )
-instancia.metodo_original()
-instancia.metodo_agregado()
-print(f"Valores: x={instancia.valor_original}, y={instancia.valor_agregado}")
-```
-
-#### super()
-
-El método *super()* permite llamar al constructor de la clase padre  desde la clase hija y así poder heredar los atributos de ésta. Esto también puede hacerse mediante el nombre de la superclase:
-
-```python
-# Clase hija
-class Subclase( Superclase ):
-    def __init__(self, x, y):
-        self.valor_agregado = y     # atributo añadido
-        Superclase.__init__(x)      # método para heredar atributos
-```
-Si en la clase hija no se añaden atributos no es necesario llamar al constructor (éste se hereda):
-
-```python
-# Clase hija
-class Subclase( Superclase ):
-    pass            # herencia automática
-```
-
-
-#### isistance()
-La función *isisttance()* verifica si hay relación entre un objeto (instancia) y una clase especificada.
-
-Modo de uso:
-```python
-retorno = isinstance( objeto, clase )
-```
-
-En base al ejemplo previo: *C* es subclase de *A* y de ambas se crean instancias llamadas *a* y *c*:
-
-```python
-a = A()
-c = C()
-
-print(isinstance(c, C))     # 'True'
-print(isinstance(a, A))     # 'True'
-
-print(isinstance(c, A))     # 'True' (debido a la herencia)
-print(isinstance(a, C))     # 'False'
-```
-
-#### issubclass()
-La función *issubclass()* verifica si hay relación entre un objeto (instancia) y una clase especificada
-
-Modo de uso:
-```python
-retorno = issubclass( Subclase, Superclase)
-```
-
-En el ejemplo previo:
-
-```python
-print(issubclass(C, A))     # 'True': C es subclase de A
-print(issubclass(A, C))     # 'False': A es SUPERclase de C
-
-print(issubclass(B, A))     # 'False': A y B NO están vinculados
-```
-
-
-
-### Herencia múltiple
-
-Una misma subclase puede heredar métodos y atributos de varias superclases al mismo tiempo.
-
-Ejemplo:
-```python
-# Superclase 'A'
-class A:
-    def __init__(self):
-        self.x = 0
-    def procedencia(self):
-        print("Este método proviene de A")
-
-
-# Superclase 'B'
-class B:
-    def __init__(self):
-        self.y = 0
-    def procedencia(self):
-        print("Este método proviene de B")
-
-
-# Subclase 'C' , hija de A y B
-class C(B, A):      
-    pass            # herencia automática (no añade nada)
-```
-
-La clase *C* hereda atributos y métodos de ambas clases padre. Si hay algún método o atributo con mobres coincidentes entre padres entonces la clase hija mantendrá la versión del primer padre en asignarse.
-
-```python
-# Se crea un objeto de la subclase
-instancia = C()
-
-# Los atributos de A y B son accesibles
-instancia.x = 7
-instancia.y = 10
-# Los métodos heredados tienen igual nombre --> se mantiene el primero
-instancia.procedencia()     # Da: "Este método proviene de B"
-```
-En el ejemplo, el método *procedencia()* existe tanto en A como en B. Como B se asignó primero como clase padre su versión del método prevalece. 
-
-Si se deseara añadir más atributos a la subclase y usar el método *super()* está el problema de superposición de inicializadores. La alternativa es llamar a los inicializadores como método de las superclases.
-
-Ejemplo:
-
-```python
-# Subclase 'C' , hija de A y B
-class C(B, A):      
-    def __init__(self):     
-        B.__init__(self)    # Inicializador de superclase 'B'
-        A.__init__(self)    # Inicializador de superclase 'A'
-```
-
-
-#### mro() ('method resolution order')
-
-El método *.mro()* de las clases permite consultar el orden de prioridad de las superclases. La superclase más importante se indica primero.
-
-```python
-print(Clase.mro())  # orden del más relevante al último
-```
-En general las clases padre son las más importantes, luego vienen las clases abuelo, etc. Y ante igual jerarquía se le da prioridad a la primera clase en indicarse.
-
-
-### Polimorfismo
-
-El polimorfismo es el potencial de la subclase para reescribir las propiedades heredadas de la superclase. 
-
-Supongamos el caso de dos clases, una es hija de la otra y ambas definen un método con igual nombre llamado ***calculo***.
-
-```python
-class Superclase:
-    def __init__(self, valor):
-        self.valor = valor
-    def calculo(self, x):				# Definicion de un método
-        print(f"{self.valor * x} ") 	# Producto
-
-
-class Subclase( Superclase ):
-    def calculo(self, x):				# reescritura del método heredado
-        print(f"{self.valor ** x} ") 	# Potencia
-```
-Obsérvese como el método *calculo* puede ser reescrito en la clase hija en tanto que para la clase padre mantiene su fórmula original: 
-```python
-p = Superclase(4)
-p.calculo(3) 	# Producto: da 12
-
-q = Subclase(4)
-q.calculo(3)		# Potencia: da 64
-```
-
-Con el nombre de clase las instancias pueden acceder tanto a los métodos de las clases padre como a los métodos de las clases hijas.
-
-Sintaxis:
-```python
-Clase.metodo( instancia, argumentos)    
-```
-
-En el ejemplo previo:
-
-```python
-p = Superclase(4)       # instancia de clase padre
-Superclase.calculo(p, 3)    # Producto: da 12
-Subclase.calculo(p, 3)      # Potencia: da 64
-
-q = Subclase(4)         # instancia de clase hija
-Superclase.calculo(q, 3)    # Producto: da 12
-Subclase.calculo(q, 3)      # Potencia: da 64
-```
-
-
-### Composición
-
-Las clases se pueden componer unas con otras: 
-
-```python
-# Clase interior
-class Simple:
-    def __init__(self):
-        self.valor = 0
-
-    def metodo(self):
-        print(f"Valor interno: {self.valor}")
-
-# Clase exterior
-class Compuesta:
-    def __init__(self):
-        self.objeto = Simple()
-```
-
-En este caso la estructura ylos atributos y métodos ya no pueden solaparse unos con otros cuando hay herencia múltiple. Como contrapartida se complica la estructura de datos.
-
-```python
-instancia = Compuesta()           # creación objeto compuesto
-instancia.objeto.valor = 15       # acceso a atributos internos 
-instancia.objeto.metodo()         # acceso a métodos internos
-# instancia.metodo()              # da ERROR
-```
-
-Una desventaja de la composición es la eliminación del objeto interno si el objeto externo se elimina.
-
-
-### Agregado ("agregacion")
-
-Esta opción es una alternativa superadora a la composición. 
-Esta consiste en crear la instancia de la clase interna primero y luego pasarla como argumento para crear la clase exterior:
-
-```python
-# clase interior
-class Simple:
-    def __init__(self):
-        self.valor = 0
-
-    def metodo(self):
-        print(f"Valor interno: {self.valor}")
-
-# clase exterior
-class Agregada:
-    def __init__(self, referencia):
-        self.objeto = referencia
-
-# objeto de la clase interna
-instancia_simple = Simple()   
-# clase interna como argumento para la otra
-instancia_agregada = Agregada(instancia_simple)
-# acceso a atributos y métodos
-instancia_agregada.objeto.valor = 15        
-instancia_agregada.objeto.metodo()
-```
-
-
-
-**Referencias**
+## Referencias
 
 [Stack Overflow - What's the pythonic way to use getters and setters](https://stackoverflow.com/questions/2627002/whats-the-pythonic-way-to-use-getters-and-setters)
 
