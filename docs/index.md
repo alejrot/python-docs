@@ -14,26 +14,35 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 - [Documentación](basicos/documentacion.md)
 - [Compilación](basicos/compilacion.md)
 
+- [Errores y Excepciones](contenido/11-excepciones.md)
+- [Variables y Asignaciones](contenido/2-variables_asignaciones.md)
+- [Expresiones y Operadores](contenido/3-expresiones_operadores.md)
+- [Tipos de Datos](contenido/4-tipos_datos.md)
+- [Control de Flujo](contenido/5-control_flujo.md)
 
+### Funciones
 
 <!-- 1. [Comenzando con Python](contenido/1-comenzando.md) -->
-2. [Variables y Asignaciones](contenido/2-variables_asignaciones.md)
-3. [Expresiones y Operadores](contenido/3-expresiones_operadores.md)
-4. [Tipos de Datos](contenido/4-tipos_datos.md)
-5. [Control de Flujo](contenido/5-control_flujo.md)
-6. [Funciones](contenido/6-funciones.md#funciones)
-7. [Modulos](contenido/modulos.md)
-7. [Paquetes](contenido/paquetes.md)
-8. [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md)
-9. [Fechas y Horario](contenido/9-fechas.md#fechas-y-horario)
-10. [Manejo de Archivos](contenido/10-manejo_archivos.md)
-11. [Errores y Excepciones](contenido/11-excepciones.md)
+- [Funciones](contenido/6-funciones.md#funciones)
+- [Programacion Funcional](contenido/15-programacion_funcional.md)
+- [Decoradores](contenido/decoradores.md)
 
-12. [Programacion Funcional](contenido/15-programacion_funcional.md)
+### Módulos y Paquetes
 
-13. [Decoradores](contenido/decoradores.md)
+- [Modulos](contenido/modulos.md)
+- [Paquetes](contenido/paquetes.md)
+- [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md)
 
-### Clases
+### Manejo del Tiempo
+
+- [Fechas y Horario](contenido/9-fechas.md#fechas-y-horario)
+
+### Manejo de Archivos
+
+- [Manejo de Archivos](contenido/10-manejo_archivos.md)
+
+
+### Clases y POO
 
 - [Definicion y Propiedades](clases/clases.md)
 - [Programacion Orientada a Objetos (*POO*)](clases/poo.md)
