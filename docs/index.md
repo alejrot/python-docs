@@ -25,16 +25,19 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 
 13. [Decoradores](contenido/decoradores.md)
 
-14. [Clases I - Definicion y Propiedades](contenido/12-clases.md)
-15. [Clases II: Decoradores, Abstracciones y Métodos Especiales](contenido/13-decoradores_abstracciones.md)
-16. [Clases III: Principios SOLID](contenido/14-SOLID.md)
+### Clases
 
-17. [Procesos](contenido/procesos.md)
-18. [Hilos](contenido/hilos.md)
-19. [Intercambio](contenido/intercambio.md)
+- [Definicion y Propiedades](clases/clases.md)
+- [Decoradores, Abstracciones y Métodos Especiales](clases/decoradores_abstracciones.md)
+- [Principios SOLID](SOLID.md)
+
+### Paralelismo
+
+- [Procesos](paralelismo/procesos.md)
+- [Hilos](paralelismo/hilos.md)
+- [Intercambio](paralelismo/intercambio.md)
 
 
-- [Enlaces](contenido/enlaces.md)
 
 
 ## Módulos de Python
@@ -64,3 +67,7 @@ Breves tutoriales de paquetes varios implementados en Python: bibliotecas, frame
 
 
 
+
+## Recursos
+
+- [Enlaces](contenido/enlaces.md)

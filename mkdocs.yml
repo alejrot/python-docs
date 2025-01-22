@@ -187,13 +187,15 @@ nav:
     - Programacion Funcional: contenido/15-programacion_funcional.md
     - Decoradores: contenido/decoradores.md
 
-    - Clases I - Definicion y Propiedades: contenido/12-clases.md
-    - Clases II - Decoradores, Abstracciones y Métodos Especiales: contenido/13-decoradores_abstracciones.md
-    - Clases III - Principios SOLID: contenido/14-SOLID.md
-    
-    - Paralelismo - Procesos: contenido/procesos.md
-    - Paralelismo - Hilos: contenido/hilos.md
-    - Paralelismo - Intercambio: contenido/intercambio.md
+    - Clases:
+      - clases/clases.md
+      - clases/decoradores_abstracciones.md
+      - clases/SOLID.md
+
+    - Paralelismo:
+      - Procesos: paralelismo/procesos.md
+      - Hilos: paralelismo/hilos.md
+      - Intercambio: paralelismo/intercambio.md
 
     - Enlaces: contenido/enlaces.md
   

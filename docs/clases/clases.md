@@ -1,43 +1,44 @@
 
-# Clases
+# Clases y POO
 
 
 
-## Programacion Orientada a Objetos  
+## Programacion Orientada a Objetos  (*POO*)
 
-La POO trabaja con clases. Las clases son objetos que poseen atributos y funcionalidad:
-- La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la  clase. 
+La POO trabaja con clases. Las **clases** son objetos que poseen atributos y funcionalidad:
+
 - Los **atributos** son valores guardados de los parámetros, es decir son variables internas de la clase.
+- La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la  clase. 
 
 Las clases se definen así:
 
 ```python
 class <nombre_clase>:
-	def __init__(self, <param1>, <param2>, ...):
+	def __init__(self, param1, param2, ...):
 		#inicializacion (obligatoria)
-		self.<atributo1> = <param1>		
-		self.<atributo2> = <param2>
+		self.atributo1 = param1		
+		self.atributo2 = param2
 ```
 
 La palabra *self* indica la instancia actual. Para utilizar los atributos de cada instancia de clase se añaden los métodos, que se definen así:
 
 ```python
 class <nombre_clase>:
-	def __init__(self, <param1> , <param2>, ...):	
+	def __init__(self, param1 , param2, ...):	
         #inicialización (obligatoria)
-		self. <atributo1> = <param1>		
-		self. <atributo2> = <param2>
+		self.atributo1 = param1		
+		self.atributo2 = param2
 
-	def <metodo1>(self):
+	def metodo1(self):
 		#código 1
-	def <metodo2>(self):
+	def metodo2(self):
 		#código 2
 ```
 
 Para crear *instancias* (variables con el formato y métodos de la clase) se llama a la clase y se asignan valores a todos los parámetros en orden excepto a *self *(éste se omite):
 
 ```python
-<nombre_instancia> = <nombre_clase>(<valor_1>,<valor_2>,...)
+nombre_instancia = nombre_clase(valor_1, valor_2, ...)
 ```
 ### Atributos públicos y privados
 
@@ -66,11 +67,15 @@ class <nombre_clase>:
 
 Si se intenta acceder a un atributo privado desde afuera de los métodos de la clase no se disparará un error; en cambio se creará un atributo alterno con el mismo nombre. Por este motivo hay que evitar a toda costa el intentar acceder a los atributos privados desde afuera. 
 
-### 'getters' y 'setters'
+!!! info "*getters* y *setters*"
 
-En Python se prefiere **evitar** los métodos 'get' y  'set' para lectura y escritura de atributos, por ello lo habitual es declarar públicos los atributos de interés para el acceso externo y dejar privados los atributos con data interna de los métodos. 
+    En Python **se prefiere evitar** 
+    los métodos 'get' y  'set' para lectura y escritura de atributos,
+    por ello lo habitual es declarar públicos los atributos de interés para el acceso externo 
+    y dejar privados los atributos con data interna de los métodos. 
 
-Este hábito contrasta con otros lenguajes donde sí se habitúa crear metodos específicos para leer y escribir la data interna (ejemplo JavaScript).
+    Este hábito contrasta con otros lenguajes donde sí se habitúa crear metodos específicos para leer y escribir la data interna
+    (ejemplo: JavaScript).
 
 
 ### Metodos privados
@@ -364,9 +369,9 @@ instancia_agregada.objeto.metodo()
 
 **Referencias**
 
-https://stackoverflow.com/questions/2627002/whats-the-pythonic-way-to-use-getters-and-setters
+[Stack Overflow - What's the pythonic way to use getters and setters](https://stackoverflow.com/questions/2627002/whats-the-pythonic-way-to-use-getters-and-setters)
 
-https://docs.hektorprofe.net/python/herencia-en-la-poo/herencia-multiple/
+[HecktorProfe - Herencia múltiple](https://docs.hektorprofe.net/python/herencia-en-la-poo/herencia-multiple/)
 
-https://barcelonageeks.com/python-oops-agregacion-y-composicion/
+[BarcelonaGeeks - Agregación y Composición](https://barcelonageeks.com/python-oops-agregacion-y-composicion/)
 

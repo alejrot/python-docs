@@ -1,35 +1,36 @@
 
 
-# Clases III - Principios SOLID
+# Principios SOLID
 
 
 
-## Principios SOLID
+## Introducción
 
 Los principios SOLID son una guía de principios cuya aplicación busca lograr las siguientes ventajas:
 
-- 1 - Mantenibilidad
-- 2 - Reusabilidad
-- 3 - Legibilidad
-- 4 - Extensibilidad
+- Mantenibilidad
+- Reusabilidad
+- Legibilidad
+- Extensibilidad
 
 SOLID son las siglas de los siguientes principios:
 
-- SRP - Principio de Responsabilidad Única
-- OCP - Principio de Abierto/Cerrado
-- LSP - Principio de Sustitucion de Liskov
-- ISP - Principio de Segregacion de Interfaz
-- DIP - Principio de Inversion de Dependencias 
+1. **SRP**: Principio de Responsabilidad Única
+1. **OCP**: Principio de Abierto/Cerrado
+1. **LSP**: Principio de Sustitucion de Liskov
+1. **ISP**: Principio de Segregacion de Interfaz
+1. **DIP**: Principio de Inversion de Dependencias 
 
 La aplicación de estos principios ayuda a mejorar la calidad del código; sin embargo no es una tarea trivial y debe sopesarse en cada proyecto sus ventajas e inconvenientes.
 
 A continuacion se explica cada uno de estos principios.
 
 
-## SRP - Principio de Responsabilidad Unica
+## 1. SRP - Principio de Responsabilidad Unica
 Cada clase debe tener una única responsabilidad o tarea. Si se necesitan varias responsabilidades o tareas éstas deben repartirse en varias clases.
 
-Ejemplo: un auto.
+Ejemplo: un programa que simula el funcionamiento de un auto.
+
 - Una clase "Tanque"  que registra el nivel de combustible del auto y gestiona la recarga. 
 - una clase  "Auto" que gestiona la posición y el movimiento del mismo consumiendo combustible del tanque.
 
@@ -37,8 +38,9 @@ En este contexto "Tanque" es superclase de "Auto".
 
 Una misma clase puede tener varios metodos pero éstos deben estar asociados a la misma funcionalidad. En el ejemplo: "Tanque" no controla ni la posicion ni el movimiento del auto, en tanto que "Auto" no gestiona la carga de combustible.
 
+(REVISAR)
 
-## OCP - Principio de Abierto/Cerrado
+## 2. OCP - Principio de Abierto/Cerrado
 Las entidades de software (clases, funciones) deben ser "Abiertas para extension, cerradas para modificacion".
 
 
@@ -73,7 +75,7 @@ class NotificadorSMS( Notificador )
 
 De esta manera en vez de reescribir el método de la clase original se crean clases hijas con el comportamiento deseado para cada situación.
 
-## LSP - Principio de Sustitución de Liskov
+## 3. LSP - Principio de Sustitución de Liskov
 
 Toda subclase hereda **todas** las propiedades de su superclase. Pero esto puede introducir conflictos lógicos bajo ciertas circunstancias.
 
@@ -106,7 +108,7 @@ class Avestruz(AveNoVoladora):
     pass                        # No se hereda la propiedad de vuelo
 ```
 
-## ISP - Principio de Segregacion de Interfaz
+## 4. ISP - Principio de Segregacion de Interfaz
 
 "Ningun usuario debe ser obligado a usar interfaces que no necesite". Hay que eliminar las dependencias que no se necesiten.
 
@@ -197,7 +199,7 @@ humano.dormir()
 En resumen, creando varios métodos abstractos en clases separadas se previenen problemas de herencia.
 
 
-## DIP - Principio de Inversion de Dependencias 
+## 5. DIP - Principio de Inversion de Dependencias 
 - Los modulos de alto nivel **no** deben depender de los modulos de bajo nivel. Ambos deben depender de abstracciones;
 - Los detalles deben depender de las abstracciones y no al revés. 
 
@@ -271,7 +273,7 @@ corrector = CorrectorOrtografico(ServicioWeb())
 
 
 
-### Referencias
+## Referencias
 
 
 **[Soy Dalto - Curso de POO desde Cero (Completo)](https://youtu.be/HtKqSJX7VoM?t=10539)**

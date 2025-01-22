@@ -1,6 +1,6 @@
 
 
-# Clases II - Decoradores, Abstracciones y Métodos Especiales
+# Decoradores, Abstracciones y Métodos Especiales
 
 
 
@@ -8,7 +8,12 @@
 
 Los decoradores añaden código a una funcion especificada de forma externa. El código añadido pueden ir antes, después o alrededor de la función.
 
-[Más sobre los decoradores](decoradores.md)
+
+Python implementa decoradores predefinidos para afectar a las clases creadas por el desarrollador.
+
+<!-- 
+[Más sobre los decoradores (genérico)](decoradores.md) 
+-->
 
 
 
@@ -132,7 +137,7 @@ tu.hacer_actividad()    # uso metodo modificado
     yo = Persona("Meh","35")    # da ERROR
     ```
 
-## Metodos Especiales ('dunder')
+## Metodos Especiales (*dunder*)
 
 Los métodos especiales son métodos predefinidos del lenguaje Python para definir el comportamiento de las clases ante determinadas condiciones. Los métodos especiales van marcados doble guion a ambos lados de su nombre.
 

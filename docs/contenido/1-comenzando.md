@@ -98,7 +98,7 @@ De este modo se puede ejecutar la rutina del archivo desde la consola directamen
 ```
 También se podrá ejecutar la rutina con doble click sobre el archivo; sin embargo esto puede no abrir la terminal (o cerrarla muy rápidamente).
 
-!!! hint "Importante:"
+!!! hint "Permisos de ejecución"
     Es posible que se requiera darle permisos de ejecución al archivo. Esto puede hacerse desde la terminal con el comando *chmod* o bien afectando las propiedades con clik derecho en el entorno gráfico del sistema operativo.
 
     Asignar permisos de ejecucion desde la terminal:
