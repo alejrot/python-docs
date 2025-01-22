@@ -1,3 +1,13 @@
+---
+tags:
+  - Funciones
+  - Operadores
+  - Tipos
+  - Variables
+---
+
+
+
 
 # Variables y Asignaciones
 

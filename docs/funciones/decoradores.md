@@ -1,4 +1,10 @@
-
+---
+tags:
+  - Funciones
+  - Decoradores
+  - Argumentos
+  - Retorno
+---
 
 # Decoradores
 

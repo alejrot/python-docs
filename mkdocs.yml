@@ -185,13 +185,18 @@ nav:
       - basicos/consola.md
       - basicos/documentacion.md
       - basicos/compilacion.md
-    # - Comenzando con Python: contenido/1-comenzando.md
+
     - Variables y Asignaciones: contenido/2-variables_asignaciones.md
     - Expresiones y Operadores: contenido/3-expresiones_operadores.md
     - Tipos de Datos: contenido/4-tipos_datos.md
     - Control de Flujo: contenido/5-control_flujo.md
     
-    - Funciones: contenido/6-funciones.md
+    - Funciones: 
+      - funciones/funciones.md
+      - funciones/main.md
+      - funciones/programacion_funcional.md
+      - funciones/decoradores.md
+
 
     - Módulos: contenido/modulos.md
     - Paquetes: contenido/paquetes.md
@@ -201,9 +206,6 @@ nav:
 
     - Manejo de Archivos: contenido/10-manejo_archivos.md
     - Errores y Excepciones: contenido/11-excepciones.md
-
-    - Programacion Funcional: contenido/15-programacion_funcional.md
-    - Decoradores: contenido/decoradores.md
 
     - Clases y POO:
       - clases/clases.md
