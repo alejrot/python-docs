@@ -1,3 +1,13 @@
+---
+tags:
+  - Hilos
+  - Paralelismo
+#   - Procesos
+  - Locks
+#   - Forks
+  - threading
+---
+
 
 
 

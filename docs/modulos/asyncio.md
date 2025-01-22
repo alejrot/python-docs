@@ -1,3 +1,14 @@
+---
+tags:
+  - Hilos
+  - Paralelismo
+  - Procesos
+#   - Locks
+#   - Forks
+#   - multiprocessing
+#   - threading
+  - asyncio 
+---
 
 
 
@@ -329,6 +340,16 @@ En caso de manejarse un bucle de eventos, el método `set_exception_handler()` d
 - `async with` para manejo de recursos.
 - Limitar tareas concurrentes: funciones `asyncio.Semaphore` y `asyncio.BoundedSemaphore`.
 - Usar  `asyncio.gather()` para ejecutar múltiples corrutinas simultáneas.
+
+
+
+
+## Subprocesos
+
+El módulo `asyncio` incluye su propias utilidades para gestionar los subprocesos en caso de requerirse su uso.
+
+[página oficial de Python](https://docs.python.org/es/3/library/asyncio-subprocess.html)
+
 
 
 ## Referencias

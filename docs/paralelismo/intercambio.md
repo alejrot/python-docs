@@ -1,3 +1,15 @@
+---
+tags:
+  - Paralelismo
+#   - Hilos
+#   - Locks
+#   - Forks
+#   - multiprocessing
+#   - threading
+---
+
+
+
 # Elementos de intercambio
 
 

@@ -1,8 +1,13 @@
-https://learntutorials.net/es/python/topic/4110/procesos-e-hilos
-https://docs.python.org/es/3/library/multiprocessing.html
+---
+tags:
+#   - Hilos
+  - Paralelismo
+  - Procesos
+  - Locks
+  - Forks
+  - multiprocessing
+---
 
-<!-- # Procesos e Hilos
- -->
 
 
 # Procesos (*proccess*)
@@ -335,14 +340,6 @@ El valor de retorno obtenido no es igual para el proceso original que para su cl
     else:
         print("Error de bifurcación")
     ```
-
-
-
-
-
-## Asincronos
-https://docs.python.org/es/3/library/asyncio-subprocess.html
-
 
 
 
