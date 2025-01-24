@@ -33,9 +33,10 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 - [Paquetes](contenido/paquetes.md)
 - [Entornos Virtuales: VENV](contenido/8-entorno_virtual.md)
 
-### Manejo del Tiempo
+### Tiempo y fechas
 
-- [Fechas y Horario](contenido/9-fechas.md#fechas-y-horario)
+- [Tiempos del sistema](tiempo/tiempo.md)
+- [Fechas y Horario](tiempo/fechas.md)
 
 ### Manejo de Archivos
 

@@ -204,9 +204,9 @@ nav:
       - Paquetes: contenido/paquetes.md
       - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
 
-    - Manejo del tiempo:
-      # - time
-      - Fechas y Horario: contenido/9-fechas.md
+    - Tiempo y fechas:
+      - tiempo/tiempo.md 
+      - tiempo/fechas.md
       # - calendar
 
     - Manejo de Archivos: 
