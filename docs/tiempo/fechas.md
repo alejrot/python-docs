@@ -3,40 +3,68 @@ tags:
   - datetime
   - Tiempo
   - Fechas
+  - Clases
 ---
 
 
 # Fechas y Horario
 
 
-## Datetime
+## Módulo `datetime`
 
 El módulo **datetime** está dedicado al trabajo con fechas y horarios. Para usarlo se necesita importarlo.
 
-```python
+```python title="'datetime' - Importación"
 import datetime
 ```
 Al igual que en otros módulos se puede importar unicamente los elementos necesarios del mismo.
 
-### Lectura de fechas
+En este tutorial se asume que se importan todos los elementos internos:
 
-
-El objeto ***datetime*** maneja fechas y horarios en un único objeto. 
-
-```python
+```python title="'datetime' - Importar todo"
 from datetime import datetime
 ```
 
-Este objeto dispone del método `now()` para consultar fecha y hora del sistema:
+!!! warning "datetime vs time"
 
-```python
+    Los módulos `datetime` y `time` 
+    tienen elementos que comparten nombre
+    pero que no son compatibles entre síu.
+    En caso de importar elementos de ambos módulos
+    es mejor importarlos con su nombre de módulo o un alias 
+    para evitar conflictos inesperados.
+
+
+
+## Lectura de fechas
+
+
+La clase `datetime` 
+maneja fechas y horarios 
+en un único elemento.
+
+### Fecha y hora actual 
+
+Este elemento dispone del método `now()` para consultar fecha y hora del sistema:
+
+```python title="clase 'datetime' - fecha actual"
 ahora = datetime.now()  #lectura fecha y hora actual (hora local)
 print(ahora)
 ```
+El resultado es un objeto de tipo `datetime.datetime` cuya data es la siguiente:
 
-El objeto incluye variables internas (*"atributos"*) con los parámetros temporales de la fecha y hora. Éstos son de solo lectura. 
+``` title="clase 'datetime' - formato de salida"
+datetime.datetime(2023, 1, 1, 3, 6, 9, 300411)
+```
 
-```python
+El objeto incluye variables internas (*"atributos"*) 
+con los parámetros temporales de la fecha y hora: 
+año, mes, día, 
+hora, minuto, segundo y microsegundo.  
+Éstos son de sólo lectura 
+y pueden ser consultados por su nombre:
+
+```python title="clase 'datetime' - atributos internos"
 print(ahora.year)
 print(ahora.month)
 print(ahora.day)
@@ -47,109 +75,151 @@ print(ahora.second)
 print(ahora.microsecond)
 ```
 
-### Métodos de lectura
+### Métodos de lectura 
 
-El objeto *datetime* posee varios métodos de lectura para extraer fecha, hora ó ambas juntas. Estos métodos son `timestamp()`, `date()` y `time()`:
+La clase `datetime`
+posee varios métodos de lectura para extraer fecha, 
+hora ó ambas juntas. 
+Estos métodos son `timestamp()`, `date()` y `time()`:
 
-```py title="Metodos de lectura"
+```py title="Métodos de lectura"
 # Métodos de lectura disponibles
-print(ahora.timestamp() )   # Fecha y hora en formato POSIX
-print(ahora.date())         # Fecha
-print(ahora.time())         # Hora
+fecha_hora = ahora.timestamp()    # Fecha y hora en formato POSIX
+fecha = ahora.date()         # Sólo fecha
+hora  = ahora.time()         # Sólo hora
 ```
 El tiempo POSIX, tambien llamado tiempo UNIX, es el tiempo en segundos transcurrido desde el 1º de enero de 1970.
 
 ### Asignacion de fechas
 
-Si se necesita crear un objeto con fecha y hora particular  hay que cargarlos en la función `datetime()` para crear un objeto nuevo. Los argumentos de esta función  son los parámetros temporales en orden: año, mes , día, hora , minuto , segundo, microsegundo: 
+Si se necesita crear un objeto con fecha y hora particular  
+hay que cargarlos en la clase `datetime` 
+para crear un objeto nuevo. 
+Los argumentos de esta función  
+son los parámetros temporales en orden: 
+año, mes , día, hora , minuto , segundo, microsegundo: 
 
-```python
+```python title="clase 'datetime' - Asignación de fechas"
 # conversion de fechas
-primer_dia = datetime(2023,1,1)         #obligatorio: año, mes, dia
+primer_dia = datetime(2023,1,1)         # obligatorio: año, mes, dia
 primer_dia = datetime(2023,1,1,3,6,9)   # opcionales: hora, minuto, segundo, etc    
-print(primer_dia)
 ```
 Los parámetros de la hora son opcionales, en tanto que los parámetros de la fecha son obligatorios.
 
 ### Intervalos de tiempo
 
-Con los objetos *datetime* se pueden calcular **intervalos de tiempo** con una simple resta entre objetos. En el ejemplo: tiempo transcurrido desde el último 1 de enero.
+Con los objetos `datetime` 
+se pueden calcular intervalos de tiempo
+con una simple resta entre objetos. 
+En el ejemplo:
+ tiempo transcurrido desde el último 1 de enero.
 
-```python
+```python title="Intervalos de tiempo - cálculo"
+# tiempo actual
 ahora = datetime.now()
+# fecha referencia
 primer_dia_anio = datetime(ahora.year,1,1)
+
 # Tiempo pasado desde el 1 de enero
 diferencia_temporal = ahora - primer_dia_anio
-print(diferencia_temporal)
+```
+
+El resultado es algo como el siguiente:
+
+``` title="Intervalos de tiempo - resultado"
+datetime.timedelta(days=23, seconds=18618, microseconds=885041)
 ```
 
 
-### `date()`
 
-La función `date()` permite manejar fechas prefijadas:
+### Fecha
 
-```python
+La clase `date()` permite manejar fechas prefijadas:
+
+```python   title="Fecha prefijada"
 from datetime import date
 
-fecha_actual = date(2023,12,25)  # fecha especificada: Navidad
+fecha = date(2023,12,25)  # fecha especificada: Navidad
 
-print(fecha_actual )
-print(fecha_actual.year )
-print(fecha_actual.month )
-print(fecha_actual.day )
+anio = fecha.year 
+mes  = fecha.month 
+dia  = fecha.day 
 ```
 
-Con esta función se puede leer también  la hora del sistema directamente con ayuda del método `today()`:
+Con esta clase 
+se puede leer también  
+la hora del sistema directamente 
+con ayuda del método `today()`:
 
-```python
+```python title="Fecha actual"
 from datetime import date
 
 fecha_actual = date.today()      # fecha de hoy
-
-print(fecha_actual )
 ```
 
-### `time()`
+### Horario
 
-La función `time()` sirve para trabajar con horarios prefijados: 
+La clase `time()` 
+sirve para trabajar con horarios prefijados: 
 
-```python
+```python  title="Horario prefijado"
 from datetime import time
 
 hora_actual = time(17, 10, 6)       # asignacion manual
 
-print(hora_actual)
-print(hora_actual.hour)
-print(hora_actual.minute)
-print(hora_actual.second)
-# print(hora_actual.microsecond)      # no se usa
+hora    = hora_actual.hour
+minuto  = hora_actual.minute
+segundo = hora_actual.second
+# hora_actual.microsecond      # no se usa
 ```
-Esta función no es capaz de leer la hora del sistema directamente, sino que lo hace a través del objeto *datetime()* y su método `now()`:
 
-```python
+
+Esta clase no es capaz de leer la hora del sistema directamente, 
+sino que lo hace a través del objeto `datetime` y su método `now()`:
+
+```python title="Horario actual"
 from datetime import datetime
 
 ahora = datetime.now()  #lectura fecha y hora actual (hora local)
 
-print(ahora.time())         # Hora
+horario_actual = ahora.time()         
 ```
 
-### `timedelta()`
 
-La función `timedelta()` crea objetos que permiten calcular tiempos entre fechas especificadas como argumento.
 
-```python
+### `timedelta`
+
+La clase `timedelta()` 
+crea objetos que permiten calcular tiempos 
+entre fechas especificadas como argumento:
+
+```python  title="timedelta - resultado"
 from datetime import timedelta
+
 #tiempos
 inicio = timedelta(0, 0, 0)
 fin    = timedelta(0, 2, 1, 7)
+
 # diferencia temporal
-print(fin - inicio)     
+diferencia = fin - inicio     
 ```
+
+El valor de la diferencia se ve así:
+
+```  title="timedelta - resultado"
+datetime.timedelta(seconds=2, microseconds=7001)
+```
+
+
 
 !!! note "Argumentos no ordenados"
 
-    `timedelta()` **no tiene ordenados** los argumentos. Para imponerlos se pueden asignar cada parámetro con su plabra reservada , las cuales recorren el rango de los microsegundos hasta las semanas:
+    `timedelta` **no tiene ordenados** los argumentos. 
+    Para imponerlos 
+    se puede asignar cada parámetro 
+    con su plabra reservada, 
+    las cuales recorren el rango de los microsegundos hasta las semanas:
+
     ```py
     instante = timedelta(
         weeks        = 1,
@@ -163,3 +233,6 @@ print(fin - inicio)
     ```
 
 
+## Referencias
+
+[Documentación oficial - modulo `datetime`](https://docs.python.org/3/library/datetime.html)

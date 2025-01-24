@@ -342,7 +342,7 @@ Nótese que se necesitan dos argumentos:
 
 
 
-[Documentacion oficial - modulo `time`](https://docs.python.org/3/library/time.html)
+[Documentación oficial - modulo `time`](https://docs.python.org/3/library/time.html)
 
 
 

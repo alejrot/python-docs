@@ -22,10 +22,10 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 
 ### Funciones
 
-<!-- 1. [Comenzando con Python](contenido/1-comenzando.md) -->
-- [Funciones](contenido/6-funciones.md#funciones)
-- [Programacion Funcional](contenido/15-programacion_funcional.md)
-- [Decoradores](contenido/decoradores.md)
+- [Funciones](funciones/funciones.md)
+- [Función main()](funciones/main.md)
+- [Programacion Funcional](funciones/programacion_funcional.md)
+- [Decoradores](funciones/decoradores.md)
 
 ### Módulos y Paquetes
 
