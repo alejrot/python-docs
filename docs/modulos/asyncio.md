@@ -352,10 +352,16 @@ El módulo `asyncio` incluye su propias utilidades para gestionar los subproceso
 
 
 
+## Videos recomendados
+
+
+<iframe width="360" height="202" src="https://www.youtube.com/embed/YA8Ssd3AUwA" title="Ruta de estudio programación | 15 - ASINCRONÍA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Referencias
 
 [Documentacion oficial de Python](https://docs.python.org/3/library/asyncio.html)
 
 [Gyata AI - Mastering Asyncio in Python](https://www.gyata.ai/python/asyncio#best-practices-for-using-asyncio)
-
-[MoureDev TV - Asincronía](https://youtu.be/YA8Ssd3AUwA?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3)
+<!-- 
+[MoureDev TV - Asincronía](https://youtu.be/YA8Ssd3AUwA?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3) 
+-->

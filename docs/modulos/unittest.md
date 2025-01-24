@@ -8,10 +8,6 @@ tags:
 # UnitTest - Tests unitarios
 
 
-<!-- <iframe width="266" height="150" src="https://www.youtube.com/embed/3WFQ2grp0h0?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3" title="Ruta de estudio programación | 13 - TESTING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
-
-
-
 ## Importación
 
 Este módulo se importa para ser utilizado:

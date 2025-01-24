@@ -123,7 +123,7 @@ else:
 
 
 Una forma cómoda de aplicar el logging a las funciones es mediante el uso de decoradores, lo cual permite usar la misma rutina de logging a múltiples funciones.
-[Más sobre decoradores](../contenido/decoradores.md)
+[Más sobre decoradores](../funciones/decoradores.md)
 
 
 !!! tip "TIP Nº1: Decorador logger para excepciones"

@@ -391,12 +391,12 @@ texto = json.dumps( diccionario , indent=4)
 diccionario_2 = json.loads(texto)
 ```
 
-[Repasar tipos datos: diccionarios](tipos_datos.md#diccionarios)
+[Repasar tipos datos: diccionarios](4-tipos_datos.md#diccionarios)
 
 
 
 
 
-## Rewferencias
+## Referencias
 
 [StackOverflow - Difference between modes... ](https://stackoverflow.com/questions/1466000/difference-between-modes-a-a-w-w-and-r-in-built-in-open-function)

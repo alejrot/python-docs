@@ -226,7 +226,6 @@ nav:
       - paralelismo/hilos.md
       - paralelismo/intercambio.md
 
-    - Enlaces: contenido/enlaces.md
   
   - Modulos: 
     - Pathlib - Manejo de rutas : modulos/pathlib.md
@@ -245,6 +244,9 @@ nav:
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
+
+  - Recursos:
+    - contenido/enlaces.md
 
 
   - Etiquetas:
