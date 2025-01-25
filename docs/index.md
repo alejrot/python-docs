@@ -37,6 +37,7 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 
 - [Tiempos del sistema](tiempo/tiempo.md)
 - [Fechas y Horario](tiempo/fechas.md)
+- [Calendario](tiempo/calendar.md)
 
 ### Manejo de Archivos
 

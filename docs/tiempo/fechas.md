@@ -235,4 +235,4 @@ datetime.timedelta(seconds=2, microseconds=7001)
 
 ## Referencias
 
-[Documentación oficial - modulo `datetime`](https://docs.python.org/3/library/datetime.html)
+[Documentación oficial - módulo `datetime`](https://docs.python.org/3/library/datetime.html)

@@ -207,7 +207,7 @@ nav:
     - Tiempo y fechas:
       - tiempo/tiempo.md 
       - tiempo/fechas.md
-      # - calendar
+      - tiempo/calendar.md
 
     - Manejo de Archivos: 
       - contenido/10-manejo_archivos.md
