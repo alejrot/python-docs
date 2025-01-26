@@ -27,21 +27,19 @@ from datetime import datetime
 
 !!! warning "datetime vs time"
 
-    Los módulos `datetime` y `time` 
+    Los módulos `datetime` y `time`
     tienen elementos que comparten nombre
     pero que no son compatibles entre síu.
     En caso de importar elementos de ambos módulos
-    es mejor importarlos con su nombre de módulo o un alias 
+    es mejor importarlos con su nombre de módulo o un alias
     para evitar conflictos inesperados.
-
 
 
 ## Lectura de fechas
 
-
-La clase `datetime` 
-maneja fechas y horarios 
-en un único elemento.
+La clase `datetime`
+maneja fechas y horarios
+en un único elemento
 
 ### Fecha y hora actual 
 
@@ -57,10 +55,10 @@ El resultado es un objeto de tipo `datetime.datetime` cuya data es la siguiente:
 datetime.datetime(2023, 1, 1, 3, 6, 9, 300411)
 ```
 
-El objeto incluye variables internas (*"atributos"*) 
-con los parámetros temporales de la fecha y hora: 
-año, mes, día, 
-hora, minuto, segundo y microsegundo.  
+El objeto incluye variables internas (*"atributos"*)
+con los parámetros temporales de la fecha y hora:
+año, mes, día,
+hora, minuto, segundo y microsegundo.
 Éstos son de sólo lectura 
 y pueden ser consultados por su nombre:
 
@@ -92,12 +90,12 @@ El tiempo POSIX, tambien llamado tiempo UNIX, es el tiempo en segundos transcurr
 
 ### Asignacion de fechas
 
-Si se necesita crear un objeto con fecha y hora particular  
-hay que cargarlos en la clase `datetime` 
-para crear un objeto nuevo. 
-Los argumentos de esta función  
-son los parámetros temporales en orden: 
-año, mes , día, hora , minuto , segundo, microsegundo: 
+Si se necesita crear un objeto con fecha y hora particular
+hay que cargarlos en la clase `datetime`
+para crear un objeto nuevo.
+Los argumentos de esta función
+son los parámetros temporales en orden:
+año, mes , día, hora , minuto , segundo, microsegundo:
 
 ```python title="clase 'datetime' - Asignación de fechas"
 # conversion de fechas
@@ -108,11 +106,11 @@ Los parámetros de la hora son opcionales, en tanto que los parámetros de la fe
 
 ### Intervalos de tiempo
 
-Con los objetos `datetime` 
+Con los objetos `datetime`
 se pueden calcular intervalos de tiempo
-con una simple resta entre objetos. 
+con una simple resta entre objetos.
 En el ejemplo:
- tiempo transcurrido desde el último 1 de enero.
+tiempo transcurrido desde el último 1 de enero.
 
 ```python title="Intervalos de tiempo - cálculo"
 # tiempo actual
@@ -146,9 +144,9 @@ mes  = fecha.month
 dia  = fecha.day 
 ```
 
-Con esta clase 
-se puede leer también  
-la hora del sistema directamente 
+Con esta clase
+se puede leer también
+la hora del sistema directamente
 con ayuda del método `today()`:
 
 ```python title="Fecha actual"
@@ -159,8 +157,8 @@ fecha_actual = date.today()      # fecha de hoy
 
 ### Horario
 
-La clase `time()` 
-sirve para trabajar con horarios prefijados: 
+La clase `time()`
+sirve para trabajar con horarios prefijados:
 
 ```python  title="Horario prefijado"
 from datetime import time
@@ -173,19 +171,16 @@ segundo = hora_actual.second
 # hora_actual.microsecond      # no se usa
 ```
 
-
-Esta clase no es capaz de leer la hora del sistema directamente, 
+Esta clase no es capaz de leer la hora del sistema directamente,
 sino que lo hace a través del objeto `datetime` y su método `now()`:
 
 ```python title="Horario actual"
 from datetime import datetime
 
-ahora = datetime.now()  #lectura fecha y hora actual (hora local)
+ahora = datetime.now()  # lectura fecha y hora actual (hora local)
 
 horario_actual = ahora.time()         
 ```
-
-
 
 ### `timedelta`
 
@@ -196,7 +191,7 @@ entre fechas especificadas como argumento:
 ```python  title="timedelta - resultado"
 from datetime import timedelta
 
-#tiempos
+# tiempos
 inicio = timedelta(0, 0, 0)
 fin    = timedelta(0, 2, 1, 7)
 
@@ -209,8 +204,6 @@ El valor de la diferencia se ve así:
 ```  title="timedelta - resultado"
 datetime.timedelta(seconds=2, microseconds=7001)
 ```
-
-
 
 !!! note "Argumentos no ordenados"
 
