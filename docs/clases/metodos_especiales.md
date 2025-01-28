@@ -278,14 +278,32 @@ es unario.
 
 ### `__str__`
 
+Este método permite representar la data interna
+de la instancia de clase 
+como texto (`str`). 
+Esta representación es informal y está pensada para dar información práctica al desarrollador.  
 
+Esta información se consulta con la función `str()`:
 
+```py
+texto = str(objeto)
+```
 
 
 ### `__repr__`
 
+Este método también permite representar la data interna
+como texto. 
+A diferencia de `__str__`,
+esta información debe ser formal 
+y seguir un formato específico 
+para poder ser usada por la función `eval()`:
+  
 
 
+```py
+texto = eval(objeto)
+```
 
 
 ## Referencias
