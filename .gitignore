@@ -1,5 +1,6 @@
 site/
-venv/
+venv
+.venv
 .cache/
 __pycache__/
 *.py
