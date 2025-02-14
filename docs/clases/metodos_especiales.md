@@ -306,6 +306,108 @@ texto = eval(objeto)
 ```
 
 
+### `__init__`
+
+`__init__` es el método **constructor** o **inicializador**.
+Es el encargado de darle estructura al nuevo objeto.
+
+
+`__init__` siempre es llamado despues que `__new__`. 
+
+
+### `__new__`
+
+El método `__new__` es el encargado de crear las nuevas instancias de la clase.
+Este método rara vez es sobreescrito.
+
+```py
+class Clase:
+    def __new__(cls):
+        # Crea la nueva instancia
+        instancia = super().__new__(cls)
+        # devuelve el objeto como retorno
+        return instancia
+```
+El argumento `cls` representa a la nueva instancia,
+en contraposición a `self` que se apunta a sí mismo. 
+
+Para funcionar correctamente, 
+`__new__` debe crear la nueva instancia
+(`super().__new__(cls)`)
+y retornarla. 
+
+!!! warning  "Argumentos"
+    A `__new__` debe asignársele 
+    los mismos argumentos adicionales 
+    que a `__init__` para que la ejecución sea correcta:
+
+    ```py   
+    class Clase:
+        def __new__(cls, *args, **kwargs):      # argumentos genéricos
+            instancia = super().__new__(cls)
+            return instancia
+
+        def __init__(self, argumento_1, argumento_2):
+            pass
+    ```
+
+ `__new__` siempre es llamado antes que `__init__`. 
+
+
+
+### `__call__`
+
+Este método permite utilizar a los objetos de la clase
+como si fueran funciones. 
+
+Así es la definición:
+
+```py title="Método __call__ - Definición y uso"
+class Llamable:
+    def __call__(self):
+        print( "¿Me llamabais?" )
+
+
+objeto = Llamable()     # creacion de instancia
+objeto()                # llamado como si fuera una función
+```
+
+Este método puede manejar atributos y argumentos como cualquier otro.
+Con ayuda de este método pueden crearse familias de objetos
+utilizables como funciones:
+
+
+```py title="Método __call__ - Ejemplo"
+class Multiplicador:
+    def __init__(self, valor):
+        self.__valor = valor
+
+    def __call__(self, arg):
+        return self.__valor * arg 
+
+
+# instancias con distintos valores de inicialización
+doble     = Multiplicador(2)
+triple    = Multiplicador(3)
+cuadruple = Multiplicador(4)
+
+# uso
+v1 = doble(9)
+v2 = triple(9)
+v3 = cuadruple(9)
+```
+
+
+## `dir()`
+
+Esta función permite consultar los métodos implementados de la clase pasada por argumento.
+
+
+
 ## Referencias
 
 [Bigcode.es - Métodos Especiales y Sobrecarga de Operadores en Python](https://bigcode.es/metodos-especiales-y-sobrecarga-de-operadores-en-python/)
+
+[GeeksForGeeks - `__call__` in Python](https://www.geeksforgeeks.org/__call__-in-python/)
+
+[GeeksForGeeks - `__init__` vs `__new__`](https://www.geeksforgeeks.org/python-init-vs-new/)
