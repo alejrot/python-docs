@@ -1,4 +1,4 @@
-site_name: PythonDocs
+site_name: Python Docs
 
 site_url: https://alejrot.github.io/python-docs
 site_description: Documentación y apuntes sobre Python
@@ -8,8 +8,7 @@ repo_url: https://github.com/alejrot/python-docs
 repo_name: python-docs
 edit_uri: edit/master/docs/
 
-copyright: Copyright &copy; 2024 Marcelo Marot Rosas
-
+copyright: Copyright &copy; 2024-2025 Marcelo Marot Rosas
 
 theme:
   name: material
@@ -19,6 +18,11 @@ theme:
     logo: simple/python  # :simple-python:
     # Icono de repositorio
     repo: fontawesome/brands/github
+
+
+  # favicon: https://img.icons8.com/color/48/python--v1.png   # Icons8
+  # custom_dir: overrides
+
 
   language: es
   # Modos para la pagina
@@ -43,7 +47,6 @@ theme:
       accent: lime
 
   features:
-    - header.autohide
     - navigation.footer
     # - navigation.instant
     - content.code.copy
@@ -66,14 +69,15 @@ theme:
     # - navigation.tabs.sticky
     # - navigation.sections   # Muestra títulos para los contenidos en la barra izquierda
     # - navigation.expand     # Expansión - Expande la lista de contenidos por defecto
-    # - navigation.prune      # Poda - Quita la lista de contenidos no visibles
+    - navigation.prune      # Poda - Quita la lista de contenidos no visibles
     - navigation.indexes    # Permite agregar varios archivos a una sección
 
     # header y anuncios
     - header.autohide
     - announce.dismiss
-
-
+    # acciones de código
+    # - content.action.edit
+    - content.action.view
 
 
 markdown_extensions:
@@ -122,7 +126,8 @@ extra_css:
 
 
 # extra:
-#   homepage: https://alejrot.github.io/python-docs/
+# #   homepage: https://alejrot.github.io/python-docs/
+#   generator: false
 
 
 plugins: 
