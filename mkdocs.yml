@@ -227,6 +227,7 @@ nav:
     - Clases y POO:
       - clases/clases.md
       - clases/poo.md
+      - clases/relaciones.md
       - clases/property.md
       - clases/abstracciones.md
       - clases/metodos_especiales.md

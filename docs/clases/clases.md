@@ -2,9 +2,7 @@
 tags:
   - Clases
   - UML
-  - Markdown
   - Mermaid
-  - Documentacion
 ---
 
 
