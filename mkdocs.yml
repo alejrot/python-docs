@@ -227,13 +227,22 @@ nav:
 
 
     - Clases y POO:
+      # - clases/index.md
       - clases/clases.md
       - clases/relaciones.md
       - clases/poo.md
       - clases/property.md
       - clases/abstracciones.md
       - clases/metodos_especiales.md
-      - clases/SOLID.md
+      # - clases/SOLID.md
+      - Principios SOLID:
+        - clases/solid/index.md
+        - clases/SOLID.md
+        - clases/solid/lsp.md
+        - clases/solid/isp.md
+        - clases/solid/dip.md
+
+
 
     - Paralelismo:
       - paralelismo/procesos.md
