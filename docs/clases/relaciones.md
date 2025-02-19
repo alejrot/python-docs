@@ -11,13 +11,11 @@ tags:
 
 ## Tipos de relaciones
 
-- Herencia
 - Composición
 - Agregación
 - Asociación
 - Dependencia
-
-
+- Herencia
 
 
 ## Composición
@@ -36,15 +34,20 @@ class Interna:
 # Clase exterior
 class Compuesta:
     def __init__(self):
-        self.objeto = Interna()
+        self.interno = Interna()
 ```
 
-En este caso la estructura ylos atributos y métodos ya no pueden solaparse unos con otros cuando hay herencia múltiple. Como contrapartida se complica la estructura de datos.
+En este caso 
+las dos clases se instancian juntas
+creando sus respectivos objetos, 
+pero uno de estos objetos
+queda contenido adentro del otro.
+
 
 ```python
 instancia = Compuesta()           # creación objeto compuesto
-instancia.objeto.valor = 15       # acceso a atributos internos 
-instancia.objeto.metodo()         # acceso a métodos internos
+instancia.interno.valor = 15       # acceso a atributos internos 
+instancia.interno.metodo()         # acceso a métodos internos
 # instancia.metodo()              # da ERROR
 ```
 
@@ -63,7 +66,7 @@ que apunta a la clase compuesta:
 title: UML - Composición
 ---
 classDiagram
-    Interna --* Compuesta : Composicion
+    Interna --* Compuesta : composicion
 ```
 
     ```mermaid
@@ -71,7 +74,7 @@ classDiagram
     title: UML - Composición
     ---
     classDiagram
-        Interna --* Compuesta : Composicion
+        Interna --* Compuesta : composicion
     ```
 
 
@@ -82,7 +85,7 @@ classDiagram
 
 ## Agregado ("agregacion")
 
-Esta opción es una alternativa superadora a la composición. 
+Esta opción es una alternativa a la composición. 
 Esta consiste en crear la instancia de la clase interna primero y luego pasarla como argumento para crear la clase exterior:
 
 ```python
@@ -109,8 +112,8 @@ instancia_agregada.objeto.metodo()
 ```
 
 De esta manera los dos objetos tienen existencia independiente
-el uno del otro.
-Si uno es eliminado,
+el uno del otro:
+si uno es eliminado,
 el otro seguirá existiendo.
 
 En el diagrama UML,
@@ -125,7 +128,7 @@ que apunta a la clase *exterior*:
 title: UML - Agregado
 ---
 classDiagram
-    Interna --o Agregada : Agregacion
+    Interna --o Agregada : agregacion
 ```
 
     ```mermaid
@@ -133,26 +136,108 @@ classDiagram
     title: UML - Agregado
     ---
     classDiagram
-        Interna --o Agregada : Agregacion
+        Interna --o Agregada : agregacion
     ```
 
 </div>
 
 
+## Dependencia
+
+Hay una relación de dependencia
+cuando una clase
+depende de otra
+para poder funcionar.
+
+La dependencia se representa en UML
+como una flecha fina que apunta
+de la clase dependiente
+a la clase requerida:
+
+<div class="grid cards" markdown>
+
+```mermaid
+---
+title: UML - Dependencia
+---
+classDiagram
+    Dependiente --> Requerida : dependencia
+```
+
+    ```mermaid
+    ---
+    title: UML - Dependencia
+    ---
+    classDiagram
+        Dependiente --> Requerida : dependencia
+    ```
+
+</div>
+
+
+## Asociación
+
+La asociación es una relación semántica entre dos clases.
+Las clases están vinculadas entre sí
+pero no hay una jerarquía entre ellas.
+
+La asociación se representa con una línea simple.
+
+<div class="grid cards" markdown>
+
+```mermaid
+---
+title: UML - Asociación
+---
+classDiagram
+    Clase 1 -- Clase 2 : asociación
+```
+
+    ```mermaid
+    ---
+    title: UML - Asociación
+    ---
+    classDiagram
+        Clase 1 -- Clase 2 : asociación
+    ```
+</div>
 
 
 
 ## Herencia
 
 
-La herencia cuenta como forma de relación entre las clases.
-Es la relación que habilita las propiedades de herencia y polimorfismo explicadas en el capítulo de POO.
+La herencia es una relación jerárquica
+donde una clase (*superclase*)
+sirve de referencia a la otra (*subclase*),
+heredándole sus atributos y sus métodos. 
+
+Es la relación que habilita las propiedades de herencia y polimorfismo explicadas en el [capítulo de POO](poo.md).
+
+Se representa con una flecha vacía apuntando a la clase de mayor jerarquía,
+es decir la superclase.
 
 
+<div class="grid cards" markdown>
 
-## Dependencia
+```mermaid
+---
+title: UML - Herencia
+---
+classDiagram
+    SuperClase <|-- SubClase : herencia
+```
 
-## Asociacion
+    ```mermaid
+    ---
+    title: UML - Herencia
+    ---
+    classDiagram
+        SuperClase <|-- SubClase : herencia
+    ```
+
+</div>
+
 
 
 ## Referencias

@@ -31,7 +31,8 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
-        icon: material/brightness-7
+        # icon: material/brightness-7
+        icon: material/lightbulb
         name: Cambia al modo oscuro
       primary: indigo
       # primary: custom
@@ -40,7 +41,8 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
-        icon: material/brightness-4
+        # icon: material/brightness-4
+        icon: material/lightbulb-off
         name: Cambia al modo claro
       primary: indigo
       # primary: custom
@@ -226,8 +228,8 @@ nav:
 
     - Clases y POO:
       - clases/clases.md
-      - clases/poo.md
       - clases/relaciones.md
+      - clases/poo.md
       - clases/property.md
       - clases/abstracciones.md
       - clases/metodos_especiales.md
