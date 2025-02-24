@@ -51,7 +51,7 @@ Aquí se describen los aspectos básicos del lenguaje, algunos módulos estánda
 - [Decorador 'Property'](clases/property.md)
 - [Clases Abstractas](clases/abstracciones.md)
 - [Métodos Especiales (*dunder*)'](clases/metodos_especiales.md)
-- [Principios SOLID](clases/SOLID.md)
+- [Principios SOLID](clases/solid/index.md)
 
 ### Paralelismo
 

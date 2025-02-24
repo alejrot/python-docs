@@ -237,7 +237,9 @@ nav:
       # - clases/SOLID.md
       - Principios SOLID:
         - clases/solid/index.md
-        - clases/SOLID.md
+        # - clases/SOLID.md
+        - clases/solid/srp.md
+        - clases/solid/ocp.md
         - clases/solid/lsp.md
         - clases/solid/isp.md
         - clases/solid/dip.md

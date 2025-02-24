@@ -23,8 +23,8 @@ Los principios SOLID son una guía de principios cuya aplicación busca lograr l
 
 SOLID son las siglas de los siguientes principios:
 
-1. **SRP**: Principio de Responsabilidad Única
-1. **OCP**: Principio de Abierto/Cerrado
+1. [**SRP**: Principio de Responsabilidad Única](srp.md)
+1. [**OCP**: Principio de Abierto/Cerrado](ocp.md)
 1. [**LSP**: Principio de Sustitucion de Liskov](lsp.md)
 1. [**ISP**: Principio de Segregacion de Interfaz](isp.md)
 1. [**DIP**: Principio de Inversion de Dependencias](dip.md)
