@@ -219,13 +219,18 @@ nav:
       - datos/funciones.md
       - datos/tipado.md
 
-
-
     - Funciones: 
+      - funciones/index.md
       - funciones/funciones.md
-      - funciones/main.md
-      - funciones/programacion_funcional.md
+      - funciones/scope.md
+      - funciones/tipado.md
+      - funciones/recursivas.md
+      - funciones/lambda.md
+      - funciones/orden_superior.md
       - funciones/decoradores.md
+
+      - funciones/main.md
+      - funciones/comprehension.md
 
     - Módulos y paquetes:
       - Módulos: contenido/modulos.md

@@ -9,10 +9,8 @@ tags:
 ---
 
 
-# Funciones
+# Sintaxis
 
-## Funciones
-Una función es un bloque de código reutilizable que ejecuta una sola tarea específica. 
 
 
 ## Llamada
@@ -58,6 +56,9 @@ Los *argumentos* son los **valores** que se le asignan a los *parámetros* de en
 ```python title="argumentos de funciones"
 nombre_funcion(valor_1, valor_2, ...) # funcion con argumentos de entrada asignados
 ```
+
+### definición
+
 Si la función tiene parámetros de entrada , es decir variables que afectarán al resultado de la función estos se indican entre los paréntesis y separados por comas: 
 
 ```python title="formato de definición - con argumentos de entrada"
@@ -165,7 +166,8 @@ la función construye entonces un dicconario interno al que le incorporan los *s
 
 !!! warning "Nombres de argumentos"
 
-    Los argumentos de entrada tienen las mismas restricciones de sintaxis que los nombres de variables. De hecho, los k-args están pensados para ser usados internamente como variables.
+    Los argumentos de entrada tienen las mismas restricciones de sintaxis que los nombres de variables.
+    De hecho, los *k-args* están pensados para ser usados internamente como variables.
 
     ```python title="Errores de entrada"
     funcion("Buenos dias"=10 )  # ERROR: no se admiten strings como nombre de argumento
@@ -211,108 +213,5 @@ El valor por defecto del retorno de las funciones es `None`.  El valor de retorn
 
 En la terminal, si el valor de retorno se asigna a una variable entonces no se muestra en pantalla. Sólo se lo muestra si se pasa a la función `print()`.
 
-
-
-
-## Alcance de una variable (Scope)
-
-Indica dónde se puede usar una variable. Dos opciones:**local** y **global**.
-
-Las variables globales son definidas en el programa principal y son visibles sólo en el programa principal. Para poder acceder a una variable global desde dentro de una función se usa la palabra clave `global` : 
-
-```python title="Variables globales" hl_lines="1 5"
-nombre_variable_global = 0      #creacion 
-
-def nombre_funcion():
-    # ...
-    global nombre_variable_global       # declaración
-    valor = nombre_variable_global      # lectura
-    nombre_variable_global = 1          # modificación
-```
-
-Las variables locales se definen dentro de las funciones y son de uso exclusivo de la función que las crea.
-
-Ejemplo: 
-```python
-# definicion de funcion, sin valores de entrada
-def triplicar_x( ):
-    # variable local: a 
-    a = 3
-    print(a) 
-    # acceso a variable global x
-    global x 
-    x = x * a 
-
-
-# Código programa principal
-# variable global: x 
-x = 7
-triplicar_x( )  # '3'       
-print(x)        # '21'
-print(a)        # ERROR: variable local no visible desde afuera de la funcion
-```
-
-!!! warning "Uso de variables globales"
-    El uso de variablews globales se considera una **mala práctica** y es mejor evitarlo siempre que sea posible.
-
-
-
-## Tipado en las funciones
-
-Las funciones de Python admiten tipado de sus argumentos de entrada y del valor de retorno  para detectar inconsistencias y prevenir posibles errores.
-
-La asignacion del tipo de datos de los argumentos se realiza con el operador *dos puntos* (`:`), en tanto que la asignación del tipo de salida se realiza con el *operador flecha* (`->`)
-
-Ejemplo: calcular potencias enteras de un numero flotante
-```python title="Tipado de funciones"
-def potencia(a: float, b: int) -> float:    # retorno flotante
-    return a**b
-
-
-x = 2.73
-y = 3
-valor = potencia(x, y)   
-```
-
-## Funciones Recursivas
-
-La recursión consiste en definir algo en función de si mismo. 
-
-Las funciones recursivas son funciones que se llaman a sí mismas un numero limitado de veces (*caso recursivo*), cuidando de incluir las condiciones iniciales que permitan resolver la función y detengan la invocación de sí mismas (*caso base)*.
-
-Ejemplos clásicos de algoritmos recursivos:
-
-``` title="Serie de Fibonacci"
-fib(n) = fib(n-1) + fib(n-2) 	caso recursivo
-fib(1)=1 , fib(0)=0		        caso base
-```
-
-``` title="Factorial"
-n!=n * (n-1)!	caso recursivo
-1! =0!=1	    caso base
-```
-
-
-Las funciones recursivas sirven como alternativa al uso de bucles y a veces permiten resolver algoritmos de forma más simple; sin embargo suelen ocupar mayor uso de memoria por la necesidad de llamarse a sí misma múltiples veces para resolver el algoritmo.
-
-!!! example "Ejemplo aplicado: factorial"
-
-    El factorial se calcula fácilmente con una función recursiva:
-    
-    ```python title="Factorial recursivo"
-    # definicion de funcion recursiva
-    def factorial(n):
-        n = int(n)    
-        if n > 1:
-            m = n * factorial(n-1)	# caso recursivo
-        else:
-            m = 1       # caso base
-        return m
-
-
-    # Ejemplo de uso
-    for i in range(5):
-        print(f"factorial de {i}: {factorial(i)}")
-    ```
 
 

@@ -1,104 +1,10 @@
+---
+tags:
+  - Funciones
+---
 
+# Funciones de Orden Superior
 
-# Programacion Funcional
-
-
-## Listas por comprensión (*comprehension*)
-las listas por comprensión se basan en el uso de variables calculadas a partir de una iteración. Algunos ejemplos de listas creadas a partir de un bucle for pueden ser:
-
-```python title="Listas por comprensión"
-lista_ascendente  = [ i for i in range(<maximo>)]
-lista_cuadrado    = [ i * i  for i in range(<maximo>)]
-lista_ambas       = [ (i, i  * i ) for i in range(<maximo>)]
-```
-
-## Funciones Lambda
-
-Las funciones lambda son funciones anónimas, las cuales se se definen así:
-
-```python title="funcion lambda - sin nombre"
-lambda v1 , v2:  expresion
-```
-Esta forma de definirlas es útil para **definir manejadores** (***handlers***), es decir funciones que se ejecutan ante eventos específicos del programa.
-
-
-!!! tip "Tip: manejadores (handlers)"
-
-	```python title="Asignación de handlers - función común"
-	# definicion
-	def nombre_funcion(x):
-		return expresion(x)
-
-	# asignacion
-	handler_evento = nombre_funcion
-	```
-
-	Con el uso de funciones lambda, esta rutina se reduce a:
-
-	```python title="Asignación de handlers - funcion lambda"
-	# defincion y asignacion en un solo pao
-	handler_evento = lambda v1 , v2:  expresion
-	```
-
-
-!!! info "Funciones flecha"
-
-	Las funciones lambda son análogas a las **funciones flecha** de JavaScript y se usan de modo sumilar.
-
-
-
-Otro uso práctico de las funciones simplificadas es crear funciones que sólo se usarán en una única linea de código, ahorrando la definición y asiganción de nombre habitual. Este modo de uso es muy habitual dentro de funciones `map()`, `reduce()`, etc, las cuales se explican más adelante.
-
-
-Si se requiere reutilización, a las funciones lambda se les puede asignar una variable para referenciarlas, el cual servirá como nombre de función:
-
-```python title="funcion lambda - con nombre"
-variable_lambda = lambda v1 , v2:  expresion
-```
-Y se llaman como una función normal:
-
-```python title="funcion lambda - llamado"
-retorno = variable_lambda(valor_1,valor_2)
-```
-
-
-!!! example "función lambda: multiplicación"
-	```python title="definición"
-	multiplicar = lambda a, b : a*b		
-	```
-	```python title="uso"
-	resultado = multiplicar(2, 8)
-	```
-
-
-!!! tip "Tip: funciones con argumentos preasignados"
-	Con las funciones lambda se puede crear variantes alternativas de otras funciones, por ejemplo asignándole  valores a algunos argumentos de entrada. Por ejemplo: crear varias funciones que calculan distintas potencias de un número de entrada a partir de una función genérica.
-	
-	```python title="Alias de funciones"
-	# función con dos argumentos
-	def potencia(x,y):
-		return x**y
-
-	# alias funcion, un argumento prefijado
-	cuadrado    = lambda n: potencia(n, 2)		# y = 2
-	cubo        = lambda n: potencia(n, 3)		# y = 3
-	```
-
-	```python title="llamado y tipo"
-	# uso
-	print( cuadrado(3)  )	# 3² = 9
-	print( cubo(3)  )		# 3³ = 27
-
-	# tipo
-	print(type(cuadrado	))       # <class 'function'>
-	print(type(cubo		))       # <class 'function'>
-	```
-
-
-!!! info
-	Nótese que las funciones lambda son reconocidas por el intérprete de Python como si fueran funciones normales.
-
-## Funciones de Orden Superior
 Son funciones capaces de ejecutar a otras funciones especificadas por el usuario. Estas funciones son indicadas por su nombre como argumento de la funcion de orden superior.
 
 ```python title="funcion de orden superior"
@@ -126,7 +32,7 @@ y = incrementar_4(x, triplicar)
 print(y)	# Da (x)*3+4 = 25
 ```
 
-### Closures
+## Closures
 
 Las  *'closures'* son funciones de orden superior que dan como retorno una función definida internamente. 
 
@@ -156,7 +62,7 @@ Una utilidad posible de las closures en englobar varias funciones internas alter
 
 Otra utilidad posible es la creación de decoradores, los cuales agregan características a las funciones. [Más sobre los decoradores de Python.](decoradores.md)
 
-### Map
+## Map
 
 La función `map()` es una funcion de orden superior que facilita el procesamiento de datos iterables  (particularmente: listas) por una función especificada, "mapeando" cada elemento de los datos de entrada con los argumentos de la funcion y evitando así el uso de bucles y la asignacion elemento a elemento.
 
@@ -207,7 +113,7 @@ vector = [2, 5, 14, 3]
 cuadrado = list(map(lambda numero: numero **2 , vector) )
 ```
 
-### Filter
+## Filter
 
 `filter()` es una función que filtra de la lista de entrada los valores que cumplen con una condición lógica definida por una función especificada.  
 
@@ -231,7 +137,7 @@ filtrados = list(objeto)
 `filter()` también acepta funciones lambda como argumento. 
 
 
-### Reduce
+## Reduce
 
 `reduce()` opera con todos los elementos de una lista de entrada, aplicándoles una función especificada de manera acumulativa. Esto permite trabajar con un número no predeterminado de argumentos agrupados dentro de una lista de entrada. Para ser utilizada debe ser importada previamente desde el módulo *functools*:
 ```python title="Importación de reduce()"
@@ -250,7 +156,7 @@ productoria = reduce(producto, vector)
 Como el retorno de la función `reduce()` es un valor no hace falta hacer conversiones de tipo adicionales.
 
 
-### Partial
+## Partial
 
 La función `partial()` permite asignar valores prefijados a una función como argumentos. Devuelve como retorno un objeto de clase *'partial'* el cual incluye toda la información agregada y que puede utilizarse como si fuera una función lambda. De esta forma con `partial()` se puede crear una o varias funciones simplificadas.
 
