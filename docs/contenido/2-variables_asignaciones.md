@@ -120,7 +120,7 @@ Si el indice cae afuera del string (indice > n-1 )el programa da error de memori
 
 !!! tip "Tip: indices y listas"
     Este manejo de índices también se usa en los 'vectores' de Python, que son llamados *'listas'* (o *'list'*).
-    [Ver listas de Python](4-tipos_datos.md#listas-list).
+    [Ver listas de Python](../datos/listas.md).
 
 ### Rebanado (Slicing)
 

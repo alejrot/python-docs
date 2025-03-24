@@ -311,7 +311,7 @@ Fri, 24 Jan 2025 04:14:36 +0000
 ```
 
 
-Para más información [ver la tabla de opciones]([https://docs.python.org/3/library/time.html#time.strftime) desde la página oficial.
+Para más información [ver la tabla de opciones](https://docs.python.org/3/library/time.html#time.strftime) desde la página oficial.
 
 
 ### Conversión de string a estructura - `strptime()`

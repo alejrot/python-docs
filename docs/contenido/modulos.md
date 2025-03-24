@@ -98,7 +98,7 @@ Si estos archivos se ubican dentro de *subdirectorios* en tal caso se habla de *
 
     A diferencia de otros lenguajes, en Python todos los elementos internos son visibles y por eso no es necesario ordenar la exportación de elementos para que éstos sean accesibles por fuera del módulo. 
 
-    Para reducir la visibilidad de los elementos internos se puede recurrir a los [archivos __init__](#archivos-__init__)
+    Para reducir la visibilidad de los elementos internos se puede recurrir a los [archivos __init__](#archivos-__init__py)
 
 
 

@@ -90,7 +90,7 @@ texto = json.dumps( diccionario , indent=4)
 diccionario_2 = json.loads(texto)
 ```
 
-[Repasar tipos datos: diccionarios](4-tipos_datos.md#diccionarios)
+[Repasar tipos datos: diccionarios](../datos/diccionarios.md)
 
 
 

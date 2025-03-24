@@ -64,7 +64,7 @@ for indice, elemento in enumerados:
 ```
 
 
-Más sobre la cláusula `for`: [control de flujo](5-control_flujo.md#ciclos-for-para)  
+Más sobre la cláusula `for`: [control de flujo](../contenido/5-control_flujo.md#ciclos-for-para)  
 
 ## Ordenamiento de datos - `sorted()` 
 

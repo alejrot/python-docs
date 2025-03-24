@@ -30,7 +30,7 @@ se necesita crear subclases de la clase abstracta
 y a partir de ellas se crean las instancias.
 
 Las clases abstractas ayudan a "maquetar" el sistema de clases de los programas permitiendo un mejor diseño y una mejor mantenibilidad de los programas.
-Esto se vincula con los [principios SOLID](SOLID.md) de diseño.
+Esto se vincula con los [principios SOLID](solid/index.md) de diseño.
 
 
 ## Definición
