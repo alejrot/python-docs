@@ -1,3 +1,8 @@
+---
+tags:
+  - Archivos
+---
+
 # Manejo de Archivos
 
 
@@ -7,7 +12,7 @@ Asumimos que los archivos están ubicados en el directorio del ejecutable o scri
 Para trabajar con  un archivo podemos hacer:
 
 ```python title="Apertura archivos - cierre automático" hl_lines="1"
-with open(“<ruta_archivo>”, “<modo_apertura>”) as  <descriptor_archivo>:
+with open(ruta_archivo, modo_apertura) as descriptor_archivo:
     # Rutina de archivo
     #...
 
@@ -17,10 +22,10 @@ with open(“<ruta_archivo>”, “<modo_apertura>”) as  <descriptor_archivo>:
 El fin del indentado es interpretado como el cierre del archivo. Esto es así por haber utilizado la palabra `with` antecediendo la apertura. Si en cambio se prefiere hacer el cierre manualmente se puede hacer:
 
 ```python title="Apertura archivos - cierre manual" hl_lines="1 4"
-<descriptor_archivo> = open(“<ruta_archivo>”, “<modo_apertura>”) 
+descriptor_archivo = open(ruta_archivo, modo_apertura) 
 # Rutina de archivo
 # ...
-<descriptor_archivo>.close()  # cierre manual
+descriptor_archivo.close()  # cierre manual
 ```
 En este caso no se agrega indentado.
 
@@ -44,10 +49,10 @@ El modo de apertura del archivo puede ser:
 
 |Modo apertura| Descripcion |
 |---- |------- |
-| **r**  | ***read:*** leer  |
-| **w** | ***write:*** escribir  |
-| **a**  |  ***append:*** añadir al final  | 
-| **x** | ***creación exclusiva:*** sólo crea el archivo si éste no existe |
+| **`r`** | ***read:*** leer  |
+| **`w`** | ***write:*** escribir  |
+| **`a`** |  ***append:*** añadir al final  | 
+| **`x`** | ***creación exclusiva:*** sólo crea el archivo si éste no existe |
 
 
 Si se añade el signo más (`+`) al modo de apertura se incluye la lectura ó modificacion, según corresponda. Por ejemplo `"w+"` permite escribir y también leer, en tanto que `r+` permite leer y modificar.
@@ -57,31 +62,55 @@ Si se añade el signo más (`+`) al modo de apertura se incluye la lectura ó mo
 	Los descriptores de archivo incluyen un puntero o apuntador de archivo (*file pointer*) interno el cual apunta a alguno de los bytes o caracteres internos del archivo, funcionando como un índice. La posición de dicho apuntador dependerá del modo de apertura elegido, de las operaciones posteriores de lectura o de escritura, etc.
 
 
-La tabla completa con los permisos y la posición del apuntador es la siguiente:
+La tabla completa con los permisos 
+es la siguiente:
 
- | Permisos  y propiedades  | r  | r+ |  w | w+ |  a |  a+ |
+| **Permisos**  | r  | r+ |  w | w+ |  a |  a+ |
 | ------------------    |----|----|----|----|----|-----|
 | leer                  | :material-check-bold:  | :material-check-bold:  |    |  :material-check-bold: |    |  :material-check-bold:  |
 | escribir              |    | :material-check-bold:  |  :material-check-bold: |  :material-check-bold: |  :material-check-bold: |  :material-check-bold:  |
 | escribir tras buscar  |    |:material-check-bold:  |  :material-check-bold: |  :material-check-bold: |    |     |
 | crear                 |    |    |  :material-check-bold: |  :material-check-bold: | :material-check-bold: |  :material-check-bold: |
 | borrar                |    |    |  :material-check-bold: |  :material-check-bold: |    |     |
-| position at comienzo  | :material-check-bold: | :material-check-bold:  | :material-check-bold: |  :material-check-bold:|    |     |
+
+en tanto que la posición del apuntador 
+dentro del archivo es: 
+
+| **Apuntador**  | r  | r+ |  w | w+ |  a |  a+ |
+| ------------------    |----|----|----|----|----|-----|
+| posición al comienzo  | :material-check-bold: | :material-check-bold:  | :material-check-bold: |  :material-check-bold:|    |     |
 | posición al final     |    |    |    |    |  :material-check-bold: | :material-check-bold:  |
 
 
 
 
-!!! info "Apertura binaria"
+## Archivos binarios
 
-    Añadiendo la letra `b` a las opciones de apertura se indica la modalidad *binaria* de lectura o escritura, es decir los datos se leen y escriben en binario. Por ejemplo, para leer archivos binarios y poder modificarlos la etiqueta correspondiente es `"rb+"`. 
-    Los archivos binarios reprensentan cualquier tipo de contenido que no sea texto y pueden representar imagenes, audio, video, etc.
+Los archivos binarios representan cualquier tipo de contenido
+que no sea texto y pueden representar imagenes, audio, video, etc.
+
+Añadiendo la letra `b` a las opciones de apertura
+se indica la modalidad *binaria* de lectura o escritura,
+es decir los datos se leen y escriben en binario.
+Por ejemplo,
+para leer archivos binarios
+y poder modificarlos la etiqueta correspondiente es `rb+`. 
+
+Así quedan los modos de apertura para los archivos binarios:
+
+|Modo apertura| Descripcion |
+|---- |------- |
+| **`rb`** | ***read:*** leer  |
+| **`wb`** | ***write:*** escribir  |
+| **`ab`** |  ***append:*** añadir al final  | 
+| **`xb`** | ***creación exclusiva:*** sólo crea el archivo si éste no existe |
 
 
 
+## Métodos del descriptor
 
-
-## Métodos del descriptor de archivos
+El descriptor de archivo incluye varios métodos predefinidos
+para facilitar la manipulación de los archivos y de su contenido.
 
 ### `close()`
 
@@ -95,7 +124,8 @@ archivo =  open(ruta, "r")
 archivo.close()    # necesario / prudente
 ```
 
-Si se hace la apertura con el comando **with** el cierre manual no es necesario.
+Si se hace la apertura con el comando **`with`**
+el cierre manual no es necesario:
 
 ```py title="Cierre manual redundante" hl_lines="5"
 ruta = "texto.txt”
@@ -103,6 +133,8 @@ with open(ruta, "r") as archivo:
   # Rutina
   # ...
   archivo.close()    # redundante
+
+# cierre automático
 ```
 
 
@@ -170,7 +202,7 @@ También se puede buscar el fin de archivo con ayuda de esta función:
 ```
 
 
-!!! warning "Restricciones de seek()"
+!!! warning "Restricciones de `seek()`"
 
     Cuando los archivos están abiertos en **modo texto**, la mayoría de las combinaciones de  `offset` y `whence` **lanzan error**.
 
@@ -305,95 +337,6 @@ with open("archivo_utf16.txt","w", encoding="utf-16") as archivo:
 with open("archivo_utf32.txt","w", encoding="utf-32") as archivo:
     archivo.write( "Hola UTF-32")
 ```
-
-
-## Archivos JSON
-
-Los archivos JSON (*JavaScript Object Notation*) son muy utilizados para guardar información en el formato de  los "objetos" de JavaScript, muy similar a los diccionarios de Python.
-
-### Importación
-
-Python tiene el módulo dedicado ***json***, el cual debe importarse para su uso:
-```python title="Importación de módulo JSON" 
-import json
-```
-Los archivos JSON deben estar codificados en formato `UTF-8`, `UTF-16` o `UTF-32`.
-
-
-### Apertura y cierre
-La operacion de apertura se hace con la función `open()`, igual que con otros tipos de archivo. El cierre de archivo se hace con el método `close()`*.
- 
-```python title="Apertura y cierre de JSON" hl_lines="3 5"
-# crear archvio
-ruta = "./datos.json"
-archivo_json = open(ruta,"w+") 
-# ....
-archivo_json.close()  
-```
-
-### Guardado de diccionario
-
-La escritura de archivo se hace con la función `dump()` del módulo **json**. Esta función da la opción de añadir un número de espacios para el indentado a la salida. Si no se indica todo el contenido se guarda en un único renglón
-
-```py title="Guardado de diccionarios" hl_lines="14"
-# nombre de archivo de salida
-ruta = 'data.json'
-
-#crear diccionario ("objeto" de JavaScript)
-diccionario = {
-    "Nombre": "Aitor",
-    "Apellido":"Tilla",
-    "Edad": 38,
-    }
-
-# apertura archivo de salida
-with open(ruta, 'w') as archivo_json:
-    # escribir archivo
-    json.dump(diccionario, archivo_json, indent=4)
-```
-
-Nótese que el archivo de salida JSON debe ser creado primero con la función `open()` en modo escritura. La función `dump()` requiere el descriptor de archivo para funcionar.
-
-### Lectura de diccionario
-
-La lectura de los datos de archivo JSON se hace con la función `load()` del módulo **json**.
-Esta lectura se hace tras la apertura del archivo con la función `open()`.
-
-
-```py title="Lectura de diccionarios" hl_lines="6"
-# nombre de archivo de entrada
-ruta = 'data.json'
-
-#leer diccionario desde archivo JSON
-with open(ruta) as archivo:
-    mi_data = json.load( archivo )  #lectura del diccionario desde JSON
-```
-
-
-### Conversion de tipo de datos
-
-El módulo JSON incluye funciones para convertir diccionarios (*objetos JSON*) en textos simples y viceversa. Para ello se usan las funciones `loads()` y `dumps()`: 
-
-```py title="Conversión de diccionarios" hl_lines="11 14"
-import json
-
-# datos en diccionario, compatible con JSON 
-diccionario = { 
-    "language": "es",
-    "theme" : "light",
-    "date" : "Jan 19"
-    }
-
-# conversion a texto
-texto = json.dumps( diccionario , indent=4)
-
-# conversion a diccionario
-diccionario_2 = json.loads(texto)
-```
-
-[Repasar tipos datos: diccionarios](4-tipos_datos.md#diccionarios)
-
-
 
 
 

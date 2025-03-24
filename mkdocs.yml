@@ -226,8 +226,10 @@ nav:
       - tiempo/fechas.md
       - tiempo/calendar.md
 
-    - Manejo de Archivos: 
-      - contenido/10-manejo_archivos.md
+    - Archivos: 
+      - archivos/index.md
+      - archivos/archivos.md
+      - archivos/json.md
 
 
     - Clases y POO:
@@ -238,10 +240,8 @@ nav:
       - clases/property.md
       - clases/abstracciones.md
       - clases/metodos_especiales.md
-      # - clases/SOLID.md
       - Principios SOLID:
         - clases/solid/index.md
-        # - clases/SOLID.md
         - clases/solid/srp.md
         - clases/solid/ocp.md
         - clases/solid/lsp.md
