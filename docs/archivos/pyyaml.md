@@ -1,6 +1,13 @@
+---
+tags:
+  - PyYAML
+  - YAML
+  - Diccionarios
+  - Listas
+  - Archivos
+---
 
-
-# PyYAML
+# Archivos YAML
 
 
 ## YAML
@@ -10,11 +17,12 @@ YAML (*YAML Ain't Markup Language™*) es un formato de archivo muy popular para
 
 [Página oficial de YAML](https://yaml.org/)
 
-Este formato no está implementado de forma nativa en Python, por ello se requiere recurrir a paquetes externos. 
+Este formato no está implementado de forma nativa en Python, por ello se requiere recurrir a paquetes externos.
+En esta página se propone [PyYAML](#pyyaml).
 
 ### Formato
 
-Los archivos YAML permiten guardar tanto listas como diccionarios. A continuación se muestran algunos ejemplos
+Los archivos YAML permiten guardar tanto listas como diccionarios. A continuación se muestran algunos ejemplos.
 
 #### Listas
 
@@ -76,7 +84,13 @@ data_numerica:
 debug: true
 ```
 
-Por último YAML soporta comentarios internos, tal como se ve en el ejemplo previo.
+#### Comentarios
+
+YAML soporta comentarios internos, 
+los cuales son precedidos por un numeral (`#`)
+al comienzo del renglón.
+Esta es una ventaja frente al formato JSON,
+el cual no acepta comentarios internos.
 
 
 ## PyYAML
@@ -87,6 +101,8 @@ PyYAML es el paquete más usado para dar soporte en Python.
 
 
 ## Instalacion
+
+El paquete es instalable desde PIP:
 
 ```bash title="Instalación - PIP"
 pip install pyyaml
@@ -107,18 +123,9 @@ import yaml
 Para leer los archivos hay dos funciones específicas llamadas `safe_load()` y `safe_load_all()`.
 
 
-!!! danger "Funcion load()"
-
-    La función `load()` permite la ejecución de código malicioso guardado y por ello está marcada como obsoleta. `safe_load()` es su versión recortada, que tiene menos opciones pero que es mucho más segura de usar.
-
-
-
 ### Objeto único
 
-
-
-
-Para leer y decodificar archivos con un único objeto de datos se usa la función `safe_load()`:
+Para leer y decodificar archivos con un único objeto de datos se recomienda usar la función `safe_load()`:
 
 
 ```py title="lectura desde archivo - objeto unico" hl_lines="3"
@@ -130,9 +137,18 @@ print(data_archivo)
 print(type(data_archivo))   # 'dict'
 ``` 
 
+!!! danger "Lectura insegura"
+
+    La función `load()` permite la ejecución de código malicioso guardado y por ello está marcada como obsoleta.
+    `safe_load()` es su versión recortada,
+    que tiene menos opciones pero que es mucho más segura de usar.
+
+
 !!! warning "Data única"
 
     `safe_load()` no admite archivos con data múltiple, porque de intentarse el intérprete dará error e interrumpirá el programa.
+
+
 
 
 ### Objetos múltiples
@@ -203,10 +219,10 @@ print(data_nombres)
 
 
 
-## Guardado de datos
+### Guardado de datos
 
 
-Para el guardado de objetos en Python se usa la función `dump()`:
+Para el guardado de objetos en archivos YAML se usa la función `dump()`:
 
 ```py hl_lines="5" title="guardado de datos"
 data_nombres: dict|list
@@ -227,8 +243,9 @@ yaml.safe_dump_all()
 
 ## Referencias
 
+[Página oficial de YAML](https://yaml.org/)
 
-
+[Página oficial de PyYAML](https://pyyaml.org)
 
 [Python Land - Python YAML: How to Load, Read, and Write YAML ](https://python.land/data-processing/python-yaml)
 
