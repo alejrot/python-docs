@@ -131,7 +131,7 @@ extra_css:
 
 # extra:
 # #   homepage: https://alejrot.github.io/python-docs/
-#   generator: false
+#  generator: false
 
 
 plugins: 
@@ -219,12 +219,24 @@ nav:
       - datos/funciones.md
       - datos/tipado.md
 
+    - Archivos: 
+      - archivos/index.md
+      - archivos/archivos.md
+      - archivos/json.md
+      - archivos/pyyaml.md
+
+    - Tiempo y fechas:
+      - tiempo/tiempo.md 
+      - tiempo/fechas.md
+      - tiempo/calendar.md
+
     - Funciones: 
       - funciones/index.md
       - funciones/funciones.md
       - funciones/scope.md
       - funciones/tipado.md
       - funciones/docstring.md
+      # - funciones/docstest.md
       - funciones/recursivas.md
       - funciones/lambda.md
       - funciones/orden_superior.md
@@ -238,16 +250,7 @@ nav:
       - Paquetes: contenido/paquetes.md
       - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
 
-    - Tiempo y fechas:
-      - tiempo/tiempo.md 
-      - tiempo/fechas.md
-      - tiempo/calendar.md
 
-    - Archivos: 
-      - archivos/index.md
-      - archivos/archivos.md
-      - archivos/json.md
-      - archivos/pyyaml.md
 
 
     - Clases y POO:
