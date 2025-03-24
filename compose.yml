@@ -2,7 +2,7 @@
 services:
 
   python-docs:
-    image:  mkdocs-local:python
+    # image:  mkdocs-local:python
     build:  .
     container_name: python-docs
     ports:
@@ -14,4 +14,12 @@ services:
     stdin_open: true
     tty: true
 
-
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 200M
+          # pids: 3
+        reservations:
+          cpus: '0.10'
+          memory: 20M
