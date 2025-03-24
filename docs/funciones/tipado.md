@@ -19,9 +19,8 @@ se realiza con el *operador flecha* (`->`).
 Ejemplo: calcular potencias enteras de un numero flotante
 
 ```python title="Tipado de funciones"
-def potencia(a: float, b: int) -> float:    # retorno flotante
-    return a**b
-
+def potencia(base: float, exp: int) -> float:    # retorno flotante
+    return base**exp
 
 x = 2.73    # valor flotante
 y = 3       # valor entero

@@ -224,6 +224,7 @@ nav:
       - funciones/funciones.md
       - funciones/scope.md
       - funciones/tipado.md
+      - funciones/docstring.md
       - funciones/recursivas.md
       - funciones/lambda.md
       - funciones/orden_superior.md
