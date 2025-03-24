@@ -2,6 +2,7 @@
 services:
 
   python-docs:
+    image:  mkdocs-local:python
     build:  .
     container_name: python-docs
     ports:

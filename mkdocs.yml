@@ -13,11 +13,10 @@ copyright: Copyright &copy; 2024-2025 Marcelo Marot Rosas
 theme:
   name: material
   icon: 
-    # logo: fontawesome/solid/user-nurse
     annotation: material/arrow-right-circle
-    logo: simple/python  # :simple-python:
-    # Icono de repositorio
+    logo: simple/python  
     repo: fontawesome/brands/github
+ 
 
 
   # favicon: https://img.icons8.com/color/48/python--v1.png   # Icons8
@@ -27,15 +26,19 @@ theme:
   language: es
   # Modos para la pagina
   palette:
+    # Modo automatico
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/lightbulb-auto
+        name: modo automatico
     # Modo claro
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
         # icon: material/brightness-7
         icon: material/lightbulb
-        name: Cambia al modo oscuro
+        name: modo claro
       primary: indigo
-      # primary: custom
       accent: purple
     # Modo oscuro
     - media: "(prefers-color-scheme: dark)"
@@ -43,10 +46,9 @@ theme:
       toggle:
         # icon: material/brightness-4
         icon: material/lightbulb-off
-        name: Cambia al modo claro
+        name: modo oscuro
       primary: indigo
-      # primary: custom
-      accent: lime
+      accent: purple
 
   features:
     - navigation.footer
@@ -135,6 +137,8 @@ extra_css:
 plugins: 
   - privacy
   - search
+
+  - pagetree
 
   - group:
       enabled: !ENV CI
