@@ -1,4 +1,5 @@
 
+<!-- 
 # Tipos de Datos 
 
 
@@ -11,8 +12,9 @@ El tipo de datos de una variable o estructura puede consultarse con la función 
 ```python title="tipo de datos"
 type( elemento)   # retorna el tipo de datos
 ```
-A continuacion se explican los tipos de datos estándar de Python.
-
+A continuacion se explican los tipos de datos estándar de Python. 
+-->
+<!-- 
 ## Listas (`list`)
 
 Estructura de datos para almacenar múltiples valores en secuencia. Se delimita con los corchetes ( `[]` ). Los elementos se separan con comas. Se habitúa dejar un espacio entre cada coma y su elemento siguiente.
@@ -226,10 +228,12 @@ Si se requiere independizar una lista de la otra y así prevenir cambios imprevi
     ```py title=" función deepcopy"
     from copy import deepcopy   # importacion de la funcion
     copia = deepcopy(original)   # copia profunda
-    ```
+    ``` 
+    -->
 
 
 
+<!-- 
 ## Tuplas (`tuple`)
 
 Similar a las listas pero inmutables. Las tuplas se indican con paréntesis ( `()` ) :
@@ -246,8 +250,10 @@ Las tuplas también pueden definirse mediante la función `tuple()`.
     tupla = tuple( lista )      # 'tuple'
     ```
 
-Los métodos más habituales para trabajar con tuplas son `count()` e `index()`, este último combinado con el operador `in`.
+Los métodos más habituales para trabajar con tuplas son `count()` e `index()`, este último combinado con el operador `in`. 
+-->
 
+<!-- 
 ## Conjuntos (`set`)
 Son una colección de elementos no repetidos  y no ordenados. Para definirlos se usa la función `set()` la cual descarta los elementos repetidos :
 
@@ -275,7 +281,6 @@ Los elementos de los sets no pueden ser consultados por índice.
     ```python
     conjunto = set( ["hola"] )    # '{'hola'}'
     ```
-
 
 ### Métodos de los Sets
 
@@ -325,8 +330,10 @@ Los conjuntos se pueden relacionar también con operadores:
     diferencia           = set_1 - set_2    # {'C', 'B'}
     diferencia_simetrica = set_1 ^ set_2    # {'C', 'B', 'X'}
     ```
+ -->
 
 
+<!-- 
 ## Diccionarios (`dict`)
 
 Son colecciones de pares clave-valor. Los diccionarios se definen con llaves ( `{}`) , el formato es el que sigue:
@@ -348,7 +355,6 @@ Las claves deben ser **únicas e inmutables**, y sirven para acceder a su valor 
     diccionario = {"A": {45, 30}}   # hace A = {45,30} (set)
     diccionario = {"A": {45, 30} , "A": 5} # hace A=5 
     ```
-
 
 ### Métodos y operadores
 
@@ -396,7 +402,7 @@ Para crear un nuevo diccionario con claves pero todas con valor `None` existe el
 ```python
 diccionario = dict.fromkeys([clave_1, clave_2, ...] ) 
 ```
-
+ -->
 
 
 
@@ -475,6 +481,11 @@ El tipado detallado para datos puede ser un desafío debido a la variedad de dat
     Al igual que en el caso de las variables, el tipado manual es débil y **no impide la ejecución** del programa en caso de encontrarse inconsistencias.
 
 
+
+
+
+
+<!-- 
 ## Funciones para datos
 
 
@@ -560,4 +571,5 @@ diccionario = eval(texto)
 
 
 !!! tip "Archivos JSON"
-    Los archivos JSON están dedicados al guardado de pares clave-valor. Los diccionarios pueden guardarse y leerse en estos archivos con ayuda del módulo `json`. [Ir al tutorial sobre JSON](10-manejo_archivos.md#archivos-json)
+    Los archivos JSON están dedicados al guardado de pares clave-valor. Los diccionarios pueden guardarse y leerse en estos archivos con ayuda del módulo `json`. [Ir al tutorial sobre JSON](10-manejo_archivos.md#archivos-json) 
+-->

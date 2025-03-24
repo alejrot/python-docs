@@ -205,9 +205,20 @@ nav:
 
       - contenido/2-variables_asignaciones.md
       - contenido/3-expresiones_operadores.md
-      - contenido/4-tipos_datos.md
+
+
       - contenido/5-control_flujo.md
       - contenido/11-excepciones.md
+
+    - Datos:
+      - datos/index.md
+      - datos/listas.md
+      - datos/tuplas.md
+      - datos/sets.md
+      - datos/diccionarios.md
+      - datos/funciones.md
+      - datos/tipado.md
+
 
 
     - Funciones: 
