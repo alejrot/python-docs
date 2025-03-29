@@ -223,7 +223,13 @@ nav:
       - archivos/index.md
       - archivos/archivos.md
       - archivos/json.md
-      - archivos/pyyaml.md
+      - Módulo Pathlib:
+        - archivos/pathlib/index.md
+        - archivos/pathlib/intro.md
+        - archivos/pathlib/analisis.md
+        - archivos/pathlib/interaccion.md
+        - archivos/pathlib/permisos.md
+
 
     - Tiempo y fechas:
       - tiempo/tiempo.md 
@@ -278,7 +284,7 @@ nav:
 
   
   - Modulos: 
-    - Pathlib - Manejo de rutas : modulos/pathlib.md
+    # - Pathlib - Manejo de rutas : modulos/pathlib.md
     - Sys - Parámetros y funciones del sistema: modulos/sys.md
     - Os - Comandos del Sistema Operativo: modulos/os.md
     - Tempfile - Archivos Temporales: modulos/tempfile.md
