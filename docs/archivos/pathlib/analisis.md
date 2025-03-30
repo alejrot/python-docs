@@ -6,7 +6,7 @@ tags:
   - Pathlib
 ---
 
-# Análisis y Composición
+# Análisis y composición
 
 
 
@@ -155,8 +155,8 @@ Aquí también se recomienda usar el método desde las funciones
 ```python title="Verificación rutas relativas"
 from pathlib import PurePosixPath, PureWindowsPath
 # Rutas POSIX exclusivamente
-relativos = PurePosixPath("home/user").is_relative_to("home")    # 'True'
-relativos = PurePosixPath("home/user").is_relative_to("user")    # 'False'
+relativos = PurePosixPath("/home/user").is_relative_to("/home")    # 'True'
+relativos = PurePosixPath("/home/user").is_relative_to("user")    # 'False'
 
 # Rutas Windows exclusivamente
 x = PureWindowsPath("c:\\windows\\win32").is_relative_to("c:\\")    # 'True'
@@ -170,7 +170,7 @@ Nuevamente, existe el riesgo de resultados ambigüos al usar `Path()` o `PurePat
     ```py title="Ambigüedad de verificacion - relativos"
     from pathlib import PurePath
 
-    relativos = PurePath("home/user").is_relative_to("home")             # 'False' 
+    relativos = PurePath("/home/user").is_relative_to("/home")           # puede dar 'False' 
     relativos = PurePath("c:\\windows\\win32").is_relative_to("c:\\")    # 'True'
     ```
 
@@ -179,8 +179,8 @@ Nuevamente, existe el riesgo de resultados ambigüos al usar `Path()` o `PurePat
     ```py title="Ambigüedad de verificacion - relativos"
     from pathlib import PurePath
 
-    relativos = PurePath("home/user").is_relative_to("home")             # 'True'  
-    relativos = PurePath("c:\\windows\\win32").is_relative_to("c:\\")    # 'False'
+    relativos = PurePath("/home/user").is_relative_to("/home")           # 'True'  
+    relativos = PurePath("c:\\windows\\win32").is_relative_to("c:\\")    # puede dar 'False'
     ```
 
 
@@ -192,27 +192,29 @@ a partir de varios *strings*
 separados con comas:
 
 
-=== "POSIX"
+```python title="Composición rutas - función"
+from pathlib import PurePosixPath, PureWindowsPath
 
-    ```python title="Composición rutas - función"
-    compuesta = PureWindowsPath("C:\\", "windows")  # 'PureWindowsPath('C:/windows')'
-    compuesta = PurePosixPath("home", "user")       # 'PurePosixPath('home/user')'
-    ```
+compuesta = PureWindowsPath("C:\\", "windows")   # 'PureWindowsPath('C:/windows')'
+compuesta = PurePosixPath("/home", "user")       # 'PurePosixPath('/home/user')'
+```
 
 Además se cuenta con el método `joinpath()`
 para la misma función:
 
 
-=== "POSIX"
+```python title="Composición rutas - método joinpath"
+from pathlib import PurePosixPath, PureWindowsPath
 
-    ```python title="Composición rutas - método joinpath"
-    compuesta = PureWindowsPath("C:\\").joinpath("windows") # 'PureWindowsPath('C:/windows')'
-    compuesta = PurePosixPath("home").joinpath("user")      # 'PurePosixPath('home/user')'
-    ```
+compuesta = PureWindowsPath("C:\\").joinpath("windows")  # 'PureWindowsPath('C:/windows')'
+compuesta = PurePosixPath("/home").joinpath("user")      # 'PurePosixPath('/home/user')'
+```
 
-!!! tip "Formato de la ruta"
+<!--
+!!! tip "Formato de ruta"
 
     Debe notarse que el formato de las rutas mostrado
     se "adapta" al del sistema operativo anfitrión.
 
     Por ejemplo: la ruta `C:\\windows` se ve en entornos Linux como `C:/windows`.
+-->

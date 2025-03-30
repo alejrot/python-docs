@@ -227,7 +227,8 @@ nav:
         - archivos/pathlib/index.md
         - archivos/pathlib/intro.md
         - archivos/pathlib/analisis.md
-        - archivos/pathlib/interaccion.md
+        - archivos/pathlib/consultas.md
+        - archivos/pathlib/alteracion.md
         - archivos/pathlib/permisos.md
 
 
