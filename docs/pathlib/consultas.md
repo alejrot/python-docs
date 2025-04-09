@@ -295,7 +295,9 @@ El resultado es la ruta guardada dentro del enlace.
 ### Manejo de URIs
 
 El método `as_uri()` convierte la ruta de entrada a URI (*Unified Resource Identifier*).
-La ruta debe corresponder a un recurso existente.
+La ruta no necesita ser existente,
+aunque sí debe ser compatible con el sistema anfitrión.
+<!-- La ruta debe corresponder a un recurso existente. -->
 
 === "Windows"
 
@@ -306,9 +308,24 @@ La ruta debe corresponder a un recurso existente.
 === "Posix"
 
     ```py title="Obtener URI"
-    Path("/home/user").as_uri()
+    Path("/home/user").as_uri()     # 'file:///home/user'
     ```
 
+El método complementario es `from_uri()`,
+al cual se le pasa como argumento la URI obtenida previamente:
+
+
+=== "Windows"
+
+    ```py title="Obtener ruta"
+    Path.from_uri('file:///C:/windows')    # 'WindowsPath('/c:/windows')'
+    ```
+
+=== "Posix"
+
+    ```py title="Obtener ruta"
+    Path.from_uri('file:///home/user')     # 'PosixPath('/home/user')'
+    ```
 
 
 
@@ -319,6 +336,8 @@ distintos tipos de elementos:
 carpetas, archivos, sockets, volumenes , etc.
 
 
+Estos son los métodos disponibles:
+
 |método|descripción|
 |:---|:---|
 |`ìs_file()`| archivo|
@@ -327,16 +346,43 @@ carpetas, archivos, sockets, volumenes , etc.
 |`ìs_junction()`||
 |`ìs_mount()`| punto de montaje |
 |`ìs_socket()`| socket UNIX|
-|`ìs_fifo()`| cola|
+|`ìs_fifo()`| cola del sistema (*qeue*)|
 |`ìs_block_device()`|dispositivo "de bloque": HDD, SDD, CD, etc|
 |`ìs_char_device()`|dispositivo "de caracter": mouse, teclado, joystick, placa audio |
 
-La ruta indicada puede ser perteneciente a enlaces simbólicos al elemento elegido.
 
-<!-- 
-Ejemplo de uso: unidad `C:\\` en Windows
+Estos métodos devuelven `True` si se cumplen dos condiciones:
 
-```py
-montado = Path("C:\\").is_mount()
-``` 
--->
+- La ruta existe en el sistema;  
+- La ruta corresponde al tipo de recurso especificado.
+
+Por ejemplo: si se proporciona la ruta de un archivo llamado `main.py`
+dentro de la carpeta del programa
+
+=== "Archivos"
+
+    ```py title="Verificar archivo"
+    # verificar recurso
+    es_y_existe = Path("main.py").is_file()  # da 'True' sólo si el archivo existe
+
+    # método incorrecto
+    es_y_existe = Path("main.py").is_dir()   # da 'False' - no es un directorio
+    ```
+
+=== "Directorios"
+
+    ```py title="Verificar directorio"
+    # método incorrecto
+    es_y_existe = Path("examples/").is_file()  # da 'False' - no es archivo 
+
+    # verificar recurso
+    es_y_existe = Path("examples/").is_dir()   # da 'True' sólo si el directorio existe
+    ```
+
+
+!!! info "Enlaces simbólicos"
+
+    La ruta indicada puede ser perteneciente a enlaces simbólicos (*symlinks*)
+    que apunten al elemento elegido.
+
+

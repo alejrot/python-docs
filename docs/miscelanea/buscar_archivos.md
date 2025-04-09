@@ -22,6 +22,8 @@ for r in rutas:
 
 La búsqueda es no recursiva
 
+
+<!-- 
 ## Path.iterdir()
 
 
@@ -38,6 +40,8 @@ for r in rutas:
     print(r.name, r.is_dir(), r.is_file())
 ```
 La búsqueda es no recursiva
+ -->
+
 
 
 ## listdir()

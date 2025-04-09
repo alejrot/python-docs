@@ -6,22 +6,11 @@ tags:
 ---
 
 
-# Clases 
-
-
-
-Las **clases** son objetos que poseen atributos y funcionalidad
-integrados:
-
-- Los **atributos** son valores guardados de los parámetros, es decir son variables internas de la clase.
-- La funcionalidad de la clase es representada por **métodos**, que son funciones específicas de la clase. 
+# Introducción a las clases
 
 
 ## Definición
 
-<!-- 
-Las clases se definen así: 
--->
 
 La definición de la clase es la encargada de definir la estructura interna de la nueva clase,
 es decir de darle "formato",
@@ -32,6 +21,7 @@ Utiliza la cláusula `class`:
 class NombreClase:
     # inicialización
 	def __init__(self, param1, param2, ...):
+        # variables internas: 'atributos'
 		self.atributo1 = param1		
 		self.atributo2 = param2
 ```
@@ -137,7 +127,7 @@ Todas las demás preservarán su atributo intacto.
 
 ## Métodos
 
-Los *métodos* son las "funciones" internas de las que podrán disponer las instancias de las clases
+Los *métodos* son las "funciones" internas de las que podrán disponer las instancias de las clases.
 
 ### Métodos públicos
 
@@ -149,10 +139,12 @@ que se definen así:
 ```python title="Clases - Definición (con métodos)"
 class NombreClase:
     # inicialización
-	def __init__(self, param1 , param2, ...):	
+	def __init__(self, param1 , param2, ...):
+        # variables internas: 'atributos'
 		self.atributo1 = param1		
 		self.atributo2 = param2
 
+    # funciones incorporadas: 'métodos'
 	def metodo1(self):
 		#código 1
 

@@ -223,7 +223,7 @@ nav:
       - archivos/index.md
       - archivos/archivos.md
       - archivos/json.md
-
+      - archivos/pyyaml.md
 
 
     - Tiempo y fechas:
@@ -255,7 +255,7 @@ nav:
 
 
     - Clases y POO:
-      # - clases/index.md
+      - clases/index.md
       - clases/clases.md
       - clases/relaciones.md
       - clases/poo.md
