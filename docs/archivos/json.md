@@ -20,7 +20,7 @@ Los archivos JSON deben estar codificados en formato `UTF-8`, `UTF-16` o `UTF-32
 
 
 ## Apertura y cierre
-La operacion de apertura se hace con la función `open()`, igual que con otros tipos de archivo. El cierre de archivo se hace con el método `close()`*.
+La operacion de apertura se hace con la función `open()`, igual que con otros tipos de archivo. El cierre de archivo se hace con el método `close()`.
  
 ```python title="Apertura y cierre de JSON" hl_lines="3 5"
 # crear archvio
