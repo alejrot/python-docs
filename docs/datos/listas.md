@@ -8,6 +8,8 @@ tags:
 
 # Listas (`list`)
 
+## Introducción
+
 La lista es una estructura de datos
 para almacenar múltiples valores en secuencia.
 Los valores internos se agrupan con los corchetes ( `[]` )
@@ -51,6 +53,10 @@ lista = []
 Las listas pueden ser definidas también usando la función `list()`. Esta funcion también permite convertir otros tipos de datos a lista.
 
 !!! example "Ejemplo aplicacion: Matrices" 
+
+    En matemáticas las matrices son colecciones de valores de dos dimensiones o más y ayudan a representar sistemas de ecuaciones,
+    transferencias (relaciones entrada-salida) de sistemas,
+    etc.
     Para hacer una matriz de valores se la puede construir en base a una lista que contenga a múltiples listas internas  separadas con comas. 
     ```python title="Ejemplo: matriz 2 x 3"
     matriz=[ [v11, v12, v13] ,  [v21, v22, v23] ]   # lista de listas de valores
@@ -58,15 +64,20 @@ Las listas pueden ser definidas también usando la función `list()`. Esta funci
 
 ## Métodos de las listas
 
+### Agregar elementos
+
 Para añadir un nuevo elemento al final de la lista podemos usar el método `append()`:
 ```python
 lista.append(elemento)
 ```
+
 Si buscamos añadir un elemento en una posición particular podemos hacerlo indicando un valor indice dentro del método `insert()`:
 
 ```python
 lista.insert(indice , elemento)
 ```
+
+### Eliminar elementos
 
 Para eliminar un elemento puede usarse el método `remove()`.Éste elimina la primera aparición del método indicado. Si el elemento indicado no existe el método devuelve error.
 ```python
@@ -79,6 +90,9 @@ Para eliminar un elemento por índice y poder retornarlo se usa el método `pop(
 elemento = lista.pop( )           # elimina  el último elemento
 elemento = lista.pop( indice )    # elimina el elemento por indice
 ```
+
+### Búsqueda
+
 
 La búsqueda de la posición de un elemento se hacer con el método `index()`,el cual presupone que el elemento existe :
 ```python
@@ -106,16 +120,23 @@ indice = lista.index(elemento)
         elemento = lista.pop(indice) 
     ```
 
+### Modificar
+
 
 Reescribir una posicion particular de la lista:
 ```python
 lista[indice]  = nuevo_valor
 ```
 
+### Contar repeticiones
+
+
 Contar repeticiones de un elemento: método `count()`
 ```python
 lista.count(elemento):
 ```
+
+### Concatenar
 
 Concatenar una segunda lista al final de la primera: método `extend()`
 
@@ -123,17 +144,19 @@ Concatenar una segunda lista al final de la primera: método `extend()`
 lista_1.extend(lista_2)
 ```
 
-
-Invertir el orden de los elementos (cambios persistentes): método `reverse()`
-```python
-lista.reverse()
-```
-
+### Borrado
 
 Eliminar todo el contenido de la lista:
 
 ```python
 lista.clear()
+```
+
+### Reordenado
+
+Invertir el orden de los elementos (cambios persistentes): método `reverse()`
+```python
+lista.reverse()
 ```
 
 Ordenar los elementos (cambios persistentes): método `sort()`
@@ -224,3 +247,15 @@ Si se requiere independizar una lista de la otra y así prevenir cambios imprevi
     from copy import deepcopy   # importacion de la funcion
     copia = deepcopy(original)   # copia profunda
     ```
+
+
+## Listas por comprensión (*comprehension*)
+
+Las listas por comprensión se basan en el uso de variables calculadas a partir de una iteración.
+Algunos ejemplos de listas creadas a partir de un bucle `for` pueden ser:
+
+```python title="Listas por comprensión"
+lista_ascendente  = [ i             for i in range(valor_maximo) ]  
+lista_cuadrados   = [ i * i         for i in range(valor_maximo) ]
+lista_ambas       = [ (i, i  * i )  for i in range(valor_maximo) ]
+```

@@ -14,7 +14,7 @@ Python incluye varias funciones predefinidas
 para manipular sus tipos de datos predefinidos. 
 
 
-## Identificar elemento - `type()`
+## Identificar elemento - `type`
 
 El tipo de datos de una variable o estructura puede consultarse con la función `type()`:
 
@@ -23,7 +23,7 @@ tipo = type(elemento)
 print(tipo)
 ```
 
-## Enumerar elementos - `enumerate()` 
+## Enumerar elementos - `enumerate` 
 
 La función `enumerate()` permite enumerar los elementos de una lista,
 convirtiéndolos a tupla.
@@ -66,7 +66,7 @@ for indice, elemento in enumerados:
 
 Más sobre la cláusula `for`: [control de flujo](../contenido/5-control_flujo.md#ciclos-for-para)  
 
-## Ordenamiento de datos - `sorted()` 
+## Ordenamiento de datos - `sorted` 
 
 La función `sorted()` ordena los elementos de listas y diccionarios, por defecto de manera ascendente / alfabética. 
 
@@ -96,7 +96,7 @@ lista_ordenada = sorted( diccionario.values(), key = funcion_ordenamiento )   # 
 El resultado en estos casos es una lista de tuplas con los pares clave-valor.
 
 
-## Conversion desde string - `eval()`
+## Conversion desde string - `eval`
 
 Para poder evaluar una variable `str`
 que representa sintácticamente un tipo de datos (una lista, un diccionario, etc.) 
@@ -124,4 +124,29 @@ Esta función es útil,
 por ejemplo,
 para interpretar un *string* de datos procedente de un archivo de texto o de una página web.
 
+
+!!! danger "Ejecución de código"
+
+    `eval()` interpreta el código ingresado como texto y lo ejecuta,
+    sin importar su objetivo real.
+    Por ello deben extremarse las precauciones al usar esta función,
+    especialmente si los usuarios pueden pueden interactuar con el texto de entrada. 
+
+
+
+## Copia de datos - `deepcopy`
+
+La función `deepcopy` crea una réplica estricta de los datos de entrada:
+listas, diccionarios, etc.,
+copiando también sus datos y variables internos.
+Para su uso se requiere su importación desde el módulo `copy`:
+
+
+```py title="copia profunda"
+from copy import deepcopy   # importacion 
+
+copia = deepcopy(original)   # copia profunda
+```
+
+De esta forma la copia se vuelve completamente independiente de la información de entrada.
 
