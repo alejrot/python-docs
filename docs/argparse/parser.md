@@ -24,6 +24,10 @@ conflict_handler
 
 add_help
 
+formatter_class
+
+allow_abbrev
+exit_on_error
 
 
 

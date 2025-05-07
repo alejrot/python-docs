@@ -290,7 +290,8 @@ nav:
     - Argparse:
       - argparse/index.md
       - argparse/intro.md
-      - argparse/argumentos.md
+      - argparse/tipos_args.md
+      - argparse/configuracion.md
       - argparse/parser.md
       - argparse/grupos.md
       # - argparse/argparse.md

@@ -96,18 +96,7 @@ Se asigna el valor 2 a `x` y el 3 a `y`.
 Todos los argumentos creados de esta manera son obligatorios.
 Si no se especifica alguno se producirá un error.
 
-Estos argumentos serán listados por el comando de ayuda:
 
-```
-usage: nombre_programa [opciones]
-
-positional arguments:
-  x
-  y
-
-options:
-  -h, --help     show this help message and exit
-```
 
 ??? info "Rutina completa"
 

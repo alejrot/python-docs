@@ -4,52 +4,7 @@ tags:
   - argparse
 ---
 
-# Argumentos no posicionales
-
-Los argumentos no posicionales son aquellos
-que requieren ser indicados precedidos por su nombre o su abreviación.
-Son no posicionales porque no necesitan ser ingresados con un orden preestablecido.
-
-
-## Nombre y abreviación
-
-El método `add_argument` admite definir dos notaciones para los argumentos: un nombre completo,
-típicamente precedida por dos guiones (`--`)
-y una abreviación, precedida por un guión (`-`):
-
-
-```py title="Nombre de argumento - configuración"
-analizador.add_argument(
-    '-a',                   # abreviación
-    '--argumento-entrada'   # nombre completo
-    )
-```
-Estos dos argumentos pueden ser ingresados sin respetar su orden.
-
-El atributo creado al llamar al método `parse_args`
-tendrá el mismo nombre que el atributo.
-
-El valor del argumento se podrá consultar
-en base al nombre del argumento,
-pero sin sus prefijos y con las correcciones necesarias
-para respetar las reglas de Python en cuanto a nombres se refiere.
-
-
-En este ejemplo: `--argumento-entrada` se convierte a `argumento_entrada`
-
-```py title="Nombre de argumento - lectura"
-# lectura de argumentos
-valores_argumentos = analizador.parse_args()
-
-# consulta como diccionario
-valores = vars(valores_argumentos)    # clave: 'argumento_entrada'
-
-# consulta desde atributo
-x = valores_argumentos.argumento_entrada   # atributo: 'argumento_entrada'
-```
-
-
-## Opciones de configuración
+# Configuración de argumentos
 
 
 El método `add_argument` permite configurar una gran cantidad de opciones de uso para cada argumento,
@@ -64,9 +19,10 @@ las cuales se pasan como argumentos del método:
 |`choices`|lista con los valores permitidos a la entrada |
 |`dest`| nombre alternativo de la variable|
 |`help`|texto de ayuda - se muestra al requerirla por comandos |
-|||
 |`action`| acciones predefinidas del argumento|
 |`nargs`| número de valores del argumento|
+
+Debe señalarse que los argumentos posicionales no aceptan todas las opciones listadas.
 
 
 ## Renombrado de atributo
@@ -99,14 +55,15 @@ x = valores_argumentos.x   # atributo: 'x'
 
 El atributo `required` es el encargado de configurar la obligatoriedad del argumento. 
 
-```py title="Argumento requerido"
+```py title="Argumento requerido - configuración"
 analizador.add_argument(
     '-a',                    
     '--argumento-entrada',   
     required=True          # argumento obligatorio
     )
 ```
-Por defecto su valor es `False`.
+En el caso de los argumentos no posicionales, por defecto su valor es `False`.
+En cambio, los argumentos posicionales son obligatorios y por ello no disponen de este atributo.
 
 
 ## Valor por defecto
@@ -114,35 +71,95 @@ Por defecto su valor es `False`.
 El atributo `default` asigna un valor predefinido para el argumento
 para aquellas situaciones donde no se carga un valor de entrada.
 
-Si no se define su valor es `None`.
+```py title="Valor por defecto - configuración"
+analizador.add_argument(
+    '-a',                    
+    '--argumento-entrada',   
+    default=0       # '0' de manera predefinida
+    )
+```
+Si no se especifica entonces su valor es `None`.
 
+```bash title="Valor por defecto - uso"
+py rutina.py -a hola    # 'hola'
+py rutina.py -a 5       # '5'
 
-## Opciones 
+py rutina.py            # '0'
+```
 
-El argumento `choices` acepta una lista con todos los valores permitidos.
-Si el valor ingresado no está incluido en la lista se produce un error.
+## Opciones prefijadas
 
-```py title="Argumento requerido"
+El argumento `choices` acepta una lista con todos los valores permitidos del argumento.
+
+```py title="Opciones prefijadas - configuración"
 analizador.add_argument(
     '-a',                    
     '--argumento-entrada',   
     choices=["A", "B", "C"]     # valores permitidos    
     )
 ```
+Si el valor ingresado no está incluido en la lista se produce un error.
 
+```bash title="Opciones prefijadas - uso"
+# correctos
+py rutina.py -a A      
+py rutina.py -a B
+py rutina.py -a C
 
+# fallidos
+py rutina.py -a a
+py rutina.py -a z
+py rutina.py -a 7
+```
+
+## Tipo
+
+El argumento `type` define a qué tipo de datos será convertido
+el valor de entrada. La conversión es automática.
+
+```py title="Tipo de datos"
+analizador.add_argument(
+    '-a',
+    '--argumento-entrada',
+    type=int                # tipo de datos: entero
+    )
+```
+
+Si el valor de entrada no es convertible por el tipo elegido
+entonces se produce un error.
+
+Ejemplo de uso:
+
+```bash
+# correctos
+py rutina.py -a 8      
+py rutina.py -a "8"     
+
+# fallidos
+py rutina.py -a 'Hola mundo'    # string
+py rutina.py -a true            # booleano 
+```
 
 
 ## Texto de ayuda
 
-El atributo `help` permite asignar un texto descriptivo que aparecerá al usar el argumento `--help`.
+El atributo `help` permite asignar un texto descriptivo que aparecerá al usar el argumento `--help` como entrada de la rutina.
 
+```py title="Opciones prefijadas"
+analizador.add_argument(
+    '-a',                    
+    '--argumento-entrada',   
+    help="Descripción del argumento y su utilización."    
+    )
+```
 
+Es de uso opcional.
 
 
 ## Acciones
 
-El parámetro `action` acepta las siguientes opciones de configuración.
+El parámetro `action` permite configurar distintos tipos de opciones,
+las cuales se muestran a continuación.
 
 
 ### Guardar - `store`
@@ -192,7 +209,10 @@ En caso contrario da `False`.
 Sirve para crear flags de habilitación de opciones.
 
 ```py title="store_true - configuración"
-analizador.add_argument('-a', action='store_true')
+analizador.add_argument(
+    '-a',
+    action='store_true'
+    )
 ```
 
 ```bash title="store_true - uso"
@@ -206,7 +226,10 @@ Es el complemento de `store_true`.
 Sirve para crear flags de bloqueo de opciones.
 
 ```py title="store_false - configuración"
-analizador.add_argument('-a', action='store_true')
+analizador.add_argument(
+    '-a', 
+    action='store_true'
+    )
 ```
 
 ```bash title="store_false - uso"
@@ -217,10 +240,13 @@ py rutina.py        # 'True'
 ### Adjuntar valores - `append`
 
 Esta acción hace que al argumento se le pueda pueda asignar múltiples valores por separado y los junta todos en una lista.
-Si el argumento no está presente en la entrada se devuelve `None`
+Si el argumento no está presente en la entrada se devuelve `None`.
 
 ```py title="append - configuración"
-analizador.add_argument('-a', action='append')
+analizador.add_argument(
+    '-a', 
+    action='append'
+    )
 ```
 
 ```bash title="append - uso"
@@ -259,7 +285,10 @@ devolviendo la cantidad como entero.
 Si el argumento no se ingresa entonces se devuelve `False`. 
 
 ```py title="count - configuración"
-analizador.add_argument('-a', action='count')
+analizador.add_argument(
+    '-a',
+    action='count'
+    )
 ```
 
 ```bash title="count - uso"
@@ -290,7 +319,6 @@ py rutina.py -v     # 'v1.0.0'
 
 ### Ayuda - `help`
 
-
 La acción `help` es la encargada de crear argumentos de ayuda por consola.
 Muestra los textos de ayuda de todos los otros argumentos,
 la descripción del programa incluida en el *parser*, etc.
@@ -299,7 +327,7 @@ la descripción del programa incluida en el *parser*, etc.
 analizador.add_argument(
     '-a', '--ayuda',
     action='help',
-    help="alternativa a 'help'"
+    help="comando alternativo a 'help'"
     )
 ```
 
@@ -317,7 +345,6 @@ options:
 ```
 
 
-
 ## Múltiples valores
 
 El parámetro opcional `nargs` es el encargado de determinar el número de valores de entrada permitidos en el argumento.
@@ -330,9 +357,10 @@ Los valores permitidos son los siguientes:
 | `?`| un único valor - opcional|
 | `*`| cantidad arbitraria - guardado en lista|
 | `+`| cantidad arbitraria (al menos uno) - guardado en lista|
-| `argparse.REMAINDER`| todos los valores asignados al final|
+| `argparse.REMAINDER`| todos los valores asignados al final - guardado en lista|
 
 
+**Ejemplo:** 
 Supóngase por ejemplo un argumento que acepta múltiples valores de entrada y que no son obligatorios:
 
 ```bash title="cantidad arbitraria - configuración"
@@ -340,9 +368,6 @@ analizador.add_argument(
     '-a', 
     nargs='*'
     )
-
-# ...
-
 ```
 
 ```bash title="cantidad arbitraria - uso"
@@ -350,3 +375,7 @@ py rutina.py -a 3 14 16   # '['3', '14', '16']'
 py rutina.py -a           # '[]'
 py rutina.py              # 'None'
 ```
+
+
+
+
