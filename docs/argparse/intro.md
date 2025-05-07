@@ -48,9 +48,6 @@ py rutina.py --help     # nombre completo
 ```
 
 
-
-
-
 El texto obtenido por consola es algo como esto:
 
 ```
@@ -186,4 +183,17 @@ El resultado es el próximo diccionario:
 ```
 {'x': '2', 'y': '3'}
 ```
+
+## Texto de ayuda
+
+El texto de ayuda puede ser publicado desde adentro el programa
+con ayuda del método `print_usage`.
+
+```py
+analizador.print_usage()
+```
+
+Su resultado el equivalente al uso del argumento `--help`.
+
+
 

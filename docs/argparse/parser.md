@@ -39,7 +39,6 @@ analizador = argparse.ArgumentParser(
     )
 ```
 
-
 El texto obtenido por consola es algo como esto:
 
 ```
@@ -52,7 +51,6 @@ options:
 
 Texto al final de la ayuda
 ```
-
 
 ??? info "Rutina completa"
 
@@ -74,22 +72,8 @@ Texto al final de la ayuda
     ```
 
 
-    ```py
-    # lectura de argumentos
-    valores_argumentos = analizador.parse_args()
-    ```
 
 
 
 
 
-
-
-## Texto de ayuda
-
-
-
-```py
-# texto de ayuda
-analizador.print_usage()
-```
