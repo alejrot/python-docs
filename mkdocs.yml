@@ -278,15 +278,23 @@ nav:
 
   
   - Modulos: 
-    # - Pathlib - Manejo de rutas : modulos/pathlib.md
-    # - Módulo Pathlib:
-    - Módulo Pathlib:
+
+    - Pathlib:
       - pathlib/index.md
       - pathlib/intro.md
       - pathlib/analisis.md
       - pathlib/consultas.md
       - pathlib/alteracion.md
       - pathlib/permisos.md
+
+    - Argparse:
+      - argparse/index.md
+      - argparse/intro.md
+      - argparse/parser.md
+      - argparse/argumentos.md
+      - argparse/grupos.md
+      # - argparse/argparse.md
+
     - Sys - Parámetros y funciones del sistema: modulos/sys.md
     - Os - Comandos del Sistema Operativo: modulos/os.md
     - Tempfile - Archivos Temporales: modulos/tempfile.md
