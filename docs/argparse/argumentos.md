@@ -4,7 +4,49 @@ tags:
   - argparse
 ---
 
-# Configuración de argumentos
+# Argumentos no posicionales
+
+Los argumentos no posicionales son aquellos
+que requieren ser indicados precedidos por su nombre o su abreviación.
+Son no posicionales porque no necesitan ser ingresados con un orden preestablecido.
+
+
+## Nombre y abreviación
+
+El método `add_argument` admite definir dos notaciones para los argumentos: un nombre completo,
+típicamente precedida por dos guiones (`--`)
+y una abreviación, precedida por un guión (`-`):
+
+
+```py title="Nombre de argumento - configuración"
+analizador.add_argument(
+    '-a',                   # abreviación
+    '--argumento-entrada'   # nombre completo
+    )
+```
+Estos dos argumentos pueden ser ingresados sin respetar su orden.
+
+El atributo creado al llamar al método `parse_args`
+tendrá el mismo nombre que el atributo.
+
+El valor del argumento se podrá consultar
+en base al nombre del argumento,
+pero sin sus prefijos y con las correcciones necesarias
+para respetar las reglas de Python en cuanto a nombres se refiere.
+
+
+En este ejemplo: `--argumento-entrada` se convierte a `argumento_entrada`
+
+```py title="Nombre de argumento - lectura"
+# lectura de argumentos
+valores_argumentos = analizador.parse_args()
+
+# consulta como diccionario
+valores = vars(valores_argumentos)    # clave: 'argumento_entrada'
+
+# consulta desde atributo
+x = valores_argumentos.argumento_entrada   # atributo: 'argumento_entrada'
+```
 
 
 ## Opciones de configuración
@@ -24,13 +66,83 @@ las cuales se pasan como argumentos del método:
 |`help`|texto de ayuda - se muestra al requerirla por comandos |
 |||
 |`action`| acciones predefinidas del argumento|
-|`nargs`| numero de valores del argumento|
+|`nargs`| número de valores del argumento|
+
+
+## Renombrado de atributo
+
+El argumento `dest` es el que permite cambiarle el nombre
+al atributo dentro del programa:
+
+```py title="Nombre de argumento - configuración"
+analizador.add_argument(
+    '-a',                    # abreviación
+    '--argumento-entrada',   # nombre completo
+    dest='x',
+    )
+```
+
+En este ejemplo se le asigna el nombre `x` al atributo-clave:
+
+```py title="Nombre de argumento - lectura"
+# lectura de argumentos
+valores_argumentos = analizador.parse_args()
+
+# consulta como diccionario
+valores = vars(valores_argumentos)    # clave: 'x'
+
+# consulta desde atributo
+x = valores_argumentos.x   # atributo: 'x'
+```
+
+## Obligatoriedad
+
+El atributo `required` es el encargado de configurar la obligatoriedad del argumento. 
+
+```py title="Argumento requerido"
+analizador.add_argument(
+    '-a',                    
+    '--argumento-entrada',   
+    required=True          # argumento obligatorio
+    )
+```
+Por defecto su valor es `False`.
+
+
+## Valor por defecto
+
+El atributo `default` asigna un valor predefinido para el argumento
+para aquellas situaciones donde no se carga un valor de entrada.
+
+Si no se define su valor es `None`.
+
+
+## Opciones 
+
+El argumento `choices` acepta una lista con todos los valores permitidos.
+Si el valor ingresado no está incluido en la lista se produce un error.
+
+```py title="Argumento requerido"
+analizador.add_argument(
+    '-a',                    
+    '--argumento-entrada',   
+    choices=["A", "B", "C"]     # valores permitidos    
+    )
+```
+
+
+
+
+## Texto de ayuda
+
+El atributo `help` permite asignar un texto descriptivo que aparecerá al usar el argumento `--help`.
+
+
 
 
 ## Acciones
 
 El parámetro `action` acepta las siguientes opciones de configuración.
-
 
 
 ### Guardar - `store`

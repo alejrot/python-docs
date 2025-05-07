@@ -101,6 +101,10 @@ Estos argumentos serán listados por el comando de ayuda:
 ```
 usage: nombre_programa [opciones]
 
+positional arguments:
+  x
+  y
+
 options:
   -h, --help     show this help message and exit
 ```
@@ -113,12 +117,7 @@ options:
     import argparse
 
     # nuevo analizador ('parser') 
-    analizador = argparse.ArgumentParser(
-        prog="nombre_programa",
-        usage='%(prog)s [opciones]',
-        description="Descripcion del programa",
-        epilog='Texto al final de la ayuda',
-        )
+    analizador = argparse.ArgumentParser()
 
     # agregar argumentos simples
     analizador.add_argument("x")
