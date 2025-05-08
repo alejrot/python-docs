@@ -25,16 +25,17 @@ las cuales se pasan como argumentos del método:
 Debe señalarse que los argumentos posicionales no aceptan todas las opciones listadas.
 
 
-## Renombrado de atributo
+## Renombrado de variable
 
 El argumento `dest` es el que permite cambiarle el nombre
-al atributo dentro del programa:
+a la variable del atributo
+adentro del programa:
 
 ```py title="Nombre de argumento - configuración"
 analizador.add_argument(
     '-a',                    # abreviación
     '--argumento-entrada',   # nombre completo
-    dest='x',
+    dest='x',                # nombre de variable
     )
 ```
 

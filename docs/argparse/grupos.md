@@ -14,6 +14,143 @@ para crear nuevos analizadores derivados,
 cada uno representando un nuevo grupo.
 
 
+## Grupos de argumentos
+
+
+Los argumentos se pueden repartir en distintos grupos
+con ayuda del método `add_argument_group`.
+Con este método se crean *parsers* específicos para cada grupo a crear
+y se les asigna un *string* de descripción: 
+
+
+```py title="Grupos de argumentos - creación"
+# grupo de entrada
+analizador_entrada = analizador.add_argument_group("entrada")
+# argumentos de entrada
+analizador_entrada.add_argument("x")
+
+# grupo de salida
+analizador_salida = analizador.add_argument_group("salida")
+# argumentos de salida
+analizador_salida.add_argument("y")
+```
+
+Los argumentos de los grupos
+se asignan a cada grupo con el método `add_argument`.
+
+El uso de los argumentos permanece inalterado.
+Lo que se altera es la organización del texto de ayuda,
+que ahora reparte la información de los argumentos de acuerdo al grupo al que pertenecen:
+
+
+``` title="Grupos de argumentos - ayuda"
+usage: rutina.py [-h] x y global
+
+options:
+  -h, --help  show this help message and exit
+
+entrada:
+  x
+
+salida:
+  y
+```
+
+??? info "Rutina completa"
+
+    ```py
+    import argparse
+
+    # nuevo analizador principal ('parser')
+    analizador = argparse.ArgumentParser()
+
+    # grupo de entrada
+    analizador_entrada = analizador.add_argument_group("entrada")
+    # argumentos de entrada
+    analizador_entrada.add_argument("x")
+
+    # grupo de salida
+    analizador_salida = analizador.add_argument_group("salida")
+    # argumentos de salida
+    analizador_salida.add_argument("y")
+
+    # lectura de argumentos
+    argumentos = analizador.parse_args()
+    ``` 
+
+## Argumentos mutuamente excluyentes
+
+Los argumentos que son mutuamente excluyentes
+se crean en un nuevo objeto derivado del *parser* original
+con el método `add_mutually_exclusive_group`:
+
+
+```py title="Argumentos excluyentes - creación"
+# nuevo analizador principal ('parser')
+analizador = argparse.ArgumentParser()
+
+# grupo de argumentos mutuamente exclªuyentes
+analizador_excluyentes = analizador.add_mutually_exclusive_group()
+
+# argumentos contrapuestos
+analizador_excluyentes.add_argument('-s', '--si',action='store_true')
+analizador_excluyentes.add_argument('-n', '--no',action='store_false')
+
+# lectura de argumentos
+argumentos = analizador.parse_args()
+```
+
+de esta manera al intentar ingresar ambos argumentos juntos:
+
+```py title="Argumentos excluyentes - uso"
+py rutina.py -s -n
+```
+
+se obtiene un mensaje de error como este:
+
+``` title="Reporte - argumentos conflictivos"
+nombre_programa: error: argument -n/--no: not allowed with argument -s/--si
+```
+
+En caso de necesitarse el ingreso de uno de los dos argumentos
+se agrega el parámetro `required` durante la creacíon del grupo:
+
+```py title="Argumentos excluyentes - requeridos"
+analizador_excluyentes = analizador.add_mutually_exclusive_group(required=True)
+```
+
+en tal caso, si falta ingresar un argumento
+se obtiene el mensaje de error correspondiente:
+
+``` title="Reporte - argumentos faltantes"
+nombre_programa: error: one of the arguments -s/--si -n/--no is required
+```
+
+
+??? info "Rutina completa"
+
+
+    ```py
+    import argparse
+
+    # nuevo analizador principal ('parser')
+    analizador = argparse.ArgumentParser()
+
+    # grupo de argumentos mutuamente excluyentes
+    analizador_excluyentes = analizador.add_mutually_exclusive_group(
+        required=True
+        )
+
+    # argumentos contrapuestos
+    analizador_excluyentes.add_argument('-s', '--si',action='store_true')
+    analizador_excluyentes.add_argument('-n', '--no',action='store_false')
+
+    # lectura de argumentos
+    argumentos = analizador.parse_args()
+    ```
+
+
+
 ## Argumentos anidados 
 
 Mediante el anidado de analizadores
@@ -125,7 +262,7 @@ options:
 ```
 
 
-??? info "Ejemplo - rutina completa"
+??? info "Rutina completa"
 
     ```py
     import argparse
@@ -167,80 +304,5 @@ options:
         )
 
     valores = analizador.parse_args()
-    ```
-
-
-
-
-
-## Argumentos mutuamente excluyentes
-
-Los argumentos que son mutuamente excluyentes
-se crean en un nuevo objeto derivado del *parser* original
-con el método `add_mutually_exclusive_group`:
-
-
-```py title="Argumentos excluyentes - creación"
-# nuevo analizador principal ('parser')
-analizador = argparse.ArgumentParser()
-
-# grupo de argumentos mutuamente exclªuyentes
-analizador_excluyentes = analizador.add_mutually_exclusive_group()
-
-# argumentos contrapuestos
-analizador_excluyentes.add_argument('-s', '--si',action='store_true')
-analizador_excluyentes.add_argument('-n', '--no',action='store_false')
-
-# lectura de argumentos
-argumentos = analizador.parse_args()
-```
-
-de esta manera al intentar ingresar ambos argumentos juntos:
-
-```py title="Argumentos excluyentes - uso"
-py rutina.py -s -n
-```
-
-se obtiene un mensaje de error como este:
-
-``` title="Reporte - argumentos conflictivos"
-nombre_programa: error: argument -n/--no: not allowed with argument -s/--si
-```
-
-En caso de necesitarse el ingreso de uno de los dos argumentos
-se agrega el parámetro `required` durante la creacíon del grupo:
-
-```py title="Argumentos excluyentes - requeridos"
-analizador_excluyentes = analizador.add_mutually_exclusive_group(required=True)
-```
-
-en tal caso, si falta ingresar un argumento
-se obtiene el mensaje de error correspondiente:
-
-``` title="Reporte - argumentos faltantes"
-nombre_programa: error: one of the arguments -s/--si -n/--no is required
-```
-
-
-??? info "Ejemplo - rutina completa"
-
-
-    ```py
-    import argparse
-
-    # nuevo analizador principal ('parser')
-    analizador = argparse.ArgumentParser()
-
-    # grupo de argumentos mutuamente excluyentes
-    analizador_excluyentes = analizador.add_mutually_exclusive_group(
-        required=True
-        )
-
-    # argumentos contrapuestos
-    analizador_excluyentes.add_argument('-s', '--si',action='store_true')
-    analizador_excluyentes.add_argument('-n', '--no',action='store_false')
-
-    # lectura de argumentos
-    argumentos = analizador.parse_args()
     ```
 
