@@ -243,7 +243,7 @@ nav:
       - funciones/orden_superior.md
       - funciones/decoradores.md
 
-      - funciones/main.md
+      # - funciones/main.md
 
     - Módulos y paquetes:
       - Módulos: contenido/modulos.md
@@ -269,6 +269,12 @@ nav:
         - clases/solid/isp.md
         - clases/solid/dip.md
 
+    - Función Main:
+      - main/index.md
+      - main/sintaxis.md
+      - main/argumentos.md
+      - main/retorno.md
+      - main/encapsular.md
 
 
     - Paralelismo:
