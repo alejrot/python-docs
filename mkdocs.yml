@@ -245,16 +245,6 @@ nav:
       - funciones/orden_superior.md
       - funciones/decoradores.md
 
-      # - funciones/main.md
-
-    - Módulos y paquetes:
-      - Módulos: contenido/modulos.md
-      - Paquetes: contenido/paquetes.md
-      - Entorno virtual - módulo VENV: contenido/8-entorno_virtual.md
-
-
-
-
     - Clases y POO:
       - clases/index.md
       - clases/clases.md
@@ -271,6 +261,10 @@ nav:
         - clases/solid/isp.md
         - clases/solid/dip.md
 
+    - Módulos y paquetes:
+      - Módulos: contenido/modulos.md
+      - Paquetes: contenido/paquetes.md
+
     - Función Main:
       - main/index.md
       - main/sintaxis.md
@@ -278,6 +272,10 @@ nav:
       - main/retorno.md
       - main/encapsular.md
 
+    - Entornos virtuales:
+      - entornos/index.md
+      - entornos/fundamentos.md
+      - entornos/venv.md
 
     - Paralelismo:
       - paralelismo/procesos.md
