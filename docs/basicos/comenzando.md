@@ -32,7 +32,7 @@ sudo dnf update  python   # actualización
 
 Los programas escritos en lenguaje Python se guardan en archivos de texto con extensión `.py`.
 
-Para ejecutar las rutinas mediante intérprete desde la consola  se usa el comando `python`:
+Para ejecutar las rutinas mediante el intérprete desde la consola  se usa el comando `python`:
 
 ```bash title="ejecutar rutina Python "
 python  nombre_archivo.py
@@ -47,6 +47,14 @@ La versión más usada actualmente de Python es la versión 3; sin embargo todav
     ```bash title="ejecutar rutina Python - abreviado"
     py nombre_archivo.py
     ```
+    Si el comando `py` no existe entonces se puede crear un alias en consola antes de usarlo:
+
+    ```bash title="crear alias 'py'"
+    alias py=python
+    alias py=python3
+    ``` 
+
+
 
 ## Escribir en pantalla
 

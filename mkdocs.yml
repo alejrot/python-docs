@@ -201,7 +201,6 @@ nav:
       - basicos/comenzando.md
       - basicos/consola.md
       - basicos/documentacion.md
-      - basicos/compilacion.md
 
       - contenido/2-variables_asignaciones.md
       - contenido/3-expresiones_operadores.md
@@ -210,6 +209,8 @@ nav:
       - contenido/5-control_flujo.md
       - contenido/11-excepciones.md
 
+      - basicos/compilacion.md
+      
     - Datos:
       - datos/index.md
       - datos/listas.md
@@ -227,6 +228,7 @@ nav:
 
 
     - Tiempo y fechas:
+      - tiempo/index.md 
       - tiempo/tiempo.md 
       - tiempo/fechas.md
       - tiempo/calendar.md

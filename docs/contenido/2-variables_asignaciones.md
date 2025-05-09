@@ -32,7 +32,7 @@ Es convención en Python que todas  las letras en los nombres de variables sean 
 
 !!! info "Tipado dinámico"
 
-    Python tiene ***tipado débil y dinámico***:  las variables pueden cambiar de tipo durante la ejecución, por ejemplo de `int` a `string`, de `string` a `float`, etc. a medida que se guardan nuevos valores.
+    Python tiene ***tipado dinámico***:  las variables pueden cambiar de tipo durante la ejecución, por ejemplo de `int` a `string`, de `string` a `float`, etc. a medida que se guardan nuevos valores.
     
 !!! note "función `type()`" 
 
@@ -49,7 +49,7 @@ Es convención en Python que todas  las letras en los nombres de variables sean 
 !!! tip "Tip: números complejos"
     Python incluye la posibilidad de trabajar con números complejos indicados como: 
     ```python title="Formato"
-    <complejo> = <real> + <imag>j 
+    complejo = real + imag j 
     ```
     , donde tanto la parte real como la imaginaria pueden ser tanto `int` como `float`. (Aunque técnicamente los complejos en Python son una clase predefinida)
     ```python title="Ejemplo"
@@ -59,15 +59,16 @@ Es convención en Python que todas  las letras en los nombres de variables sean 
 
 ## Asignaciones
 
-Las asignaciones se realizan con el operador '='
+Las asignaciones se realizan con el operador `=`:
 
 ```python title="Asignacion"
-<nombre_variable> = <valor>
+nombre_variable = valor
 ```
 
 No hay carácter de fin de instrucción visible, sino que se interpreta como tal el fin de renglón.
 
 Los espacios en blanco a ambos lados del signo `=` son buena práctica en este lenguaje.
+Vienen dados por convención.
 
 ```python title="Ejemplos: asignaciones"
 entero = 16      
@@ -231,7 +232,7 @@ logica   :  bool
 
 Los ***métodos*** son operaciones comunes que afectan a las variables. Son similares a las *funciones*  pero están dedicados a los elementos. Los métodos se utilizan así:
 ```python title="Uso de métodos"
-<variable>.<metodo>(<argumento1>, <argumento2>, ...)
+nombre_variable.nombre_metodo(argumento_1, argumento_2, ...)
 ```
 donde los ***argumentos*** son valores de entrada que el método utiliza para procesar y dar su resultado. Los argumentos pueden ser opcionales ú obligatorios, dependiendo de cada método y de la informacion que da cada argumento.
 

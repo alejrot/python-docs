@@ -22,7 +22,7 @@ pip --version               # version PIP actual
 pip install --upgrade pip   # actualizar PIP
 ```
 
-PyPi es el repositorio oficial para obtener y publicar los paquetes. [Sitio oficial de PyPi](https://pypi.org/project/pip/)
+PyPi es el repositorio oficial para obtener y publicar los paquetes. [Sitio oficial de PyPi](https://pypi.org/)
 
 
 ### Instalación de paquetes

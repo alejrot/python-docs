@@ -15,18 +15,18 @@ A continuación se muestran los operadores aritméticos de Python, los cuales si
 
 | Operador | Símbolo   |
 |---|:---:|
-| Suma | +   |
-| Resta | -   |
-| Multiplicación | *  |
-| Division  |  / |
-| Division entera | //  |
-| Exponente | **  |
-|  Módulo| %   |
+| Suma | `+`   |
+| Resta | `-`   |
+| Multiplicación | `*`  |
+| Division  |  `/` |
+| Division entera | `//`  |
+| Exponente | `**`  |
+|  Módulo| `% `  |
 
 
 Modo de uso:
 ```python title="Formato operaciones aritméticas"
-resultado = numero_1  <operador> numero_2
+resultado = numero_1 operador numero_2
 ```
 
 ```py title="Ejemplo: uso operaciones aritméticas"
@@ -38,7 +38,7 @@ n = 7 // 3  #  '2'
 n = 7 % 3   #  '1'
 ```
 
-!!! tip "Tip: operadores aritméticos sobre strings"
+!!! tip "Tip: operadores aritméticos sobre *strings*"
     Algunos operadores de Python permiten trabajar con `strings`: textos, frases, etc:
     
     - El operador + también puede usarse para **concatenar** cadenas de texto (`strings`). 
@@ -50,11 +50,8 @@ n = 7 % 3   #  '1'
     texto * 3         # 'hola_hola_hola_'
     ```
 
-### Jerarquía de las operaciones aritmeticas
 Las operaciones aritméticas tienen una jerarquía de aplicacion por defecto.
 Este es el orden de jerarquía de las operaciones, de las primeras en aplicarse a las últimas: 
-
-<!-- Paréntesis → Exponente → Multiplicación → División → Adición → Sustracción -->
 
 1. Paréntesis 
 2. Exponente 
@@ -66,7 +63,8 @@ Este es el orden de jerarquía de las operaciones, de las primeras en aplicarse 
 Nemotécnico jerarquías: **PEMDAS**
 
 ### Operadores de Asignación
-Combinan operaciones aritméticas con la asignación (=) a continuación. A la variable de entrada se la afecta con el operador aritmético indicado y una variable o valor adicional.
+
+Combinan operaciones aritméticas con la asignación (`=`) a continuación. A la variable de entrada se la afecta con el operador aritmético indicado y una variable o valor adicional.
 
 Ejemplo:   
 ```python
@@ -79,24 +77,29 @@ edad = edad + 3
 ```
 
 
-## Operadores Lógicos
+### Operadores Lógicos
 
 Los operadores lógicos trabajan con valores y variables booleanos. 
 
 Modo de uso:
 ```python title="Formato operaciones lógicas"
-resultado = valor_logico_1 <operador> valor_logico_2
+resultado = valor_logico_1 operador valor_logico_2
 ```
 Los operadores disponibles son los siguientes:
 
 | Operador | Símbolo   |  Salida en 'True'  |
 |:---|:---:| -----|
-| Y (AND)           |  and | Ambas entradas son 'True'   |
-| O (OR)            |    or | Al menos una entrada es 'True'   |
-|  NO (NOT)         |    not |  Entrada 'False'  |
-| O exclusiva (XOR) |    ^ | Entradas distintas  |
+| Y (AND)           | `and` | Ambas entradas son 'True'   |
+| O (OR)            | `or` | Al menos una entrada es 'True'   |
+|  NO (NOT)         | `not` |  Entrada 'False'  |
+| O exclusiva (XOR) | `^` | Entradas distintas  |
 
+Esta es la jerarquía de las operaciones lógicas,
+de mayor a menor:
 
+1. `not` 
+2. `and` 
+3. `or`
 
 ??? note "Anexo: tablas de verdad"
     Los resultados de cada operador lógico se describen habitualmente con las ***tablas de verdad***,  donde el emoji ✅ es `True` y la celda vacía es `False`.:
@@ -136,13 +139,67 @@ Los operadores disponibles son los siguientes:
 
 
 
+### Operadores Bit a Bit
+
+#### Lógicos
+
+Estos operadores aplican las operaciones lógicas vistas previamente pero bit a bit.
+Lo que hacen estos operadores es basarse en la representación binaria
+de la(s) variable(s) de entrada.
 
 
-### Jerarquía de operaciones lógicas  
-Esta es la jerarquía de mayor a menor:
-1. not 
-2. and 
-3. or
+
+| Operador | Símbolo   |Bit salida en 'True'  |
+|-------|:-------:|:---|
+| Y (AND)           | `&` | Ambos bits son 'True'   |
+| O (OR)            | `|` | Al menos un bit es 'True'   |
+|  NO (NOT)         | `~` | Bit 'False'  |
+| O exclusiva (XOR) | `^` | Bits distintos  |
+
+
+Ejemplos de uso: 
+
+```py
+7 & 5   # '111' and '101' -> '7' (111)
+7 | 5   # '111' or  '101' -> '5' (101)
+7 ^ 5   # '111' xor '101' -> '2' (010)
+```
+
+
+
+
+#### Desplazamiento (*shift*)
+
+Con los operadores de desplazamiento
+se lee una variable como binario
+y se elige cuántas posiciones se 'corre'.
+Los espacios faltantes se autocompletan con ceros.
+
+
+
+| Operador | Símbolo |
+|-------|:-------:|
+| Corrimiento a derecha   | `>>` |
+| Corrimiento a izquierda | `<<` |
+
+
+Ejemplos: 
+
+```py title="Desplazamiento - a izquierda"
+1 << 0 # no corrimiento -> '1'  (0001) 
+1 << 1 # 1 bit          -> '2'  (0010)
+1 << 3 # 2 bits         -> '4'  (0100)
+1 << 3 # 3 bits         -> '8'  (1000) 
+```
+
+```py title="Desplazamiento - a derecha"
+7 >> 0 # no corrimiento -> '7'  (0111)
+7 >> 1 # 1 bit          -> '3'  (0011)
+7 >> 2 # 2 bits         -> '1'  (0001)
+7 >> 3 # 3 bits         -> '0'  (0000)
+```
+
+
 
 ### Operadores Relacionales
 
@@ -152,12 +209,12 @@ Los operadores disponibles en Python son:
 
 | Operador | Símbolo   |
 |-------|:-------:|
-| mayor    |    >      
-| menor    |     <      |
-| igual    |     ==     |
-| mayor o igual  |     >=  |
-| menor o igual  |    <=   |
-| distinto a    |     !=  |
+| mayor    | `>` |      
+| menor    |  `<`  |
+| igual    |  `==`  |
+| mayor o igual |  `>=` |
+| menor o igual | `<=`  |
+| distinto a    |  `!=` |
 
 
 !!! tip "Tip: operadores relacionales sobre strings"
@@ -171,4 +228,72 @@ Los operadores disponibles en Python son:
     print('ABC' == 'A') # False
     print('ABC' <= 'A') # False
     ```
+
+
+
+### Operador de Pertenencia
+
+El operador de pertenencia `in`
+es el encargado de verificar
+que un elemento o secuencia esté o no en una secuencia.
+
+El operador de pertenencia son:
+
+| Operador | Símbolo   |
+|-------|:-------:|
+| pertenencia|`in`|
+
+
+El retorno es un booleano:
+`True` si el elemento existe dentro de la secuencia
+y `False` en caso contrario.
+
+Ejemplo:
+```py title="Pertenencia - valores"
+inclusion = "a"  in "hola"  # 'True'
+inclusion = "b"  in "hola"  # 'False'
+```
+
+La secuencia puede ser una variable `string`
+como también una lista, una tupla, etc.
+
+
+Con `in` también se puede verificar la existencia o no de una secuencia particular dentro de otra:
+
+```py title="Pertenencia - secuencias"
+inclusion = "la"  in "hola"  # 'True'
+inclusion = "al"  in "hola"  # 'False'
+```
+
+La cláusula se puede usar combinada con el operador lógico `not`:
+
+
+```py title="No pertenencia"
+inclusion =  "n" not in "hola" # 'True'
+inclusion = "al" not in "hola" # 'True'
+```
+
+
+### Operador de identidad
+
+El operador de identidad `is` se encarga de verificar si dos variables
+ocupan el mismo espacio en memoria.
+
+| Operador | Símbolo   |
+|-------|:-------:|
+| identidad|`is`|
+
+El retorno es un booleano: `True` si se cumple la identidad y `False` en caso contrario.
+
+Este operador también suele usarse como alternativa al operador relacional de igualdad:
+
+```py
+valor = None
+# uso
+identidad = valor is True       # 'False'
+identidad = valor is False      # 'False'
+identidad = valor is None       # 'True'
+``` 
+
+
 
