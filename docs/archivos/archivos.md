@@ -3,12 +3,17 @@ tags:
   - Archivos
 ---
 
-# Manejo de Archivos
+# Interacción con Archivos
 
+Python dispone de la función de uso general `open()`
+para interactuar con los archivos del equipo,
+habilitando operaciones de lectura y de escritura.
 
 ## Apertura
 
-Asumimos que los archivos están ubicados en el directorio del ejecutable o script.
+<!--
+Asumimos que los archivos están ubicados en el directorio del ejecutable o script. 
+-->
 Para trabajar con  un archivo podemos hacer:
 
 ```python title="Apertura archivos - cierre automático" hl_lines="1"
@@ -19,7 +24,9 @@ with open(ruta_archivo, modo_apertura) as descriptor_archivo:
 # Cierre automático de archivo
 ```
 
-El fin del indentado es interpretado como el cierre del archivo. Esto es así por haber utilizado la palabra `with` antecediendo la apertura. Si en cambio se prefiere hacer el cierre manualmente se puede hacer:
+El fin del indentado es interpretado como el cierre del archivo.
+Esto es así por haber utilizado la cláusula `with` antecediendo la apertura.
+Si en cambio se prefiere hacer el cierre manualmente se puede hacer:
 
 ```python title="Apertura archivos - cierre manual" hl_lines="1 4"
 descriptor_archivo = open(ruta_archivo, modo_apertura) 

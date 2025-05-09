@@ -8,7 +8,10 @@ tags:
 
 # Archivos JSON
 
-Los archivos JSON (*JavaScript Object Notation*) son muy utilizados para guardar información en el formato de  los "objetos" de JavaScript, muy similar a los diccionarios de Python.
+Los archivos JSON (*JavaScript Object Notation*)
+son muy utilizados para guardar información
+en el formato de  los "objetos" de JavaScript,
+muy similares a los diccionarios de Python.
 
 ## Importación
 
