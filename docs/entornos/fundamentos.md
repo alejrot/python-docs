@@ -2,7 +2,7 @@
 tags:
   - venv
   - Modulos
-  - Entornos
+  - Entornos virtuales
 ---
 
 # Fundamentos de los entornos virtuales 

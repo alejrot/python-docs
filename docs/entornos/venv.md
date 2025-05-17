@@ -2,9 +2,8 @@
 tags:
   - venv
   - Modulos
-  - Entornos
+  - Entornos virtuales
 ---
-
 
 
 
@@ -15,9 +14,10 @@ tags:
 Se incluye desde la versión 3.4.
 
 ### Creacion entorno virtual 
+
 Se elige la ruta de un directorio donde se creará el entorno virtual:
 ```bash title="Creación de entorno virtual"
-py -m venv ruta_directorio
+py -m venv RUTA_ENTORNO
 ```
 Dentro del directorio elegido se crearán todos los archivos y directorios auxiliares necesarios para empezar a trabajar. En ellos se guardará el ejecutable de Python y se guardarán los paquetes a añadirse al proyecto.
 
@@ -28,30 +28,89 @@ en una carpeta oculta llamada `venv`:
 py -m venv .venv
 ```
 
+???+ info "Árbol de archivos"
+
+      Cuando se crea el entorno virtual se crea una estructura de archivos similar a la siguiente:
+
+      ```bash
+      carpeta_entorno
+      ├── bin                      
+      │       # rutinas de shell -> comando 'deactivate'
+      │   ├── activate
+      │   ├── activate.csh
+      │   ├── activate.fish
+      │   ├── Activate.ps1
+      │       # clientes PIP
+      │   ├── pip
+      │   ├── pip3
+      │   ├── pip3.13
+      │       # enlaces simbólicos al intérprete Python global
+      │   ├── python -> /usr/bin/python
+      │   ├── python3 -> python
+      │   └── python3.13 -> python
+      │
+      ├── include
+      │   └── python3.13            # (vacío)
+      │
+      ├── lib
+      │   └── python3.13
+      │       └── site-packages     # paquetes instalados localmente
+      │           ├── pip                       # código de paquete   
+      │           └── pip-24.3.1.dist-info      # información de paquete
+      │
+      ├── lib64 -> lib
+      │
+      └── pyvenv.cfg                # configuración del entorno actual
+      ```
+      donde la numeración de PIP y de Python corresponde a la versión global disponible, en este ejemplo la 3.13.
+
+      En el caso de Windows la carpeta `bin` es reemplazada por la carpeta `Scripts`. 
+
+      El archivo de configuración `pyenv.cfg`
+      tiene un contenido como el siguiente:
+
+      ```bash
+      home = /usr/bin
+      include-system-site-packages = false
+      version = 3.13.3
+      executable = /usr/bin/python3.13
+      command = /usr/bin/python -m venv RUTA_ENTORNO/.venv
+      ```
+
+
+
+      El diagrama de árbol previo puede trazarse con el comando `tree` de Bash:
+
+      ```bash
+      tree .venv  -L 4
+      ```
+
+
 
 ### Activacion entorno virtual
 
-
-El comando de activación dependerá de la terminal usada:
+La activación consiste en ejecutar
+alguno de los *scripts* de nombre *"activate"*.
+El script correcto dependerá de la terminal usada:
 
 
 === "Bash"
 
       ```bash title="Activación - Bash"
-      source ruta_entorno/bin/activate  # Linux y MacOs
-      source ruta_entorno/Scripts/activate  # Windows
+      source RUTA_ENTORNO/bin/activate  # Linux y MacOs
+      source RUTA_ENTORNO/Scripts/activate  # Windows
       ```
 
 === "CMD"
 
       ```cmd title="Activación - CMD"
-      ruta_entorno\Scripts\activate.bat
+      RUTA_ENTORNO\Scripts\activate.bat
       ```
 
 === "PowerShell"
 
       ```cmd title="Activación - PowerShell"
-      ruta_entorno\Scripts\Activate.ps1
+      RUTA_ENTORNO\Scripts\Activate.ps1
       ```
 
 En el caso de haber creado la carpeta oculta `venv`:
@@ -59,24 +118,52 @@ En el caso de haber creado la carpeta oculta `venv`:
 === "Bash"
 
       ```bash title="Activación (local) - Bash"
-      source venv/bin/activate  # Linux y MacOs
-      source venv/Scripts/activate  # Windows
+      source .venv/bin/activate  # Linux y MacOs
+      source .venv/Scripts/activate  # Windows
       ```
 
 === "CMD"
 
       ```cmd title="Activación (local) - CMD"
-      venv\Scripts\activate.bat
+      .venv\Scripts\activate.bat
       ```
 
 === "PowerShell"
 
       ```cmd title="Activación (local) - PowerShell"
-      venv\Scripts\Activate.ps1
+      .venv\Scripts\Activate.ps1
       ```
 
 
+La activación se verifica en Bash con el comando `which`:
+
+```bash title="Consultar intérprete actual"
+which python
+```
+cuyo resultado debe apuntar a alguno de los enlaces a Python internos:
+
+```bash title="Intérprete actual"
+RUTA_ENTORNO/bin/python   # Linux y MacOs
+RUTA_ENTORNO/Scripts/python   # Windows
+```
+
+Además se debe verificar que PIP no detecta paquetes adicionales instalados:
+
+```bash title="Paquetes preinstalados"
+pip list
+```
+dando lugar a una lista como esta:
+```
+Package Version
+------- -------
+pip     24.3.1
+```
+
+
 El entorno virtual permanecerá activado hasta que se cierre la terminal o se desactive explícitamente con el comando [`deactivate`](#desactivar-entorno-virtual).
+
+
+
 
 
 
@@ -89,7 +176,7 @@ pip install nombre_paquete
 ```
 Hay que asegurarse primero que el entorno virtual esté activado.
 
-La lista de paquetes disponibles se realiza con el comando *list*:
+La lista de paquetes disponibles localmente se realiza con el comando `list`:
 ```bash title="Listar paquetes"
 pip list
 ```
@@ -106,12 +193,16 @@ La versión actual de los paquetes se puede guardar en formato texto con el coma
 # paquetes actuales y su versión actual
 pip freeze > requirements.txt
 ```
-En el ejemplo se guardan todos los nombres de paquete y sus versiones en el archivo de texto *requirementsd.txt*. Esta lista creada sirve para automatizar la descarga e instalación de todos los paquetes necesarios con un único comando:
+En el ejemplo se guardan todos los nombres de paquete y sus versiones en el archivo de texto *requirementsd.txt*.
+Esta lista creada sirve para automatizar la descarga e instalación de todos los paquetes necesarios con un único comando:
+
 ```bash title="Instalar lista de paquetes"
 # instalacion desde archivo
 pip  install -r requirements.txt
 ```
-En el contexto de un entorno virtual se minimiza la lista de paquetes a instalar, mejorando el control sobre el proyecto y evitando instalar dependencias inútiles para el proyecto actual.
+En el contexto de un entorno virtual se minimiza la lista de paquetes a instalar,
+mejorando el control sobre el proyecto
+y evitando instalar dependencias inútiles para el proyecto actual.
 
 
 ### Desactivar entorno virtual
@@ -120,19 +211,24 @@ El entorno virtual se desactiva fácilmente con el comando *deactivate*:
 ```bash title="Desactivar entorno"
 deactivate
 ```
-De esta manera se retoma el uso de los paquetes globales de manera inmediata.
+De esta manera se retoma el uso de los paquetes globales de manera inmediata
+y el intérprete de Python detectado vuelve a ser el global:
+
+```bash title="Intérprete global"
+which python      # En Linux: '/usr/bin/python'
+```
 
 ### Uso sin activación
 
 
-El intérprete local de Python puede ser ejecutado directamente a partir de su ruta.
+El intérprete local de Python puede ser **ejecutado directamente** a partir de su ruta.
 Invocándolo directamente se ahorra el paso de activación de su entorno virtual.
 
 Uso en Bash:
 
 ```bash title="Sin activación - interprete local"
-ruta_entorno/bin/python   # Linux y MacOs
-ruta_entorno/Scripts/python   # Windows
+RUTA_ENTORNO/bin/python   # Linux y MacOs
+RUTA_ENTORNO/Scripts/python   # Windows
 ```
 
 

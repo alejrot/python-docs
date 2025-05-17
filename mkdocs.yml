@@ -276,6 +276,14 @@ nav:
       - entornos/index.md
       - entornos/fundamentos.md
       - entornos/venv.md
+      - Poetry:
+        - entornos/poetry/index.md
+        - entornos/poetry/instalacion.md
+        - entornos/poetry/comenzando.md
+        - entornos/poetry/entornos.md
+        - entornos/poetry/obsoletos.md
+
+
 
     - Paralelismo:
       - paralelismo/procesos.md
