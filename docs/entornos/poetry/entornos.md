@@ -11,7 +11,7 @@ Esto significa que, si existe un único intérprete de Python, entonces Poetry c
  
 ## Comando `python`
 
-Phoetry incluye su propio gestor de intérpretes Python
+Poetry incluye su propio gestor de intérpretes Python
 desde su versión 2.1.0.
 
 
@@ -67,7 +67,7 @@ La desinstalación de una versión específica de Python se realiza con el coman
 poetry python remove TAG_VERSION
 ```
 
-## Pyenv
+## Uso con Pyenv
 
 Poetry también puede ser usado junto con el plugin **pyenv** para elegir una versión específica de Python para el proyecto.
 
@@ -75,6 +75,7 @@ Poetry también puede ser usado junto con el plugin **pyenv** para elegir una ve
 pyenv install 3.9.8     # instalar Python 3.9.8
 pyenv local 3.9.8       # elegir Python 3.9.8
 ```
+ 
 
 <!-- 
 ```bash
@@ -152,8 +153,10 @@ Los paquetes requeridos se descargan e instalan  en el entorno actual con el com
 poetry install
 ```
 
-Este comando instala todos los paquetes indicados en el proyecto:
+Este comando instala todos los paquetes indicados en el proyecto.
 
+
+<!-- 
 - Si el archivo LOCK del proyecto existe
 entonces Poetry replicará la instalación de dependencias en base a este archivo;
 - Si el archivo LOCK del proyecto es inexistente
@@ -161,7 +164,8 @@ entonces Poetry usará el archivo TOML como referencia
 y creará el archivo LOCK donde guardará el nombre y versión exacta
 de todas las dependencias.
 
-
+ -->
+ 
 !!! warning "Empaquetado"
 
     Este comando requiere que el empaquetado esté **deshabilitado**.

@@ -36,7 +36,7 @@ poetry config --list
 !!! info "Ubicacion de entornos"
 
     A diferencia de VENV, Poetry crea los entornos locales en una carpeta de usuario dedicada.
-    Por ejemplo en Linux dicha carpeta puede ser:
+    Por ejemplo en Linux dicha carpeta suele ser:
     `~/.cache/pypoetry/virtualenv`
 
 
@@ -44,145 +44,6 @@ poetry config --list
 
 
 
-## Especificacion de versiones
-
-
-
-| Simbolo | Significado | Ejemplo|
-|---|---|---|
-| `^` |Sólo actualizaciones menores y patches | `n.x.x` |
-| `~` | Sólo actualizaciones patch | `n.m.x` |
-| `@` | Version exacta | `n.m.o` |
-| `>` | Version superior a  | más reciente que `n.m.o` |
-| `>=` | Version igual o superior a  | `n.m.o` o más reciente |
-| `<` | Version inferior a  | más antiguo que `n.m.o` |
-| `<=` | Version igual o inferior a  | `n.m.o` o más antiguo |
-| `>=n.m.o, <=w.y.z` | Rango de versiones  | `n.m.o` a `w.y.z` |
-|`*`| Comodín| `n.m.*` |
-
-
-**REVISAR**
-
-
-## Grupos de dependencias
-
-### definicion
-
-Los paquetes pueden repartirse en varios grupos 
-
-```bash
-poetry add --group nombre_grupo  paquete_1 paquete_2 ...
-```
-
-Ahora las dependencias aparecerán marcadas en el archivo TOML como parte de un grupo:
-
-```
-[tool.poetry.nombre_grupo.dependencies]
-paquete_1 = ^1.2.3
-paquete_2 = ^5.3.7
-...
-```
-
-
-Para que la instalacion de estos paquetes sea opcional hay que modificar manualmente el archivo TOML y agregar el parametro `optional`:
-
-```
-[tool.poetry.nombre_grupo.ui]
-optional = true
-[tool.poetry.nombre_grupo.dependencies]
-paquete_1 = ^1.2.3
-paquete_2 = ^5.3.7
-...
-```
-
-### instalacion
-
-Instalar grupos opcionales:
-
-
-```bash
-poetry install --with nombre_grupo
-```
-
-Excluir grupos predefinidos:
-
-```bash
-poetry install --without nombre_grupo
-```
-
-
-Instalar sólo grupos específicos
-
-
-```bash
-poetry install --only nombre_grupo
-```
-
-Instalar sólo dependencias no agrupadas (`main`)
-
-```bash
-poetry install --only main
-```
-
-### Actualizacion
-
-
-Se actualizan los paquetes en base al archivo TOML presente. 
-
-```bash
-poetry update
-```
-
-
-### Sincronización de dependencias
-
-
-Con el comando `sync` se descartan todas las dependencias que no aparezcan en el archivo LOCK.
-
-Uso:
-
-```bash
-poetry sync
-```
-
-se admite la sincronización en base a un grupo específico
-
-```bash
-poetry sync --with nombre_grupo
-poetry sync --without nombre_grupo
-poetry sync --only nombre_grupo
-```
-
-### Remoción
- 
-
-Los paquetes pueden ser removidos de los grupos mediante el uso de comandos:
-
-```bash
-poetry remove nombre_paquete --group  nombre_grupo
-```
-
-
-
-## Archivo Lock
-
-
-El archivo `poetry.lock` es el encargado de guardar la lista exhaustiva de los paquetes usados actualmente y sus dependencias,
-cada uno con su número de versión.
-
-Este archivo se crea automáticamente al instalar los paquetes con el comando `install`.
-Si el archivo Lock ya existe, entonces `install` instalará la versión exacta de cada paquete especificado en él.
-
-
-### Consistencia
-
-El comando `check` verifica que el archivo LOCK
-y el archivo TOML
-sean consistentes entre sí.
-
-```bash
-poetry check
-```
 
 
 
@@ -224,8 +85,35 @@ poetry publish   # subida en PIP
 
 
 
+## SELF
+
+
+```bash
+poetry self
+poetry self add poetry-core@latest
+poetry self install
+```
+
+
+## Show
+
+```bash
+poetry show
+```
+
+
+## Source
+
+
+
+## Update
 
 
 
 
+## cache
 
+```
+poetry cache clear PyPI --all
+poetry cache list
+``` 

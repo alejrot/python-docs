@@ -1,11 +1,12 @@
 # Comenzando con Poetry
 
 
+## Crear proyecto
 
+### Proyecto vacío
 
-## Nuevo proyecto - `new`
-
-El comando `new` permite crear un nuevo proyecto:
+El comando `new` permite crear un nuevo proyecto,
+junto a algunos directorios:
 
 ```bash
 poetry new directorio_proyecto
@@ -37,15 +38,16 @@ por eso crea un directorio con el mismo nombre de proyecto adentro de la carpeta
 
 Todos los archivos se crean vacíos, excepto el archivo `pyproject.toml`
 
-## Archivo TOML
+### Archivo TOML
 
 El archivo `pyproject.toml` es el archivo de configuración principal.
 En él se incluye la información de las dependencias,
 las versiones de Python compatibles,
 la información del autor y su contacto,
 etc.
+Lo habitual es dejar a Poetry crear este archivo mediante comandos.
 
-## Crear archivo TOML - `init`
+### Sólo archivo TOML
 
 Para crear solamente el archivo `pyproject.toml` dentro del directorio actual se usa el comando `init`:
 
@@ -57,7 +59,9 @@ Tras ejecutar este comando
 se abre el mismo menú interactivo que en el caso del comando `new`.
 
 
-## Gestión de paquetes (básica)
+## Gestión de paquetes 
+
+### Agregado
 
 Para agregar un nuevo paquete al proyecto
 se usa el comando `add`:
@@ -72,11 +76,59 @@ Este comando también:
 - crea un entorno para el proyecto actual si aún no existe;
 - instala el paquete en el entorno actual.
 
-Para instalar una versión específica del paquete se usa el arroba (`@`) a modo de prefijo:
+
+### Especificacion de versiones
+
+Las versiones de cada paquete
+se pueden asignar mediante el uso de restricciones
+(*constraints*)
+junto al comando `add`,
+los cuales se enumeran a continuación:
+
+
+| Simbolo | Significado | Ejemplo|
+|---|---|---|
+| `^` |Sólo actualizaciones menores y patches | `n.x.x` |
+| `~` | Sólo actualizaciones patch | `n.m.x` |
+| `@` | Version exacta | `n.m.o` |
+
+
+
+
+Ejemplos de uso: definiendo versiones del paquete cosmético `rich`:
 
 ```bash
-poetry add nombre_paquete@numero_version
+poetry add rich^13.0       # versiones 13.0.0 a 14.0.0 
+poetry add rich~13.0       # versiones 13.0.0 a 13.1.0 
+poetry add rich@13.0.1     # sólo versión 13.1.0
 ```
+
+Los cambios se verán reflejados en el archivo TOML.
+Por ejemplo, si se elige especificar sólo la versión mayor del paquete:
+
+```bash
+poetry add rich^13.0 
+```
+Entonces el rango se indicará en el archivo `pyproject.toml` entre paréntesis:
+
+```
+dependencies = [
+    "rich (>=13.0,<14.0)",
+]
+```
+
+
+### Actualización
+
+Se dispone del comando `update` para actualizar los paquetes
+de acuerdo a los rangos de versiones predefinidos en el proyecto.
+
+```bash
+poetry update
+```
+
+### Remoción
+
 
 El paquete se elimina del proyecto con el comando `remove`:
 
@@ -86,7 +138,10 @@ poetry remove nombre_paquete
 el cual desinstala el paquete del entorno actual y lo borra de la lista de dependencias.
 
 
-## Ejecución directa
+
+## Ejecución
+
+### Ejecución directa
 
 El comando `run` de Poetry permite ejecutar las rutinas del proyecto 
 al tiempo que carga las dependencias:
@@ -96,7 +151,7 @@ poetry run python nombre_rutina
 ```
 
 
-## Activación de entorno virtual
+### Activación y desactivación de entorno virtual
 
 
 El entorno virtual se activa en Bash con la siguiente expresión:
