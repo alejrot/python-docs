@@ -12,7 +12,7 @@ https://www.datacamp.com/tutorial/python-poetry
 [entornos](https://python-poetry.org/docs/managing-environments/#switching-between-environments)
 
 
-
+<!-- 
 ## Configuración
 
 Resumen:
@@ -22,17 +22,17 @@ Resumen:
 poetry config --list
 ```
 
-
+ -->
 
 
 ## Entornos virtuales
 
 
-!!! info "PIPX"
+<!-- !!! info "PIPX"
 
-    Poetry utiliza PIPX, que es una versíon mejorada de PIP con manejo mejorado de los paquetes. 
+    Poetry utiliza PIPX, que es una versíon mejorada de PIP con manejo mejorado de los paquetes.  -->
 
-
+<!-- 
 !!! info "Ubicacion de entornos"
 
     A diferencia de VENV, Poetry crea los entornos locales en una carpeta de usuario dedicada.
@@ -40,7 +40,7 @@ poetry config --list
     `~/.cache/pypoetry/virtualenv`
 
 
-
+ -->
 
 
 
@@ -117,3 +117,9 @@ poetry show
 poetry cache clear PyPI --all
 poetry cache list
 ``` 
+
+## PACKS
+
+
+poetry-core         
+poetry-plugin-shell

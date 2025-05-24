@@ -3,6 +3,15 @@
 
 ## Crear proyecto
 
+### Archivo TOML
+
+El archivo `pyproject.toml` es el archivo de configuración principal.
+En él se incluye la información de las dependencias,
+las versiones de Python compatibles,
+la información del autor y su contacto,
+etc.
+Lo habitual es dejar a Poetry crear este archivo mediante comandos.
+
 ### Proyecto vacío
 
 El comando `new` permite crear un nuevo proyecto,
@@ -38,16 +47,9 @@ por eso crea un directorio con el mismo nombre de proyecto adentro de la carpeta
 
 Todos los archivos se crean vacíos, excepto el archivo `pyproject.toml`
 
-### Archivo TOML
 
-El archivo `pyproject.toml` es el archivo de configuración principal.
-En él se incluye la información de las dependencias,
-las versiones de Python compatibles,
-la información del autor y su contacto,
-etc.
-Lo habitual es dejar a Poetry crear este archivo mediante comandos.
 
-### Sólo archivo TOML
+### Crear TOML
 
 Para crear solamente el archivo `pyproject.toml` dentro del directorio actual se usa el comando `init`:
 
@@ -75,6 +77,15 @@ Este comando también:
 
 - crea un entorno para el proyecto actual si aún no existe;
 - instala el paquete en el entorno actual.
+
+
+!!! info "Ubicacion de entornos"
+
+    A diferencia de VENV,
+    Poetry crea todos los entornos locales en una misma carpeta dedicada a tal fin.
+    Por ejemplo en Linux dicha carpeta suele ser:
+    `CARPETA_USUARIO/.cache/pypoetry/virtualenv`
+
 
 
 ### Especificacion de versiones
