@@ -310,8 +310,7 @@ nav:
       - argparse/configuracion.md
       - argparse/parser.md
       - argparse/grupos.md
-      # - argparse/argparse.md
-
+      
     - Sys - Parámetros y funciones del sistema: modulos/sys.md
     - Os - Comandos del Sistema Operativo: modulos/os.md
     - Tempfile - Archivos Temporales: modulos/tempfile.md
@@ -322,10 +321,12 @@ nav:
 
 
   - Paquetes:
-    - Traducciones - python-i18n : paquetes/python-i18n.md
+    - Python-i18n - Traducciones: paquetes/python-i18n.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
+    - Poetry - Gestión de entornos virtuales: entornos/poetry/
+
 
   - Recursos:
     - contenido/enlaces.md

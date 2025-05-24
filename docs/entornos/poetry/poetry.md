@@ -12,42 +12,6 @@ https://www.datacamp.com/tutorial/python-poetry
 [entornos](https://python-poetry.org/docs/managing-environments/#switching-between-environments)
 
 
-<!-- 
-## Configuración
-
-Resumen:
-
-
-```bash
-poetry config --list
-```
-
- -->
-
-
-## Entornos virtuales
-
-
-<!-- !!! info "PIPX"
-
-    Poetry utiliza PIPX, que es una versíon mejorada de PIP con manejo mejorado de los paquetes.  -->
-
-<!-- 
-!!! info "Ubicacion de entornos"
-
-    A diferencia de VENV, Poetry crea los entornos locales en una carpeta de usuario dedicada.
-    Por ejemplo en Linux dicha carpeta suele ser:
-    `~/.cache/pypoetry/virtualenv`
-
-
- -->
-
-
-
-
-
-
-
 
 ## Publicar
 
@@ -67,8 +31,6 @@ Las subida a PIP se hace con el comando `publish`
 ```bash
 poetry publish   # subida en PIP
 ```
-
-
 
 
 
