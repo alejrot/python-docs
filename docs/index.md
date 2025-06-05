@@ -5,7 +5,7 @@ Mis apuntes en español acerca del lenguaje Python y algunos de sus módulos y p
 
 !!! info "Sitio en construcción"
 
-    Todos los contenidos de este sitio están en condiciones de revisión y reordenamiento.
+    Todos los contenidos de este sitio están sujetos a corrección y reordenamiento.
     
 
 

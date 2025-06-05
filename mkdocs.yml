@@ -149,8 +149,17 @@ plugins:
           enable_creation_date: true
           type: date        # fecha
           fallback_to_build_date: true
-      # blog (todo)
-      - blog:
+      # soporte para RSS (depende del blog)
+      - rss:
+          match_path: "blog/posts/.*"
+          date_from_meta:
+            as_creation: date.created
+            as_update: date.updated
+      # Tarjetas PNG automáticas 
+      - social:
+          cards_layout: default/accent
+  # blog (todo)
+  - blog:
           # blog_dir: .
           enabled: true
           blog_dir: blog    # cambia la carpeta del blog
@@ -179,19 +188,10 @@ plugins:
           # separador de resumen - cuerpo de cada post
           post_excerpt: optional
           post_excerpt_separator: <!-- mas -->
-      # soporte para RSS (depende del blog)
-      - rss:
-          match_path: "blog/posts/.*"
-          date_from_meta:
-            as_creation: date.created
-            as_update: date.updated
-      # Tarjetas PNG automáticas 
-      - social:
-          cards_layout: default/accent
 
 
-  - tags:
-      tags_file: tags.md
+  # - tags:
+  #     tags_file: tags.md
 
 
 nav:
@@ -201,14 +201,9 @@ nav:
       - basicos/comenzando.md
       - basicos/consola.md
       - basicos/documentacion.md
-
       - contenido/2-variables_asignaciones.md
       - contenido/3-expresiones_operadores.md
-
-
       - contenido/5-control_flujo.md
-      - contenido/11-excepciones.md
-
       - basicos/compilacion.md
 
     - Datos:
@@ -287,6 +282,8 @@ nav:
     - Excepciones y Testing:
       - tests/index.md
       - tests/excepciones.md
+      - tests/manejo.md
+      - tests/custom.md
       - tests/assert.md
       - tests/unittest.md
 
@@ -332,12 +329,12 @@ nav:
     - Poetry - Gestión de entornos virtuales: entornos/poetry/
 
 
-  - Recursos:
-    - contenido/enlaces.md
+  # - Recursos:
+  #   - contenido/enlaces.md
 
 
-  - Etiquetas:
-    - tags.md
+  # - Etiquetas:
+  #   - tags.md
 
   - Novedades: 
     - blog/index.md

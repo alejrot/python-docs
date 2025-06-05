@@ -18,12 +18,11 @@ Hay dos grandes tipos de tests:
 Los tests se implementan en base a las excepciones.
 
 
-
-
-
-
 ## Contenidos
 
 {{ pagetree(siblings)}}
 
 
+## Referencias
+
+[El libro de Python - Excepciones](https://ellibrodepython.com/excepciones-python)

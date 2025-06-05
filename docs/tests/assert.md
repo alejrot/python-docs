@@ -15,13 +15,13 @@ en caso que no se cumpla la condición elegida.
 
 Uso básico:
 
-```py
+```py title="Assert - cláusula"
 assert condicion
 ```
 
 También puede usarse el *assert* como función:
 
-```py
+```py title="Assert - función"
 assert(condicion)
 ```
 
@@ -32,7 +32,7 @@ se dispara una excepción especial llamada `AssertionError`.
 
 Ejemplo:
 
-```py
+```py title="Assert - disparo de excepción"
 assert 1==2     # 'AssertionError'
 assert(1==2)    # 'AssertionError'
 ```
@@ -43,7 +43,7 @@ Si se usa `assert` como cláusula
 entonces se permite definir un mensaje de error
 para la excepción:
 
-```py
+```py title="Assert - mensaje agregado"
 assert condicion, mensaje_error     
 ```
 
@@ -63,7 +63,7 @@ se pueden definir tests unitarios.
 Esto permite crear rutinas de verificación 
 para comprobar la integridad del código y su buen funcionamiento.
 
-```py 
+```py title="Testing en rutina"
 def negacion(x: bool):
     return not x
 
@@ -97,7 +97,7 @@ que la función o método sea llamado.
 
     Ejemplo:
 
-    ```py 
+    ```py title="Testing en funciones"
     def negacion(x: bool):
         assert type(x) == bool, "Error: argumento no booleano"
         return not x
