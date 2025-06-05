@@ -226,7 +226,6 @@ nav:
       - archivos/json.md
       - archivos/pyyaml.md
 
-
     - Tiempo y fechas:
       - tiempo/index.md 
       - tiempo/tiempo.md 
@@ -285,7 +284,11 @@ nav:
         - entornos/poetry/sync.md
         - entornos/poetry/obsoletos.md
 
-
+    - Excepciones y Testing:
+      - tests/index.md
+      - tests/excepciones.md
+      - tests/assert.md
+      - tests/unittest.md
 
     - Paralelismo:
       - paralelismo/procesos.md
@@ -293,7 +296,8 @@ nav:
       - paralelismo/intercambio.md
 
   
-  - Modulos: 
+  - Módulos: 
+    - modulos/index.md
 
     - Pathlib:
       - pathlib/index.md
@@ -317,7 +321,7 @@ nav:
     - Re - Expresiones Regulares (RegEx): modulos/regex.md
     - Asyncio - Ejecución Asincrónica: modulos/asyncio.md
     - Logging - Reportes de errores: modulos/logging.md
-    - Unittest - Tests Unitarios: modulos/unittest.md
+    - Unittest - Tests Unitarios: tests/unittest.md
 
 
   - Paquetes:
