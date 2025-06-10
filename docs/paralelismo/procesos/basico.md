@@ -10,15 +10,6 @@ tags:
 
 
 
-# Procesos (*proccess*)
-
-Los procesos (***process***) son **"programas" unitarios** cuya ejecución es gestionada por el sistema operativo, el cual asigna cada proceso en activo a un núcleo del procesador que esté disponible para que se encargue de ejecutarlo. Los demás procesos quedan en espera hasta que el sistema operativo los ponga en activo de nuevo, los cierre o simplemente se terminen.
-
-Un programa completo puede estar compuesto por múltiples procesos vinculados entre sí. Esto permite:
-
-- modularizar el programa al dividirlo en rutinas específicas;
-- mejorar los tiempos de ejecución al repartir varios subprocesos del programa entre los núcleos del procesador, permitiendo la ejecución simultánea.
-
 ## Importación
 
 Crear procesos requiere de importar el modulo `multiprocessing`:
@@ -60,7 +51,8 @@ proceso = multiprocessing.Process(target=tarea, args=argumentos)
 
 ### Arranque 
 
-El nuevo proceso queda en stand-by hasta que se ordene el arranque con el método `start()`:
+El nuevo proceso queda en *stand-by*
+hasta que se ordene el arranque con el método `start()`:
 
 ```python
 # orden de ejecucion del proceso
@@ -160,14 +152,6 @@ proceso.daemon = True
 ## Intercambios y sincronización
 
 
-### Variables compartidas
-
-Los procesos **no comparten variables** de manera predeterminada. Para crear variables y datos comunes a múltiples subprocesos se usan las funciones `Value()` y `Array()`:
-
-```python title="Variables compartidas"
-numero_compartido  = multiprocessing.Value('d', 0)  # variables
-arreglo_compartido = multiprocessing.Array('i', range(10))  # datos
-```
 
 
 
@@ -244,109 +228,6 @@ with bloqueo:
 
 
 
-## Reservas (*pools*)
-
-Las *pools* de procesos funcionan como una reserva de tareas a ejecutarse en procesos paralelos. 
-
-La reserva se crea con la función `Pool()`, al cual debe indicársele el máximo número de procesos ejecutables en paralelo:
-
-```py title="Crear pool"
-pool = multiprocessing.Pool(processes=nro_procesos_simultaneos)    
-```
-El número de procesos es típicamente el número de núcleos disponibles del procesador a usar.
-
-Con el método `map()` se ordena la ejecución simultánea de un grupo de tareas:
-
-```py   title="Arrancar pool"
-pool.map(funcion_tarea, argumentos) 
-```
-A medida que se termina una tarea se cierra su proceso y se arranca uno nuevo para ejecutar la próxima tarea pendiente. 
-
-El cierre de la reserva se hace con el método `terminate()`:
-
-```py   title="Cerrar pool"
-pool.terminate()
-```
-
-!!! example "Ejemplo: Pool de 4 procesos, 16 tareas"
-
-    ```py hl_lines="16 17 20"
-    import random
-    import time
-    from multiprocessing import Pool
-
-    # tarea genérica con argumentos de entrada
-    def tarea(nombre: str) -> None:
-        print(f'Started worker "{nombre}"')
-        tiempo_rutina = random.choice(range(1, 5))
-        time.sleep(tiempo_rutina )
-        print(f'Tarea "{nombre}" finalizada en {tiempo_rutina} segundos')
-
-
-    # nombres para cada tarea 
-    nombres_proceso = [f'Tarea_{i}' for i in range(16)]
-
-    pool = Pool(processes=4)            # cuatro procesos simultáneos
-    pool.map(tarea, nombres_proceso)    # ejecución de a grupos de 4
-
-    # cierre de reserva
-    pool.terminate()
-    ```
-
-
-## Bifurcaciones (*forks*)
-
-Un mecanismo antiguo para crear procesos es la bifurcación. Consiste en hacer una réplica exacta del proceso actual con ayuda de la función `fork()`, cuyo retorno permite discernir entre el proceso original y su clon. Recurre al módulo `os`.
-
-
-```py title="Bifurcación (fork)" 
-retorno = os.fork()
-```
-
-El valor de retorno obtenido no es igual para el proceso original que para su clon, permitiendo diferenciarlos desde la rutina:
-
-| retorno | significado|
-|:---:|:---|
-|`valor > 0`| Es original $\rightarrow$ ID proceso clon|
-|`valor == 0` | Es clon del proceso original |
-|`valor < 0`| Error de bifurcación $\rightarrow$  clon fallido|
 
 
 
-!!! example "Ejemplo: IDs de original y de clon"
-
-    ```py title="Forks" hl_lines="7"
-    import os
-
-    # Rutina común
-    print("¡Vamos a hacer un fork de un proceso!")
-
-    # bifurcacion
-    retorno = os.fork()
-
-    # proceso padre: retorno = ID proceso hijo
-    if retorno>=0:
-        pid = os.getpid()
-        print("Rutina del proceso original")
-        print(f"pid: {pid}, retorno: {retorno}")
-
-    # proceso hijo : retorno = 0
-    elif retorno==0:
-        pid = os.getpid()
-        print("Rutina del proceso hijo")
-        print(f"pid = {pid}, retorno: {retorno}")
-
-    # error : retorno < 0
-    else:
-        print("Error de bifurcación")
-    ```
-
-
-
-## Referencias
-
-[Learn Tutorials - Procesos e hilos](https://learntutorials.net/es/python/topic/4110/procesos-e-hilos)
-
-[El Blog Python - Crea múltiples procesos en python](https://elblogpython.com/tutoriales-python/crea-multiples-procesos-en-python/)
-
-[Documentación oficial - Multiprocessing](https://docs.python.org/es/3/library/multiprocessing.html)

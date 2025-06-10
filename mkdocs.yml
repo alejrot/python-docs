@@ -288,7 +288,14 @@ nav:
       - tests/unittest.md
 
     - Paralelismo:
-      - paralelismo/procesos.md
+      # - paralelismo/procesos.md
+      - Procesos:
+        - paralelismo/procesos/index.md
+        - paralelismo/procesos/basico.md
+        - paralelismo/procesos/pool.md
+        - paralelismo/procesos/compartidos.md
+        - paralelismo/procesos/forks.md
+
       - paralelismo/hilos.md
       - paralelismo/intercambio.md
 
