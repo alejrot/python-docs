@@ -9,6 +9,11 @@ Un programa completo puede estar compuesto por múltiples procesos vinculados en
 - modularizar el programa al dividirlo en rutinas específicas;
 - mejorar los tiempos de ejecución al repartir varios subprocesos del programa entre los núcleos del procesador, permitiendo la ejecución simultánea.
 
+Python dispone de un módulo específico
+para la gestión de procesos
+llamado `multiprocessing`.
+
+
 ## Contenidos
 
 {{ pagetree(siblings)}}

@@ -294,6 +294,7 @@ nav:
         - paralelismo/procesos/basico.md
         - paralelismo/procesos/pool.md
         - paralelismo/procesos/compartidos.md
+        - paralelismo/procesos/bloqueo.md
         - paralelismo/procesos/forks.md
 
       - paralelismo/hilos.md

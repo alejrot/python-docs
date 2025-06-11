@@ -3,228 +3,262 @@ tags:
 #   - Hilos
   - Paralelismo
   - Procesos
-  - Locks
-  - Forks
+#   - Locks
+#   - Forks
   - multiprocessing
 ---
 
 
 
-## Importación
 
-Crear procesos requiere de importar el modulo `multiprocessing`:
-
-```python
-import multiprocessing
-```
+# Gestión de Procesos
 
 
-## Uso de procesos
-
-### Creación
+## Creación
 
 
 El nuevo proceso se crea con la función `Process()`, al cual se le debe asignar el nombre de una función o *"tarea"* a ejecutar en un nuevo proceso:
 
-```py title="Creación procesos" hl_lines="6"
+```py title="Creación procesos" 
+from multiprocessing import Process
+
 # rutina para el nuevo proceso
 def tarea():
-    return
+    pass
 
 # creacion del proceso
-proceso = multiprocessing.Process(target=tarea)
+subproceso = Process(target=tarea)
 ```
 
-Si la rutina requiere argumentos de entrada estos se adjuntan como una lista o tupla dentro de la función `Process()`
+!!! info "Subprocesos"
 
-```py title="Creación procesos - con argumentos" hl_lines="7"
-def tarea(x, y):
-    return
+    El nuevo proceso creado es considerado como ***proceso hijo*** del proceso que lo creó. También se lo suele llamar ***subproceso***.
+
+
+### Argumentos
+
+Si la rutina requiere argumentos de entrada
+estos se adjuntan como una lista o tupla
+dentro de la función `Process()`:
+
+```py title="Creación procesos - con argumentos"
+from multiprocessing import Process
+
+def tarea(*args, **kwargs):
+    pass
 
 # argumentos = [x,y]      # argumentos en formato lista
 argumentos = (x,y,)       # formato alternativo
 # creacion del proceso
-proceso = multiprocessing.Process(target=tarea, args=argumentos) 
+subproceso = Process(
+    target=tarea,
+    args=lista_argumentos,
+    kwargs=diccionario_argumentos,
+    )
 ```
-!!! info "Proceso hijo"
-    El nuevo proceso creado es considerado como ***proceso hijo*** del proceso que lo creó. También se lo suele llamar ***subproceso***.
 
-### Arranque 
+### 'daemon'
+
+Los procesos demonios (*daemonic*) tienen dos características particulares:
+
+- son cerrados automáticamente si el proceso invocador sea cerrado 
+(no pueden quedar huérfanos);
+- impide que el subproceso *'daemonio'* llame a sus propios subprocesos.
+
+El proceso se puede configurar como daemonio en su definición:
+
+```py title="Creación procesos - daemonio"
+from multiprocessing import Process
+
+def tarea():
+    pass
+
+# argumentos = [x,y]      # argumentos en formato lista
+argumentos = (x,y,)       # formato alternativo
+# creacion del proceso
+subproceso = Process(
+    target=tarea,
+    daemon=True
+    )
+```
+
+o también puede usarse el atributo `daemon`:
+
+```py title="Configuracion como daemon"
+subproceso.daemon = True
+```
+
+Esta configuración debe hacerse antes de ordenar la ejecución. 
+
+
+### Nombre
+
+A cada proceso se le puede asignar un nombre opcional
+durante su creación mediante el argumento `name`.
+
+El nombre también se puede cambiar en cualquier momento
+con el atributo `name`:
+
+```py title="Nombre del proceso"
+subproceso.name = nombre_elegido
+```
+
+Si no se elige un nombre
+entonces el programa tendrá como nombre
+`Process-1`,`Process-2`, etc. 
+
+
+## Arranque 
 
 El nuevo proceso queda en *stand-by*
 hasta que se ordene el arranque con el método `start()`:
 
 ```python
 # orden de ejecucion del proceso
-proceso.start()
+subproceso.start()
 ```
 
+## Espera al cierre 
 
-### Espera al cierre 
-
-
-Si se requiere esperar el cierre del proceso creado para ejecutar más código se recurre al método `join()`. Con él el proceso que llama al método permanecerá en espera hasta que el proceso se termine:
+Si el proceso original
+requiere esperar al cierre del proceso creado 
+para ejecutar más código se recurre al método `join()`.
+Con él el proceso padre permanecerá
+en espera hasta que el proceso se termine:
 
 ```py title="Espera al cierre"
 # espera a que el proceso se cierre
-proceso.join()
+subproceso.join()
 ```
 Al método `join()` se le puede asignar un tiempo máximo de bloqueo como argumento:
 ```python title="Espera al cierre - con timeout"
 # espera a que el proceso se cierre 
 tiempo = 5
-proceso.join(tiempo)  # bloqueo por 5 segundos como máximo
+subproceso.join(tiempo)  # bloqueo por 5 segundos como máximo
 ```
 
-## Atributos
+## Ordenar cierre
 
+Se disponen de dos métodos llamados `close()` and `terminate()`
+para pedir al sistema operativo el cierre del proceso:
 
-
-### Estado actual
-
-
-El estado actual del proceso se consulta con el atributo `exitcode` o con el método `is_alive()`:
-```python title="Estado de ejecución"
-proceso.exitcode   # codigo de salida del proceso; 'None' si sigue vivo
-proceso.is_alive() # booleano: 'True' si sigue vivo
+```python title="Ordenar cierre"
+subproceso.close()      # señal 'SIGKILL'
+subproceso.terminate()  # señal 'SIGTERM'
 ```
 
-### Identificación
+Si hay subprocesos del proceso finalizados 
+(procesos "nietos") entonces éstos quedarán huérfanos.
 
-El nombre y el número ID (identificador) del proceso hijo se consultan con los atributos `name` y `pid`:
+!!! danger "Sincronismos y comunicaciones"
 
-```py title="Identificación de subproceso"
-proceso.name    # nombre del proceso
-proceso.pid     # numero identificador (ID) del proceso
+    La terminación forzosa de un subproceso
+    que tenga acceso a elementos de sincronismo
+    o de comunicación (ver más adelante)
+    puede dejar a éstos inutilizables y/o arruinar el funcionamiento
+    del resto de procesos relacionados.
+
+
+## Consulta de estado
+
+
+El método `is_alive` permite consultar si el proceso sigue activo:
+
+```python title="estado actual"
+retorno = subproceso.is_alive()
 ```
-<!-- Ejemplo:[procesos_multiples.py](procesos_multiples.py)  -->
+
+El retorno es `True` si sigue activo y `False` en caso contrario. 
 
 
-En cambio, para conocer el identificador del proceso padre y el del proceso padre se recurre al módulo `os`(sistema operativo):
+## Valor de retorno
 
-```py title="Identificación de subproceso"
-os.getpid()     # ID proceso actual
-os.getppid()    # ID proceso padre
+El valor de retorno de los procesos creados
+se obtienen con el atributo `exitcode`:
+
+```python title="valor de retorno"
+retorno = subproceso.exitcode 
 ```
 
+Si el subproceso aún está vivo se devuelve `None`;
+en caso contrario típicamente se devuelve `0`
+si la ejecución terminó correctamente.
+
+El valor de retorno puede cambiarse llamando a la función `exit()` del módulo `sys` dentro de la tarea:
+
+```py
+import sys
+
+def tarea():
+    # (rutina)
+    # ....
+    # valor retorno
+    sys.exit( valor_custom )
+```
+
+## ID de procesos
+
+El número identificador (ID) del proceso creado
+se consulta con el atributo `pid`:
+
+```python title="ID del proceso"
+pid = subproceso.pid
+```
+Este número es gestionado por el sistema operativo
+y no es modificable.
+
+El subproceso no es capaz de ver este atributo.
 
 
 
-!!! example "Ejemplo"
+!!! tip "Modulo `os`"
 
-    ```py
-    import multiprocessing
+
+    El módulo `os`
+    incluye los métodos `getpid` y `getppid`
+    para consultar el ID propio y el del proceso invocador.
+
+
+    ```py title="IDs desde subproceso"
+    os.getpid()     # ID proceso actual
+    os.getppid()    # ID proceso padre
+    ```
+
+    Ejemplo de uso:
+
+    ```py title="IDs - consulta"
+    from multiprocessing import Process
     import os
-    import time
-
-    # tareas de 1 segundo cada una
-    def tarea():
-        time.sleep(1)
-        # print(proceso.is_alive())
-        print("PID:  %s" % (os.getpid(),))
-        print("El ID del proceso padre es: %s" % (os.getppid()))
 
 
-    inicio = time.time()
-    # Creacion de lista de procesos en bucle
-    procesos = [multiprocessing.Process(target=tarea) for _ in range(4)]
-    # llama a los procesos para ejecutar
-    for proceso in procesos:
-        proceso.start()
-    # espera hasta que cada proceso termine
-    for proceso in procesos:
-        proceso.join()  
-        
-    fin = time.time()
-        
-    print("Tiempo ejecución: %.2f seg" % (fin - inicio))    # 'Tiempo ejecución: 1.04 seg'
+    def identificador():
+        print("Proceso hijo")
+        print("ID:       %s" % (os.getpid()))
+        print("ID padre: %s" % (os.getppid()))
+
+
+    subproceso = Process(target=identificador)
+    subproceso.start()
+    subproceso.join()
+
+    print("Proceso original")
+    print("ID hijo:  %s" % (subproceso.pid))
+    print("ID:       %s" % (os.getpid()))
     ```
 
-### Configuración como 'daemon'
+    En el mensaje creado  en consola 
+    se verifican que los números de ID coinciden: 
 
-El atributo `daemon` configura al proceso como *'daemonic'*. Esto habilita el **cierre automatico** cuando el proceso padre sea cerrado e impide que el proceso 'daemonio' llame a sus propios subprocesos. Esta configuracion debe hacerse antes de llamar al metodo `start()`. 
-
-```py title="Configuracion como daemon"
-proceso.daemon = True
-```
-
-
-## Intercambios y sincronización
-
-
-
-
-
-### Bloqueos (*lock*)
-
-
-A menudo se requiere sincronizar varios procesos paralelos para poder presentar resultados, acceder a ciertos recursos compartidos, etc. Uno de los métodos más habituales es el bloqueo o candado (*lock*), creado con la función `Lock()`*
-
-```py title="Creacion candados"
-bloqueo = multiprocessing.Lock()
-```
-
-Una forma de usar el candado es mediante el uso manual del bloqueo con los métodos `acquire()` y `release()`:
-
-```python title="Uso candados" hl_lines="2 8"
-# bloqueo manual
-bloqueo.acquire()
-
-# recurso compartido
-numero_compartido.value += 1
-
-# liberacion manual
-bloqueo.release()
-```
-
-Otra forma de usar el candado es con la ayuda de la clásula `with`:
-
-```python title="Uso candados - con with" hl_lines="1"
-with bloqueo:
-    # recurso compartido
-    numero_compartido.value += 1
-```
-
-
-!!! example "Ejemplo: variables compartidas y bloqueo de recursos" 
-
-    ```py hl_lines="4 6 10 14 16"
-    import multiprocessing, time
-
-    numero_local = 0
-    numero_compartido = multiprocessing.Value('d', 0)
-
-    bloqueo = multiprocessing.Lock()
-
-    def incremento():
-        global numero_local
-        with bloqueo:
-            # se simula un recurso ocupado o una rutina exigente
-            time.sleep(0.5)
-            # Los subprocesos modifican COPIAS de la variable local
-            numero_local += 1
-            # El numero conpartido SÍ es modificado por los subprocesos
-            numero_compartido.value += 1
-
-
-    inicio = time.time()
-    subprocesos = [multiprocessing.Process(target=incremento) for n in range(4)]
-    for proceso in subprocesos:
-        proceso.start()
-    for proceso in subprocesos:
-        proceso.join()
-    fin = time.time()
-
-
-    print("Tiempo ejecución: %.2f seg" % (fin - inicio)) 
-    print("El numero local es %d; el numero compartido es %d" % (numero_local, numero_compartido.value))
+    ``` title="IDs - Reporte"
+    Proceso hijo
+    ID:       3502272
+    ID padre: 3502271
+    Proceso original
+    ID hijo:  3502272
+    ID:       3502271
     ```
 
-    Resultado:
-    ```
-    Tiempo ejecución: 2.01 seg
-    El numero local es 0; el numero compartido es 4
-    ```
+
 
 
 
