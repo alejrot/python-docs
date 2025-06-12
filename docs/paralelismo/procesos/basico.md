@@ -153,10 +153,12 @@ Si hay subprocesos del proceso finalizados
 !!! danger "Sincronismos y comunicaciones"
 
     La terminación forzosa de un subproceso
-    que tenga acceso a elementos de sincronismo
-    o de comunicación (ver más adelante)
+    que tenga acceso a elementos de sincronismo (*locks*, *barrels*, etc.) 
+    o de comunicación (*pipes*, *qeues*, etc. )
     puede dejar a éstos inutilizables y/o arruinar el funcionamiento
     del resto de procesos relacionados.
+    
+    Usar con cuidado.
 
 
 ## Consulta de estado
