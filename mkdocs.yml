@@ -297,11 +297,10 @@ nav:
         - paralelismo/procesos/bloqueo.md
         - paralelismo/procesos/evento.md
         - paralelismo/procesos/pipe.md
-        # - paralelismo/procesos/queue.md
+        - paralelismo/procesos/queue.md
         - paralelismo/procesos/forks.md
 
       - paralelismo/hilos.md
-      - paralelismo/intercambio.md
 
   
   - Módulos: 

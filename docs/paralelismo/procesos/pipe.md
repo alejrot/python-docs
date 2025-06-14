@@ -1,4 +1,4 @@
-# Pipe
+# Tubería (Pipe)
 
 
 Las *pipes* ("tuberias") son un elemento de intercambio
@@ -129,72 +129,91 @@ Este demo sencillo muestra como mandar
 una lista de valores predefinida
 de un subproceso a otro.
 
+??? example "Pipes - demo"
 
-```py
-from multiprocessing import Process
-from multiprocessing import Pipe
+    ```py hl_lines="2 6 12 13 15 22 32 36"
+    from multiprocessing import Process
+    from multiprocessing import Pipe
+    from time import sleep
 
-from time import sleep
-
-# creacion de tuberia - unidireccional
-[extremo_emisor, extremo_receptor] = Pipe(False)
-
-
-def receptor(extremo_tubo):
-    """Tarea para la recepcion de datos"""
-    print("Receptor listo")
-    if extremo_tubo.poll(None) is True:
-        while extremo_tubo.poll() is True:
-            # recepcion - un elemento a la vez
-            elemento = extremo_tubo.recv()
-            print(f"recibido: {elemento}")
-
-        print("recepcion finalizada")
-    else:
-        print("tuberia vacia")
-
-    extremo_tubo.close()
-    print()
+    # creacion de tuberia - unidireccional
+    [extremo_emisor, extremo_receptor] = Pipe(False)
 
 
-def transmisor(extremo_tubo):
-    """Tarea para el envio de datos"""
-    print("Transmisor listo")
-    lista = ["hola", 1.0 , True, 27]
-    for l in lista:
-        # transmision - un elemento a la vez
-        extremo_tubo.send(l)
-        print(f"enviado: {l}")
+    def receptor(extremo_tubo):
+        """Tarea para la recepcion de datos"""
+        print("Receptor listo")
+        if extremo_tubo.poll(None) is True:
+            while extremo_tubo.poll() is True:
+                # recepcion - un elemento a la vez
+                elemento = extremo_tubo.recv()
+                print(f"recibido: {elemento}")
 
-    print("transmision finalizada")
-    extremo_tubo.close()
-    print()
+            print("recepcion finalizada")
+        else:
+            print("tuberia vacia")
+
+        extremo_tubo.close()
+        print()
 
 
-# subprocesos para gestionar la tuberia
-sub_transmisor = Process(
-    target=transmisor,
-    args=(extremo_receptor,),
-    daemon=True,
-    )
+    def transmisor(extremo_tubo):
+        """Tarea para el envio de datos"""
+        print("Transmisor listo")
+        lista = ["hola", 1.0 , True, 27]
+        for l in lista:
+            # transmision - un elemento a la vez
+            extremo_tubo.send(l)
+            print(f"enviado: {l}")
 
-sub_receptor = Process(
-    target=receptor,
-    args=(extremo_emisor,),
-    daemon=True,
-    )
+        print("transmision finalizada")
+        extremo_tubo.close()
+        print()
 
-# se carga la tuberia 
-sub_transmisor.start()
-# lectura de datos atrasada
-sleep(0.2)
-sub_receptor.start()
 
-# espera al cierre de procesos
-sub_transmisor.join()
-sub_receptor.join()
-print("Finalizado")
-```
+    # subprocesos para gestionar la tuberia
+    sub_transmisor = Process(
+        target=transmisor,
+        args=(extremo_receptor,),
+        daemon=True,
+        )
+
+    sub_receptor = Process(
+        target=receptor,
+        args=(extremo_emisor,),
+        daemon=True,
+        )
+
+    # se carga la tuberia 
+    sub_transmisor.start()
+    # lectura de datos atrasada
+    sleep(0.2)
+    sub_receptor.start()
+
+    # espera al cierre de procesos
+    sub_transmisor.join()
+    sub_receptor.join()
+    print("Finalizado")
+    ```
+
+    El texto por consola es el siguiente:
+    ```
+    Transmisor listo
+    enviado: hola
+    enviado: 1.0
+    enviado: True
+    enviado: 27
+    transmision finalizada
+
+    Receptor listo
+    recibido: hola
+    recibido: 1.0
+    recibido: True
+    recibido: 27
+    recepcion finalizada
+
+    Finalizado
+    ```
 
 
 
