@@ -81,7 +81,7 @@ theme:
     - announce.dismiss
     # acciones de código
     # - content.action.edit
-    - content.action.view
+    # - content.action.view
 
 
 markdown_extensions:
@@ -296,6 +296,8 @@ nav:
         - paralelismo/procesos/compartidos.md
         - paralelismo/procesos/bloqueo.md
         - paralelismo/procesos/evento.md
+        - paralelismo/procesos/pipe.md
+        # - paralelismo/procesos/queue.md
         - paralelismo/procesos/forks.md
 
       - paralelismo/hilos.md
