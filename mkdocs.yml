@@ -332,7 +332,11 @@ nav:
 
 
   - Paquetes:
-    - Python-i18n - Traducciones: paquetes/python-i18n.md
+    - Traducciones:
+      - i18n/index.md
+      - i18n/basico.md
+      - i18n/yaml.md
+      - i18n/json.md
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
