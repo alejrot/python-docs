@@ -1,39 +1,11 @@
 
-# Uso básico
-
-## Comenzando 
-
-### Instalación
-
-`python-i18n` se instala fácilmente desde PIP:
-
-```bash title="instalación"
-pip install python-i18n
-```
-
-Si se prefiere guardar las traducciones en formato YAML el paquete requerido es el siguiente:
-
-```bash title="instalacion (con soporte YAML)"
-pip install python-i18n[YAML]
-```
-
-
-### Importación
-
-El paquete debe importarse para su uso
-con el nombre `i18n`:
-```python title="importación"
-import i18n
-```
-
-
-## Traduccion desde script
+# Traduccion desde script
 
 En esta modalidad las traducciones
 se introducen directamente en la rutina de Python.
 Esta manera no es la más habitual
 
-### Crear traducción
+## Crear traducción
 
 Las traducciones se pueden crear
 adentro de la rutina de Python
@@ -52,7 +24,7 @@ se puede asignar una abreviación de lenguaje
 con ayuda del campo `locale`,
 de modo de permitir soporte simultáneo a múltiples idiomas:
 
-```python title="Crear raduccion -  varios idiomas"
+```python title="Crear traduccion -  varios idiomas"
 i18n.add_translation('hi','good morning', locale='en')   # 'en' : inglés (english) 
 i18n.add_translation('hi','buenos días', locale='es')    # 'es' : español
 ```
@@ -62,18 +34,18 @@ definidas por el desarrollador.
 Éstas no vienen predefinidas por el paquete,
 aunque convencionalmente se usan las abreviaciones en inglés de los lenguajes. 
 
-### Elegir lenguajes - Set y Fallback
+## Elegir lenguajes - Set y Fallback
 
 El lenguaje prioritario se establece
 con la función `set()`:
 
-```python title="Lenguaje preferido: set"
+```python title="Lenguaje preferido - set"
 # Lenguaje preferido
 i18n.set('locale', 'es')   # español
 ```
 en tanto que la opción alternativa se establece con la función `fallback()`:
 
-```python title="Lenguaje de respaldo: fallback"
+```python title="Lenguaje de respaldo - fallback"
 # alternativa : 'fallback'
 i18n.set('fallback', 'en')  # inglés
 ```
@@ -84,7 +56,7 @@ en el lenguaje preestablecido.
 Como alternativa habitualmente se elige el inglés.
 
 
-### Leer traducción
+## Leer traducción
 
 La lectura de las traducciones se realizan con la función `t()`:
 
@@ -100,9 +72,10 @@ o el de respaldo (`fallback`).
 Si no hay ninguna traducción preasiganada para el campo
 entonces se devuelve el mismo campo como texto.
 
-### Placeholders
+## Placeholders
 
-Se pueden implementar parámetros (campos variables) dentro de las traducciones, éstos son llamados ***placeholders*** o *marcadores*:
+Se pueden implementar parámetros (campos variables) dentro de las traducciones.
+Éstos son llamados ***placeholders*** o *marcadores*:
 
 ```python title="placeholders - formato"
 # campo 'name' variable 
@@ -118,7 +91,6 @@ traducido = i18n.t('hi', name='Bob')    # 'Hola Bob!'
 ### Pluralización
 
 El ***placeholder***, si éste tiene valor numérico, puede usarse para elegir entre varias traducciones posibles.
-
 El valor numérico se pasa con la propiedad `count`. Las opciones de traducción se enmarcan entre llaves y hay cuatro opciones:
 
 |  Opcion |   Valor   |
@@ -133,7 +105,7 @@ donde estas opciones son las claves.
 
 Por ejemplo, supóngase un cliente de correos electrónicos:
 
-```python title="pluralización - formato"
+```python title="Pluralización - formato"
 i18n.add_translation('mails', {
     'zero': 'No tienes ningún correo nuevo.',
     'one': 'Tienes un nuevo correo.',
@@ -143,7 +115,7 @@ i18n.add_translation('mails', {
 ```
 La lectura de la traducción se hace asignándole el valor a la propiedad `count`:
 
-```python title="pluralización - uso"
+```python title="Pluralización - uso"
 print( i18n.t('mails', count=numero_entrada) ) 
 ```
 

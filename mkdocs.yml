@@ -332,8 +332,9 @@ nav:
 
 
   - Paquetes:
-    - Traducciones:
+    - Traducciones - i18n:
       - i18n/index.md
+      - i18n/instalacion.md
       - i18n/basico.md
       - i18n/yaml.md
       - i18n/json.md
