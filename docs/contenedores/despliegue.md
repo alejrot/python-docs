@@ -1,0 +1,150 @@
+# Primer despliegue
+
+
+## Configuraciones
+
+### Estructura de archivos
+
+
+En este ejemplo se ubican todas las rutinas del programa
+dentro de una carpeta llamada `demo`
+y a su lado se crean dos archivos llamados `compose.yml` y `Dockerfile`.
+
+```bash title="Arbol de archivos"
+.
+├── demo
+│   └── contar.py
+├── compose.yml
+└── Dockerfile
+```
+
+El archivo `compose.yml`
+es llamado en muchos proyectos como `docker-compose.yml`.
+También puede ponérsele la extensión `.yaml`.
+
+### Dockerfile
+
+El archivo `Dockerfile` es el encargado de crear una imagen a medida del proyecto:
+
+```Dockerfile title="Dockerfile - básico"
+# imagen de base
+FROM python:3.13.5-alpine3.22
+
+# directorio de trabajo (se crea automáticamente)
+WORKDIR /code
+
+# copia de rutinas al directorio de trabajo
+COPY demo/ ./
+
+# comando, opciones y argumentos (sobreescribibles)
+CMD ["python", "contar.py", "4"]
+``` 
+
+En el archivo se siguen una serie de pasos básicos:
+
+1. `FROM`: elige una imagen de contenedor de referencia,
+en base a la cual se creara una nueva;
+2. `WORKDIR`: crea y definer una ruta de trabajo 
+para el programa
+dentro del contenedor;
+3. `COPY`: copia contenidos
+(rutinas, directorios del programa,etc. )
+a la ruta que se le especifica,
+la cual es típicamente la carpeta de trabajo.
+4. `CMD`: define el comando a ejecutar, sus opciones y argumentos.
+Todos estos pueden ser sobreescritos.
+
+
+### `compose.yml`
+
+El archivo `compose.yml` sirve para definir
+los parámetros de creación y funcionamiento
+del contenedor (o los contenedores)
+del proyecto.
+
+
+```yaml title="compose.yml - construir imagen"
+services:
+
+  demo-contador:    # nombre de servicio - arbitrario
+    build: .        # ruta relativa al archivo Dockerfile
+```
+
+Los contenedores del proyecto se crean debajo de la sección `services`.
+A cada contenedor se le pone un "nombre de servicio"
+y estos tienen varios parámetros. Algunos de ellos son:
+
+- El parámetro `build` es el encargado de indicar
+la ruta relativa en el sistema anfitrión al archivo Dockerfile;
+- El parámetro `image` asigna un nombre y una etiqueta de versión a la imagen a crear;
+- El parámetro `container_name` asigna un nombre al contenedor.
+Este nombre servirá para releer los logs, ordenar su arranque, etc.
+
+
+## Puesta en marcha
+
+El comando Compose interpreta el archivo `compose.yml` y con el crea,
+ejecuta, lee y borra los contenedores indicados en el proyecto.
+La terminal debe estar ubicada en la ruta del archivo para funcionar.
+
+!!! info "Implementaciones"
+
+    Dependiendo de la implementación instalada en el sistema,
+    el comando se debe llamar como:
+
+    ```bash
+    docker-compose  <comando>  # Docker - 
+    docker compose  <comando>  # Docker - 
+    podman-compose  <comando>  # Podman - Paquete externo
+    podman compose  <comando>  # Podman Desktop - extension
+    ```
+
+### Creación
+
+El proyecto se crea con el comando `up`.
+
+```bash
+docker compose up
+```
+
+Este comando descarga la imagen indicada por el Dockerfile
+en caso de ser necesario y crea la imagen personalizada.
+Luego pone en marcha al contenedor
+y muestra los mensajes de log a medida que se producen.
+
+
+El comando `up` no reconstruye la imagen en caso de modificarse la rutina Python. Para forzar la reconstrucción hay que agregar la opción `build`:
+
+```bash
+docker compose up --build
+```
+
+### Arranque
+
+La puesta en marcha en segundo plano se realiza con el comando `start`:
+
+```bash
+docker compose start
+```
+
+### Registro
+
+La consulta del registro de *logs* pasados se hace con `logs`:
+
+```bash
+docker compose logs
+```
+
+Los logs de cada contenedor también se pueden consultar desde el cliente gráfico tanto de Docker como de Podman.
+
+
+### Borrar
+
+El proyecto se elimina con el comando `down`:
+
+
+```bash
+docker compose down
+```
+
+Este comando apaga los contenedores del proyecto y los elimina.

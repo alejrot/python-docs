@@ -287,6 +287,16 @@ nav:
       - tests/assert.md
       - tests/unittest.md
 
+    - Contenedores:
+      - contenedores/index.md
+      - contenedores/instalacion.md
+      - contenedores/imagenes.md
+      - contenedores/adaptar.md
+      - contenedores/despliegue.md
+      - contenedores/comandos.md
+
+
+
     - Paralelismo:
       # - paralelismo/procesos.md
       - Procesos:

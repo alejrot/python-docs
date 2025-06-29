@@ -198,72 +198,69 @@ def tarea():
     sys.exit( valor_custom )
 ```
 
-## ID de procesos
+## Ejemplo
 
-El número identificador (ID) del proceso creado
-se consulta con el atributo `pid`:
+Este demo imita el procesamiento paralelo
+de varias tareas demandantes
+e integra las opciones
+y métodos vistos previamente:
+argumentos, valor de retorno, etc.
 
-```python title="ID del proceso"
-pid = subproceso.pid
-```
-Este número es gestionado por el sistema operativo
-y no es modificable.
-
-El subproceso no es capaz de ver este atributo.
+!!! example "Procesos con retorno"
 
 
-
-!!! tip "Modulo `os`"
-
-
-    El módulo `os`
-    incluye los métodos `getpid` y `getppid`
-    para consultar el ID propio y el del proceso invocador.
-
-
-    ```py title="IDs desde subproceso"
-    os.getpid()     # ID proceso actual
-    os.getppid()    # ID proceso padre
-    ```
-
-    Ejemplo de uso:
-
-    ```py title="IDs - consulta"
+    ```py
     from multiprocessing import Process
-    import os
+    import sys
+
+    from time import sleep, time
+    from random import random
+
+    def perder_tiempo(x, delay):
+        """Esta tarea imita el procesamiento de una tarea demandante"""
+        print(f"Nro. proceso: {x}, delay: {delay: 3.3} segundos")
+        sleep(delay)
+        sys.exit( x )
 
 
-    def identificador():
-        print("Proceso hijo")
-        print("ID:       %s" % (os.getpid()))
-        print("ID padre: %s" % (os.getppid()))
+    inicio = time()
+    # nuevos subprocesos
+    N = 3
+    lista_procesos = []
+    for i in range(N):
+        # duracion arbitraria
+        delay = random()*3
+        # argumentos en formato lista
+        argumentos = [i , delay]
+        # creacion del proceso
+        proceso = Process(
+            target=perder_tiempo,
+            args=argumentos)
+        proceso.daemon = True
+        proceso.start()
+        lista_procesos.append(proceso)
 
+    # espera al cierre de procesos
+    for proceso in lista_procesos:
+        proceso.join()
+        retorno = proceso.exitcode
+        print(f"Valor de retorno: {retorno}")
 
-    subproceso = Process(target=identificador)
-    subproceso.start()
-    subproceso.join()
-
-    print("Proceso original")
-    print("ID hijo:  %s" % (subproceso.pid))
-    print("ID:       %s" % (os.getpid()))
+    # reporte de duración total
+    fin = time()
+    print(f"Terminado - tiempo transcurrido: {fin-inicio: 3.3} segundos")
     ```
 
-    En el mensaje creado  en consola 
-    se verifican que los números de ID coinciden: 
-
-    ``` title="IDs - Reporte"
-    Proceso hijo
-    ID:       3502272
-    ID padre: 3502271
-    Proceso original
-    ID hijo:  3502272
-    ID:       3502271
+    El reporte producido es parecido al siguiente:
+    
     ```
-
-
-
-
-
-
+    Nro. proceso: 1, delay:  1.26 segundos
+    Nro. proceso: 0, delay:  1.33 segundos
+    Nro. proceso: 2, delay:  1.18 segundos
+    Valor de retorno: 0
+    Valor de retorno: 1
+    Valor de retorno: 2
+    Terminado - tiempo transcurrido:  1.35 segundos
+    ```
 
 
