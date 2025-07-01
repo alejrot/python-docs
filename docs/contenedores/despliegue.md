@@ -96,22 +96,28 @@ La terminal debe estar ubicada en la ruta del archivo para funcionar.
 
 !!! info "Implementaciones"
 
-    Dependiendo de la implementación instalada en el sistema,
+    Dependiendo de la implementación del comando Compose instalada en el sistema,
     el comando se debe llamar como:
 
     ```bash
-    docker-compose  <comando>  # Docker - 
-    docker compose  <comando>  # Docker - 
+    docker-compose  <comando>  # Docker - versiones viejas / paquete externo
+    docker compose  <comando>  # Docker - versiones nuevas
     podman-compose  <comando>  # Podman - Paquete externo
     podman compose  <comando>  # Podman Desktop - extension
     ```
+
+    Elegir la variante que corresponda según el componente instalado en el sistema.
+    En este tutorial se asumirá que es `podman compose  <comando>` 
+
+
+
 
 ### Creación
 
 El proyecto se crea con el comando `up`.
 
 ```bash
-docker compose up
+podman compose up
 ```
 
 Este comando descarga la imagen indicada por el Dockerfile
@@ -123,7 +129,7 @@ y muestra los mensajes de log a medida que se producen.
 El comando `up` no reconstruye la imagen en caso de modificarse la rutina Python. Para forzar la reconstrucción hay que agregar la opción `build`:
 
 ```bash
-docker compose up --build
+podman compose up --build
 ```
 
 ### Arranque
@@ -131,7 +137,7 @@ docker compose up --build
 La puesta en marcha en segundo plano se realiza con el comando `start`:
 
 ```bash
-docker compose start
+podman compose start
 ```
 
 ### Registro
@@ -139,7 +145,7 @@ docker compose start
 La consulta del registro de *logs* pasados se hace con `logs`:
 
 ```bash
-docker compose logs
+podman compose logs
 ```
 
 Los logs de cada contenedor también se pueden consultar desde el cliente gráfico tanto de Docker como de Podman.
@@ -151,7 +157,7 @@ El proyecto se elimina con el comando `down`:
 
 
 ```bash
-docker compose down
+podman compose down
 ```
 
 Este comando apaga los contenedores del proyecto y los elimina.
