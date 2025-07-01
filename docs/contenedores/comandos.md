@@ -1,6 +1,8 @@
-# Comandos
+# Cambiar comandos 
 
-En esta sección se ven
+En esta sección se ve cómo se pueden
+cambiar los comandos elegidos en el archivo Dockerfile
+y también como éstos pueden ser fijados.
 
 ## Elegir comandos
 

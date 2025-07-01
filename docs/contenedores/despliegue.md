@@ -72,13 +72,20 @@ services:
 
 Los contenedores del proyecto se crean debajo de la sección `services`.
 A cada contenedor se le pone un "nombre de servicio"
-y estos tienen varios parámetros. Algunos de ellos son:
+y estos tienen varios parámetros configurables.
+En este caso sólo se especifica el parámetro `build`,
+que es el encargado de indicar
+la ruta relativa en el sistema anfitrión al archivo Dockerfile.
+
+<!-- 
+Algunos de ellos son:
 
 - El parámetro `build` es el encargado de indicar
 la ruta relativa en el sistema anfitrión al archivo Dockerfile;
 - El parámetro `image` asigna un nombre y una etiqueta de versión a la imagen a crear;
 - El parámetro `container_name` asigna un nombre al contenedor.
 Este nombre servirá para releer los logs, ordenar su arranque, etc.
+ -->
 
 
 ## Puesta en marcha

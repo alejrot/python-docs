@@ -294,6 +294,8 @@ nav:
       - contenedores/adaptar.md
       - contenedores/despliegue.md
       - contenedores/comandos.md
+      - contenedores/entorno.md
+      - contenedores/volumenes.md
 
 
 
