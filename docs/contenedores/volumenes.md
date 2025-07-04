@@ -7,6 +7,13 @@ Son necesarios para prevenir
 la pérdida de los datos internos de los contenedores
 cada vez que éstos son borrados o recreados.
 
+Algunos usos habituales:
+
+- bases de datos;
+- archivos de los usuarios;
+- reportes de funcionamiento;
+- etc.
+
 
 ## Archivos en Python
 

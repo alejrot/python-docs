@@ -17,7 +17,18 @@ lo que lo hace muy fácil de interpretar visualmente.
 Este archivo es llamado en muchos proyectos como `docker-compose.yml`.
 También puede ponérsele la extensión `.yaml`.
 
+## Nombre de proyecto
 
+El campo `name` asigna un nombre al proyecto,
+el cual será leído por el gestor de contenedores
+y suele ser usado para nombrar a los elementos internos del proyecto.
+Si este campo no se indica explícitamente
+entonces se asigna automáticamente
+el nombre de la carpeta que contiene al archivo.
+
+```yaml title="compose.yml - nombre"
+name: mi_proyecto
+```
 
 ## Sección `services`
 
@@ -123,23 +134,11 @@ services:
 ```
 
 
-
 ## Secciones opcionales
 
+A veces se necesitan crear secciones adicionales en el proyecto.
+Algunas de ellas son:
 
-
-## `name`
-
-El campo `name` asigna un nombre al proyecto,
-el cual será leído por el gestor de contenedores
-y suele ser usado para nombrar a los elementos internos del proyecto.
-Si este campo no se indica explícitamente
-entonces se asigna automáticamente
-el nombre de la carpeta que contiene al archivo.
-
-```yaml title="compose.yml - nombre"
-name: mi_proyecto
-```
 
 ### `volumes`
 
