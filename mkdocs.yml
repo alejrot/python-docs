@@ -291,6 +291,7 @@ nav:
       - contenedores/index.md
       - contenedores/instalacion.md
       - contenedores/imagenes.md
+      - contenedores/compose.md
       - contenedores/adaptar.md
       - contenedores/despliegue.md
       - contenedores/comandos.md
