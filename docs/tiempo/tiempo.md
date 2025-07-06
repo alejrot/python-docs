@@ -112,7 +112,7 @@ Estas funciones pueden ser tanto
 !!! info "Procesos e hilos"
 
     Las rutinas más básicas de Python ocupan 
-    un solo [proceso](../paralelismo/procesos.md)
+    un solo [proceso](../paralelismo/procesos/index.md)
     el cual a su vez 
     utiliza un solo [hilo (*thread*)](../paralelismo/hilos.md), 
     a menos que específicamente 
