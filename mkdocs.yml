@@ -233,7 +233,6 @@ nav:
       - funciones/scope.md
       - funciones/tipado.md
       - funciones/docstring.md
-      # - funciones/docstest.md
       - funciones/recursivas.md
       - funciones/lambda.md
       - funciones/orden_superior.md
@@ -285,7 +284,7 @@ nav:
       - tests/manejo.md
       - tests/custom.md
       - tests/assert.md
-      - tests/docstest.md
+      - tests/doctest.md
       - tests/unittest.md
 
     - Contenedores:
@@ -302,7 +301,7 @@ nav:
 
 
     - Paralelismo:
-      # - paralelismo/procesos.md
+      - paralelismo/index.md
       - Procesos:
         - paralelismo/procesos/index.md
         - paralelismo/procesos/basico.md
@@ -346,7 +345,7 @@ nav:
 
 
   - Paquetes:
-    - Traducciones - i18n:
+    - i18n - Traducciones:
       - i18n/index.md
       - i18n/instalacion.md
       - i18n/basico.md
@@ -355,7 +354,7 @@ nav:
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
-    - Poetry - Gestión de entornos virtuales: entornos/poetry/
+    - Poetry - Gestión de entornos virtuales: entornos/poetry/index.md
 
 
   # - Recursos:
