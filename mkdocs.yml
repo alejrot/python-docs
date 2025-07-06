@@ -285,6 +285,7 @@ nav:
       - tests/manejo.md
       - tests/custom.md
       - tests/assert.md
+      - tests/docstest.md
       - tests/unittest.md
 
     - Contenedores:
