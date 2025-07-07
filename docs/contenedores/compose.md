@@ -58,7 +58,7 @@ desde alguno de los proveedores de imágenes habilitados.
 Algunos ejemplos de uso para `image`:
 
 - Gestores de bases de datos: MariaDB, PostgreSQL, Redis, MongoDB, etc.
-- Proxys, balanceadores de carga: Apache, NGINX, Traefik.
+- Servidores proxy, balanceadores de carga: Apache, NGINX, Traefik.
 - Frameworks: Wordpress, Mkdocs, Sphynx.
 
 

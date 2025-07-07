@@ -253,6 +253,7 @@ nav:
         - clases/solid/lsp.md
         - clases/solid/isp.md
         - clases/solid/dip.md
+      - clases/singleton.md
 
     - Módulos y paquetes:
       - Módulos: contenido/modulos.md
@@ -297,6 +298,7 @@ nav:
       - contenedores/comandos.md
       - contenedores/entorno.md
       - contenedores/volumenes.md
+      - contenedores/puertos.md
 
 
 
@@ -307,6 +309,7 @@ nav:
         - paralelismo/procesos/basico.md
         - paralelismo/procesos/pool.md
         - paralelismo/procesos/compartidos.md
+        # - paralelismo/procesos/info.md
         - paralelismo/procesos/bloqueo.md
         - paralelismo/procesos/evento.md
         - paralelismo/procesos/pipe.md
@@ -354,7 +357,6 @@ nav:
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
-    - Poetry - Gestión de entornos virtuales: entornos/poetry/index.md
 
 
   # - Recursos:

@@ -273,7 +273,7 @@ es unario.
 
 
 
-## Funciones especiales
+## Métodos especiales
 
 
 ### `__str__`
@@ -295,8 +295,8 @@ texto = str(objeto)
 Este método también permite representar la data interna
 como texto. 
 A diferencia de `__str__`,
-esta información debe ser formal 
-y seguir un formato específico 
+esta información debe
+seguir un formato específico 
 para poder ser usada por la función `eval()`:
   
 
@@ -395,6 +395,30 @@ cuadruple = Multiplicador(4)
 v1 = doble(9)
 v2 = triple(9)
 v3 = cuadruple(9)
+```
+
+
+### `__dict__`
+
+Este método ayuda a leer los valores
+de los atributos internos convertidos a diccionario.
+En él se respetan los nombres de los atributos,
+que pasan a ser las claves del diccionario devuelto.
+
+
+```py title="Método __dict__ - Ejemplo"
+# coordenadas X, Y y Z como clase
+class Coords:
+    def __init__(self):
+        self.x=3
+        self.y=4
+        self.z=-1
+
+
+# instancia de clase
+coord = Coords()
+#  Lectura de diccionario interno
+print(coord.__dict__)
 ```
 
 
