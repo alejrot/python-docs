@@ -4,8 +4,7 @@
 
 
 
-Singleton es considerado un pàtrón de diseño.
-
+Singleton es considerado un patrón de diseño.
 Se trata de un tipo de clases
 que crean una única instancia a lo largo de todo el programa.
 
@@ -107,4 +106,4 @@ print(instancia_2.nombre)   # 'Alexio'
 ## Referencias
 
 
-[MouredevTV - Singleton (Youtube)](https://youtu.be/cOIcFo_w9hA?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3)
+[MouredevTV (YouTube) - Singleton](https://youtu.be/cOIcFo_w9hA?list=PLv0dxH7HRDx_kQRNoldG7iPvydy8DyvE3)
