@@ -5,10 +5,10 @@ import os
 from typing import Optional
 
 # paquetes
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from sqlmodel import Field, SQLModel, create_engine
 
 # modulos
-from logs import info
+from logging import info
 
 
 # Variables de entorno - necesarias para componer la URL de la base de datos
@@ -26,7 +26,8 @@ engine = create_engine(
     ruta_db,
     # echo=True,
     pool_pre_ping=True,
-    )
+)
+
 
 # Diseño de tabla SQL
 class Persona(SQLModel, table=True):
@@ -34,6 +35,7 @@ class Persona(SQLModel, table=True):
     nombre: str
     direccion: str
     edad: Optional[int] = None
+
 
 # creacion de base de datos vacía (sólo si aun no existe)
 SQLModel.metadata.create_all(engine)

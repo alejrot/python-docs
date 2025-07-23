@@ -6,14 +6,15 @@ from random import randint
 # paquetes
 import flet as ft
 from faker import Faker
+from sqlmodel import Session, select
 
 # modulos
 from tabla_personas import TablaPersonas
-from sql import Persona, engine, Session, select
-from logs import info
+from sql import Persona, engine
+from logging import info
 
 
- # diseño de página
+# diseño de página
 def main(page: ft.Page):
     """Esta función define el diseño de la página web."""
 
@@ -27,7 +28,7 @@ def main(page: ft.Page):
         # generacion de nueva persona
         nombre = fake.name()
         direccion = fake.address()
-        edad = randint(13,65)
+        edad = randint(13, 65)
 
         # carga en base datos
         with Session(engine) as session:
@@ -36,13 +37,12 @@ def main(page: ft.Page):
                 nombre=nombre,
                 direccion=direccion,
                 edad=edad,
-                )
+            )
             session.add(persona)
             # confirmación de cambios
             session.commit()
         # relectura de tablas
         actualizacion_tabla()
-
 
     def actualizacion_tabla():
         """Esta funcion lee la tabla desde la base de datos y la carga a la página."""
@@ -65,7 +65,6 @@ def main(page: ft.Page):
         # actualizacion grafica
         page.update()
 
-
     # boton flotante
     page.floating_action_button = ft.FloatingActionButton(
         icon=ft.Icons.ADD,
@@ -81,7 +80,7 @@ def main(page: ft.Page):
             ft.Container(
                 tabla,
                 alignment=ft.alignment.center,
-                expand = True,
+                expand=True,
             )
         )
     )
