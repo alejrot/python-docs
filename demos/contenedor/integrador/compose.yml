@@ -1,0 +1,42 @@
+name: integrador
+services:
+
+  tabla-flet:    
+    build: demo/
+    image: tabla-flet-web:v1
+    ports:
+      - 8000:8000
+    depends_on: 
+      base_datos:
+          restart: true
+          condition: service_healthy
+          required: true
+    restart: always
+    environment:
+      POSTGRES_USER:     ${USUARIO:-noname}
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB:       ${NOMBRE_DB:-personas_tabla}
+      POSTGRES_DOMINIO:  base_datos
+
+
+
+  base_datos:
+    restart: always
+    image: postgres:17.2-bookworm     
+    environment:
+      POSTGRES_USER:     ${USUARIO:-noname}
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB:       ${NOMBRE_DB:-personas_tabla}
+    ports:
+      - 9000:5432
+    volumes:
+      - volumen_db:/var/lib/postgresql/data
+    healthcheck:  
+      test: ["CMD-SHELL", "psql -U ${USUARIO:-noname} -d ${NOMBRE_DB:-personas_tabla} -c 'SELECT 1' || exit 1"]  
+      interval: 10s
+      timeout: 60s
+      retries: 5
+
+
+volumes:
+  volumen_db:

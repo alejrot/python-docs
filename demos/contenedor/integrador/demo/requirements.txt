@@ -1,0 +1,4 @@
+flet[all]==0.28.3
+sqlmodel==0.0.24
+psycopg2-binary==2.9.10
+Faker==37.4.2

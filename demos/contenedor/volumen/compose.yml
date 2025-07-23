@@ -1,0 +1,29 @@
+name: demo_volumenes
+
+services:
+
+
+  volumen_anonimo:
+    build: .
+    volumes:
+      - /root/logs
+
+
+  volumen_nombre:
+    build: .
+    volumes:
+      - alias_volumen:/root/logs
+
+
+  volumen_host:
+    build: .
+    security_opt: 
+      - label=disable
+    volumes:
+      - ./registro:/root/logs
+
+
+volumes:
+  alias_volumen:
+    # external: true 
+
