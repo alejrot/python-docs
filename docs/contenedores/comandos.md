@@ -54,7 +54,7 @@ CMD ["python", "contar.py", "4"]
 
 entonces para forzar la ejecución de la rutina `contar.py` se hace:
 
-```Dockerfile title="Dcokerfile - comando fijo"
+```Dockerfile title="Dockerfile - comando fijo"
 # comando, opciones y argumentos fijos
 ENTRYPOINT ["python", "contar.py"]
 

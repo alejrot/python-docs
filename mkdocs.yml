@@ -298,6 +298,7 @@ nav:
       - contenedores/comandos.md
       - contenedores/entorno.md
       - contenedores/volumenes.md
+      - contenedores/secuencial.md
       - contenedores/puertos.md
 
 
