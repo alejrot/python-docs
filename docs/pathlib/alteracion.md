@@ -40,7 +40,7 @@ Path(ruta).chmod(0o644)
 
 !!! info "Número de permisos"
 
-    En [**este anexo**](permisos.md) se explica cómo se compone el número de los permisos.
+    En [**este anexo**](../anexos/permisos.md) se explica cómo se compone el número de los permisos.
 
 
 ## Archivos

@@ -329,7 +329,8 @@ nav:
       - pathlib/analisis.md
       - pathlib/consultas.md
       - pathlib/alteracion.md
-      - pathlib/permisos.md
+      # - pathlib/permisos.md
+      - anexos/permisos.md
 
     - Argparse:
       - argparse/index.md
@@ -358,6 +359,15 @@ nav:
     - Psutil - Monitoreo del sistema: paquetes/psutil.md
     - Numba - Optimizacion con Machine Learning: paquetes/numba.md
     - FFMPEG-Python: paquetes/ffmpeg.md
+
+
+  - Anexos:
+    - anexos/index.md
+    - anexos/permisos.md
+    - IP y Redes:
+      - anexos/redes/index.md
+      - anexos/redes/ip.md
+      - anexos/redes/tcp_udp.md
 
 
   # - Recursos:

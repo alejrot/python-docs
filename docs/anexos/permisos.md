@@ -4,7 +4,7 @@ tags:
   - Carpetas
 ---
 
-# ANEXO - Permisos de usuario
+# Permisos de usuario
 
 
 
