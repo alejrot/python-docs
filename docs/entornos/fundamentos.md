@@ -1,9 +1,4 @@
----
-tags:
-  - venv
-  - Modulos
-  - Entornos virtuales
----
+
 
 # Fundamentos de los entornos virtuales 
 
@@ -20,7 +15,7 @@ o en una carpeta del usuario;
 permitiendo especificar qué versión se necesita de cada uno.
 
 
-### Activación
+## Activación
 
 Los entornos virtuales requieren activación para su uso.
 La activación del entorno virtual consiste en modificar 
@@ -65,6 +60,7 @@ permitiendo entornos mejor controlados para cada proyecto;
 - Es posible agregar enlaces simbólicos de múltiples versiones de Python,
 lo cual permite ejecutar el proyecto con distintas versiones del mismo.
 
-Como contrapartida aumenta el espacio en disco ocupado,
-por cuanto cada entorno virtual tiene su propia copia de los paquetes.
+Como contrapartida aumenta el espacio en disco ocupado
+debido a que
+cada entorno virtual tiene su propia copia de los paquetes.
 

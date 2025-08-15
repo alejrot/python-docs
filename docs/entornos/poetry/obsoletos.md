@@ -1,5 +1,4 @@
-# Comandos obsoletos
-
+# Comandos antiguos
 
 
 
@@ -10,6 +9,7 @@ Este comando servía para activar el entorno virtual actual.
 
 
 Puede instalarse mediante el plugin [poetry-plugin-shell](https://github.com/python-poetry/poetry-plugin-shell)
+.
 
 Opciones de instalación:
 
@@ -44,6 +44,7 @@ desde el archivo TOML a un archivo TXT.
 
 Este coamndo ha sido descartado de Poetry desde la versión 2.0.0.
 Puede reintregrarse con el plugin externo [poetry-plugin-export](https://github.com/python-poetry/poetry-plugin-export)
+.
 
 
 

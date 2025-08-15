@@ -8,18 +8,22 @@ tags:
 
 
 
-## VENV
+# VENV
 
 **`venv`** es la herramienta integrada de Python para trabajar con entornos virtuales.
 Se incluye desde la versión 3.4.
 
-### Creacion entorno virtual 
+## Creacion entorno virtual 
 
 Se elige la ruta de un directorio donde se creará el entorno virtual:
 ```bash title="Creación de entorno virtual"
 py -m venv RUTA_ENTORNO
 ```
-Dentro del directorio elegido se crearán todos los archivos y directorios auxiliares necesarios para empezar a trabajar. En ellos se guardará el ejecutable de Python y se guardarán los paquetes a añadirse al proyecto.
+Se crea automáticamente la carpeta contenedora
+y dentro de ella
+se crearán todos los archivos y directorios auxiliares necesarios para empezar a trabajar,
+incluyendo el ejecutable de Python y el de PIP.
+Alí se guardarán también los paquetes a añadirse al proyecto.
 
 Es muy habitual crear el entorno virtual dentro del directorio del proyecto
 en una carpeta oculta llamada `venv`:
@@ -33,7 +37,7 @@ py -m venv .venv
       Cuando se crea el entorno virtual se crea una estructura de archivos similar a la siguiente:
 
       ```bash
-      carpeta_entorno
+      .venv
       ├── bin                      
       │       # rutinas de shell -> comando 'deactivate'
       │   ├── activate
@@ -60,7 +64,7 @@ py -m venv .venv
       │
       ├── lib64 -> lib
       │
-      └── pyvenv.cfg                # configuración del entorno actual
+      └── pyvenv.cfg                # configuración del entorno actual (automático)
       ```
       donde la numeración de PIP y de Python corresponde a la versión global disponible, en este ejemplo la 3.13.
 
@@ -74,10 +78,8 @@ py -m venv .venv
       include-system-site-packages = false
       version = 3.13.3
       executable = /usr/bin/python3.13
-      command = /usr/bin/python -m venv RUTA_ENTORNO/.venv
+      command = /usr/bin/python -m venv RUTA_PROYECTO/.venv
       ```
-
-
 
       El diagrama de árbol previo puede trazarse con el comando `tree` de Bash:
 
@@ -87,7 +89,7 @@ py -m venv .venv
 
 
 
-### Activacion entorno virtual
+## Activacion entorno virtual
 
 La activación consiste en ejecutar
 alguno de los *scripts* de nombre *"activate"*.
@@ -164,13 +166,10 @@ El entorno virtual permanecerá activado hasta que se cierre la terminal o se de
 
 
 
+## Instalar paquetes manualmente
 
 
-
-### Instalar paquetes manualmente
-
-
-Los paquetes se instalan con el comando habitual:
+Los paquetes se instalan con ayuda de PIP:
 ```bash title="Instalar paquete Python"
 pip install nombre_paquete
 ```
@@ -185,8 +184,7 @@ La lista puede guardarse en archivo:
 pip list > nombre_archivo.txt
 ```
 
-
-### Anotar e instalar dependencias
+## Anotar e instalar dependencias
 
 La versión actual de los paquetes se puede guardar en formato texto con el comando *freeze*:
 ```bash title="Registrar paquetes"
@@ -205,7 +203,7 @@ mejorando el control sobre el proyecto
 y evitando instalar dependencias inútiles para el proyecto actual.
 
 
-### Desactivar entorno virtual
+## Desactivar entorno virtual
 
 El entorno virtual se desactiva fácilmente con el comando *deactivate*:
 ```bash title="Desactivar entorno"
@@ -218,7 +216,7 @@ y el intérprete de Python detectado vuelve a ser el global:
 which python      # En Linux: '/usr/bin/python'
 ```
 
-### Uso sin activación
+## Uso sin activación
 
 
 El intérprete local de Python puede ser **ejecutado directamente** a partir de su ruta.
@@ -232,7 +230,7 @@ RUTA_ENTORNO/Scripts/python   # Windows
 ```
 
 
-### Eliminar entorno virtual
+## Eliminar entorno virtual
 
 El entorno virtual se elimina borrando los directorios auxiliares del entorno:
 

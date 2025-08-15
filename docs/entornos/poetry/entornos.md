@@ -75,7 +75,7 @@ Poetry también puede ser usado junto con el plugin **pyenv** para elegir una ve
 pyenv install 3.9.8     # instalar Python 3.9.8
 pyenv local 3.9.8       # elegir Python 3.9.8
 ```
- 
+Esta opción es útil para sistemas con versiones antiguas de Poetry. 
 
 <!-- 
 ```bash
