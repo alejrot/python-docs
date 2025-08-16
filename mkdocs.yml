@@ -275,6 +275,7 @@ nav:
         - entornos/poetry/instalacion.md
         - entornos/poetry/comenzando.md
         - entornos/poetry/entornos.md
+        - entornos/poetry/entrypoints.md
         - entornos/poetry/grupos.md
         - entornos/poetry/sync.md
         - entornos/poetry/obsoletos.md
