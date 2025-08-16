@@ -91,6 +91,14 @@ Este comando creará las rutinas auxiliares
 y los ubicará dentro del entorno virtual actual
 al lado del intérprete de Python,
 dentro de la carpeta `bin` o `Scripts` según corresponda.
+Sólo es necesario llamarlo tras alterar el archivo TOML:
+los *scripts* implementados
+son meros envoltorios genéricos (*wrappers*)
+para las funciones de Python
+y, por tanto,
+los cambios en el código Python del paquete
+se ven reflejados automáticamente.
+
 
 ## Ejecución
 
@@ -248,6 +256,25 @@ paquete-cli
 ```
 
 De esta forma el comando queda implementado.
+
+
+!!! info "wrapper automático"
+
+    El script creado del comando es un mero envoltorio
+    para la función indicada en el archivo TOML
+    y tiene esta forma:
+
+    ```py title="paquete-cli"
+    #!HOME_USUARIO/.cache/pypoetry/virtualenvs/paquete-Hah8LhV6-py3.13/bin/python
+    import sys
+    from paquete import texto_consola
+
+    if __name__ == '__main__':
+        sys.exit(texto_consola())
+    ```
+
+
+
 
 
 ## Referencias
