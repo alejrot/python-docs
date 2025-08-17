@@ -1,4 +1,12 @@
+---
+date:
+    created: 2025-03-23
+    updated: 2025-08-16
+# status: new
+---
+
 # Comenzando con Poetry
+
 
 
 ## Crear proyecto
@@ -17,8 +25,8 @@ Lo habitual es dejar a Poetry crear este archivo mediante comandos.
 El comando `new` permite crear un nuevo proyecto,
 junto a algunos directorios:
 
-```bash
-poetry new directorio_proyecto
+```bash title="Nuevo proyecto"
+poetry new nuevo_proyecto
 ```
 
 Tras ejecutar este comando
@@ -29,23 +37,26 @@ Es mejor que el directorio del proyecto no exista previamente para asegurar que 
 
 Este es el contenido generado:
 
-```bash
-directorio_proyecto
+```bash title="Nuevo proyecto - arbol de archivos"
+nuevo_proyecto
 ├── pyproject.toml
 ├── README.md
 ├── src
-│   └── directorio_proyecto
+│   └── nuevo_proyecto
 │       └── __init__.py
 └── tests
     └── __init__.py
 ```
 
-El directorio `tests` está pensado para correr tests unitarios mediante paquetes como **Pytest**.
-
 Poetry asume por default que el proyecto será dedicado al desarrollo de paquetes,
 por eso crea un directorio con el mismo nombre de proyecto adentro de la carpeta `src`.
+El directorio `tests`
+está pensado para correr tests unitarios
+mediante paquetes como *Pytest*.
+
 
 Todos los archivos se crean vacíos, excepto el archivo `pyproject.toml`
+el cual es configurado interactivamente.
 
 
 
@@ -53,7 +64,7 @@ Todos los archivos se crean vacíos, excepto el archivo `pyproject.toml`
 
 Para crear solamente el archivo `pyproject.toml` dentro del directorio actual se usa el comando `init`:
 
-```bash
+```bash title="Nuevo archivo de proyecto"
 poetry init
 ```
 
@@ -68,7 +79,7 @@ se abre el mismo menú interactivo que en el caso del comando `new`.
 Para agregar un nuevo paquete al proyecto
 se usa el comando `add`:
 
-```bash
+```bash title="Paquetes - agregar"
 poetry add nombre_paquete
 ```
 Este comando incluye el paquete automáticamente como dependencia en el archivo TOML.
@@ -108,7 +119,7 @@ los cuales se enumeran a continuación:
 
 Ejemplos de uso: definiendo versiones del paquete cosmético `rich`:
 
-```bash
+```bash title="Paquete - agregar (ejemplos)"
 poetry add rich^13.0       # versiones 13.0.0 a 14.0.0 
 poetry add rich~13.0       # versiones 13.0.0 a 13.1.0 
 poetry add rich@13.0.1     # sólo versión 13.1.0
@@ -117,12 +128,16 @@ poetry add rich@13.0.1     # sólo versión 13.1.0
 Los cambios se verán reflejados en el archivo TOML.
 Por ejemplo, si se elige especificar sólo la versión mayor del paquete:
 
-```bash
+```bash title="Paquetes - agregar version mayor"
 poetry add rich^13.0 
 ```
-Entonces el rango se indicará en el archivo `pyproject.toml` entre paréntesis:
+Entonces el rango se indicará en el archivo `pyproject.toml`
+entre paréntesis
+bajo la sección `[project]`:
 
-```
+``` toml title="TOML - dependencias"
+# archivo 'pyproject.toml'
+[project]
 dependencies = [
     "rich (>=13.0,<14.0)",
 ]
@@ -134,7 +149,7 @@ dependencies = [
 Se dispone del comando `update` para actualizar los paquetes
 de acuerdo a los rangos de versiones predefinidos en el proyecto.
 
-```bash
+```bash title="Paquetes - actualización"
 poetry update
 ```
 
@@ -143,7 +158,7 @@ poetry update
 
 El paquete se elimina del proyecto con el comando `remove`:
 
-```bash
+```bash title="Paquetes - remover"
 poetry remove nombre_paquete
 ```
 el cual desinstala el paquete del entorno actual y lo borra de la lista de dependencias.
@@ -157,7 +172,7 @@ el cual desinstala el paquete del entorno actual y lo borra de la lista de depen
 El comando `run` de Poetry permite ejecutar las rutinas del proyecto 
 al tiempo que carga las dependencias:
 
-```bash
+```bash title="Entorno virtual - comando run"
 poetry run python nombre_rutina
 ```
 
@@ -167,13 +182,13 @@ poetry run python nombre_rutina
 
 El entorno virtual se activa en Bash con la siguiente expresión:
 
-```bash
+```bash title="Entorno virtual - activar"
 eval $(poetry env activate)
 ```
 
 de esta manera el intérprete de Python puede ser llamado directamente:
 
-```bash
+```bash title="Entorno virtual - ejecutar rutina"
 python nombre_rutina
 ```
 
@@ -181,6 +196,6 @@ Por último,
 se dispone del comando `deactivate`
 para deshabilitar el entorno actual:
 
-```bash
+```bash title="Entorno virtual - desactivar"
 deactivate
 ```

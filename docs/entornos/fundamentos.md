@@ -1,7 +1,14 @@
+---
+date:
+    created: 2025-03-23
+    updated: 2025-08-16
+status: new
+---
 
 
 # Fundamentos de los entornos virtuales 
 
+En esta sección se analiza de manera general el funcionamiento de los entornos virtuales.
 
 ## Creación
 
@@ -45,7 +52,7 @@ echo $PATH
 
 ## Eliminación
 
-Los entornos virtuales pueden ser eliminados fñacilmente mediante el borrado de su carpeta contenedora,
+Los entornos virtuales pueden ser eliminados fácilmente mediante el borrado de su carpeta contenedora,
 sin afectar en modo alguno a los entornos de otros proyectos ni al intérpete principal de Python.
 
 ## Ventajas e inconvenientes

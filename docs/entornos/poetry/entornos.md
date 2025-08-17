@@ -1,3 +1,10 @@
+---
+date:
+    created: 2025-03-23
+    updated: 2025-08-16
+---
+
+
 # Gestión de Entornos Virtuales
 
 
@@ -18,18 +25,18 @@ desde su versión 2.1.0.
 ### Instalación
 
 Estos intérpretes se gestionan con el comando `python`: 
-```bash
+```bash title="Versión de Python - instalar"
 poetry python install TAG_VERSION
 ```
 
 Este comando permite disponer de
 intérpretes Python desde su versión 3.7.x en adelante.
-Estos intérpretes son basados en Cpython,
+Estos intérpretes son basados en CPython,
 es decir son intérpretes escritos en lenguaje C y luego compilados.
 
 Por ejemplo, para instalar la versión 3.9 de Python el comando sería:
 
-```bash
+```bash title="Versión de Python - ejemplo"
 poetry python install 3.9
 ```
 
@@ -39,7 +46,7 @@ poetry python install 3.9
 La lista de versiones de Python descargadas y sus rutas
 se consulta con el comando `list`:
 
-```bash
+```bash title="Versión de Python - listar"
 poetry python list
 ```
 
@@ -63,7 +70,7 @@ Las versiones descargadas por Poetry se guardan en:
 
 La desinstalación de una versión específica de Python se realiza con el comando `remove`:
 
-```bash
+```bash title="Versión de Python - eliminar"
 poetry python remove TAG_VERSION
 ```
 
@@ -71,7 +78,7 @@ poetry python remove TAG_VERSION
 
 Poetry también puede ser usado junto con el plugin **pyenv** para elegir una versión específica de Python para el proyecto.
 
-```bash
+```bash title="Versión de Python - con Pyenv"
 pyenv install 3.9.8     # instalar Python 3.9.8
 pyenv local 3.9.8       # elegir Python 3.9.8
 ```
@@ -96,7 +103,7 @@ y en él crea enlaces simbólicos al intérprete de Python elegido.
 
 El intérprete se elige por su ruta completa, por su nombre o simplemente por su número de versión:
 
-```bash
+```bash title="Entorno - crear y usar"
 poetry env use ruta_interprete/bin/python3.9    # ruta completa
 poetry env use python3.9                        # nombre y versión
 poetry env use 3.9                              # sólo versión
@@ -107,7 +114,7 @@ poetry env use 3.9                              # sólo versión
 
 los entornos ya creados se consultan con el comando `list`:
 
-```bash
+```bash title="Entorno - listado"
 poetry env list
 ```
 
@@ -116,7 +123,7 @@ es decir no muestra los entornos correspondientes a otros proyectos.
 
 Las rutas en el sistema de cada entorno se consultan agregando la opción `--full-path`: 
 
-```bash
+```bash title="Entorno - rutas de entornos"
 poetry env list --full-path
 ```
 
@@ -149,7 +156,7 @@ poetry env use ruta_entorno/bin/python3.9
 
 Los paquetes requeridos se descargan e instalan  en el entorno actual con el comando `install`:
 
-```bash
+```bash title="Entorno - instalar dependencias"
 poetry install
 ```
 
@@ -169,7 +176,9 @@ de todas las dependencias.
 !!! warning "Empaquetado"
 
     Este comando requiere que el empaquetado esté **deshabilitado**.
-    Para deshabilitar el empaquetado agregar al archivo TOML este bloque:
+    Para deshabilitar el empaquetado agregar al archivo TOML
+    la sección `[tool.poetry]`
+    y debajo deshabilitar el `package-mode`:
 
     ```
     [tool.poetry]
@@ -182,9 +191,9 @@ de todas las dependencias.
 
 ### Información
 
-La información del entorno actual se lee con el argumento `info`
+La información del entorno actual se lee con el argumento `info`:
 
-```bash
+```bash title="Entorno - información"
 poetry env info                 # toda la información
 poetry env info --executable    # ruta al interprete Python
 ```
@@ -195,13 +204,13 @@ poetry env info --executable    # ruta al interprete Python
 
 Los entornos se eliminan en base al número de versión de Python que usan:
 
-```bash
+```bash title="Entorno - borrar"
 poetry env remove 3.13       # entorno actual
 ```
 
-o tambiñen pueden ser eliminados todos juntos:
+o también pueden ser eliminados todos juntos:
 
-```bash
+```bash title="Entorno - borrar todos"
 poetry env remove --all  # todos
 ```
 
