@@ -1,10 +1,8 @@
 ---
-tags:
-  - venv
-  - Modulos
-  - Entornos virtuales
+date:
+    created: 2025-03-23
+    updated: 2025-08-16
 ---
-
 
 
 

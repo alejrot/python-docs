@@ -8,6 +8,10 @@ date:
 
 # Instalación
 
+Poetry tiene múltiples opciones de instalación,
+de las cuales se muestran las más importantes.
+
+
 
 ## Instalador oficial
 
@@ -59,12 +63,6 @@ Desinstalación:
 pip uninstall poetry
 ```
 
-
-!!! info "PIPX"
-
-    PIPX es una versíon modificada de PIP con manejo mejorado de los paquetes. 
-
-
 !!! warning "Entornos aislados"
 
     En este caso,
@@ -73,6 +71,9 @@ pip uninstall poetry
     y posibles errores debidos a actualizaciones descuidadas.
 
 
+!!! info "PIPX"
+
+    PIPX es una versíon modificada de PIP con manejo mejorado de los paquetes. 
 
 Más detalles: [Instalando con PIPX](https://python-poetry.org/docs/#installing-with-pipx)
 

@@ -5,7 +5,7 @@ date:
 ---
 
 
-# Gestión de Entornos Virtuales
+# Gestión de entornos virtuales
 
 
 Poetry admite gestionar múltiples entornos de ejecución para un mismo proyecto.

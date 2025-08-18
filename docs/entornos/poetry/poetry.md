@@ -15,7 +15,7 @@ https://www.datacamp.com/tutorial/python-poetry
 
 [entornos](https://python-poetry.org/docs/managing-environments/#switching-between-environments)
 
-
+<!-- 
 
 ## Publicar
 
@@ -29,6 +29,8 @@ poetry build     # construir distribucion
 y con él se crea el archivo comprimido TAR.GZ
 
 
+ -->
+<!-- 
 Las subida a PIP se hace con el comando `publish`
 
 
@@ -36,7 +38,7 @@ Las subida a PIP se hace con el comando `publish`
 poetry publish   # subida en PIP
 ```
 
-
+ -->
 
 !!! warning "KDE Wallet"
 

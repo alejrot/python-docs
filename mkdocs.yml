@@ -273,11 +273,14 @@ nav:
       - Poetry:
         - entornos/poetry/index.md
         - entornos/poetry/instalacion.md
-        - entornos/poetry/comenzando.md
+        - entornos/poetry/crear.md
+        - entornos/poetry/dependencias.md
+        - entornos/poetry/ejecutar.md
         - entornos/poetry/entornos.md
         - entornos/poetry/entrypoints.md
         - entornos/poetry/grupos.md
         - entornos/poetry/sync.md
+        - entornos/poetry/empaquetar.md
         - entornos/poetry/obsoletos.md
 
     - Excepciones y Testing:

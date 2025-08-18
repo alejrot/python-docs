@@ -7,7 +7,9 @@ date:
 
 # Comandos antiguos
 
-
+Aquí se listan algunos comandos
+que han sido removidos de las versiones más recientes de Poetry
+pero que son reinstalables mediante plugins adicionales.
 
 ## Poetry Shell
 
