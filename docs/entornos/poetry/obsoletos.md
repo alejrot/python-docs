@@ -1,3 +1,10 @@
+---
+date:
+    created: 2025-03-23
+    updated: 2025-08-18
+# status: new
+---
+
 # Comandos antiguos
 
 
@@ -13,7 +20,7 @@ Puede instalarse mediante el plugin [poetry-plugin-shell](https://github.com/pyt
 
 Opciones de instalación:
 
-```bash
+```bash title="Shell - instalar"
 poetry self add poetry-plugin-shell
 pipx inject poetry poetry-plugin-shell
 pip install poetry-plugin-shell
@@ -23,13 +30,13 @@ pip install poetry-plugin-shell
 Con la shell se activa el entorno predeterminado del proyecto,
 tal como se hace con **venv**:
 
-```bash
+```bash title="Shell - actualizar"
 poetry shell
 ```
 
 y ahora la rutina se ejecuta llamando directamente al intérprete Python:
 
-```bash
+```bash title="Shell - ejecutar"
 python nombre_rutina
 ```
 

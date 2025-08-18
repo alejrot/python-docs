@@ -2,10 +2,9 @@
 date:
     created: 2025-08-16
     updated: 2025-08-16
-status: new
 ---
 
-# Entry Points
+# Crear comandos 
 
 
 En esta sección se ven las opciones que da Poetry

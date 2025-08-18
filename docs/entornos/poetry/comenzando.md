@@ -1,7 +1,7 @@
 ---
 date:
     created: 2025-03-23
-    updated: 2025-08-16
+    updated: 2025-08-18
 # status: new
 ---
 
@@ -54,10 +54,13 @@ El directorio `tests`
 está pensado para correr tests unitarios
 mediante paquetes como *Pytest*.
 
-
 Todos los archivos se crean vacíos, excepto el archivo `pyproject.toml`
 el cual es configurado interactivamente.
 
+!!! info "src-layout"
+
+    El esquema de archivos seguido por Poetry
+    es llamado comunmente *src-layout*.
 
 
 ### Crear TOML
