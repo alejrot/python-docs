@@ -31,9 +31,9 @@ ubicados en el sistema de archivos
 en base a su ruta relativa:
 
 ```bash title="Paquetes - agregar (local)"
-poetry add ./pack-local/                              # carpeta del paquete
-poetry add ./pack-local/dist/pack-local-0.1.0.tar.gz  # comprimido
-poetry add ./pack-local/dist/pack-local-0.1.0.whl     # 'wheel'
+poetry add ruta-pack-local/                              # carpeta del paquete
+poetry add ruta-pack-local/dist/pack-local-0.1.0.tar.gz  # comprimido
+poetry add ruta-pack-local/dist/pack-local-0.1.0.whl     # 'wheel'
 ```
 
 y también se pueden agregar dependencias remotas
@@ -42,11 +42,28 @@ admitiendo la URL correspondiente en varios formatos:
 
 
 ```bash title="Paquetes - agregar (remoto)"
-poetry add git+https://github.com/sdispater/pendulum.git    # HTTPS
-poetry add git+ssh://git@github.com/sdispater/pendulum.git  # SSH
+poetry add git+https://github.com/autor/paquete-remoto.git    # HTTPS
+poetry add git+ssh://git@github.com/autor/paquete-remoto.git  # SSH
 ```
 
 Más detalles en la [página oficial de Poetry](https://python-poetry.org/docs/cli/#add).
+
+
+
+!!! tip "Opción editable"
+
+    Agregando la opción `editable` a la incorporación de paquetes
+    se habilita el modo de desarrollo de dicho paquete.
+    Con este modo se consigue que los cambios
+    en el código fuente del paquete
+    se vean instantáenamente en el proyecto que lo incorpora
+    sin necesidad de reinstación.
+
+    Uso: 
+
+    ```bash title="Paquetes - modo editable"
+    poetry add --editable ruta-pack-local/ 
+    ```
 
 
 !!! info "Ubicacion de entornos"
