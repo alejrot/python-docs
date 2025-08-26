@@ -1,3 +1,10 @@
+---
+# status: deprecated
+date:
+    created: 2025-07-01
+    updated: 2025-08-26
+---
+
 # Volumenes
 
 Los volumenes son almacenamientos persistentes
@@ -189,7 +196,7 @@ el volumen se llamaría
 Este tipo de volumenes puede ser accedido
 por múltiples contenedores mediante su alias.
 Si el volumen requerido proviene de otro proyecto
-entonces ahce falta especificar el parámetro `external`
+entonces hace falta especificar el parámetro `external`
 como `true`:
 
 ```yaml

@@ -1,4 +1,7 @@
 ---
+date:
+    created: 2025-07-01
+    updated: 2025-08-26
 status: new
 ---
 
@@ -14,8 +17,16 @@ es decir un tipo de archivos que es habitualmente usado para definir
 diccionarios y listas de datos mediante indentado,
 lo que lo hace muy fácil de interpretar visualmente.
 
-Este archivo es llamado en muchos proyectos como `docker-compose.yml`.
-También puede ponérsele la extensión `.yaml`.
+Una de las grandes ventajas que proporciona
+el uso de este archivo
+es el despliegue de proyectos enteros
+mediante comandos simplificados.
+
+
+!!! info "docker-compose.yml"
+
+    Este archivo es llamado en muchos proyectos como `docker-compose.yml`.
+    También puede ponérsele la extensión `.yaml`.
 
 ## Nombre de proyecto
 
@@ -167,6 +178,8 @@ sirve para apuntar a otros archivos Compose,
 incluyendo su contenido
 de manera automática
 dentro del proyecto actual.
+
+Uso típico:
 
 ```yaml title="compose.yml - inclusion"
 include:

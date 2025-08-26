@@ -1,3 +1,12 @@
+---
+status: deprecated
+date:
+    created: 2025-07-01
+    updated: 2025-08-26
+---
+
+
+
 # Cambiar comandos 
 
 En esta sección se ve cómo se pueden

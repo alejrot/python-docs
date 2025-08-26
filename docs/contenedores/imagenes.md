@@ -1,3 +1,10 @@
+---
+status: new
+date:
+    created: 2025-07-01
+    updated: 2025-08-26
+---
+
 # Imágenes de Python
 
 ## Introducción
@@ -13,6 +20,8 @@ Tambien suelen usarse las etiquetas `latest`, `stable`, etc.
 a modo de comodines para apuntar a versiones recomendadas de las imágenes.
 
 
+## Imagenes de Python
+
 En [Docker Hub](https://hub.docker.com/) se dispone de un [surtido de imágenes de Python](https://hub.docker.com/_/python)
 las cuales ya traen el intérprete de Python preinstalado
 y son las recomendadas para trabajar.
@@ -23,9 +32,9 @@ unas de otras por los siguientes factores:
 
 - versión del intérprete Python, indicado por su versión:
 `3.9`, `3.10`, etc;
-- distribución de origen;
+- distribución de origen: Debian, Alpine, etc;
 - componentes adicionales;
-- plataforma de uso.
+- plataforma de uso (tipo de procesadores): AMD64, i686, ARM, etc.
 
 Estas son las distribuciones compatibles
 con su ejecución en PC:
@@ -37,11 +46,12 @@ con su ejecución en PC:
 |`alpine`| Alpine|
 <!-- |`windowsservercore`|Windows Server Core| -->
 
+### Descarga manual
 
 El comando `pull` sirve para descargar imágenes.
-Por ejemplo para descargar la imagen predefinida de Python :
+Por ejemplo para descargar la imagen predefinida de Python:
 
-```bash
+```bash title="Descarga manual - versión predefinida"
 podman image pull python
 ```
 
@@ -49,14 +59,15 @@ La imagen descargada por *default* es es la etiquetada como `latest`.
 Para descargar una imagen en particular
 se indica la etiqueta elegida:
 
-```bash
+```bash title="Descarga manual - versión custom"
 podman image pull python:tag_version
 ```
 
 Por ejemplo, para descargar varias imágenes
+alternativas
 de Python con el intérprete 3.13.5:
 
-```bash
+```bash title="Descarga manual - ejemplos"
 podman image pull python:latest
 podman image pull python:3.13.5-bookworm
 podman image pull python:3.13.5-slim-bookworm
@@ -64,7 +75,7 @@ podman image pull python:3.13.5-alpine3.22
 ```
 
 
-## Imágenes de Debian
+### Imágenes de Debian
 
 Las imágenes etiquetadas como `bookworm` y `bullseye`
 han sido creadas en base a imágenes del sistema operativo Debian.
@@ -79,7 +90,7 @@ Las imágenes basadas en Debian son las predefinidas
 La imagen predefinida más reciente `latest`
  -->
 
-## Imágenes *slim*
+### Imágenes *slim*
 
 Las imágenes etiquetadas como `slim`
 son versiones "adelgazadas" de las imágenes
@@ -93,8 +104,7 @@ y además
 su funcionalidad en aplicaciones exigentes puede ser inferior.
 
 
-
-## Imágenes de Alpine
+### Imágenes de Alpine
 
 Alpine Linux es una distribución GNU/Linux
 cuyas bibliotecas de utilitarios son `musl libc` y `Busybox`.
@@ -105,17 +115,13 @@ comportamientos y errores inesperados
 en el caso de aplicaciones demandantes.
 
 
-
-
-## Comparativa de espacios
-
+### Comparativa de espacios
 
 Para ver las características
 de las imágenes ya descargadas
 se tiene el comando `list`:
 
-
-```bash
+```bash title="Lista de imágens - sólo de Python"
 podman image list python
 ```
 
@@ -145,3 +151,26 @@ basada en Debian y que tiene el intérprete 3.13.5
     Esto ayuda a que el espacio ocupado en el almacenamiento por las imágenes no sea exageradamente grande.
 
 
+
+!!! tip "Comandos adicionales"
+
+    Se dispone de un gran surtido de comandos adicionales
+    para gestionar las imágenes disponibles
+    de manera manual:
+
+    ```bash title="Imágenes - comandos informativos"
+    podman image list                    # lista informativa (resumen)
+    podman image inspect IMAGEN:VERSION  # reporte detallado
+    ```
+
+    ```bash title="Imágenes - transferencias"
+    podman image pull IMAGEN:VERSION     # descargar 
+    podman image push IMAGEN:VERSION     # subir al servidor
+    ```
+
+    ```bash title="Imágenes - borrado local"
+    podman image rm IMAGEN:VERSION       # eliminar imagen específica
+    podman image prune                   # eliminar (no usadas)
+    ```
+
+    Para consultar más opciones escribir `podman image`.
