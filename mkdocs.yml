@@ -56,6 +56,7 @@ theme:
     - content.code.copy
     - content.code.select
     - content.code.annotate
+    - content.tabs.link
     - search
     - search.suggest
     - search.highlight
@@ -296,6 +297,7 @@ nav:
       - contenedores/index.md
       - contenedores/instalacion.md
       - contenedores/imagenes.md
+      - contenedores/archivo_dockerfile.md
       - contenedores/compose.md
       - contenedores/adaptar.md
       - contenedores/despliegue.md

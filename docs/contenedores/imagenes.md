@@ -5,9 +5,9 @@ date:
     updated: 2025-08-26
 ---
 
-# Imágenes de Python
+# Imágenes
 
-## Introducción
+## Idea general
 
 Las imágenes son las copias del software
 que le dan funcionalidad a los contenedores.
@@ -19,8 +19,18 @@ y una etiqueta de versión asignada.
 Tambien suelen usarse las etiquetas `latest`, `stable`, etc.
 a modo de comodines para apuntar a versiones recomendadas de las imágenes.
 
+!!! info "GNU/Linux"
 
-## Imagenes de Python
+    Las imágenes de contenedores habitualmente
+    son distribuciones GNU/Linux empaquetadas.
+    En las imágenes se respeta la estructura de archivos,
+    se conserva su gestor de paquetes predeterminado,
+    etc.
+    en tanto que se descartan los componentes superfluos,
+    como por ejemplo los componentes gráficos.
+
+
+## Imágenes de Python
 
 En [Docker Hub](https://hub.docker.com/) se dispone de un [surtido de imágenes de Python](https://hub.docker.com/_/python)
 las cuales ya traen el intérprete de Python preinstalado
@@ -41,6 +51,7 @@ con su ejecución en PC:
 
 |Nombre clave | Distribución base| 
 |:---|:---:|
+|`trixie`| Debian 13|
 |`bookworm`| Debian 12|
 |`bullseye`| Debian 11|
 |`alpine`| Alpine|
@@ -68,22 +79,30 @@ alternativas
 de Python con el intérprete 3.13.5:
 
 ```bash title="Descarga manual - ejemplos"
-podman image pull python:latest
 podman image pull python:3.13.5-bookworm
 podman image pull python:3.13.5-slim-bookworm
 podman image pull python:3.13.5-alpine3.22
 ```
 
 
+
 ### Imágenes de Debian
 
-Las imágenes etiquetadas como `bookworm` y `bullseye`
+Las imágenes etiquetadas como
+`trixie`,`bookworm` y `bullseye`
 han sido creadas en base a imágenes del sistema operativo Debian.
 Éstas son las imágenes completas,
 y son también las más pesadas.
 Sus bibliotecas de utilitarios son
 `glibc` (GNU C library) y `coreutils` (GNU coreutils),
 que son las bibliotecas más habituales en los entornos GNU/Linux.
+
+!!! info "latest"
+
+    La imagen de Python 
+    etiquetada como `latest`
+    es habitualmente una de las imágenes
+    basadas en Debian.
 
 <!-- 
 Las imágenes basadas en Debian son las predefinidas
