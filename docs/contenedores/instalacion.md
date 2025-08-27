@@ -20,6 +20,7 @@ Docker trae integrado su propio intérprete de los archivos Compose
 y su propio cliente gráfico llamado Docker Desktop.
 Es software privativo.
 
+Se descarga desde su [página oficial](https://www.docker.com).
 
 !!! info "Docker Engine"
 
@@ -41,6 +42,10 @@ de un paquete externo llamado `docker-compose`;
 
 El cliente gráfico de Podman se llama Podman Desktop.
 
+[Sitio oficial de Podman](https://podman.io/docs/installation)
+[Podman Desktop](https://podman-desktop.io/downloads)
+
+
 !!! info "Podman Machine"
 
     Podman Machine es el componente análogo al Docker Engine
@@ -51,6 +56,10 @@ El cliente gráfico de Podman se llama Podman Desktop.
     podman machine init
     podman machine start
     ```
+
+
+
+## Comandos
 
 Los comandos básicos de ambos programas toman esta forma genérica: 
 

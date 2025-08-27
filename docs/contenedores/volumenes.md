@@ -1,5 +1,5 @@
 ---
-# status: deprecated
+status: deprecated
 date:
     created: 2025-07-01
     updated: 2025-08-26
@@ -73,7 +73,6 @@ logging.basicConfig(
     )
 ```
 
-
 ## Usuario *"root"*
 
 
@@ -95,8 +94,6 @@ from pathlib import Path
 
 ruta_archivo = Path( "`~/salida.txt").expanduser()
 ``` 
-
-
 
 !!! info "Permisos de root" 
 
@@ -147,6 +144,10 @@ Si el despliegue se realiza en sistemas GNU/Linux
 entonces los voúmenes se suelen alojar en la ruta
 `/home/USUARIO/.local/share/containers/storage/volumes/`
 
+Al volumen anónimo se le asigna un nombre aleatorio
+de manera automática.
+
+<!-- 
 Al volumen anónimo se le asigna un nombre automáticamente
 que está compuesto por el nombre del proyecto,
 el nombre del servicio que lo usa
@@ -154,7 +155,7 @@ y una secuencia aleatoria.
 Por ejemplo en este caso
 el volumen sería llamado como
 `nombre_proyecto_servicio_volumen_1c7d7b...`.
-
+ -->
 Esto es relevante si se necesita realizar
 la inspección del volumen (ver más adelante).
 
@@ -177,17 +178,17 @@ services:
     # lista de volumenes accedidos
     volumes:
       # montajes (equivalencias)
-      - alias_volumen:/root/logs
+      - nombre_volumen:/root/logs
 
 
 # lista de volumenes implementados
 volumes:
-  alias_volumen:
+  nombre_volumen:
     external: false   # valor default
 ```
 
 El nombre asignado al volumen 
-está compuesto por el nombre del proyecto
+suele estar compuesto por el nombre del proyecto
 y el alias definido para el volumen.
 Por ejemplo en este caso
 el volumen se llamaría
@@ -202,7 +203,7 @@ como `true`:
 ```yaml
 # lista de volumenes implementados
 volumes:
-  alias_volumen:
+  nombre_volumen:
     external: true
 ```
 

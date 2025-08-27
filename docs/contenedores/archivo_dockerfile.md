@@ -282,7 +282,7 @@ etc.
 
     El código fuente se copia cerca del final
     porque es lo que cambia con mayor frecuencia.
-    De esta amnera se minimiza el tiempo de construcción.
+    De esta manera se minimiza el tiempo de construcción.
 
 
 Hay varias maneras de construir las imágenes:

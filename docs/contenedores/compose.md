@@ -5,8 +5,10 @@ date:
 status: new
 ---
 
-# Archivo Compose
+# Compose
 
+
+## Archivo Compose
 
 El archivo `compose.yml` sirve para definir
 los parámetros de creación y funcionamiento
@@ -20,7 +22,7 @@ lo que lo hace muy fácil de interpretar visualmente.
 Una de las grandes ventajas que proporciona
 el uso de este archivo
 es el despliegue de proyectos enteros
-mediante comandos simplificados.
+mediante el comando simplificado llamado `compose`.
 
 
 !!! info "docker-compose.yml"
@@ -33,13 +35,15 @@ mediante comandos simplificados.
 El campo `name` asigna un nombre al proyecto,
 el cual será leído por el gestor de contenedores
 y suele ser usado para nombrar a los elementos internos del proyecto.
-Si este campo no se indica explícitamente
-entonces se asigna automáticamente
-el nombre de la carpeta que contiene al archivo.
 
 ```yaml title="compose.yml - nombre"
 name: mi_proyecto
 ```
+
+Si este campo no se indica explícitamente
+entonces se asigna automáticamente.
+Suele tomarse
+el nombre de la carpeta que contiene al archivo.
 
 ## Sección `services`
 
@@ -48,10 +52,12 @@ porque en ella se definen los contenedores del proyecto.
 A cada contenedor se le pone un *"nombre de servicio"*
 a elección del usuario
 y bajo él se definen los parámetros del *container* que se necesiten.
-
+<!-- 
 ## Parámetros de contenedores
 
 Cada contenedor acepta múltiples parámetros de configuración.
+
+ -->
 Estos son algunos de los parámetros más habituales.
 
 
@@ -66,6 +72,16 @@ Si no se encuentra la imagen pedida,
 entonces el gestor buscará e intentará descargar la imagen
 desde alguno de los proveedores de imágenes habilitados.
 
+La sintaxis básica es la siguiente:
+
+```yaml title="compose.yml - imagen preconstruida"
+services:
+
+  base-datos:         # nombre de servicio - arbitrario
+    image: nombre_imagen:tag_version
+```
+Si no se indica ningún tag entonces se asigna el tag `latest` automáticamente.
+
 Algunos ejemplos de uso para `image`:
 
 - Gestores de bases de datos: MariaDB, PostgreSQL, Redis, MongoDB, etc.
@@ -75,14 +91,13 @@ Algunos ejemplos de uso para `image`:
 
 Por ejemplo, para utilizar la versión 9.3 de MySQL:
 
-```yaml title="compose.yml - imagen preconstruida"
+```yaml title="compose.yml - imagen preconstruida (ejemplo)"
 services:
 
   base-datos:    # nombre de servicio - arbitrario
     image: mysql:9.3.0  # tag: '9.3.0'
 ```
 
-Si no se indica ningún tag entonces se asigna el tag `latest` automáticamente.
 
 ### `build`
 
@@ -98,8 +113,8 @@ entonces se la descarga automáticamente.
 ```yaml title="compose.yml - construir imagen"
 services:
 
-  nueva-imagen:    # nombre de servicio - arbitrario
-    build: ruta    # ruta al Dockerfile - suele ser relativa
+  nueva-imagen:             # nombre de servicio - arbitrario
+    build: ruta_dockerfile  # ruta relativa al Dockerfile
 ```
 
 El nombre asignado a la imagen modificada
@@ -111,7 +126,7 @@ y del nombre de servicio.
     Si `image` y `build` son indicados en el mismo contenedor
     entonces se creará una nueva imagen
     siguiendo los pasos indicados por el Dockerfile
-    y a esta se la nombrará con el nombre y etiqueta
+    y a ésta se la nombrará con el nombre y etiqueta
     especificados por el campo `image`.
     Si la etiqueta se omite se asigna automáticamente el tag `latest`.
 
@@ -145,6 +160,91 @@ services:
 ```
 
 
+
+
+
+## Comando Compose
+
+El comando Compose interpreta el archivo `compose.yml` y con el crea,
+ejecuta, lee y borra los contenedores indicados en el proyecto.
+La terminal debe estar ubicada en la ruta del archivo para funcionar.
+
+!!! info "Implementaciones"
+
+    Dependiendo de la implementación del comando Compose instalada en el sistema,
+    el comando se debe llamar como:
+
+    ```bash
+    docker-compose comando  # Docker - versiones viejas / paquete externo
+    docker compose comando  # Docker - versiones nuevas
+    podman-compose comando  # Podman - Paquete externo
+    podman compose comando  # Podman Desktop - extension
+    ```
+
+    Elegir la variante que corresponda según el componente instalado en el sistema.
+    En este tutorial se asumirá que es `podman compose comando` 
+
+
+
+
+### Creación y arranque
+
+El proyecto se crea con el comando `up`.
+
+```bash title="compose - creación"
+podman compose up
+```
+
+Este comando descarga la imagen indicada por el Dockerfile
+en caso de ser necesario y crea la imagen personalizada.
+Luego pone en marcha al contenedor
+y muestra los mensajes de log a medida que se producen.
+
+
+El comando `up` no reconstruye la imagen en caso de modificarse la rutina Python. Para forzar la reconstrucción hay que agregar la opción `build`:
+
+```bash title="compose - creación (forzar construcción)"
+podman compose up --build
+```
+
+### Sólo arranque
+
+La puesta en marcha en segundo plano se realiza con el comando `start`:
+
+```bash title="compose - arranque"
+podman compose start
+```
+En este caso se omite la construcción de los contenedores.
+
+
+### Registro
+
+La consulta del registro de *logs* pasados se hace con `logs`:
+
+```bash title="compose - registros"
+podman compose logs
+```
+
+Los *logs* de cada contenedor
+también se pueden consultar desde el cliente gráfico
+tanto de Docker como de Podman.
+
+
+### Borrado
+
+El proyecto se elimina con el comando `down`:
+
+
+```bash title="compose - borrado"
+podman compose down
+```
+
+Este comando apaga los contenedores del proyecto y los elimina.
+
+
+
+
+<!-- 
 ## Secciones opcionales
 
 A veces se necesitan crear secciones adicionales en el proyecto.
@@ -190,7 +290,7 @@ include:
 No todas las implementaciones del comando Compose
 soportan su uso.
 
-
+ -->
 
 
 
