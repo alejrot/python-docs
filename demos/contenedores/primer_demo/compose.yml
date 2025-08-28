@@ -1,0 +1,10 @@
+name: contar-python
+
+services:
+
+  demo-contador:    # nombre de servicio - arbitrario
+    # necesarios
+    build: .        # Dockerfile en el mismo directorio
+    # opcionales
+    image: imagen-contador:v1
+    container_name: contenedor-contador
