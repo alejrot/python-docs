@@ -207,7 +207,7 @@ pero esos pasos son meramente opcionales.
 Se ordena 
 la construcción y el despliegue del proyecto:
 
-```bash title="Construir y desplegar"
+```bash title="Proyecto - Construir y desplegar"
 cd ruta_proyecto
 podman compose up --build
 ``` 
@@ -222,7 +222,7 @@ con el nombre `imagen-contador` y tag `v1`;
 Si todo salió bien debe observarse por consola los *logs*,
 algo parecido a:
 
-``` log title="Registro"
+``` log title="Proyecto - Registro"
 contenedor-contador  | 2025-08-27 04:42:57,880 - INFO - Contando hasta 4
 contenedor-contador  | 2025-08-27 04:42:57,880 - INFO - i:    0
 contenedor-contador  | 2025-08-27 04:42:58,880 - INFO - i:    1
@@ -235,13 +235,13 @@ contenedor-contador exited with code 0
 Este mismo resultado debe repetirse instantáneamente
 al consultar los *logs* por terminal:
 
-```bash title="Consultar registro"
+```bash title="Proyecto - Consultar registro"
 podman compose logs
 ``` 
 
 Se puede despertar al contenedor de nuevo:
 
-```bash title="Desplegar"
+```bash title="Proyecto - Desplegar"
 podman compose up
 ```
 
@@ -253,7 +253,7 @@ Para dar de baja (eliminar) el contenedor
 y todos sus *logs* internos
 simplemente usar el comando `down`:
 
-```bash title="Borrar"
+```bash title="Proyecto - Borrar"
 podman compose down
 ```
 

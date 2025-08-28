@@ -1,5 +1,5 @@
 ---
-status: deprecated
+status: new
 date:
     created: 2025-07-01
     updated: 2025-08-26
@@ -290,7 +290,6 @@ services:
 # lista de volumenes implementados
 volumes:
   nombre_volumen:
-    external: false   # valor default (puede omitirse)
 ```
 
 El nombre asignado al volumen 
@@ -348,6 +347,11 @@ services:
 Si la ruta indicada en el sistema host no existe
 entonces se creará automáticamente.
 
+Este tipo de volumenes es práctico
+para darle un acceso inmediato
+de los archivos 
+a desarrolladores y administradores del proyecto.
+
 !!! warning "Security Options"
 
     El atributo `security_opt`
@@ -365,55 +369,16 @@ entonces se creará automáticamente.
 
 
 
-## Inspeccionar volumenes
-
-La lista de volumenes existentes se consulta
-con el comando `volume list`:
-
-```bash
-podman volume list
-```
-
-Los parámetros del volumen de interés
-se consultan con el comando `volume inspect`:
-
-
-```bash
-podman volume inspect NOMBRE_VOLUMEN 
-```
-
-La ruta al contenido del volumen
-se indica dentro del campo `Mountpoint`.
-Su valor se puede consultar así:
-
-
-```bash
-podman volume inspect NOMBRE_VOLUMEN --format='{{.Mountpoint}}'
-```
-
-Accediendo a esta ruta se podrá acceder a los datos
-para realizar copias de seguridad,
-restablecer los datos,
-realizar una migración de plataforma, etc.
-
-!!! tip "Gestión gráfica"
-
-    Las aplicaciones de escritorio de Docker y de Podman
-    permiten visualizar y administrar los volumenes existentes de manera gráfica.
-
-
-
-
 ## Ejemplo demo
 
 
-En este demo la rutina cuenta hasta un número especificado
+En este demo se adapta la rutina del contador
 pero en este caso los logs salen por consola
 y por archivo en simultáneo.
 El archivo es creado 
 con el nombre `reporte.log` y los reportes son acumulativos.
 
-!!! example "demo contar" 
+???+ example "demo contar" 
 
     ```py title="contar.py" hl_lines="7 12-22"
     from time import sleep
@@ -439,7 +404,6 @@ con el nombre `reporte.log` y los reportes son acumulativos.
                 ),
             ],
         )
-
 
     try:
         # el numero maximo a contar se asigna como argumento
@@ -502,8 +466,6 @@ con el nombre `reporte.log` y los reportes son acumulativos.
               - /root/logs
         ```
 
-
-
     === "Volumen con nombre"
 
         ``` bash title="Arbol de archivos"
@@ -529,9 +491,7 @@ con el nombre `reporte.log` y los reportes son acumulativos.
           registro_persistente:
         ```
 
-
     === "Volumen de host"
-
 
         ``` bash title="Arbol de archivos"
         .
@@ -542,8 +502,6 @@ con el nombre `reporte.log` y los reportes son acumulativos.
         └── registro
             └── reporte.log
         ```
-
-
 
         ```yaml title="compose.yml"
         name: demo_volumen
@@ -558,6 +516,97 @@ con el nombre `reporte.log` y los reportes son acumulativos.
               - label=disable
         ```
 
+## Manejo manual
+
+### Listar e inspeccionar
+
+La lista de volumenes existentes se consulta
+con el comando `volume list`:
+
+```bash title="Volumenes - Listado"
+podman volume list
+```
+
+Los parámetros del volumen de interés
+se consultan con el comando `volume inspect`:
 
 
+```bash title="Volumenes - Inspección"
+podman volume inspect NOMBRE_VOLUMEN 
+```
+
+La ruta al contenido del volumen
+se indica dentro del campo `Mountpoint`.
+Su valor se puede consultar así:
+
+```bash title="Volumenes - Ubicación"
+podman volume inspect NOMBRE_VOLUMEN --format='{{.Mountpoint}}'
+```
+
+Accediendo a esta ruta se podrá acceder a los datos
+para realizar copias de seguridad,
+restablecer los datos,
+realizar una migración de plataforma, etc.
+
+!!! tip "Gestión gráfica"
+
+    Las aplicaciones de escritorio de Docker y de Podman
+    permiten visualizar y administrar los volumenes existentes de manera gráfica.
+
+### Creación
+
+Los volumenes se pueden crear deliberadamente
+con el comando `create`:
+
+```bash title="Volumenes - Creación (con nombre)"
+podman volume create  NOMBRE_VOLUMEN
+```
+El nombre asignado servirá para poder ser accedido
+desde los contenedores como volumen externo:
+
+```yaml title="compose.yml - volumen externo"
+services:
+
+  volumen_nombre:
+    build: .
+    volumes:
+      - NOMBRE_VOLUMEN:/root/logs
+
+
+volumes:
+  NOMBRE_VOLUMEN:
+    external: true 
+```
+
+
+
+### Borrado
+
+A los volumenes 
+y a su contenido
+se los borra
+uno a uno
+con el comando `remove`:
+
+```bash title="Volumenes - Borrado"
+podman volume remove NOMBRE_VOLUMEN
+```
+
+
+!!! danger "Borrar no usados"
+
+    Los volumenes no utilizados por ningún contenedor
+    se pueden borrar en masa automátícamente
+    con el comando `prune` ("podar"):
+
+    ```bash title="Volumenes - Borrado (no utilizados)"
+    podman volume prune
+    ```
+
+    Esta opción debe usarse con mucho cuidado,
+    dado que puede haber volumenes
+    con datos de producción
+    que estén huérfanos al momento de ejecutar este comando.
+
+  
 
