@@ -7,12 +7,15 @@ date:
 
 # Volumenes
 
+## Introducción
+
 Los volumenes son almacenamientos persistentes
 ubicados en el sistema anfitrión
 a los cuales los contenedores tienen acceso.
 Son necesarios para prevenir
 la pérdida de los datos internos de los contenedores
 cada vez que éstos son borrados o recreados.
+
 
 Algunos usos habituales:
 
@@ -21,7 +24,7 @@ Algunos usos habituales:
 - reportes de funcionamiento;
 - etc.
 
-
+<!-- 
 ## Archivos en Python
 
 A continuación se repasan algunos mecanismos disponibles de Python para manejar archivos y carpetas.
@@ -40,12 +43,13 @@ a los cuales el contenedor tenga acceso.
 Algunas funciones útiles del módulo `pathlib`: [alteración de recursos](../pathlib/alteracion.md)
 
 
-
+ -->
+<!-- 
 
 ### Logging en archivo
 
 
-Los logs se pueden guardar en archivo 
+Los *logs* se pueden guardar en archivo 
 al tiempo que se muestran en consola.
 La configuración se realiza fácilmente
 con ayuda de las funciones
@@ -72,39 +76,108 @@ logging.basicConfig(
         ],
     )
 ```
+ -->
 
-## Usuario *"root"*
+<!-- 
+### Rutas de usuario
 
 
-El usuario predeterminado dentro del contenedor es `root`,
-en analogía con el usuario *root*  (raíz o superusuario)
-de los sistemas GNU/Linux.
-Su "carpeta de usuario" se llama `root` 
-pero no se encuentra en `/home` sino en la ruta raiz `/`.
+Puede suceder que los programas
+requieran manipular archivos
+ubicados dentro de la carpeta personal
+del usuario actual.
 
-Por ejemplo: si se indica la ruta de archivo
-`~/salida.txt`
-(archivo en carpeta de usuario)
-esto se traduce en el contenedor como 
-`/root/salida.txt`.
 
-La función `Path()` es práctica para convertir las rutas relativas a la carpeta de usuario con su método `expanduser`: 
-```py
-from pathlib import Path
+Por ejemplo, supóngase un archivo de texto 
+ubicado en la carpeta personal del usuario actual.
+Esta ruta se representa en Bash como 
+`~/salida.txt`.
+Para un usuario normal de GNU/Linux
+la ruta absoluta estará
+ubicada en la carpeta `/home`:
 
-ruta_archivo = Path( "`~/salida.txt").expanduser()
-``` 
+```bash title="Ruta archivo - usuario Linux"
+/home/USUARIO/salida.txt
+```
 
-!!! info "Permisos de root" 
+El superusuario o administrador
+de los sistemas GNU/Linux
+se llama *root*  ("raíz").
+Su "carpeta de usuario" se llama `root`
+pero no se encuentra en `/home`
+sino en la ruta raiz `/`.
+Esta será la ruta absoluta en este caso:
 
-    En Docker el usuario `root`
-    posee todos los permisos de administrador por *default*.
+
+```bash title="Ruta archivo - root (Linux)"
+/root/salida.txt
+```
+
+Por último,
+el usuario predeterminado
+dentro del contenedor es normalmente `root`,
+debido a que la gran mayoría de las imágenes
+están basadas en sistemas GNU/Linux.
+En consecuencia, la ruta en este caso también sera:
+
+```bash title="Ruta archivo - contenedor"
+/root/salida.txt
+```
+
+!!! tip "expanduser()"
+
+    La función `Path()` del [módulo `pathlib`](../pathlib/index.md)
+    es práctica para convertir las rutas relativas
+    a la carpeta de usuario con su método `expanduser`:
+
+    ```py title="Python - Expandir rutas usuario"
+    from pathlib import Path
+
+    ruta_archivo = Path( "`~/salida.txt").expanduser()
+    ``` 
+ -->
+
+
+
+## Usuario root
+
+
+En los contenedores que corren imágenes basadas en Linux
+el usuario predeterminado
+es el usuario `root` ("raiz"),
+que es el usuario administrador del sistema.
+Su carpeta de usuario se encuentra
+en la carpeta `/root`,
+en contraposición a los usuarios comunes,
+que tienen sus archivos de usuario
+dentro de la carpeta `/home`.
+
+
+!!! warning "Permisos de root" 
+
+    Docker hace funcionar a los contenedores
+    con plenos permisos de administrador.
+    Por este motivo
+    en Docker el usuario `root`
+    de cada contenedor
+    posee todos los permisos
+    de administrador por *default*.
+    Esto puede implicar un riesgo de seguridad,
+    la llamada "escalada de permisos",
+    si a los contenedores
+    se les da un acceso demasiado permisivo
+    a los recursos del sistema anfitrión.
+
     Esto es diferente en Podman,
-    donde el usuario `root` no tiene dichos permisos por *default* y por eso ejecuta los contenedores en modo *rootless*.
+    el cual funciona en modo *rootless*
+    (sin permisos de superusuario)
+    por *default*
+    y por tanto el usuario *root* de cada contenedor
+    no tiene dichos permisos especiales
     a menos que se inicie Podman en modo *rootful* deliberadamente.
 
 
-## Uso de volumenes
+## Volumenes en compose
 
 El acceso de los contenedores
 a los volumenes se indica 
@@ -113,6 +186,31 @@ del archivo `compose.yml`.
 Un mismo proyecto permite definir múltiples volumenes;
 además un mismo contenedor puede acceder
 a varios volumenes simultáneamente.
+
+!!! info "Puntos de montaje"
+
+    En informática un *punto de montaje*
+    es una equivalencia
+    entre un recurso
+    al que se requiere tener acceso
+    (
+    un archivo,
+    un directorio,
+    un dispositivo, 
+    etc.
+    )
+    y una ruta del sistema local.
+    Al proceso de crear dicha equivalencia
+    se lo llama coloquialmente "montar".
+
+    En el caso de los contenedores
+    los puntos de montaje consisten
+    en equivalencias entre
+    rutas internas del contenedor
+    y rutas del sistema anfitrión.
+
+
+
 
 Hay varias variantes de volumenes
 que pueden ser creados,
@@ -146,6 +244,12 @@ entonces los voúmenes se suelen alojar en la ruta
 
 Al volumen anónimo se le asigna un nombre aleatorio
 de manera automática.
+Este tipo de volumenes 
+es práctico para datos 
+que no requieran ser transferidos
+ni preservados por mucho tiempo:
+cachés, algunos archivos de configuración, etc.
+
 
 <!-- 
 Al volumen anónimo se le asigna un nombre automáticamente
@@ -156,9 +260,11 @@ Por ejemplo en este caso
 el volumen sería llamado como
 `nombre_proyecto_servicio_volumen_1c7d7b...`.
  -->
+
+<!-- 
 Esto es relevante si se necesita realizar
 la inspección del volumen (ver más adelante).
-
+ -->
 
 ### Volumenes con nombre
 
@@ -184,7 +290,7 @@ services:
 # lista de volumenes implementados
 volumes:
   nombre_volumen:
-    external: false   # valor default
+    external: false   # valor default (puede omitirse)
 ```
 
 El nombre asignado al volumen 
@@ -206,6 +312,17 @@ volumes:
   nombre_volumen:
     external: true
 ```
+
+Los volumenes con nombre
+son una buena opción para datos
+que necesiten ser preservados
+y posiblemente transferidos a otras plataformas:
+bases de datos de producción,
+publicaciones de usuarios
+(ej: entradas de WordPress),
+etc.
+pero que no necesiten ser manipulados directamente
+por desarrolladores ni administradores.
 
 ### Volumenes de host
 
@@ -244,6 +361,7 @@ entonces se creará automáticamente.
     de los recursos del usuario actual del sistema
     pero no se da acceso a los recursos
     que requieran permisos de administrador.
+
 
 
 
@@ -345,10 +463,7 @@ con el nombre `reporte.log` y los reportes son acumulativos.
 
     ``` Dockerfile title="Dockerfile"
     # imagen de referencia
-    ARG TAG_IMAGEN=3.13.5-alpine3.22
-    # ARG TAG_IMAGEN=3.13.5-slim-bookworm
-    FROM python:${TAG_IMAGEN}
-    # FROM python:3.13.5-alpine3.22
+    FROM python:alpine
 
     # directorio de trabajo (se crea automáticamente)
     WORKDIR /code

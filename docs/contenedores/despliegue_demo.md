@@ -249,8 +249,7 @@ y se verá que los nuevos registros
 se concatenenan tras los anteriores,
 sin borrarlos.
 
-
-Para dar de baja el contenedor
+Para dar de baja (eliminar) el contenedor
 y todos sus *logs* internos
 simplemente usar el comando `down`:
 

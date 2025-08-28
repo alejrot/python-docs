@@ -5,7 +5,7 @@ date:
     updated: 2025-08-26
 ---
 
-# Precauciones previas
+# Precauciones previas y tips
 
 Antes de intentar el despliegue 
 de aplicaciones Python 
@@ -117,6 +117,34 @@ logging.basicConfig(
     )
 ```
 
+Los *logs* se pueden guardar en archivo 
+al tiempo que se muestran en consola.
+La configuración se realiza fácilmente
+con ayuda de las funciones
+`StreamHandler()` y`FileHandler()` del módulo `logging`
+tal como se muestra a continuación:
+
+
+``` py title="logging en archivo" hl_lines="10-15"
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, # mínimo nivel de log a publicar
+    format="%(asctime)s - %(levelname)s - %(message)s", #info incorporada
+    handlers=[
+        # salida por consola
+        logging.StreamHandler(), 
+        # salida por archivo
+        logging.FileHandler(
+            filename=ruta_archivo,
+            mode="a",             # agregado ('append')
+            encoding="utf-8",
+            delay=True,
+            ),
+        ],
+    )
+```
+
 Hay varias funciones para crear los mensajes de *log*,
 las cuales tienen distintos niveles de jerarquía:
 
@@ -127,6 +155,12 @@ logging.warning("Texto de WARNING")
 logging.error("Texto de ERROR")
 logging.critical("Texto de CRITICAL")   # máxima jerarquía
 ```
+
+Las llamadas a funciones de *logging*
+que no cumplan la jerarquía mínima configuradas
+serán ignoradas durante la ejecución.
+
+
 
 ## f-strings vs lazy format
 
