@@ -194,7 +194,7 @@ se llama a su gestor de paquetes:
 
 Nótese que no es necesario agregar la cláusula `sudo`
 para instalar paquetes dentro de las imágenes.
-
+<!-- 
 
 !!! tip "Poetry en contenedores"
 
@@ -232,7 +232,7 @@ para instalar paquetes dentro de las imágenes.
         RUN poetry install
         ```
 
-
+ -->
 
 
 ### `CMD`
