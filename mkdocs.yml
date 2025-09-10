@@ -222,6 +222,15 @@ nav:
       - archivos/json.md
       - archivos/pyyaml.md
 
+    # - Modulos:
+    #   - organizacion/modulos/index.md
+    #   - organizacion/modulos/basico.md
+    #   - organizacion/modulos/creacion.md
+    #   - organizacion/modulos/namespace.md
+    #   - organizacion/modulos/init.md
+    #   - organizacion/modulos/main.md
+
+
     - Tiempo y fechas:
       - tiempo/index.md 
       - tiempo/tiempo.md 
@@ -327,7 +336,7 @@ nav:
 
   
   - Módulos: 
-    - modulos/index.md
+    - biblioteca/index.md
 
     - Pathlib:
       - pathlib/index.md
@@ -346,13 +355,13 @@ nav:
       - argparse/parser.md
       - argparse/grupos.md
       
-    - Sys - Parámetros y funciones del sistema: modulos/sys.md
-    - Os - Comandos del Sistema Operativo: modulos/os.md
-    - Tempfile - Archivos Temporales: modulos/tempfile.md
-    - Re - Expresiones Regulares (RegEx): modulos/regex.md
-    - Asyncio - Ejecución Asincrónica: modulos/asyncio.md
-    - Logging - Reportes de errores: modulos/logging.md
-    - Unittest - Tests Unitarios: tests/unittest.md
+    - biblioteca/sys.md
+    - biblioteca/os.md
+    - biblioteca/tempfile.md
+    - biblioteca/regex.md
+    - biblioteca/asyncio.md
+    - biblioteca/logging.md
+    - tests/unittest.md
 
 
   - Paquetes:
