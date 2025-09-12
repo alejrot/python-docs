@@ -1,0 +1,10 @@
+name: demo-puertos
+
+services:
+
+  webapp-flet:    
+    build: .        
+    image: webapp-flet
+    ports:
+    - 9999:8000
+    
