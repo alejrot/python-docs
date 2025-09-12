@@ -28,7 +28,7 @@ Las constantes se acceden así:
 modulo.constante
 ```
 
-
+<!-- 
 !!! example "Ejemplo: modulo request"
 
     El módulo *request* permite interactuar con API's de servidores remotos para hacer consultas.
@@ -41,7 +41,7 @@ modulo.constante
     ```py
     respuesta = requests.get( "https://pokeapi.co/api/v2/pokemon?limit=151")
     ```
-
+ -->
 
 
 

@@ -7,15 +7,12 @@ date:
 
 # Volumenes
 
-## Introducción
-
 Los volumenes son almacenamientos persistentes
 ubicados en el sistema anfitrión
 a los cuales los contenedores tienen acceso.
 Son necesarios para prevenir
 la pérdida de los datos internos de los contenedores
 cada vez que éstos son borrados o recreados.
-
 
 Algunos usos habituales:
 
@@ -24,169 +21,27 @@ Algunos usos habituales:
 - reportes de funcionamiento;
 - etc.
 
-<!-- 
-## Archivos en Python
+## Introducción
 
-A continuación se repasan algunos mecanismos disponibles de Python para manejar archivos y carpetas.
+Las rutas internas de los contenedores
+están aisladas del sistema anfitrión.
+Asimismo los contenedores
+son incapaces de interactuar
+con los directorios y archivos
+del sistema anfitrión.
+*host* directamente.
 
+El gestor de contenedores
+crea los volumenes
+en una ruta permitida del anfitrión.
+Luego crea un "punto de montaje"
+(una equivalencia)
+entre las rutas internas
+de los contenedores
+y las rutas internas de los volumenes.
 
-### Apertura de archivos
-
-Dentro de los contenedores se puede
-crear, leer, modificar y borrar archivos y carpetas
-con ayuda de la [función `open()`](../archivos/archivos.md)
-como también con las funciones dedicadas
-que proporcionan los módulos `os`, `pathlib`, entre otros.
-Lo mismo sucede con aquellos recursos ubicados en volumenes
-a los cuales el contenedor tenga acceso.
-
-Algunas funciones útiles del módulo `pathlib`: [alteración de recursos](../pathlib/alteracion.md)
-
-
- -->
-<!-- 
-
-### Logging en archivo
-
-
-Los *logs* se pueden guardar en archivo 
-al tiempo que se muestran en consola.
-La configuración se realiza fácilmente
-con ayuda de las funciones
-`StreamHandler()` y`FileHandler()` del módulo `logging`
-tal como se muestra a continuación:
-
-
-``` py title="logging en archivo" hl_lines="10-15"
-import logging
-
-logging.basicConfig(
-    level=logging.INFO, # mínimo nivel de log a publicar
-    format="%(asctime)s - %(levelname)s - %(message)s", #info incorporada
-    handlers=[
-        # salida por consola
-        logging.StreamHandler(), 
-        # salida por archivo
-        logging.FileHandler(
-            filename=ruta_archivo,
-            mode="a",             # agregado ('append')
-            encoding="utf-8",
-            delay=True,
-            ),
-        ],
-    )
-```
- -->
 
 <!-- 
-### Rutas de usuario
-
-
-Puede suceder que los programas
-requieran manipular archivos
-ubicados dentro de la carpeta personal
-del usuario actual.
-
-
-Por ejemplo, supóngase un archivo de texto 
-ubicado en la carpeta personal del usuario actual.
-Esta ruta se representa en Bash como 
-`~/salida.txt`.
-Para un usuario normal de GNU/Linux
-la ruta absoluta estará
-ubicada en la carpeta `/home`:
-
-```bash title="Ruta archivo - usuario Linux"
-/home/USUARIO/salida.txt
-```
-
-El superusuario o administrador
-de los sistemas GNU/Linux
-se llama *root*  ("raíz").
-Su "carpeta de usuario" se llama `root`
-pero no se encuentra en `/home`
-sino en la ruta raiz `/`.
-Esta será la ruta absoluta en este caso:
-
-
-```bash title="Ruta archivo - root (Linux)"
-/root/salida.txt
-```
-
-Por último,
-el usuario predeterminado
-dentro del contenedor es normalmente `root`,
-debido a que la gran mayoría de las imágenes
-están basadas en sistemas GNU/Linux.
-En consecuencia, la ruta en este caso también sera:
-
-```bash title="Ruta archivo - contenedor"
-/root/salida.txt
-```
-
-!!! tip "expanduser()"
-
-    La función `Path()` del [módulo `pathlib`](../pathlib/index.md)
-    es práctica para convertir las rutas relativas
-    a la carpeta de usuario con su método `expanduser`:
-
-    ```py title="Python - Expandir rutas usuario"
-    from pathlib import Path
-
-    ruta_archivo = Path( "`~/salida.txt").expanduser()
-    ``` 
- -->
-
-
-
-## Usuario root
-
-
-En los contenedores que corren imágenes basadas en Linux
-el usuario predeterminado
-es el usuario `root` ("raiz"),
-que es el usuario administrador del sistema.
-Su carpeta de usuario se encuentra
-en la carpeta `/root`,
-en contraposición a los usuarios comunes,
-que tienen sus archivos de usuario
-dentro de la carpeta `/home`.
-
-
-!!! warning "Permisos de root" 
-
-    Docker hace funcionar a los contenedores
-    con plenos permisos de administrador.
-    Por este motivo
-    en Docker el usuario `root`
-    de cada contenedor
-    posee todos los permisos
-    de administrador por *default*.
-    Esto puede implicar un riesgo de seguridad,
-    la llamada "escalada de permisos",
-    si a los contenedores
-    se les da un acceso demasiado permisivo
-    a los recursos del sistema anfitrión.
-
-    Esto es diferente en Podman,
-    el cual funciona en modo *rootless*
-    (sin permisos de superusuario)
-    por *default*
-    y por tanto el usuario *root* de cada contenedor
-    no tiene dichos permisos especiales
-    a menos que se inicie Podman en modo *rootful* deliberadamente.
-
-
-## Volumenes en compose
-
-El acceso de los contenedores
-a los volumenes se indica 
-mediante el campo `volumes`
-del archivo `compose.yml`.
-Un mismo proyecto permite definir múltiples volumenes;
-además un mismo contenedor puede acceder
-a varios volumenes simultáneamente.
-
 !!! info "Puntos de montaje"
 
     En informática un *punto de montaje*
@@ -208,9 +63,66 @@ a varios volumenes simultáneamente.
     en equivalencias entre
     rutas internas del contenedor
     y rutas del sistema anfitrión.
+ -->
+
+```mermaid
+---
+title: "Volumenes - Idea general"
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+        subgraph services [Servicios]
+            subgraph c1 ["`Contenedor 1`"]
+            r1["/ruta_1"]
+            r2["/ruta_2"] 
+            end
+            subgraph c2 ["`Contenedor 2`"]
+            r3["/ruta_3"]
+            end
+        end
+    end
+
+    subgraph host [Host]
+        subgraph volumenes [Volumenes]
+            vol1["`Volumen 1
+            ruta_A`"]
+            vol2["`Volumen 2
+            ruta_B`"]
+            vol3["`Volumen 3
+            ruta_C`"]
+
+        end
+    end
+
+    vol1 o-.-o|montaje| r1
+    vol2 o-.-o|montaje| r2
+    vol3 o-.-o|montaje| r3
+```
+
+
+De esta manera
+los contenedores tienen acceso limitado
+al sistema de archivos del anfitrión
+a través de los volumenes.
+Si los contenedores son eliminados
+los volumenes y sus contenidos siguen existiendo
+y pueden ser reutilizados, migrados, etc.
 
 
 
+
+
+
+## Asignación de volumenes
+
+El acceso de los contenedores
+a los volumenes se indica 
+mediante el campo `volumes`
+del archivo `compose.yml`.
+Un mismo proyecto permite definir múltiples volumenes;
+además un mismo contenedor puede acceder
+a varios volumenes simultáneamente.
 
 Hay varias variantes de volumenes
 que pueden ser creados,
@@ -367,6 +279,45 @@ a desarrolladores y administradores del proyecto.
     que requieran permisos de administrador.
 
 
+
+## root 
+
+### Usuario root
+
+
+En los contenedores que corren imágenes basadas en Linux
+el usuario predeterminado
+es el usuario `root` ("raiz"),
+que es el usuario administrador del sistema.
+Su carpeta de usuario se encuentra
+en la carpeta `/root`,
+en contraposición a los usuarios comunes,
+que tienen sus archivos de usuario
+dentro de la carpeta `/home`.
+
+
+### Permisos de root
+
+Docker hace funcionar a los contenedores
+con plenos permisos de administrador.
+Por este motivo
+en Docker el usuario `root`
+de cada contenedor
+posee todos los permisos
+de administrador por *default*.
+Esto puede implicar un riesgo de seguridad,
+la llamada "escalada de permisos",
+si a los contenedores
+se les da un acceso demasiado permisivo
+a los recursos del sistema anfitrión.
+
+Esto es diferente en Podman,
+el cual funciona en modo *rootless*
+(sin permisos de superusuario)
+por *default*
+y por tanto el usuario *root* de cada contenedor
+no tiene dichos permisos especiales
+a menos que se inicie Podman en modo *rootful* deliberadamente.
 
 
 ## Ejemplo demo

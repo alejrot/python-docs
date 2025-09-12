@@ -49,16 +49,36 @@ el nombre de la carpeta que contiene al archivo.
 
 La sección `services` es la de uso más habitual
 porque en ella se definen los contenedores del proyecto.
+Cada proyecto funciona como un entorno aislado
+donde los contenedores internos
+son incapaces de interactuar
+con otros proyectos
+ni tampoco
+con el sistema anfitrión.
+
+```mermaid
+---
+title: "Servicios - idea básica"
+config:
+  markdownAutoWrap: false
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+
+        subgraph services [Servicios]
+          c1["`Contenedor 1`"]
+          c2["`Contenedor 2`"]
+        end
+
+    end
+```
+
 A cada contenedor se le pone un *"nombre de servicio"*
 a elección del usuario
 y bajo él se definen los parámetros del *container* que se necesiten.
-<!-- 
-## Parámetros de contenedores
-
-Cada contenedor acepta múltiples parámetros de configuración.
-
- -->
-Estos son algunos de los parámetros más habituales.
+A continuación se muestran
+algunos de los parámetros más habituales.
 
 
 ### `image`

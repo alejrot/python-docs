@@ -129,7 +129,6 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
-
 # extra:
 # #   homepage: https://alejrot.github.io/python-docs/
 #  generator: false
@@ -222,15 +221,6 @@ nav:
       - archivos/json.md
       - archivos/pyyaml.md
 
-    # - Modulos:
-    #   - organizacion/modulos/index.md
-    #   - organizacion/modulos/basico.md
-    #   - organizacion/modulos/creacion.md
-    #   - organizacion/modulos/namespace.md
-    #   - organizacion/modulos/init.md
-    #   - organizacion/modulos/main.md
-
-
     - Tiempo y fechas:
       - tiempo/index.md 
       - tiempo/tiempo.md 
@@ -265,9 +255,20 @@ nav:
         - clases/solid/dip.md
       - clases/singleton.md
 
-    - Módulos y paquetes:
+    - Módulos y paquetes (OLD):
       - Módulos: contenido/modulos.md
       - Paquetes: contenido/paquetes.md
+
+    # - Modulos y Paquetes:
+    #   - modulos/index.md
+    #   - modulos/basico.md
+    #   - modulos/creacion.md
+    #   - modulos/namespace.md
+    #   - modulos/init.md
+    #   - modulos/main.md
+
+
+
 
     - Función Main:
       - main/index.md
@@ -311,10 +312,10 @@ nav:
       - contenedores/precauciones.md
       - contenedores/despliegue_demo.md
       - contenedores/volumenes.md
+      - contenedores/puertos.md
       - contenedores/comandos.md
       - contenedores/entorno.md
       - contenedores/secuencial.md
-      - contenedores/puertos.md
 
 
 
@@ -335,7 +336,7 @@ nav:
       - paralelismo/hilos.md
 
   
-  - Módulos: 
+  - Módulos estándar: 
     - biblioteca/index.md
 
     - Pathlib:
