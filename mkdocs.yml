@@ -314,6 +314,7 @@ nav:
       - contenedores/volumenes.md
       - contenedores/puertos.md
       - contenedores/dependencia.md
+      - contenedores/networks.md
       - contenedores/comandos.md
       - contenedores/entorno.md
 

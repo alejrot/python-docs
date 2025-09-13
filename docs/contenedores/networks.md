@@ -1,0 +1,462 @@
+---
+status: new
+date:
+    created: 2025-07-01
+    updated: 2025-09-12
+---
+
+
+# Networks
+
+Las redes (*networks*) son elementos auxiliares
+que permiten interconectar los contenedores
+del proyecto desde dentro de su entorno aislado,
+sin necesidad de pasar por el sistema anfitrión.
+
+El gestor de contenedores implementa las *networks*
+como imitación de las redes privadas
+y redirige las peticiones IP
+de unos contenedores a otros
+imitando el funcionamiento de los servidores DNS. 
+
+
+
+## Implementación
+
+Las redes se implementan
+dentro del archivo `compose.yml`.
+
+
+### Red default
+
+De manera predeterminada
+todos los contenedores de un mismo proyecto
+comparten una *network* común,
+llamada literalmente "default",
+que les permite interconectarse los unos
+con los otros.
+
+Tomése como ejemplo el proyecto de un servidor
+creado en tres partes:
+frontend, backend y base de datos.
+Con la *network default*
+las tres partes pueden comunicarse directamente entre sí:, 
+en cualquier combinación y en cualquier sentido.
+
+```mermaid
+---
+title: "Networks - Red default"
+config:
+  markdownAutoWrap: false
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+
+
+        subgraph services [Servicios]
+        front["`Frontend `"]
+        back["`Backend `"]
+        db["`Base de datos`"]
+        end
+
+        subgraph redes [Redes]
+            red-default["(default)"]
+        end
+
+    end
+
+    front --- red-default
+    back --- red-default
+    db --- red-default
+```
+
+La implementación de este interconexionado
+es tácita: no se indica por escrito.
+
+
+```yaml title="compose.yml - Red default"
+services:
+
+  frontend:
+    image: imagen-front
+
+  backend:
+    image: imagen-back
+
+  base-datos:
+    image: imagen-db
+```
+
+Esta implementación no es recomendada
+para proyectos reales debido
+a que todos los contenedores del proyecto
+podrían acceder a información sensible
+transmitida por los demás,
+facilitando la aparición
+de vulnerabilidades en el sistema.
+
+
+### Subredes
+
+La manera de definir (y limitar)
+la conectividad entre contenedores
+se realiza definiendo múltiples *networks*
+dentro del proyecto.
+
+En este ejemplo, sólo el servicio de *backend*
+puede acceder directamente a la base de datos
+y el servicio de *frontend* 
+sólo puede interactuar con el *backend*:
+
+
+```mermaid
+---
+title: "Networks - Redes partidas"
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+
+        subgraph services [Servicios]
+        front["`Frontend`"]
+        back["`Backend`"]
+        db["`Base de datos`"]
+        end
+
+        subgraph redes [Redes]
+            red-front[red frontend]
+            red-db[red backend]
+        end
+    end
+
+
+    front --- red-front
+    back --- red-front
+    back --- red-db
+    db --- red-db
+
+```
+
+Dentro del archivo `compose.yml`
+se crea una sección llamada `networks`
+donde se definen las redes que estarán disponibles
+en el proyecto.
+Por otra parte,
+a cada contenedor
+se le define el campo `networks`
+donde se asigna una lista de redes 
+a las cuales podrá conectarse:
+
+
+
+```yaml title="compose.yml - Redes custom"
+services:
+
+  frontend:
+    image: imagen-front
+    # acceso
+    networks:
+      - red-front
+
+  backend:
+    image: imagen-back
+    # acceso
+    networks:
+      - red-front
+      - red-db
+
+  base-datos:
+    image: imagen-db
+    # acceso
+    networks:
+      - red-db
+
+
+# definición de redes
+networks:
+  red-front:
+  red-db:
+```
+
+En este esquema, cada contenedor
+sólo puede comunicarse
+con aquellos contenedores
+con los cuales comparta al menos una red.
+Aquellos contenedores que no tengan
+asignada al menos una *network*
+permanecerán aislados del resto.
+
+### Redes externas
+
+Las redes también pueden ser externas:
+tan sólo requieren que se les agregue la opción `external: true`:
+
+```yaml title="compose.yml - Redes externas"
+# definición de redes
+networks:
+  red-externa:
+    external: true
+```
+Dichas redes pueden proceder de otros proyectos Compose
+o también pueden ser creadas manualmente.
+
+### Parámetros adicionales
+
+Normalmente no es necesario especificar
+parámetros adicionales para utilizar las redes.
+Sin embargo, se pueden especificar *drivers*,
+elegir el protocolo IPv6 frente al IPv4, etc.
+
+
+## Ejemplo: proxy reverso con NGINX
+
+
+Este ejemplo se basa en el demo de la [web app con Flet](./puertos.md#ejemplo-webapp-con-python).
+A este demo se le agrega un contenedor NGINX
+que es configurado como proxy reverso,
+esto es un servidor que redirige el tráfico
+a distintas URLs dependiendo de qué ruta
+se le indique a la entrada.
+
+Este es el diagrama de bloques implementado:
+
+```mermaid
+---
+title: "Network - Proxy reverso"
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+
+        subgraph services [Servicios]
+        front["`webapp-flet 
+            servicio_frontend:8000`"]
+        proxy["`proxy-nginx
+            servicio_frontend:80`"]
+        end
+
+        subgraph redes [Redes]
+            red-default["red-proxy"]
+        end
+
+    end
+    subgraph host [Host]
+        subgraph ports [Puertos]
+            port1["`Navegador
+            localhost:9999`"]
+            port2["`Navegador
+            localhost:1234`"]
+        end
+    end
+
+    port1 ---|9999:8000| front
+    port2 ---|1234:80| proxy
+
+    front --- red-default
+    proxy --- red-default
+```
+
+Para el proxy 
+se eligió el puerto **`1234`**.
+El acceso directo
+desde el puerto **`9999`**
+se mantiene habilitado.
+
+### Organización de archivos
+
+
+Se coloca el demo del *port mapping*
+dentro del directorio `flet`, 
+y a su lado se prepara
+el directorio `nginx`
+con los archivos de configuración necesarios:
+
+```bash title="Demo proxy - Árbol de archivos"
+.
+├── compose.yml
+├── flet
+│   ├── demo
+│   │   └── main.py
+│   ├── Dockerfile
+│   └── requirements.txt
+└── nginx
+    ├── default.conf
+    └── Dockerfile
+```
+
+### Imagen del proxy
+
+El archivo de configuración necesario
+para el proxy
+es el archivo `default.conf`.
+En él se definen las rutas de entrada al proxy
+y a qué URL deben ser redirigidas.
+El destino es el contenedor del servidor Flet,
+cuya URL está formada por su nombre de servicio
+y su puerto de escucha.
+
+
+```conf hl_lines="9 20" title="Demo proxy - default.conf"
+server {
+  listen 80;
+  listen [::]:80;
+
+  server_name _;
+
+  # sitio con WebSockets
+  location / {
+      proxy_pass         http://webapp-flet:8000/;
+      proxy_http_version 1.1;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection keep-alive;
+      proxy_set_header   Host $host;
+      proxy_cache_bypass $http_upgrade;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+  }
+
+  location /ws {
+      proxy_pass         http://webapp-flet:8000/ws;
+      proxy_http_version 1.1;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection "upgrade";
+      proxy_set_header   Host $host;
+      proxy_cache_bypass $http_upgrade;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+  }
+
+}
+```
+
+El proxy requiere ruta doble
+(`/` y `/ws`)
+apuntando al mismo servicio
+porque la *webapp* utiliza WebSockets. 
+
+Este archivo es integrado en una nueva imagen
+derivada de NGINX
+con ayuda del archivo Dockerfile
+en la ruta `/etc/nginx/conf.d/default.conf`:
+
+
+```Dockerfile title="Demo proxy - Dockerfile (NGINX)"
+# imagen de base: NGINX
+FROM nginx
+
+# copia del archivo de configuracion
+COPY default.conf /etc/nginx/conf.d/default.conf
+```
+
+
+### Despliegue
+
+El despliegue de ambos contenedores
+se orquesta con el archivo Compose adaptado,
+el cual ahora apunta a ambos Dockerfiles.
+La creación y uso de una *network* *custom* es opcional.
+
+```yaml title="Demo proxy - compose.yml"
+name: demo-redes-proxy
+
+services:
+
+  webapp-flet:    
+    build: flet/        
+    image: webapp-flet
+    ports:
+      - 9999:8000
+    networks:
+      - red-proxy
+
+  proxy-reverso:
+    build: nginx/
+    image: proxy-nginx
+    command: [nginx, '-g', 'daemon off;']
+    ports:
+      - 1234:80
+    tty: true
+    stdin_open: true
+    depends_on:
+      - webapp-flet
+    networks:
+      - red-proxy
+
+
+networks:
+  red-proxy:
+```
+
+
+
+Se despliega el proyecto:
+
+```bash title="Demo proxy - Despliegue"
+podman compose up -d
+```
+
+y ahora el navegador web debe poder acceder 
+a la página demo 
+desde el puerto `1234`.
+Click para entrar: [**http://localhost:1234**](http://localhost:1234).
+
+
+## Manejo manual
+
+Al igual que con otros elementos de los contenedores,
+a veces es necesario manipular las redes mediante comandos.
+
+Las redes existentes se enumeran con el comando `list`:
+
+```bash title="Networks - Listado"
+podman network list
+```
+
+y la inspección de las mismas
+se realiza con el comando `inspect`:
+
+```bash title="Networks - Inspección"
+podman network inspect NOMBRE_RED
+```
+
+Una red se puede crear y asignarle un nombre
+con el comando `create`:
+
+```bash title="Networks - Creación"
+podman network create NOMBRE_RED
+```
+
+El borrado de las redes no usadas actualmente
+se realiza con el comando `prune`:
+
+```bash title="Networks - Poda"
+podman network prune
+```
+
+y la eliminación manual de redes específicas
+se hace con `remove`:
+
+```bash title="Networks - Borrado"
+podman network remove NOMBRE_RED
+```
+
+!!! tip "Redes huérfanas"
+
+    A veces quedan *networks* huérfanas
+    que impiden desplegar los proyectos
+    cuando su estructura es modificadoa.
+    Esto se soluciona eliminando estas redes
+    de manera manual con `prune` o `remove`.
+
+
+
+## Referencias
+
+
+[DockerDocs - Define and manage networks in Docker Compose](https://docs.docker.com/reference/compose-file/networks/)
+
+
+[Medium - [DevOps] Setting up a Docker Reverse Proxy Nginx — Multiple local apps](https://blog.devops.dev/devops-setting-up-a-docker-reverse-proxy-nginx-multiple-local-apps-21b6f03eefa0)
+
+[Flet.dev - Self Hosting](https://flet.dev/docs/publish/web/dynamic-website/hosting/self-hosting/)

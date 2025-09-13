@@ -73,7 +73,6 @@ al programa *frontend* (interfaz de usuario final),
 al programa backend (*login*, notificaciones, etc),
 y a la base de datos, en ese orden.
 
-
 En el caso de ambientes de desarrollo
 es habitual que el despliegue y las consultas
 se realicen en el equipo local, 
@@ -143,7 +142,8 @@ services:
 ```
 
 donde las elecciones disponibles son `tcp` y `udp`.
-Véase el [anexo sobre TCP y UDP](../anexos/redes/tcp_udp.md) para más información.
+Véase el [anexo sobre TCP y UDP](../anexos/redes/tcp_udp.md)
+para más información sobre estos protocolos.
 
 
 ## Ejemplo: webapp con Python
@@ -339,7 +339,7 @@ podman compose up -d
 
 Finalmente
 para ver la página web en funcionamiento
-se abre el navegador en la ruta [http://localhost:9999](http://localhost:9999).
+se abre el navegador en la ruta [**http://localhost:9999**](http://localhost:9999).
 
 
 
