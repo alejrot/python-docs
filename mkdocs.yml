@@ -313,9 +313,9 @@ nav:
       - contenedores/despliegue_demo.md
       - contenedores/volumenes.md
       - contenedores/puertos.md
+      - contenedores/dependencia.md
       - contenedores/comandos.md
       - contenedores/entorno.md
-      - contenedores/secuencial.md
 
 
 
