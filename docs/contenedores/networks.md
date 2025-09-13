@@ -313,7 +313,7 @@ cuya URL está formada por su nombre de servicio
 y su puerto de escucha.
 
 
-```conf hl_lines="8-9 19-20" title="Demo proxy - default.conf"
+```conf hl_lines="3-4 11-12 23-24" title="Demo proxy - default.conf"
 server {
   # puerto en escucha: 80 (default)
   listen 80;
