@@ -2,7 +2,7 @@
 status: new
 date:
     created: 2025-07-01
-    updated: 2025-08-26
+    updated: 2025-09-12
 ---
 
 
@@ -152,6 +152,40 @@ Supóngase un servidor de una página web dinámica
 implementada con el framework Flet,
 que se utiliza con Python.
 
+Se busca desplegarlo en un contenedor
+y conectarlo al anfitrión
+mediante *port mapping*.
+
+```mermaid
+---
+title: "Port Mapping - Web Dinámica con Flet"
+---
+flowchart LR
+
+    subgraph proyecto [Entorno proyecto]
+
+        subgraph services [Servicios]
+        front["`webapp-flet 
+            servicio_frontend:8000`"]
+        end
+
+
+    end
+    subgraph host [Host]
+        subgraph ports [Puertos]
+            port1["`Navegador
+            localhost:9999`"]
+        end
+    end
+
+    port1 ---|9999:8000| front
+```
+
+Para aceptar las peticiones
+se eligió arbitrariamente
+el puerto `9999`.
+
+
 ### Proyecto demo
 
 Este es el árbol del proyecto:
@@ -232,7 +266,8 @@ pip install -r requirements.txt
 La puesta en marcha 
 en entorno local se realiza
 con el servidor **Uvicorn**
-el cual es llamado con el siguiente comando:
+el cual viene incluido con Flet y
+es llamado con el siguiente comando:
 
 ```bash title="demo webapp - Despliegue (entorno virtual)" 
 cd demo/ 
