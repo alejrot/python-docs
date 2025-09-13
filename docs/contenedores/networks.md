@@ -20,6 +20,18 @@ de unos contenedores a otros
 imitando el funcionamiento de los servidores DNS. 
 
 
+!!! info "Nombre de servicio"
+
+    El nombre de servicio de cada contenedor
+    funciona como un **nombre de dominio**,
+    sirviendo como alias a la dirección IP
+    asignada al contenedor.
+    De esta manera los otros contenedores
+    podrán hacerle peticiones IP,
+    usando el nombre de servicio
+    para conformar las URLs a las cuales consultar.
+
+
 
 ## Implementación
 
@@ -40,7 +52,7 @@ Tomése como ejemplo el proyecto de un servidor
 creado en tres partes:
 frontend, backend y base de datos.
 Con la *network default*
-las tres partes pueden comunicarse directamente entre sí:, 
+las tres partes pueden comunicarse directamente entre sí, 
 en cualquier combinación y en cualquier sentido.
 
 ```mermaid
@@ -213,6 +225,10 @@ elegir el protocolo IPv6 frente al IPv4, etc.
 
 
 Este ejemplo se basa en el demo de la [web app con Flet](./puertos.md#ejemplo-webapp-con-python).
+Esta web app consiste en un contenedor
+cuyo nombre de servicio es `webapp-flet`
+y acepta conexiones entrantes por el puerto `8000`
+
 A este demo se le agrega un contenedor NGINX
 que es configurado como proxy reverso,
 esto es un servidor que redirige el tráfico
@@ -230,10 +246,10 @@ flowchart LR
     subgraph proyecto [Entorno proyecto]
 
         subgraph services [Servicios]
-        front["`webapp-flet 
-            servicio_frontend:8000`"]
+        front["`webapp-flet
+            puerto 8000`"]
         proxy["`proxy-nginx
-            servicio_frontend:80`"]
+            puerto 80`"]
         end
 
         subgraph redes [Redes]
@@ -243,25 +259,25 @@ flowchart LR
     end
     subgraph host [Host]
         subgraph ports [Puertos]
-            port1["`Navegador
-            localhost:9999`"]
+
             port2["`Navegador
             localhost:1234`"]
         end
     end
 
-    port1 ---|9999:8000| front
-    port2 ---|1234:80| proxy
+    port2 --->|1234:80| proxy
 
-    front --- red-default
-    proxy --- red-default
+    front <--- red-default
+    proxy ---> red-default
 ```
 
 Para el proxy 
-se eligió el puerto **`1234`**.
-El acceso directo
-desde el puerto **`9999`**
-se mantiene habilitado.
+se eligió el nombre de servicio 
+`proxy-nginx`
+y acepta conexiones por el puerto `80`.
+Este puerto 80 (típicamente reservado en el *host*) 
+es mapeado al puerto  **`1234`** del anfitrión.
+
 
 ### Organización de archivos
 
@@ -297,14 +313,17 @@ cuya URL está formada por su nombre de servicio
 y su puerto de escucha.
 
 
-```conf hl_lines="9 20" title="Demo proxy - default.conf"
+```conf hl_lines="8-9 19-20" title="Demo proxy - default.conf"
 server {
+  # puerto en escucha: 80 (default)
   listen 80;
   listen [::]:80;
 
   server_name _;
 
-  # sitio con WebSockets
+  ### Redirección a sitio con WebSockets
+
+  # petición a ruta '/'
   location / {
       proxy_pass         http://webapp-flet:8000/;
       proxy_http_version 1.1;
@@ -316,6 +335,7 @@ server {
       proxy_set_header   X-Forwarded-Proto $scheme;
   }
 
+  # petición a ruta '/ws'
   location /ws {
       proxy_pass         http://webapp-flet:8000/ws;
       proxy_http_version 1.1;
@@ -330,9 +350,13 @@ server {
 }
 ```
 
-El proxy requiere ruta doble
+Nótese las peticiones que el servidor proxy recibe 
+en la URL `http://proxy-nginx:80/`
+son redireccionadas
+a la URL `http://webapp-flet:8000/`,
+que corresponde al otro contenedor. 
+El proxy requiere **redirección doble**
 (`/` y `/ws`)
-apuntando al mismo servicio
 porque la *webapp* utiliza WebSockets. 
 
 Este archivo es integrado en una nueva imagen
@@ -365,12 +389,10 @@ services:
   webapp-flet:    
     build: flet/        
     image: webapp-flet
-    ports:
-      - 9999:8000
     networks:
       - red-proxy
 
-  proxy-reverso:
+  proxy-nginx:
     build: nginx/
     image: proxy-nginx
     command: [nginx, '-g', 'daemon off;']
@@ -398,8 +420,10 @@ podman compose up -d
 
 y ahora el navegador web debe poder acceder 
 a la página demo 
-desde el puerto `1234`.
-Click para entrar: [**http://localhost:1234**](http://localhost:1234).
+desde el puerto **`1234`**.
+
+[Click para entrar al demo](http://localhost:1234){.md-button .md-button--primary}
+
 
 
 ## Manejo manual

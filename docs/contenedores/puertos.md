@@ -59,9 +59,9 @@ flowchart LR
         end
     end
 
-    port1 ---|8000:8000| front
-    port2 ---|5000:8000| back
-    port3 ---|3306:3306| db
+    port1 -->|8000:8000| front
+    port2 -->|5000:8000| back
+    port3 -->|3306:3306| db
 ```
 
 En este ejemplo el programa gestor
@@ -165,8 +165,8 @@ flowchart LR
     subgraph proyecto [Entorno proyecto]
 
         subgraph services [Servicios]
-        front["`webapp-flet 
-            servicio_frontend:8000`"]
+        front["`Servidor Flet
+            webapp-flet:8000`"]
         end
 
 
@@ -178,7 +178,7 @@ flowchart LR
         end
     end
 
-    port1 ---|9999:8000| front
+    port1 -->|9999:8000| front
 ```
 
 Para aceptar las peticiones
@@ -339,9 +339,9 @@ podman compose up -d
 
 Finalmente
 para ver la página web en funcionamiento
-se abre el navegador en la ruta [**http://localhost:9999**](http://localhost:9999).
+se abre el navegador en la ruta `http://localhost:9999`.
 
-
+[Click para entrar al demo](http://localhost:9999){.md-button .md-button--primary}
 
 <!-- 
 ## Ejemplo

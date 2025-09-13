@@ -5,8 +5,6 @@ services:
   webapp-flet:    
     build: flet/        
     image: webapp-flet
-    ports:
-      - 9999:8000
     networks:
       - red-proxy
 
