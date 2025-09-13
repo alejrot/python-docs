@@ -1,0 +1,31 @@
+name: demo-puertos
+
+services:
+
+  webapp-flet:    
+    build: flet/        
+    image: webapp-flet
+    ports:
+      - 9999:8000
+    networks:
+      - red-proxy
+
+
+  proxy-reverso:
+    build: nginx/
+    image: proxy-nginx
+    command: [nginx, '-g', 'daemon off;']
+    ports:
+      - 1234:80
+    tty: true
+    stdin_open: true
+    depends_on:
+      - webapp-flet
+    networks:
+      - red-proxy
+
+
+networks:
+  red-proxy:
+
+
