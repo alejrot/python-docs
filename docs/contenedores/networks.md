@@ -9,27 +9,48 @@ date:
 # Networks
 
 Las redes (*networks*) son elementos auxiliares
-que permiten interconectar los contenedores
+que permiten interconectar a los contenedores
 del proyecto desde dentro de su entorno aislado,
 sin necesidad de pasar por el sistema anfitrión.
+
+
+### Introducción
 
 El gestor de contenedores implementa las *networks*
 como imitación de las redes privadas
 y redirige las peticiones IP
-de unos contenedores a otros
-imitando el funcionamiento de los servidores DNS. 
+de unos contenedores a otros.
+
+Para el aprovechamiento de las redes
+es clave el **nombre de servicio** de los contenedores.
+El nombre de servicio de cada contenedor
+funciona como un **nombre de dominio**.
+Durante el despliegue
+el gestor de los contenedores
+asigna una IP privada
+a cada contenedor del proyecto.
+También implementa un servidor DNS
+(*"Name Domain Server"*) local
+que guarda la equivalencia entre servicios e IPs.
+De esta manera los contenedores
+podrán hacer peticiones IP
+a otros contenedores
+usando su nombre de servicio
+para conformar las URLs a las cuales consultar.
 
 
-!!! info "Nombre de servicio"
+Por ejemplo:
+si un contenedor necesita consultar
+una base de datos MySQL
+desplegada en otro contenedor
+entonces el "dominio" ya no será `localhost`
+sino el nombre del servicio
+asignado a la base de datos,
+por ejemplo `servicio_db`:
 
-    El nombre de servicio de cada contenedor
-    funciona como un **nombre de dominio**,
-    sirviendo como alias a la dirección IP
-    asignada al contenedor.
-    De esta manera los otros contenedores
-    podrán hacerle peticiones IP,
-    usando el nombre de servicio
-    para conformar las URLs a las cuales consultar.
+```http title="URL network - Base de datos MySQL"
+mysql://user:password@servicio_db:3306/nombre_db
+```
 
 
 
@@ -67,9 +88,12 @@ flowchart LR
 
 
         subgraph services [Servicios]
-        front["`Frontend `"]
-        back["`Backend `"]
-        db["`Base de datos`"]
+        front["`Frontend 
+            servicio_frontend:8000`"]
+        back["`Backend
+            servicio_backend:8000`"]
+        db["`Base de datos MySQL
+            servicio_db:3306`"]
         end
 
         subgraph redes [Redes]
@@ -85,7 +109,9 @@ flowchart LR
 
 La implementación de este interconexionado
 es tácita: no se indica por escrito.
-
+Todo contenedor que no tenga
+una network asignada manualmente
+es conectada a la red *default*.
 
 ```yaml title="compose.yml - Red default"
 services:
@@ -99,6 +125,7 @@ services:
   base-datos:
     image: imagen-db
 ```
+
 
 Esta implementación no es recomendada
 para proyectos reales debido
@@ -131,9 +158,12 @@ flowchart LR
     subgraph proyecto [Entorno proyecto]
 
         subgraph services [Servicios]
-        front["`Frontend`"]
-        back["`Backend`"]
-        db["`Base de datos`"]
+        front["`Frontend 
+            servicio_frontend:8000`"]
+        back["`Backend
+            servicio_backend:8000`"]
+        db["`Base de datos MySQL
+            servicio_db:3306`"]
         end
 
         subgraph redes [Redes]
@@ -147,7 +177,6 @@ flowchart LR
     back --- red-front
     back --- red-db
     db --- red-db
-
 ```
 
 Dentro del archivo `compose.yml`
@@ -213,12 +242,16 @@ networks:
 Dichas redes pueden proceder de otros proyectos Compose
 o también pueden ser creadas manualmente.
 
-### Parámetros adicionales
+### Drivers y parámetros adicionales
 
 Normalmente no es necesario especificar
 parámetros adicionales para utilizar las redes.
-Sin embargo, se pueden especificar *drivers*,
-elegir el protocolo IPv6 frente al IPv4, etc.
+Sin embargo, se pueden especificar diferentes *drivers*,
+elegir el protocolo IPv6 frente al IPv4,
+asignar máscaras de red y *gateways*, etc.
+
+El driver usado por defecto se llama **`bridge`**.
+Más información sobre los drivers: [Docker Docs - Network drivers](https://docs.docker.com/engine/network/drivers/).
 
 
 ## Ejemplo: proxy reverso con NGINX
@@ -469,7 +502,7 @@ podman network remove NOMBRE_RED
 
     A veces quedan *networks* huérfanas
     que impiden desplegar los proyectos
-    cuando su estructura es modificadoa.
+    cuando su estructura es modificada.
     Esto se soluciona eliminando estas redes
     de manera manual con `prune` o `remove`.
 
@@ -480,6 +513,8 @@ podman network remove NOMBRE_RED
 
 [DockerDocs - Define and manage networks in Docker Compose](https://docs.docker.com/reference/compose-file/networks/)
 
+
+[Docker Docs - Network drivers](https://docs.docker.com/engine/network/drivers/)
 
 [Medium - [DevOps] Setting up a Docker Reverse Proxy Nginx — Multiple local apps](https://blog.devops.dev/devops-setting-up-a-docker-reverse-proxy-nginx-multiple-local-apps-21b6f03eefa0)
 

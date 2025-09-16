@@ -14,6 +14,7 @@ a las aplicaciones del sistema anfitrión
 comunicarse con los contenedores 
 mediante conexiones IP.
 
+
 ## Introducción
 
 El *port mapping*
@@ -37,11 +38,11 @@ flowchart LR
     subgraph proyecto [Entorno proyecto]
 
         subgraph services [Servicios]
-        front["`fa:fa-twitter Frontend 
+        front["`Frontend 
             servicio_frontend:8000`"]
         back["`Backend 
             servicio_backend:8000`"]
-        db["`Base de datos
+        db["`Base de datos MYSQL
             servicio_db:3306`"]
         end
 
@@ -72,17 +73,38 @@ se reserva los puertos
 al programa *frontend* (interfaz de usuario final),
 al programa backend (*login*, notificaciones, etc),
 y a la base de datos, en ese orden.
+Nótese que múltiples contenedores
+pueden tener imágenes que reserven
+un mismo número de puerto,
+incluso en un mismo proyecto.
 
+
+Las peticiones IP se realizan mediante URLs,
+donde se especifica el protocolo requerido,
+el dominio del servidor,
+el puerto, etc.
 En el caso de ambientes de desarrollo
 es habitual que el despliegue y las consultas
 se realicen en el equipo local, 
 por lo cual las peticiones se hacen
 al dominio "`localhost`" o `127.0.0.1`,
 tal como se muestra en el esquema.
-Nótese que múltiples contenedores
-pueden tener imágenes que reserven
-un mismo número de puerto,
-incluso en un mismo proyecto.
+
+Por ejemplo, una petición típica a una página web del frontend
+sin autenticación toma esta forma:
+
+```http title="URL local - página web"
+http://localhost:8000/ruta_recurso
+```
+en tanto que una conexión a la base de datos
+MySQL
+puede tomar una forma como esta:
+
+```http title="URL local - Base de datos MySQL"
+mysql://user:password@localhost:3306/nombre_db
+```
+
+
 
 !!! info "IPs y Puertos"
 
