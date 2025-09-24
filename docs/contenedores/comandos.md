@@ -1,5 +1,5 @@
 ---
-status: deprecated
+status: new
 date:
     created: 2025-07-01
     updated: 2025-08-26
@@ -7,22 +7,65 @@ date:
 
 
 
-# Cambiar comandos 
+# Fijar y modificar comandos 
 
-En esta sección se ve cómo se pueden
-cambiar los comandos elegidos en el archivo Dockerfile
-y también como éstos pueden ser fijados.
+En esta sección se ve cómo
+se pueden cambiar los comandos elegidos
+para las imágenes
+desde el archivo `compose.yml`
+y también como los comandos
+pueden ser fijados
+desde el Dockerfile.
+
+
 
 ## Elegir comandos
-
+<!-- 
 El comando a ser ejecutado por el contenedor
 se puede reemplazar desde el archivo `compose.yml`
 con ayuda del parámetro `command`.
 
-Algunos ejemplos:
+ -->
+
+El parámetro `command` del archivo `compose.yml`
+sirve para sobreescribir el comando definido
+con la cláusula `CMD` del Dockerfile.
+
+En el ejemplo del [primer despliegue](despliegue_demo.md)
+el demo se ejecuta desde la *sell* Bash
+con la sentencia:
+
+```bash title="Bash - ejecución de rutina"
+python contar.py 4
+```
+
+El comando fue adaptado al Dockerfile
+con la cláusula `CMD`.
+
+```Dockerfile title="Dockerfile - comando sobreescribible"
+# comando, opciones y argumentos (sobreescribibles)
+CMD ["python", "contar.py", "4"]
+``` 
+
+Este comando puede ser ignorado
+definiendo el campo `command`.
+Por ejemplo, para cambiar la cuenta final
+de 4 a 10:
+
+```yaml hl_lines="5" title="compose.yml - sobreescribir cuenta"
+services:
+
+  demo-contador:
+    build: .
+    command: "python contar.py 10"  # cuenta máxima alterada
+```
 
 
-```yaml hl_lines="5" title="compose.yml - sobreescribir comandos"
+También se puede ignorar la rutina interna de la imagen,
+por ejemplo para consultar
+la versión del intérprete Python instalada:
+
+```yaml hl_lines="5" title="compose.yml - omitir rutina interna"
 services:
 
   demo-contador:
@@ -30,16 +73,17 @@ services:
     command: "python --version" # versión de Python
 ```
 
+También se pueden ejecutar otros programas incluidos en la imagen
+por ejemplo para conocer qué versión del kernel Linux
+se incluyó internamente:
 
-```yaml hl_lines="5" title="compose.yml - sobreescribir comandos"
+```yaml hl_lines="5" title="compose.yml - cambiar de comando"
 services:
 
   demo-contador:
     build: .
     command: "uname -a"     # info sobre el kernel usado
 ```
-
-
 
 ## Fijar comandos
 
@@ -56,7 +100,7 @@ se delega en la cláusula `CMD`.
 
 Por ejemplo, si el comando original es:
 
-```Dockerfile title="Dcokerfile - comando sobreescribible"
+```Dockerfile title="Dockerfile - comando sobreescribible"
 # comando, opciones y argumentos (sobreescribibles)
 CMD ["python", "contar.py", "4"]
 ``` 
@@ -74,7 +118,7 @@ CMD ["4"]
 y en el archivo Compose sólo se podrán asignar
 los argumentos de la rutina:
 
-```yaml hl_lines="5" title="compose.yml - sobreescribir argumentos"
+```yaml hl_lines="5" title="compose.yml - comando fijo"
 services:
 
   demo-contador:

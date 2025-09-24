@@ -1,7 +1,7 @@
 ---
 date:
     created: 2025-07-01
-    updated: 2025-08-26
+    updated: 2025-09-23
 ---
 
 # Imágenes
@@ -55,6 +55,14 @@ con su ejecución en PC:
 |`bullseye`| Debian 11|
 |`alpine`| Alpine|
 <!-- |`windowsservercore`|Windows Server Core| -->
+
+!!! tip "Especificación de versiones"
+
+    La especificación de las imágenes a utilizar
+    es muy importante para asegurar
+    la confiabilidad del despliegue
+    y del funcionamiento de los proyectos.
+
 
 ### Descarga manual
 

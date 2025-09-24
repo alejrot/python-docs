@@ -1,8 +1,7 @@
 ---
-status: new
 date:
     created: 2025-07-01
-    updated: 2025-09-12
+    updated: 2025-09-23
 ---
 
 # Volumenes
@@ -134,7 +133,7 @@ Los volumenes anónimos se crean
 asignando un único valor
 que corresponde a la ruta interna del contenedor:
 
-```yaml
+```yaml title="compose.yml - volumenes anónimos"
 name: nombre_proyecto
 
 services:
@@ -186,7 +185,7 @@ En este caso a cada ruta interna del contenedor
 se le asigna un nombre
 que funciona como un alias.
 
-```yaml
+```yaml title="compose.yml - volumenes con nombre"
 name: nombre_proyecto
 
 services:
@@ -217,11 +216,12 @@ Si el volumen requerido proviene de otro proyecto
 entonces hace falta especificar el parámetro `external`
 como `true`:
 
-```yaml
+```yaml title="compose.yml - volumenes externos"
 # lista de volumenes implementados
 volumes:
   nombre_volumen:
     external: true
+    name: nombre_completo_volumen
 ```
 
 Los volumenes con nombre
@@ -232,7 +232,8 @@ bases de datos de producción,
 publicaciones de usuarios
 (ej: entradas de WordPress),
 etc.
-pero que no necesiten ser manipulados directamente
+pero que no necesiten ser manipulados
+frecuentemente
 por desarrolladores ni administradores.
 
 ### Volumenes de host
@@ -242,7 +243,7 @@ no se crea un elemento de volumen
 sino que se monta una ruta del sistema anfitrión 
 (el host) a la ruta de interés del contenedor.
 
-```yaml
+```yaml title="compose.yml - volumenes de host"
 services:
 
   servicio_volumen:
@@ -263,6 +264,28 @@ Este tipo de volumenes es práctico
 para darle un acceso inmediato
 de los archivos 
 a desarrolladores y administradores del proyecto.
+
+!!! tip "Read only"
+
+    Los volumenes admiten el montaje
+    en el modo
+    de sólo lectura (*read only*).
+    Esto se realiza agregando `:ro`
+    detraś de los mapeos como se muestra:
+
+
+    ```yaml hl_lines="6" title="compose.yml - read only"
+    services:
+
+      servicio_volumen:
+        build: .
+        volumes:
+          -  ruta_host:ruta_contenedor:ro
+        security_opt: 
+          - label=disable
+    ```
+
+
 
 !!! warning "Security Options"
 

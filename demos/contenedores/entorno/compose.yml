@@ -7,8 +7,17 @@ services:
     build: .
     image: demo_entornos 
 
+
+
+
   # cada contenedor pone a prueba distintas interpolaciones
-  entornos:
+  entornos_interna:
+    image: demo_entornos 
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+
+  entornos_exterior:
     image: demo_entornos 
     environment:
       VARIABLE_PYTHON: "${VARIABLE}"
@@ -24,13 +33,13 @@ services:
       crear_imagen:
         condition: service_completed_successfully
 
-  entornos_error:
-    image: demo_entornos 
-    environment:
-      VARIABLE_PYTHON: "${VARIABLE?'Error: variable no inicializada'}"
-    depends_on:
-      crear_imagen:
-        condition: service_completed_successfully
+  # entornos_error:
+  #   image: demo_entornos 
+  #   environment:
+  #     VARIABLE_PYTHON: "${VARIABLE?'Error: variable no inicializada'}"
+  #   depends_on:
+  #     crear_imagen:
+  #       condition: service_completed_successfully
 
   entornos_sustituir:
     image: demo_entornos 

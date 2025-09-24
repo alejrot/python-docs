@@ -2,7 +2,6 @@
 date:
     created: 2025-07-01
     updated: 2025-08-26
-status: new
 ---
 
 # Compose
@@ -55,6 +54,8 @@ son incapaces de interactuar
 con otros proyectos
 ni tampoco
 con el sistema anfitrión.
+
+Este es un esquema típico: 
 
 ```mermaid
 ---

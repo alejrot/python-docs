@@ -2,7 +2,7 @@
 status: new
 date:
     created: 2025-07-01
-    updated: 2025-08-26
+    updated: 2025-09-23
 ---
 
 
@@ -14,6 +14,14 @@ manejadas por el sistema operativo.
 Se usan frecuentemente
 para configurar opciones y parámetros de los programas
 desde el sistema.
+
+<!-- 
+En el contexto de los contenedores
+las variables de entorno sirven para: 
+
+- predefinir valores para el funcionamiento del programa;
+- alterar 
+- elegir opciones del despliegue. -->
 
 
 ## Introduccion
@@ -37,7 +45,7 @@ que las requieran.
 ### Variables en BASH
 
 Las variables de entorno
-se crean desde la *shell* Bash
+se crean manualmente desde la *shell* Bash
 con el comando `export`:
 
 ```bash title="Bash - crear variable de entorno"
@@ -57,7 +65,12 @@ y el signo `$` delante del nombre de variable:
 ```bash title="Bash - consultar valor de variable"
 echo $NOMBRE_VARIABLE
 ```
+y además sus valores pueden ser modificados
+mediante asignaciones:
 
+```bash title="Bash - modificar valor de variable"
+NOMBRE_VARIABLE=nuevo_valor
+```
 Los valores de estas variables se transmiten como *strings*.
 
 
@@ -72,7 +85,7 @@ import os
 
 valor_variable = os.getenv(
     "NOMBRE_VARIABLE",          # variable buscada
-    default=valor_respaldo      # opcional
+    default=valor_respaldo      # (opcional)
     )
 ```
 
@@ -82,6 +95,88 @@ el valor indicado por el argumento `default`.
 Si este no fue definido
 entonces se devuelve `None`.
 
+!!! tip "Borrado de variables"
+
+    Si una variable de entorno
+    tiene información sensible
+    entonces ésta puede ser borrada
+    desde la rutina de Python
+    tras su lectura.
+
+    ```py title="Python - borrar variable de entorno"
+    # borrado de variable
+    os.environ["NOMBRE_VARIABLE"] = ""
+    ```
+
+### Archivos `.env`
+
+
+Una forma cómoda de definir las variables de entorno
+es usar un archivo de texto con nombre `.env`
+(archivo oculto).
+En este archivo se crean
+las variables de entorno necesarias,
+una por renglón:
+
+```env title="Archivo .env - sintaxis"
+# comentarios (opcionales)
+NOMBRE_VARIABLE_1=VALOR_1
+NOMBRE_VARIABLE_2=VALOR_2
+```
+
+Durante el despliegue
+el gestor de contendores
+busca por este archivo
+en el directorio del proyecto.
+Este archivo es leído
+y los valores
+de sus variables internas
+son importadas automáticamente.
+
+<!-- 
+Definir el mapeo de variables 
+en el archivo `compose.yml`
+sigue siendo necesario.
+ -->
+
+!!! info "Jerarquía de valores"
+    Si una misma variable de entorno
+    es definida en terminal y en archivo 
+    entonces el valor leído por el gestor
+    será el de terminal.
+
+
+!!! danger "Control de versiones"
+
+    Agregar los archivos `.env`
+    a los repositorios de los proyectos es una **mala práctica**
+    porque implica publicar información potencialmente sensible.
+
+
+## Variables predefinidas
+
+En el caso de requerirse
+la creación de variables de entorno predefinidas
+para la imagen del contenedor
+se dispone de la cláusula `ENV`
+dentro del `Dockerfile`:
+
+```dockerfile title="Dockerfile - Variables de entorno"
+# archivo Dockerfile 
+ENV VARIABLE_INTERNA=VALOR
+```
+
+Se permite declarar varias variables
+con una única cláusula `ENV`:
+
+```dockerfile title="Dockerfile - Variables de entorno múltiples"
+# archivo Dockerfile 
+ENV VARIABLE_1=VALOR_1 VARIABLE_2=VALOR_2 VARIABLE_3=VALOR_3
+``` 
+
+Estas variables seguirán existiendo tras la creación
+de la imagen final
+y podrán ser modificadas durante el despliegue.
 
 
 ## Asignación de variables
@@ -89,7 +184,8 @@ entonces se devuelve `None`.
 Cada contenedor del proyecto
 debe ser configurado deliberadamente
 para poder acceder a los valores
-de las variables de entorno.
+de las variables de entorno
+exteriores al proyecto.
 En el archivo `compose.yml` se indican
 las variables de entorno necesarias
 para cada contenedor
@@ -200,51 +296,32 @@ ante variables nulas.
     |`:+`| variable no definida o nula|
 
 
+## Parámetros de despliegue
 
+Con ayuda de las variables de entorno
+también se pueden modificar
+los parámetros de despliegue del proyecto
+sin tener que reescribir el archivo `compose.yml`.
+Por ejemplo,
+el puerto del *host* requerido por un contenedor se puede elegir
+mediante variables de entorno:
 
-## Archivos `.env`
+```yaml title="compose.yml - Puerto de host variable"
+services:
 
-
-Una forma cómoda de definir las variables de entorno
-es usar un archivo de texto con nombre `.env`
-(archivo oculto).
-En este archivo se crean
-las variables de entorno necesarias,
-una por renglón:
-
-```env title="Archivo .env - sintaxis"
-# comentarios (opcionales)
-NOMBRE_VARIABLE_1=VALOR_1
-NOMBRE_VARIABLE_2=VALOR_2
+programa:
+    build: .
+    ports:
+      - "${PUERTO_HOST:-5000}:8000"
 ```
-
-Durante el despliegue
-el gestor de contendores
-busca por este archivo
-en el directorio del proyecto.
-Este archivo es leído
-y los valores
-de sus variables internas
-son importadas automáticamente.
-
-<!-- 
-Definir el mapeo de variables 
-en el archivo `compose.yml`
-sigue siendo necesario.
- -->
-
-!!! info "Jerarquía de valores"
-    Si una misma variable de entorno
-    es definida en terminal y en archivo 
-    entonces el valor leído por el gestor
-    será el de terminal.
-
-
-!!! danger "Control de versiones"
-
-    Agregar los archivos `.env`
-    a los repositorios de los proyectos es una **mala práctica**
-    porque implica publicar información potencialmente sensible.
+En este ejemplo el contenedor recibe peticiones IP
+por el puerto `8000`.
+Si la variable de entorno `PUERTO_HOST`
+está definida en la *shell* o en un archivo `.env`
+entonces se intentará asignarle su valor numérico.
+Si en cambio `PUERTO_HOST`
+no está definida
+se le intenta asignar el puerto `5000`.
 
 
 <!-- 
@@ -306,7 +383,7 @@ logging.info(f"Valor de 'VARIABLE_PYTHON': '{valor_variable}'")
 Al demo se le asigna el siguiente Dockerfile
 para construir la imagen:
 
-```dockerfile title="Demo entornos - Dockerfile"
+```dockerfile title="Demo entornos - Dockerfile" hl_lines="11"
 # imagen de referencia
 FROM python:alpine
 
@@ -315,6 +392,9 @@ WORKDIR /code
 
 # copia de rutinas al directorio de trabajo
 COPY demo/ ./
+
+# variable de entorno local
+ENV VARIABLE_PYTHON="Me definieron en el Dockerfile"
 
 # comandos 
 CMD ["python", "main.py"]
@@ -335,7 +415,13 @@ services:
     image: demo_entornos 
 
   # cada contenedor pone a prueba distintas interpolaciones
-  entornos:
+  entornos_interna:
+    image: demo_entornos 
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+
+  entornos_exterior:
     image: demo_entornos 
     environment:
       VARIABLE_PYTHON: "${VARIABLE}"
@@ -347,14 +433,6 @@ services:
     image: demo_entornos 
     environment:
       VARIABLE_PYTHON: "${VARIABLE:-'valor predefinido'}"
-    depends_on:
-      crear_imagen:
-        condition: service_completed_successfully
-
-  entornos_error:
-    image: demo_entornos 
-    environment:
-      VARIABLE_PYTHON: "${VARIABLE?'Error: variable no inicializada'}"
     depends_on:
       crear_imagen:
         condition: service_completed_successfully
@@ -389,5 +467,5 @@ export VARIABLE="Me definieron en BASH"
 Por último se realiza el despliegue:
 
 ```bash title="Demo entornos - despliegue"
-podamn compose up
+podman compose up
 ```
