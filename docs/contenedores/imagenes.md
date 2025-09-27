@@ -178,25 +178,25 @@ basada en Debian y que tiene el intérprete 3.13.5
 
 
 
-!!! tip "Comandos adicionales"
+## Comandos adicionales
 
-    Se dispone de un gran surtido de comandos adicionales
-    para gestionar las imágenes disponibles
-    de manera manual:
+Se dispone de un gran surtido de comandos adicionales
+para gestionar las imágenes disponibles
+de manera manual:
 
-    ```bash title="Imágenes - comandos informativos"
-    podman image list                    # lista informativa (resumen)
-    podman image inspect IMAGEN:VERSION  # reporte detallado
-    ```
+```bash title="Imágenes - comandos informativos"
+podman image list                    # lista informativa (resumen)
+podman image inspect IMAGEN:VERSION  # reporte detallado
+```
 
-    ```bash title="Imágenes - transferencias"
-    podman image pull IMAGEN:VERSION     # descargar 
-    podman image push IMAGEN:VERSION     # subir al servidor
-    ```
+```bash title="Imágenes - transferencias"
+podman image pull IMAGEN:VERSION     # descargar 
+podman image push IMAGEN:VERSION     # subir al servidor
+```
 
-    ```bash title="Imágenes - borrado local"
-    podman image rm IMAGEN:VERSION       # eliminar imagen específica
-    podman image prune                   # eliminar (no usadas)
-    ```
+```bash title="Imágenes - borrado local"
+podman image rm IMAGEN:VERSION       # eliminar imagen específica
+podman image prune                   # eliminar (no usadas)
+```
 
-    Para consultar más opciones escribir `podman image`.
+Para consultar más opciones escribir `podman image`.

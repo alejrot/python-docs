@@ -1,3 +1,11 @@
+---
+status: new
+date:
+    created: 2025-09-27
+    updated: 2025-09-27
+---
+
+
 # Contenedores de bases de datos
 
 
@@ -134,8 +142,6 @@ en forma de diccionarios
 |protocolo URL|`mongodb://`|
 |**Volumenes**|
 |ruta de datos| `/data/db`|
-|ruta de backup| ``|
-|ruta de configuración| ``|
 |**Variables entorno** |
 |user (root)|`MONGO_INITDB_ROOT_USERNAME` |
 |pass (root)|`MONGO_INITDB_ROOT_PASSWORD`|

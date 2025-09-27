@@ -1,4 +1,9 @@
-
+---
+status: new
+date:
+    created: 2025-09-27
+    updated: 2025-09-27
+---
 
 # Imágenes para contenedores
 
