@@ -88,11 +88,11 @@ flowchart LR
 
         subgraph services [Servicios]
         front["`Frontend 
-            servicio_frontend:8000`"]
+            frontend:8000`"]
         back["`Backend
-            servicio_backend:8000`"]
+            backend:8000`"]
         db["`Base de datos MySQL
-            servicio_db:3306`"]
+            db:3306`"]
         end
 
         subgraph redes [Redes]
@@ -104,6 +104,15 @@ flowchart LR
     front --- red-default
     back --- red-default
     db --- red-default
+
+    subgraph host [Host]
+        subgraph ports [Puertos]
+            port1["`Navegador
+            localhost:8000`"]
+        end
+    end
+
+    port1 -->|8000:8000| front
 ```
 
 La implementación de este interconexionado
@@ -121,7 +130,7 @@ services:
   backend:
     image: imagen-back
 
-  base-datos:
+  db:
     image: imagen-db
 ```
 
@@ -158,16 +167,16 @@ flowchart LR
 
         subgraph services [Servicios]
         front["`Frontend 
-            servicio_frontend:8000`"]
+            frontend:8000`"]
         back["`Backend
-            servicio_backend:8000`"]
+            backend:8000`"]
         db["`Base de datos MySQL
-            servicio_db:3306`"]
+            db:3306`"]
         end
 
         subgraph redes [Redes]
-            red-front[red frontend]
-            red-db[red backend]
+            red-front[red-frontend]
+            red-db[red-db]
         end
     end
 
@@ -176,6 +185,17 @@ flowchart LR
     back --- red-front
     back --- red-db
     db --- red-db
+
+
+    subgraph host [Host]
+        subgraph ports [Puertos]
+            port1["`Navegador
+            localhost:8000`"]
+        end
+    end
+
+    port1 -->|8000:8000| front
+
 ```
 
 Dentro del archivo `compose.yml`
@@ -197,16 +217,16 @@ services:
     image: imagen-front
     # acceso
     networks:
-      - red-front
+      - red-frontend
 
   backend:
     image: imagen-back
     # acceso
     networks:
-      - red-front
+      - red-frontend
       - red-db
 
-  base-datos:
+  db:
     image: imagen-db
     # acceso
     networks:
