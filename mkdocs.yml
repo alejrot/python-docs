@@ -318,7 +318,10 @@ nav:
       - contenedores/entorno.md
       - contenedores/comandos.md
       - contenedores/args.md
-
+      
+      - Anexo - Imágenes de contenedores:
+        - contenedores/imagenes/index.md
+        - contenedores/imagenes/bases_datos.md
 
 
     - Ejecución paralela:
