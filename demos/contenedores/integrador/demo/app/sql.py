@@ -2,20 +2,31 @@
 
 # bibliotecas estandar
 import os
+from pathlib import Path
 from typing import Optional
+from logging import info
 
 # paquetes
 from sqlmodel import Field, SQLModel, create_engine
 
-# modulos
-from logging import info
 
 
 # Variables de entorno - necesarias para componer la URL de la base de datos
 user = os.getenv("POSTGRES_USER")
-password = os.getenv("POSTGRES_PASSWORD")
 database = os.getenv("POSTGRES_DB")
 dominio = os.getenv("POSTGRES_DOMINIO")
+ruta_password_secreto = os.getenv("POSTGRES_PASSWORD_FILE")
+
+# lenguaje y región del registro de personas
+lenguaje_region = os.getenv("TAG_LENGUAJE",default="ES_ES")
+
+
+if Path(ruta_password_secreto).is_file():
+    with open(ruta_password_secreto, "r",encoding="utf-8") as archivo:
+        password = archivo.read()
+        info("Valor leído: '%s'", password)
+else:
+    password = os.getenv("POSTGRES_PASSWORD")
 
 # composicion de la URL dela base de datos
 ruta_db = f"postgresql://{user}:{password}@{dominio}:5432/{database}"

@@ -11,6 +11,7 @@ from sqlmodel import Session, select
 # modulos
 from tabla_personas import TablaPersonas
 from sql import Persona, engine
+from sql import lenguaje_region
 from logging import info
 
 
@@ -19,7 +20,7 @@ def main(page: ft.Page):
     """Esta función define el diseño de la página web."""
 
     # generador de datos falsos - personas en español (Argentina)
-    fake = Faker(locale="es_AR")
+    fake = Faker(locale=lenguaje_region)
 
     # evento: carga de nuevos datos
     def nueva_persona(e):

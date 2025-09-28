@@ -1,11 +1,11 @@
 name: integrador
 services:
 
-  tabla-flet:    
+  tabla_flet:    
     build: demo/
-    image: tabla-flet-web:v1
+    image: tabla_flet-web:v1
     ports:
-      - 8000:8000
+      - ${PUERTO_FRONT:-8000}:8000
     depends_on: 
       base_datos:
           restart: true
@@ -13,11 +13,16 @@ services:
           required: true
     restart: always
     environment:
-      POSTGRES_USER:     ${USUARIO:-noname}
-      POSTGRES_PASSWORD: 123456
+      TAG_LENGUAJE: "ES_AR"
       POSTGRES_DB:       ${NOMBRE_DB:-personas_tabla}
       POSTGRES_DOMINIO:  base_datos
-
+      POSTGRES_USER:     ${USUARIO:-noname}
+      # POSTGRES_PASSWORD: ${PASS:-123456}
+      POSTGRES_PASSWORD_FILE: /run/secrets/secreto
+    secrets:
+      - secreto
+    networks:
+      - red-tablas-personas
 
 
   base_datos:
@@ -25,12 +30,16 @@ services:
     image: postgres:17.2-bookworm     
     environment:
       POSTGRES_USER:     ${USUARIO:-noname}
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD_FILE: /run/secrets/secreto
       POSTGRES_DB:       ${NOMBRE_DB:-personas_tabla}
     ports:
-      - 9000:5432
+      - ${PUERTO_DB:-5432}:5432
     volumes:
       - volumen_db:/var/lib/postgresql/data
+    secrets:
+      - secreto
+    networks:
+      - red-tablas-personas
     healthcheck:  
       test: ["CMD-SHELL", "psql -U ${USUARIO:-noname} -d ${NOMBRE_DB:-personas_tabla} -c 'SELECT 1' || exit 1"]  
       interval: 10s
@@ -38,5 +47,13 @@ services:
       retries: 5
 
 
+networks:
+  red-tablas-personas:
+
 volumes:
   volumen_db:
+
+secrets:
+  secreto:
+    file: ./secreto.txt    
+    # file: $HOME/secreto.txt   
