@@ -47,82 +47,116 @@ A continuación se resumen los parámetros
 para los sistemas de administración (RDBMS)
 más habituales.
 
-### MySQL
+=== "MySQL"
 
 
-|Parámetro | Valor |
-|:---|:---|
-|**Conexión**|
-|puerto escucha| `3306`|
-|protocolo URL|`mysql://`|
-|**Volumenes**|
-|ruta de datos| `/var/lib/mysql`|
-|ruta de configuración| `/etc/mysql/conf.d`|
-|**Variables entorno** |
-|user| `MYSQL_USER` |
-|pass|`MYSQL_PASSWORD` |
-|database|`MYSQL_DATABASE` |
-|pass (root)|`MYSQL_ROOT_PASSWORD`|
-|**Secretos**|
-|user| `MYSQL_USER_FILE` |
-|pass|`MYSQL_PASSWORD_FILE` |
-|database|`MYSQL_DATABASE_FILE` |
-|pass (root)|`MYSQL_ROOT_PASSWORD_FILE`|
+    |Parámetro | Valor |
+    |:---|:---|
+    |**Conexión**|
+    |puerto escucha| `3306`|
+    |protocolo URL|`mysql://`|
+    |**Volumenes**|
+    |ruta de datos| `/var/lib/mysql`|
+    |ruta de configuración| `/etc/mysql/conf.d`|
+    |**Variables entorno** |
+    |user| `MYSQL_USER` |
+    |pass|`MYSQL_PASSWORD` |
+    |database|`MYSQL_DATABASE` |
+    |pass (root)|`MYSQL_ROOT_PASSWORD`|
+    |**Secretos**|
+    |user| `MYSQL_USER_FILE` |
+    |pass|`MYSQL_PASSWORD_FILE` |
+    |database|`MYSQL_DATABASE_FILE` |
+    |pass (root)|`MYSQL_ROOT_PASSWORD_FILE`|
 
-Documentación oficial: [Docker Hub - MySQL](https://hub.docker.com/_/mysql)
-
-
-### MariaDB
+    Documentación oficial: [Docker Hub - MySQL](https://hub.docker.com/_/mysql)
 
 
-|Parámetro | Valor |
-|:---|:---|
-|**Conexión**|
-|puerto escucha| `3306`|
-|protocolo URL|`mariadb://`|
-|**Volumenes**|
-|ruta de datos| `/var/lib/mysql`|
-|ruta de backup| `/backup`|
-|ruta de configuración| `/etc/mysql/conf.d`|
-|**Variables entorno** |
-|user| `MARIADB_USER` |
-|pass|`MARIADB_PASSWORD` |
-|database|`MARIADB_DATABASE` |
-|pass (root)|`MARIADB_ROOT_PASSWORD`|
-|**Secretos**|
-|user|`MARIADB_USER_FILE`|
-|pass| `MARIADB_PASSWORD_FILE`|
-|database|`MARIADB_DATABASE_FILE` |
-|pass (root)|  `MARIADB_ROOT_PASSWORD_FILE`|
+=== "MariaDB"
 
 
-Documentación oficial: [Docker Hub - MariaDB](https://hub.docker.com/_/mariadb)
+    |Parámetro | Valor |
+    |:---|:---|
+    |**Conexión**|
+    |puerto escucha| `3306`|
+    |protocolo URL|`mariadb://`|
+    |**Volumenes**|
+    |ruta de datos| `/var/lib/mysql`|
+    |ruta de backup| `/backup`|
+    |ruta de configuración| `/etc/mysql/conf.d`|
+    |**Variables entorno** |
+    |user| `MARIADB_USER` |
+    |pass|`MARIADB_PASSWORD` |
+    |database|`MARIADB_DATABASE` |
+    |pass (root)|`MARIADB_ROOT_PASSWORD`|
+    |**Secretos**|
+    |user|`MARIADB_USER_FILE`|
+    |pass| `MARIADB_PASSWORD_FILE`|
+    |database|`MARIADB_DATABASE_FILE` |
+    |pass (root)|  `MARIADB_ROOT_PASSWORD_FILE`|
 
 
-
-
-### PostgreSQL
-
-|Parámetro | Valor |
-|:---|:---|
-|**Conexión**|
-|puerto escucha| `5432`|
-|protocolo URL|`postgresql://`|
-|**Volumenes**|
-|ruta de datos| `/var/lib/postgresql/data`|
-|ruta de configuración| `/etc/postgresql/postgresql.conf`|
-|**Variables entorno** |
-|user| `POSTGRES_USER` |
-|pass|`POSTGRES_PASSWORD` |
-|database|`POSTGRES_DB` |
-|**Secretos**|
-|user| `POSTGRES_USER_FILE` |
-|pass|`POSTGRES_PASSWORD_FILE` |
-|database|`POSTGRES_DB_FILE` |
+    Documentación oficial: [Docker Hub - MariaDB](https://hub.docker.com/_/mariadb)
 
 
 
-Documentación oficial: [Docker Hub - PostgreSQL](https://hub.docker.com/_/postgres)
+
+=== "PostgreSQL"
+
+    |Parámetro | Valor |
+    |:---|:---|
+    |**Conexión**|
+    |puerto escucha| `5432`|
+    |protocolo URL|`postgresql://`|
+    |**Volumenes**|
+    |ruta de datos| `/var/lib/postgresql/data`|
+    |ruta de configuración| `/etc/postgresql/postgresql.conf`|
+    |**Variables entorno** |
+    |user| `POSTGRES_USER` |
+    |pass|`POSTGRES_PASSWORD` |
+    |database|`POSTGRES_DB` |
+    |**Secretos**|
+    |user| `POSTGRES_USER_FILE` |
+    |pass|`POSTGRES_PASSWORD_FILE` |
+    |database|`POSTGRES_DB_FILE` |
+
+
+
+    Documentación oficial: [Docker Hub - PostgreSQL](https://hub.docker.com/_/postgres)
+
+
+### Ejemplo de uso
+
+Los tres gestores
+de bases de datos SQL explicadas
+se manejan de manera muy similar
+en el entorno de los contenedores.
+Se adjunta un ejemplo de uso básico
+con una imagen PostgreSQL:
+
+```yaml title="SQL - compose.yml (PostgreSQL)"
+services:
+  db-postgres:
+    restart: always
+    image: postgres:17.2-bookworm     
+    ports:
+      - ${PUERTO_DB:-5432}:5432
+    volumes:
+      - volumen_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER:     ${USUARIO}
+      POSTGRES_DB:       ${NOMBRE_DB}
+      POSTGRES_PASSWORD_FILE: /run/secrets/secreto_db
+    secrets:
+      - secreto_db
+
+volumes:
+  volumen_db:
+
+secrets:
+  secreto_db:
+    file: ./secreto.txt    
+```
 
 
 ## No SQL

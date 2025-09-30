@@ -1,7 +1,7 @@
 
 # imagen de referencia
-ARG VERSION="3.13.5-alpine3.22"
-FROM python:${VERSION}
+ARG VERSION_PYTHON="3.13.5-alpine3.22"
+FROM python:${VERSION_PYTHON}
 
 # directorio de trabajo (se crea automáticamente)
 WORKDIR /code

@@ -1,8 +1,12 @@
-name: integrador
+name: demo-integrador
 services:
 
   tabla_flet:    
-    build: demo/
+    # build: demo/
+    build: 
+      context: demo/    # ruta al Dockerfile
+      args:
+        VERSION_PYTHON: 3.13.7-slim-trixie   # Debian 13 (recortada)
     image: tabla_flet-web:v1
     ports:
       - ${PUERTO_FRONT:-8000}:8000

@@ -93,7 +93,7 @@ para elegir como referencia
 la imagen reducida de Python 3.13
 instalada en Debian Trixie:
 
-```yaml
+```yaml title="compose.yml - Tag como argumento"
 services:
 
   contenedor_python: 
@@ -105,5 +105,15 @@ services:
 
 
 
+## Asignación desde terminal
 
+
+El valor del argumento
+se puede pasar durante el despliegue
+con el comando `compose`
+con ayuda de la opción `build-arg`:
+
+```bash title="Despliegue - Tag desde shell"
+podman compose up --build  --build-arg TAG_IMAGEN=3.13.1-slim-bookworm
+```
 

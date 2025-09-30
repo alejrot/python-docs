@@ -190,9 +190,9 @@ logging.info("valor: %4i", entero)
     las que podrían enmascarar las excepciones originales.
 
  -->
-
+<!-- 
 Más información sobre el logging: [módulo logging](../modulos/logging.md)
-
+ -->
 <!-- 
 ## Ejemplo: demo
 
