@@ -1,15 +1,31 @@
 name: demo-integrador
+
+
 services:
 
-  tabla_flet:    
-    # build: demo/
+  frontend_flet:    
     build: 
-      context: demo/    # ruta al Dockerfile
-      args:
-        VERSION_PYTHON: 3.13.7-slim-trixie   # Debian 13 (recortada)
-    image: tabla_flet-web:v1
+      context: frontend/    # ruta al Dockerfile
+      # args:
+      #   VERSION_PYTHON: 3.13.7-slim-trixie   # Debian 13 (recortada)
+    image: tabla_frontend_flet-web:v1
     ports:
       - ${PUERTO_FRONT:-8000}:8000
+    restart: always
+    networks:
+      - red-frontend
+    depends_on: 
+      - backend_fastapi
+
+
+  backend_fastapi:    
+    build:
+      context: backend/    # ruta al Dockerfile
+      # args:
+      #   VERSION_PYTHON: 3.13.7-slim-trixie   # Debian 13 (recortada)
+    image: tabla_backend_fastapi:v1
+    ports:
+      - ${PUERTO_BACK:-8000}:8000
     depends_on: 
       base_datos:
           restart: true
@@ -21,12 +37,12 @@ services:
       POSTGRES_DB:       ${NOMBRE_DB:-personas_tabla}
       POSTGRES_DOMINIO:  base_datos
       POSTGRES_USER:     ${USUARIO:-noname}
-      # POSTGRES_PASSWORD: ${PASS:-123456}
       POSTGRES_PASSWORD_FILE: /run/secrets/secreto
     secrets:
       - secreto
     networks:
-      - red-tablas-personas
+      - red-frontend
+      - red-database
 
 
   base_datos:
@@ -43,7 +59,7 @@ services:
     secrets:
       - secreto
     networks:
-      - red-tablas-personas
+      - red-database
     healthcheck:  
       test: ["CMD-SHELL", "psql -U ${USUARIO:-noname} -d ${NOMBRE_DB:-personas_tabla} -c 'SELECT 1' || exit 1"]  
       interval: 10s
@@ -52,10 +68,13 @@ services:
 
 
 networks:
-  red-tablas-personas:
+  red-frontend:
+  red-database:
+
 
 volumes:
   volumen_db:
+
 
 secrets:
   secreto:
