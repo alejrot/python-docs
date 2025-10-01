@@ -319,6 +319,7 @@ nav:
       - contenedores/comandos.md
       - contenedores/args.md
       - contenedores/dockerignore.md
+      - contenedores/secretos.md
       - contenedores/integrador.md
       
       - Anexo - Imágenes de contenedores:

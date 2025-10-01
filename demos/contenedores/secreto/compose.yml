@@ -1,0 +1,17 @@
+name: demo_secretos
+
+services:
+
+  secreto:
+    build: .
+    image: demo_secretos
+    environment:
+      RUTA_SECRETO: /run/secrets/secreto-servicio
+    secrets:
+      - secreto-servicio
+
+
+secrets:
+  secreto-servicio:
+    file: ./secreto-archivo.txt     # BIEN
+    # file: $HOME/secreto-archivo.txt   # BIEN
