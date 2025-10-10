@@ -472,11 +472,11 @@ podman compose up -d
 
 y ahora el navegador web debe poder acceder 
 a la página demo 
-desde el puerto **`1234`**.
-
+desde el [puerto **`1234`**](http://localhost:1234).
+<!-- 
 [Click para entrar al demo](http://localhost:1234){.md-button .md-button--primary}
 
-
+ -->
 
 ## Manejo manual
 

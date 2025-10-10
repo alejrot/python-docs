@@ -4,9 +4,6 @@
 from flet import DataTable, DataCell, DataRow, DataColumn
 from flet import Text, FontWeight
 
-# modulos
-
-
 
 class TablaPersonas(DataTable):
     """Tabla custom - con lectura de filas a medida"""

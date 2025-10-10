@@ -11,6 +11,7 @@ services:
       - label=disable
     volumes:
       - ./:/docs
+      - ./demos:/demos
     stdin_open: true
     tty: true
 

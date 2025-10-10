@@ -322,7 +322,7 @@ nav:
       - contenedores/secretos.md
       - contenedores/incluir.md
       - contenedores/profiles.md
-      # - contenedores/integrador.md
+      - contenedores/integrador.md
       
       - Anexo - Imágenes de contenedores:
         - contenedores/images/index.md

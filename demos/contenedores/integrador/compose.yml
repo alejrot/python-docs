@@ -28,7 +28,7 @@ services:
       #   VERSION_PYTHON: 3.13.7-slim-trixie   # Debian 13 (recortada)
     image: tabla_backend_fastapi:v1
     ports:
-      - ${PUERTO_BACK:-8000}:8000
+      - ${PUERTO_BACK:-8001}:8000
     depends_on: 
       base_datos:
           restart: true

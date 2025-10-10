@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 
 # Despliegue en contenedores
 
@@ -20,6 +24,13 @@ mediante archivos YAML.
 mediante archivos de configuración
 `docker-compose.yml` o simplemente `compose.yml`.
  -->
+
+!!! tip "Demos preconstruidos"
+
+    Se incorporaron [algunos demos al repositorio](https://github.com/alejrot/python-docs/tree/master/demos/contenedores)
+    para un seguimiento de los temas algo más ameno.
+    Estos se explican por temática a lo largo del capítulo.
+
 
 ## Contenidos
 

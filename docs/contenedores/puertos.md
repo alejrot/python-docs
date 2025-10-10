@@ -360,10 +360,13 @@ podman compose up -d
 
 Finalmente
 para ver la página web en funcionamiento
-se abre el navegador en la ruta `http://localhost:9999`.
+se abre el navegador en la ruta 
+[**`http://localhost:9999`**](http://localhost:9999).
 
+
+<!-- 
 [Click para entrar al demo](http://localhost:9999){.md-button .md-button--primary}
-
+ -->
 <!-- 
 ## Ejemplo
 
