@@ -1,3 +1,10 @@
+---
+status: new
+date:
+    created: 2025-10-09
+    updated: 2025-10-09
+---
+
 # Archivos de Exclusión
 
 Con el fin de prevenir
@@ -14,7 +21,7 @@ durante la construcción.
 
 Ejemplo:
 
-```gitignore title="Dockerignore - Ejemplo para programas Python"
+```py title="Dockerignore - Ejemplo para programas Python"
 # codigo objeto de Python (CPython)
 __pycache__/
 

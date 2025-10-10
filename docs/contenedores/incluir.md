@@ -1,3 +1,10 @@
+---
+status: new
+date:
+    created: 2025-10-09
+    updated: 2025-10-09
+---
+
 # Incluir archivos Compose
 
 Un archivo `compose.yml`
@@ -18,7 +25,7 @@ de rutas
 en la seccón `include`:
 
 
-```yml title="Incluir - Sintaxis corta"
+```yaml title="Incluir - Sintaxis corta"
 # archivo  'compose.yml'
 
 # archivos incluidos
@@ -43,7 +50,7 @@ Hay una segunda forma
 para indicar las rutas
 que es la notación larga.
 
-```yml title="Incluir - Sintaxis larga"
+```yaml title="Incluir - Sintaxis larga"
 # archivo  'compose.yml' 
 
 # archivos incluidos
@@ -73,7 +80,7 @@ con las variables de entorno a importar.
 Tanto `path` como `env_file`
 admiten listas de rutas como entrada:
 
-```yml title="Incluir - Sintaxis larga"
+```yaml title="Incluir - Sintaxis larga"
 # archivo 'compose.yml'
 
 # archivos incluidos
@@ -99,7 +106,7 @@ Esto se consigue mediante la notación larga,
 incluyendo un archivo en `path`
 con los cambios y agregados necesarios:
 
-```yml title="Incluir - Sobreescritura" hl_lines="5"
+```yaml title="Incluir - Sobreescritura" hl_lines="5"
 # archivo 'compose.yml' 
 include:
   - path:
@@ -112,7 +119,7 @@ habitualmente se lo nombra `override.yml`.
 Por ejemplo:
 un archivo compose podría
 
-```yml title="Ejemplo - configuración original"
+```yaml title="Ejemplo - configuración original"
 # archivo  'compose.yml' 
 services:
 
@@ -130,7 +137,7 @@ A este contenedor
 se lo altera con ayuda de otro archivo YML:
 
 
-```yml title="Ejemplo - modificaciones"
+```yaml title="Ejemplo - modificaciones"
 # archivo  'override.yml' 
 services:
 
@@ -144,7 +151,7 @@ services:
 
 El despliegue resultante es el descrito a continuación:
 
-```yml title="Ejemplo - resultado"
+```yaml title="Ejemplo - resultado"
 # resultante
 services:
 
@@ -175,7 +182,7 @@ y definir las variables de entorno
 en nuevos archivos
 para el despliegue actual:
 
-```yml title="Incluir - Archivos de entorno"
+```yaml title="Incluir - Archivos de entorno"
 # archivo  'compose.yml' 
 include:
   - path: 

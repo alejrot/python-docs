@@ -1,8 +1,8 @@
 ---
-status: deprecated
+status: new
 date:
     created: 2025-07-01
-    updated: 2025-08-26
+    updated: 2025-10-09
 ---
 
 # Secrets
@@ -83,7 +83,7 @@ Esto se soluciona en muchas imágenes
 creando una variable de entorno
 a la cual se le asigna la ruta del secreto:
 
-```yaml title="compose.yml - Ruta en variables de entorno" hl_lines="5-6"
+```yaml title="compose.yml - Ruta en variables de entorno" hl_lines="6-7"
 # archivo 'compose.yml'
 services:
 

@@ -1,3 +1,10 @@
+---
+status: new
+date:
+    created: 2025-10-09
+    updated: 2025-10-09
+---
+
 # Profiles
 
 Los perfiles permiten la ejecución condicional
@@ -10,7 +17,8 @@ un campo opcional llamado `profile`.
 En él se define al menos
 un nombre de perfil a implementar:
 
-```yml
+```yaml title="Profiles - Asignación"
+# archivo 'compose.yml'
 services:
 
   servicio:
@@ -33,7 +41,8 @@ Un mismo contenedor
 puede tener asignados
 varios perfiles:
 
-```yml
+```yaml title="Profiles - Asignación múltiple"
+# archivo 'compose.yml'
 services:
 
   servicio:
@@ -51,21 +60,21 @@ Los perfiles se activan de varias maneras.
 Una de ellas es agregando la opción `profile`
 al comando `compose`:
 
-```bash
+```bash title="Despliegue - por opción"
 podman compose  --profile perfil  up
 ``` 
 Si se necesita activar varios perfiles al mismo tiempo
 esto se hace indicano varias veces la opción `profile`,
 una por cada perfil a activar:
 
-```bash
+```bash title="Despliegue - por opción (múltiples perfiles)"
 podman compose  --profile perfil_1 --profile perfil_2  up
 ``` 
 
 La otra opción es recurrir
 a la variable de entorno `COMPOSE_PROFILES`:
 
-```bash
+```bash title="Despliegue - con variable de entorno"
 export COMPOSE_PROFILES=perfil
 podman compose up
 ```
@@ -74,7 +83,7 @@ La asignación de múltiples perfiles
 se realiza separando los nombres de perfil
 con comas:
 
-```bash
+```bash title="Despliegue - con variable de entorno (múltiples perfiles)"
 export COMPOSE_PROFILES=perfil_1,perfil_2 
 podman compose up
 ```
@@ -88,12 +97,12 @@ La parada por perfil
 se realiza
 agregando la opción `profile`:
 
-```bash
+```bash title="Detención - con opción"
 podman compose  --profile perfil  down
 ``` 
 o mediante su variable de entorno:
 
-```bash
+```bash title="Detención - con variable de entorno"
 export COMPOSE_PROFILES=perfil
 podman compose down
 ```
@@ -116,7 +125,7 @@ puede ser invocado directamente
 por su nombre de servicio.
 Para ello se utiliza el comando `run`:
 
-```bash
+```bash title="Ejecución - servicio específico"
 podman compose run nombre_servicio
 ```
 
