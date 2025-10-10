@@ -35,4 +35,4 @@ mediante archivos de configuración
 ## Contenidos
 
 
-{{  pagetree(siblings) }}
+{{  pagetree(subtree) }}
