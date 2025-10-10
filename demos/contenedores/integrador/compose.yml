@@ -14,6 +14,9 @@ services:
     restart: always
     networks:
       - red-frontend
+    environment:
+      SERVICIO_BACKEND:   backend_fastapi
+      PUERTO_BACKEND:     8000
     depends_on: 
       - backend_fastapi
 

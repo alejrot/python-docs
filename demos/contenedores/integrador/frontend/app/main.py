@@ -4,6 +4,7 @@
 from logging import basicConfig
 from logging import info
 from logging import INFO
+import os
 
 # paquetes
 import flet as ft
@@ -19,8 +20,11 @@ basicConfig(
 )
 
 # URLs al backend
-URL_CREAR_PERSONA = "http://backend_fastapi:8000/nuevo/"
-URL_LEER_TODOS    = "http://backend_fastapi:8000/leer_todos/"
+servicio_backend = os.getenv("SERVICIO_BACKEND")
+puerto_backend   = os.getenv("PUERTO_BACKEND")
+
+URL_CREAR_PERSONA = f"http://{servicio_backend}:{puerto_backend}/nuevo/"
+URL_LEER_TODOS    = f"http://{servicio_backend}:{puerto_backend}/leer_todos/"
 
 
 # diseño de página
