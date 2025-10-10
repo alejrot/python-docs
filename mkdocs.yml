@@ -321,6 +321,7 @@ nav:
       - contenedores/dockerignore.md
       - contenedores/secretos.md
       - contenedores/incluir.md
+      - contenedores/profiles.md
       # - contenedores/integrador.md
       
       - Anexo - Imágenes de contenedores:

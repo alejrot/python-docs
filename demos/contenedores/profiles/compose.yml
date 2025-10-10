@@ -1,0 +1,51 @@
+name: demo_variables_entorno
+
+services:
+
+  # crea una imagen común para todos los demos
+  crear_imagen:
+    build: .
+    image: demo_profiles 
+
+
+  # cada contenedor funciona bajo diferentes perfiles
+  profile_ninguno:
+    image: demo_profiles
+    environment:
+      VARIABLE_PYTHON: "Funciono SIEMPRE"
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+
+
+  profile_debug:
+    image: demo_profiles
+    environment:
+      VARIABLE_PYTHON: "Sólo para DEBUG"
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+    profiles:
+      [debug]
+
+
+  profile_test:
+    image: demo_profiles
+    environment:
+      VARIABLE_PYTHON: "Sólo para TEST"
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+    profiles:
+      [test]
+
+
+  profile_both:
+    image: demo_profiles
+    environment:
+      VARIABLE_PYTHON: "Se usa para DEBUG y TEST"
+    depends_on:
+      crear_imagen:
+        condition: service_completed_successfully
+    profiles:
+      [debug, test]
